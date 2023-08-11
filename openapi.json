@@ -918,7 +918,7 @@
         "/applications/{id}/change-stage": {
             "post": {
                 "operationId": "applications_change_stage_create",
-                "x-speakeasy-name-override": "create_change_state",
+                "x-speakeasy-name-override": "update_change_state",
                 "description": "Updates the `current_stage` field of an `Application` object",
                 "parameters": [
                     {
@@ -1904,7 +1904,7 @@
                 "x-endpoint-availability": "ENDPOINT_AVAILABILITY_PUBLIC"
             },
             "patch": {
-                "operationId": "candidates_partial_update",
+                "operationId": "partial_update",
                 "description": "Updates a `Candidate` object with the given `id`.",
                 "parameters": [
                     {
@@ -10878,6 +10878,10 @@
         {
             "operationId": ".*_retrieve$",
             "methodNameOverride": "retrieve"
+        },
+        {
+            "operationId": ".*_update$",
+            "methodNameOverride": "update"
         }
     ]
 }
