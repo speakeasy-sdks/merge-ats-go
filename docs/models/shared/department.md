@@ -1,0 +1,20 @@
+# Department
+
+# The Department Object
+### Description
+The `Department` object is used to represent a department within a company.
+### Usage Example
+Fetch from the `LIST Departments` endpoint and view the departments within a company.
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `FieldMappings`                                                                | map[string]*interface{}*                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |                                                                                |
+| `ID`                                                                           | **string*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            | 5b3c1341-a20f-4e51-b72c-f3830a16c97b                                           |
+| `ModifiedAt`                                                                   | [*time.Time](https://pkg.go.dev/time#Time)                                     | :heavy_minus_sign:                                                             | This is the datetime that this object was last updated by Merge                | 2021-10-16T00:00:00Z                                                           |
+| `Name`                                                                         | **string*                                                                      | :heavy_minus_sign:                                                             | The department's name.                                                         | Engineering                                                                    |
+| `RemoteData`                                                                   | [][RemoteData](../../models/shared/remotedata.md)                              | :heavy_minus_sign:                                                             | N/A                                                                            |                                                                                |
+| `RemoteID`                                                                     | **string*                                                                      | :heavy_minus_sign:                                                             | The third-party API ID of the matching object.                                 | 23456                                                                          |
+| `RemoteWasDeleted`                                                             | **bool*                                                                        | :heavy_minus_sign:                                                             | Indicates whether or not this object has been deleted by third party webhooks. |                                                                                |
