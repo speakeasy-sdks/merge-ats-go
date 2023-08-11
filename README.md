@@ -1,4 +1,12 @@
-# github.com/speakeasy-sdks/merge-ats-go
+<div align="center">
+    <img src="https://github.com/speakeasy-sdks/merge-ats-go/assets/6267663/5aa3b6d0-154c-4dbc-b402-2346f7d09354" width="350px">
+    <h1>Go SDK</h1>
+   <p>Merge is a single API to add hundreds of integrations to your app.</p>
+   <a href="https://docs.merge.dev/ats/overview/"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000&style=for-the-badge" /></a>
+   <a href="https://github.com/speakeasy-sdks/merge-ats-go/actions"><img src="https://img.shields.io/github/actions/workflow/status/speakeasy-sdks/merge-ats-go/speakeasy_sdk_generation.yml?style=for-the-badge" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
+  <a href="https://github.com/speakeasy-sdks/merge-ats-go/releases"><img src="https://img.shields.io/github/v/release/speakeasy-sdks/merge-ats-go?sort=semver&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
