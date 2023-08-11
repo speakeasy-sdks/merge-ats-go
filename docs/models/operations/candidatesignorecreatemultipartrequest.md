@@ -1,0 +1,10 @@
+# CandidatesIgnoreCreateMultipartRequest
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `IgnoreCommonModelRequest2`                                                          | [shared.IgnoreCommonModelRequest2](../../models/shared/ignorecommonmodelrequest2.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `XAccountToken`                                                                      | *string*                                                                             | :heavy_check_mark:                                                                   | Token identifying the end user.                                                      |
+| `ModelID`                                                                            | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |

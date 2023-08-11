@@ -1,4 +1,9 @@
 configVersion: 1.0.0
+management:
+  docChecksum: 400dbc11dd8efd413d52cbe8ceb2c863
+  docVersion: "1.0"
+  speakeasyVersion: 1.71.0
+  generationVersion: 2.83.3
 generation:
   comments:
     disableComments: false
@@ -7,7 +12,15 @@ generation:
   sdkClassName: ATS
   singleTagPerOp: false
   tagNamespacingDisabled: false
+features:
+  go:
+    core: 2.82.0
+    globalSecurity: 2.81.1
+    globalServerURLs: 2.81.1
+    inputOutputModels: 2.81.1
+    methodSecurity: 2.81.1
+    nameOverrides: 2.81.1
 go:
-  version: 0.0.1
+  version: 0.1.0
   maxMethodParams: 0
   packageName: github.com/speakeasy-sdks/merge-ats-go

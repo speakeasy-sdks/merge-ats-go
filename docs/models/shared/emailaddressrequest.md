@@ -1,0 +1,17 @@
+# EmailAddressRequest
+
+# The EmailAddress Object
+### Description
+The `EmailAddress` object is used to represent a candidate's email address.
+### Usage Example
+Fetch from the `GET Candidate` endpoint and view their email addresses.
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `EmailAddressType`                                                                                 | [*EmailAddressRequestEmailAddressType](../../models/shared/emailaddressrequestemailaddresstype.md) | :heavy_minus_sign:                                                                                 | The type of email address.<br/><br/>* `PERSONAL` - PERSONAL<br/>* `WORK` - WORK<br/>* `OTHER` - OTHER | PERSONAL                                                                                           |
+| `IntegrationParams`                                                                                | map[string]*interface{}*                                                                           | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
+| `LinkedAccountParams`                                                                              | map[string]*interface{}*                                                                           | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
+| `Value`                                                                                            | **string*                                                                                          | :heavy_minus_sign:                                                                                 | The email address.                                                                                 | merge_is_hiring@merge.dev                                                                          |
