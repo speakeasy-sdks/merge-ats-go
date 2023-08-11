@@ -30,20 +30,20 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Jobs.List(ctx, operations.JobsListRequest{
-        XAccountToken: "fugit",
-        Code: ats.String("cumque"),
-        CreatedAfter: types.MustTimeFromString("2022-12-24T02:00:23.446Z"),
-        CreatedBefore: types.MustTimeFromString("2022-11-11T21:40:40.524Z"),
-        Cursor: ats.String("eum"),
-        Expand: operations.JobsListExpandDepartmentsOffices.ToPointer(),
+        XAccountToken: "suscipit",
+        Code: ats.String("dolorem"),
+        CreatedAfter: types.MustTimeFromString("2022-03-27T18:38:54.968Z"),
+        CreatedBefore: types.MustTimeFromString("2022-08-15T23:37:19.342Z"),
+        Cursor: ats.String("animi"),
+        Expand: operations.JobsListExpandOfficesRecruiters.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2021-04-05T02:38:00.020Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-06-18T13:06:11.480Z"),
-        Offices: ats.String("sapiente"),
-        PageSize: ats.Int64(433279),
+        ModifiedAfter: types.MustTimeFromString("2022-12-22T05:17:09.936Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-11-29T01:33:31.768Z"),
+        Offices: ats.String("ducimus"),
+        PageSize: ats.Int64(619183),
         RemoteFields: operations.JobsListRemoteFieldsStatus.ToPointer(),
-        RemoteID: ats.String("dicta"),
+        RemoteID: ats.String("occaecati"),
         ShowEnumOrigins: operations.JobsListShowEnumOriginsStatus.ToPointer(),
         Status: operations.JobsListStatusClosed.ToPointer(),
     }, operationSecurity)
@@ -95,9 +95,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Jobs.Retrieve(ctx, operations.JobsRetrieveRequest{
-        XAccountToken: "beatae",
-        Expand: operations.JobsRetrieveExpandHiringManagers.ToPointer(),
-        ID: "9ebfd0e9-fe6c-4632-8a3a-ed0117996312",
+        XAccountToken: "adipisci",
+        Expand: operations.JobsRetrieveExpandDepartmentsHiringManagers.ToPointer(),
+        ID: "2fde0477-1778-4ff6-9d01-7476360a15db",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.JobsRetrieveRemoteFieldsStatus.ToPointer(),
         ShowEnumOrigins: operations.JobsRetrieveShowEnumOriginsStatus.ToPointer(),

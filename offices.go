@@ -86,7 +86,13 @@ func (s *offices) List(ctx context.Context, request operations.OfficesListReques
 }
 
 // Retrieve - Returns an `Office` object with the given `id`.
-func (s *offices) Retrieve(ctx context.Context, request operations.OfficesRetrieveRequest, security operations.OfficesRetrieveSecurity) (*operations.OfficesRetrieveResponse, error) {
+func (s *offices) Retrieve(ctx context.Context, security operations.OfficesRetrieveSecurity, xAccountToken string, id string, includeRemoteData *bool) (*operations.OfficesRetrieveResponse, error) {
+	request := operations.OfficesRetrieveRequest{
+		XAccountToken:     xAccountToken,
+		ID:                id,
+		IncludeRemoteData: includeRemoteData,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/offices/{id}", request, nil)
 	if err != nil {

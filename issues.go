@@ -84,7 +84,11 @@ func (s *issues) List(ctx context.Context, request operations.IssuesListRequest,
 }
 
 // Retrieve - Get a specific issue.
-func (s *issues) Retrieve(ctx context.Context, request operations.IssuesRetrieveRequest, security operations.IssuesRetrieveSecurity) (*operations.IssuesRetrieveResponse, error) {
+func (s *issues) Retrieve(ctx context.Context, security operations.IssuesRetrieveSecurity, id string) (*operations.IssuesRetrieveResponse, error) {
+	request := operations.IssuesRetrieveRequest{
+		ID: id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/issues/{id}", request, nil)
 	if err != nil {

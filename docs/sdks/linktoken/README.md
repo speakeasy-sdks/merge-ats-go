@@ -30,16 +30,13 @@ func main() {
     ctx := context.Background()
     res, err := s.LinkToken.Create(ctx, shared.EndUserDetailsRequest{
         Categories: []shared.CategoriesEnum{
-            shared.CategoriesEnumFilestorage,
-            shared.CategoriesEnumFilestorage,
-            shared.CategoriesEnumHris,
-            shared.CategoriesEnumAts,
+            shared.CategoriesEnumCrm,
+            shared.CategoriesEnumAccounting,
         },
         CommonModels: []shared.CommonModelScopesBodyRequest{
             shared.CommonModelScopesBodyRequest{
                 DisabledFields: []string{
-                    "dicta",
-                    "iusto",
+                    "eum",
                 },
                 EnabledActions: []shared.EnabledActionsEnum{
                     shared.EnabledActionsEnumWrite,
@@ -49,22 +46,22 @@ func main() {
             },
             shared.CommonModelScopesBodyRequest{
                 DisabledFields: []string{
-                    "vel",
-                    "architecto",
-                    "fugiat",
-                    "doloremque",
+                    "error",
                 },
                 EnabledActions: []shared.EnabledActionsEnum{
-                    shared.EnabledActionsEnumRead,
+                    shared.EnabledActionsEnumWrite,
+                    shared.EnabledActionsEnumWrite,
+                    shared.EnabledActionsEnumWrite,
+                    shared.EnabledActionsEnumWrite,
                 },
                 ModelID: "hris.Employee",
             },
         },
-        EndUserEmailAddress: "tempora",
-        EndUserOrganizationName: "esse",
-        EndUserOriginID: "ex",
-        Integration: ats.String("consectetur"),
-        LinkExpiryMins: ats.Int64(399812),
+        EndUserEmailAddress: "ad",
+        EndUserOrganizationName: "deleniti",
+        EndUserOriginID: "enim",
+        Integration: ats.String("vitae"),
+        LinkExpiryMins: ats.Int64(833316),
         ShouldCreateMagicLinkURL: ats.Bool(false),
     }, operationSecurity)
     if err != nil {

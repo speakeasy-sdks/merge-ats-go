@@ -22,14 +22,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "saepe"
     operationSecurity := operations.AvailableActionsRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.AvailableActions.Retrieve(ctx, operations.AvailableActionsRetrieveRequest{
-        XAccountToken: "saepe",
-    }, operationSecurity)
+    res, err := s.AvailableActions.Retrieve(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -45,8 +44,8 @@ func main() {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `request`                                                                                                  | [operations.AvailableActionsRetrieveRequest](../../models/operations/availableactionsretrieverequest.md)   | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `security`                                                                                                 | [operations.AvailableActionsRetrieveSecurity](../../models/operations/availableactionsretrievesecurity.md) | :heavy_check_mark:                                                                                         | The security requirements to use for the request.                                                          |
+| `xAccountToken`                                                                                            | *string*                                                                                                   | :heavy_check_mark:                                                                                         | Token identifying the end user.                                                                            |
 
 
 ### Response

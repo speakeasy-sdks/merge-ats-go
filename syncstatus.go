@@ -26,7 +26,13 @@ func newSyncStatus(sdkConfig sdkConfiguration) *syncStatus {
 }
 
 // List - Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`
-func (s *syncStatus) List(ctx context.Context, request operations.SyncStatusListRequest, security operations.SyncStatusListSecurity) (*operations.SyncStatusListResponse, error) {
+func (s *syncStatus) List(ctx context.Context, security operations.SyncStatusListSecurity, xAccountToken string, cursor *string, pageSize *int64) (*operations.SyncStatusListResponse, error) {
+	request := operations.SyncStatusListRequest{
+		XAccountToken: xAccountToken,
+		Cursor:        cursor,
+		PageSize:      pageSize,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/sync-status"
 

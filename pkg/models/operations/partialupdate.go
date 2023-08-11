@@ -7,18 +7,18 @@ import (
 	"net/http"
 )
 
-type CandidatesPartialUpdateSecurity struct {
+type PartialUpdateSecurity struct {
 	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
-func (o *CandidatesPartialUpdateSecurity) GetTokenAuth() string {
+func (o *PartialUpdateSecurity) GetTokenAuth() string {
 	if o == nil {
 		return ""
 	}
 	return o.TokenAuth
 }
 
-type CandidatesPartialUpdateRequest struct {
+type PartialUpdateRequest struct {
 	PatchedCandidateEndpointRequest shared.PatchedCandidateEndpointRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -29,70 +29,70 @@ type CandidatesPartialUpdateRequest struct {
 	RunAsync *bool `queryParam:"style=form,explode=true,name=run_async"`
 }
 
-func (o *CandidatesPartialUpdateRequest) GetPatchedCandidateEndpointRequest() shared.PatchedCandidateEndpointRequest {
+func (o *PartialUpdateRequest) GetPatchedCandidateEndpointRequest() shared.PatchedCandidateEndpointRequest {
 	if o == nil {
 		return shared.PatchedCandidateEndpointRequest{}
 	}
 	return o.PatchedCandidateEndpointRequest
 }
 
-func (o *CandidatesPartialUpdateRequest) GetXAccountToken() string {
+func (o *PartialUpdateRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
 	}
 	return o.XAccountToken
 }
 
-func (o *CandidatesPartialUpdateRequest) GetID() string {
+func (o *PartialUpdateRequest) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *CandidatesPartialUpdateRequest) GetIsDebugMode() *bool {
+func (o *PartialUpdateRequest) GetIsDebugMode() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.IsDebugMode
 }
 
-func (o *CandidatesPartialUpdateRequest) GetRunAsync() *bool {
+func (o *PartialUpdateRequest) GetRunAsync() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.RunAsync
 }
 
-type CandidatesPartialUpdateResponse struct {
+type PartialUpdateResponse struct {
 	CandidateResponse *shared.CandidateResponse
 	ContentType       string
 	StatusCode        int
 	RawResponse       *http.Response
 }
 
-func (o *CandidatesPartialUpdateResponse) GetCandidateResponse() *shared.CandidateResponse {
+func (o *PartialUpdateResponse) GetCandidateResponse() *shared.CandidateResponse {
 	if o == nil {
 		return nil
 	}
 	return o.CandidateResponse
 }
 
-func (o *CandidatesPartialUpdateResponse) GetContentType() string {
+func (o *PartialUpdateResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *CandidatesPartialUpdateResponse) GetStatusCode() int {
+func (o *PartialUpdateResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *CandidatesPartialUpdateResponse) GetRawResponse() *http.Response {
+func (o *PartialUpdateResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

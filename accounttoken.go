@@ -25,7 +25,11 @@ func newAccountToken(sdkConfig sdkConfiguration) *accountToken {
 }
 
 // Retrieve - Returns the account token for the end user with the provided public token.
-func (s *accountToken) Retrieve(ctx context.Context, request operations.AccountTokenRetrieveRequest, security operations.AccountTokenRetrieveSecurity) (*operations.AccountTokenRetrieveResponse, error) {
+func (s *accountToken) Retrieve(ctx context.Context, security operations.AccountTokenRetrieveSecurity, publicToken string) (*operations.AccountTokenRetrieveResponse, error) {
+	request := operations.AccountTokenRetrieveRequest{
+		PublicToken: publicToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/account-token/{public_token}", request, nil)
 	if err != nil {

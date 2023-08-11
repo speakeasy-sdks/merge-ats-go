@@ -26,7 +26,12 @@ func newPassthrough(sdkConfig sdkConfiguration) *passthrough {
 }
 
 // Create - Pull data from an endpoint not currently supported by Merge.
-func (s *passthrough) Create(ctx context.Context, request operations.PassthroughCreateRequest, security operations.PassthroughCreateSecurity) (*operations.PassthroughCreateResponse, error) {
+func (s *passthrough) Create(ctx context.Context, security operations.PassthroughCreateSecurity, dataPassthroughRequest shared.DataPassthroughRequest, xAccountToken string) (*operations.PassthroughCreateResponse, error) {
+	request := operations.PassthroughCreateRequest{
+		DataPassthroughRequest: dataPassthroughRequest,
+		XAccountToken:          xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/passthrough"
 

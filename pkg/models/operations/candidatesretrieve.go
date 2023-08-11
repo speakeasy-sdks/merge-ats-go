@@ -54,9 +54,9 @@ func (e *CandidatesRetrieveExpand) UnmarshalJSON(data []byte) error {
 type CandidatesRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
+	ID            string `pathParam:"style=simple,explode=false,name=id"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 	Expand *CandidatesRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string                    `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 }
@@ -68,18 +68,18 @@ func (o *CandidatesRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *CandidatesRetrieveRequest) GetExpand() *CandidatesRetrieveExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
-}
-
 func (o *CandidatesRetrieveRequest) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *CandidatesRetrieveRequest) GetExpand() *CandidatesRetrieveExpand {
+	if o == nil {
+		return nil
+	}
+	return o.Expand
 }
 
 func (o *CandidatesRetrieveRequest) GetIncludeRemoteData() *bool {

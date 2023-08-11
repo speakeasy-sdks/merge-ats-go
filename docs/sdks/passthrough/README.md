@@ -23,49 +23,50 @@ import(
 
 func main() {
     s := ats.New()
+    dataPassthroughRequest := shared.DataPassthroughRequest{
+        BaseURLOverride: ats.String("accusamus"),
+        Data: ats.String("{"company": "Lime", "model": "Gen 2.5"}"),
+        Headers: map[string]interface{}{
+            "distinctio": "omnis",
+            "delectus": "minima",
+            "praesentium": "maxime",
+            "magnam": "temporibus",
+        },
+        Method: shared.DataPassthroughRequestMethodPost,
+        MultipartFormData: []shared.MultipartFormFieldRequest{
+            shared.MultipartFormFieldRequest{
+                ContentType: ats.String("application/pdf"),
+                Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
+                Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
+                FileName: ats.String("resume.pdf"),
+                Name: "resume",
+            },
+            shared.MultipartFormFieldRequest{
+                ContentType: ats.String("application/pdf"),
+                Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
+                Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
+                FileName: ats.String("resume.pdf"),
+                Name: "resume",
+            },
+            shared.MultipartFormFieldRequest{
+                ContentType: ats.String("application/pdf"),
+                Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
+                Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
+                FileName: ats.String("resume.pdf"),
+                Name: "resume",
+            },
+        },
+        NormalizeResponse: ats.Bool(false),
+        Path: "/scooters",
+        RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
+    }
+    xAccountToken := "commodi"
     operationSecurity := operations.PassthroughCreateSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.Passthrough.Create(ctx, operations.PassthroughCreateRequest{
-        DataPassthroughRequest: shared.DataPassthroughRequest{
-            BaseURLOverride: ats.String("quos"),
-            Data: ats.String("{"company": "Lime", "model": "Gen 2.5"}"),
-            Headers: map[string]interface{}{
-                "aspernatur": "ducimus",
-                "nesciunt": "fuga",
-            },
-            Method: shared.DataPassthroughRequestMethodPost,
-            MultipartFormData: []shared.MultipartFormFieldRequest{
-                shared.MultipartFormFieldRequest{
-                    ContentType: ats.String("application/pdf"),
-                    Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-                    Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                    FileName: ats.String("resume.pdf"),
-                    Name: "resume",
-                },
-                shared.MultipartFormFieldRequest{
-                    ContentType: ats.String("application/pdf"),
-                    Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-                    Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                    FileName: ats.String("resume.pdf"),
-                    Name: "resume",
-                },
-                shared.MultipartFormFieldRequest{
-                    ContentType: ats.String("application/pdf"),
-                    Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-                    Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                    FileName: ats.String("resume.pdf"),
-                    Name: "resume",
-                },
-            },
-            NormalizeResponse: ats.Bool(false),
-            Path: "/scooters",
-            RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
-        },
-        XAccountToken: "incidunt",
-    }, operationSecurity)
+    res, err := s.Passthrough.Create(ctx, operationSecurity, dataPassthroughRequest, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -81,8 +82,9 @@ func main() {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.PassthroughCreateRequest](../../models/operations/passthroughcreaterequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `security`                                                                                   | [operations.PassthroughCreateSecurity](../../models/operations/passthroughcreatesecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| `dataPassthroughRequest`                                                                     | [shared.DataPassthroughRequest](../../models/shared/datapassthroughrequest.md)               | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `xAccountToken`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | Token identifying the end user.                                                              |
 
 
 ### Response

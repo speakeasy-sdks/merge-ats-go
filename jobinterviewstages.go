@@ -86,7 +86,14 @@ func (s *jobInterviewStages) List(ctx context.Context, request operations.JobInt
 }
 
 // Retrieve - Returns a `JobInterviewStage` object with the given `id`.
-func (s *jobInterviewStages) Retrieve(ctx context.Context, request operations.JobInterviewStagesRetrieveRequest, security operations.JobInterviewStagesRetrieveSecurity) (*operations.JobInterviewStagesRetrieveResponse, error) {
+func (s *jobInterviewStages) Retrieve(ctx context.Context, security operations.JobInterviewStagesRetrieveSecurity, xAccountToken string, id string, expand *operations.JobInterviewStagesRetrieveExpand, includeRemoteData *bool) (*operations.JobInterviewStagesRetrieveResponse, error) {
+	request := operations.JobInterviewStagesRetrieveRequest{
+		XAccountToken:     xAccountToken,
+		ID:                id,
+		Expand:            expand,
+		IncludeRemoteData: includeRemoteData,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/job-interview-stages/{id}", request, nil)
 	if err != nil {

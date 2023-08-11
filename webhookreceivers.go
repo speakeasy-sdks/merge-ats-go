@@ -26,7 +26,12 @@ func newWebhookReceivers(sdkConfig sdkConfiguration) *webhookReceivers {
 }
 
 // Create - Creates a `WebhookReceiver` object with the given values.
-func (s *webhookReceivers) Create(ctx context.Context, request operations.WebhookReceiversCreateRequest, security operations.WebhookReceiversCreateSecurity) (*operations.WebhookReceiversCreateResponse, error) {
+func (s *webhookReceivers) Create(ctx context.Context, security operations.WebhookReceiversCreateSecurity, webhookReceiverRequest shared.WebhookReceiverRequest, xAccountToken string) (*operations.WebhookReceiversCreateResponse, error) {
+	request := operations.WebhookReceiversCreateRequest{
+		WebhookReceiverRequest: webhookReceiverRequest,
+		XAccountToken:          xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/webhook-receivers"
 
@@ -92,7 +97,11 @@ func (s *webhookReceivers) Create(ctx context.Context, request operations.Webhoo
 }
 
 // List - Returns a list of `WebhookReceiver` objects.
-func (s *webhookReceivers) List(ctx context.Context, request operations.WebhookReceiversListRequest, security operations.WebhookReceiversListSecurity) (*operations.WebhookReceiversListResponse, error) {
+func (s *webhookReceivers) List(ctx context.Context, security operations.WebhookReceiversListSecurity, xAccountToken string) (*operations.WebhookReceiversListResponse, error) {
+	request := operations.WebhookReceiversListRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/webhook-receivers"
 

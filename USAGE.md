@@ -13,14 +13,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "corrupti"
     operationSecurity := operations.AccountDetailsRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.AccountDetails.Retrieve(ctx, operations.AccountDetailsRetrieveRequest{
-        XAccountToken: "corrupti",
-    }, operationSecurity)
+    res, err := s.AccountDetails.Retrieve(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }

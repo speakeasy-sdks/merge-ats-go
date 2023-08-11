@@ -26,7 +26,12 @@ func newAsyncPassthrough(sdkConfig sdkConfiguration) *asyncPassthrough {
 }
 
 // Create - Asynchronously pull data from an endpoint not currently supported by Merge.
-func (s *asyncPassthrough) Create(ctx context.Context, request operations.AsyncPassthroughCreateRequest, security operations.AsyncPassthroughCreateSecurity) (*operations.AsyncPassthroughCreateResponse, error) {
+func (s *asyncPassthrough) Create(ctx context.Context, security operations.AsyncPassthroughCreateSecurity, dataPassthroughRequest shared.DataPassthroughRequest, xAccountToken string) (*operations.AsyncPassthroughCreateResponse, error) {
+	request := operations.AsyncPassthroughCreateRequest{
+		DataPassthroughRequest: dataPassthroughRequest,
+		XAccountToken:          xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/async-passthrough"
 
@@ -92,7 +97,12 @@ func (s *asyncPassthrough) Create(ctx context.Context, request operations.AsyncP
 }
 
 // Retrieve - Retrieves data from earlier async-passthrough POST request
-func (s *asyncPassthrough) Retrieve(ctx context.Context, request operations.AsyncPassthroughRetrieveRequest, security operations.AsyncPassthroughRetrieveSecurity) (*operations.AsyncPassthroughRetrieveResponse, error) {
+func (s *asyncPassthrough) Retrieve(ctx context.Context, security operations.AsyncPassthroughRetrieveSecurity, xAccountToken string, asyncPassthroughReceiptID string) (*operations.AsyncPassthroughRetrieveResponse, error) {
+	request := operations.AsyncPassthroughRetrieveRequest{
+		XAccountToken:             xAccountToken,
+		AsyncPassthroughReceiptID: asyncPassthroughReceiptID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/async-passthrough/{async_passthrough_receipt_id}", request, nil)
 	if err != nil {

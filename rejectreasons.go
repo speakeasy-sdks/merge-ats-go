@@ -86,7 +86,13 @@ func (s *rejectReasons) List(ctx context.Context, request operations.RejectReaso
 }
 
 // Retrieve - Returns a `RejectReason` object with the given `id`.
-func (s *rejectReasons) Retrieve(ctx context.Context, request operations.RejectReasonsRetrieveRequest, security operations.RejectReasonsRetrieveSecurity) (*operations.RejectReasonsRetrieveResponse, error) {
+func (s *rejectReasons) Retrieve(ctx context.Context, security operations.RejectReasonsRetrieveSecurity, xAccountToken string, id string, includeRemoteData *bool) (*operations.RejectReasonsRetrieveResponse, error) {
+	request := operations.RejectReasonsRetrieveRequest{
+		XAccountToken:     xAccountToken,
+		ID:                id,
+		IncludeRemoteData: includeRemoteData,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/reject-reasons/{id}", request, nil)
 	if err != nil {

@@ -25,81 +25,15 @@ func newCandidates(sdkConfig sdkConfiguration) *candidates {
 	}
 }
 
-// CandidatesPartialUpdate - Updates a `Candidate` object with the given `id`.
-func (s *candidates) CandidatesPartialUpdate(ctx context.Context, request operations.CandidatesPartialUpdateRequest, security operations.CandidatesPartialUpdateSecurity) (*operations.CandidatesPartialUpdateResponse, error) {
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/candidates/{id}", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PatchedCandidateEndpointRequest", "json")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-	if bodyReader == nil {
-		return nil, fmt.Errorf("request body is required")
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "PATCH", url, bodyReader)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, security)
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.CandidatesPartialUpdateResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CandidateResponse
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.CandidateResponse = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
-}
-
 // Create - Creates a `Candidate` object with the given values.
-func (s *candidates) Create(ctx context.Context, request operations.CandidatesCreateRequest, security operations.CandidatesCreateSecurity) (*operations.CandidatesCreateResponse, error) {
+func (s *candidates) Create(ctx context.Context, security operations.CandidatesCreateSecurity, candidateEndpointRequest shared.CandidateEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.CandidatesCreateResponse, error) {
+	request := operations.CandidatesCreateRequest{
+		CandidateEndpointRequest: candidateEndpointRequest,
+		XAccountToken:            xAccountToken,
+		IsDebugMode:              isDebugMode,
+		RunAsync:                 runAsync,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/candidates"
 
@@ -169,7 +103,13 @@ func (s *candidates) Create(ctx context.Context, request operations.CandidatesCr
 }
 
 // IgnoreCreate - Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
-func (s *candidates) IgnoreCreate(ctx context.Context, request operations.CandidatesIgnoreCreateRequest, security operations.CandidatesIgnoreCreateSecurity) (*operations.CandidatesIgnoreCreateResponse, error) {
+func (s *candidates) IgnoreCreate(ctx context.Context, security operations.CandidatesIgnoreCreateSecurity, ignoreCommonModelRequest shared.IgnoreCommonModelRequest, xAccountToken string, modelID string) (*operations.CandidatesIgnoreCreateResponse, error) {
+	request := operations.CandidatesIgnoreCreateRequest{
+		IgnoreCommonModelRequest: ignoreCommonModelRequest,
+		XAccountToken:            xAccountToken,
+		ModelID:                  modelID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/candidates/ignore/{model_id}", request, nil)
 	if err != nil {
@@ -287,7 +227,14 @@ func (s *candidates) List(ctx context.Context, request operations.CandidatesList
 }
 
 // Retrieve - Returns a `Candidate` object with the given `id`.
-func (s *candidates) Retrieve(ctx context.Context, request operations.CandidatesRetrieveRequest, security operations.CandidatesRetrieveSecurity) (*operations.CandidatesRetrieveResponse, error) {
+func (s *candidates) Retrieve(ctx context.Context, security operations.CandidatesRetrieveSecurity, xAccountToken string, id string, expand *operations.CandidatesRetrieveExpand, includeRemoteData *bool) (*operations.CandidatesRetrieveResponse, error) {
+	request := operations.CandidatesRetrieveRequest{
+		XAccountToken:     xAccountToken,
+		ID:                id,
+		Expand:            expand,
+		IncludeRemoteData: includeRemoteData,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/candidates/{id}", request, nil)
 	if err != nil {
@@ -350,7 +297,12 @@ func (s *candidates) Retrieve(ctx context.Context, request operations.Candidates
 }
 
 // RetrievePatchMetadata - Returns metadata for `Candidate` PATCHs.
-func (s *candidates) RetrievePatchMetadata(ctx context.Context, request operations.CandidatesMetaPatchRetrieveRequest, security operations.CandidatesMetaPatchRetrieveSecurity) (*operations.CandidatesMetaPatchRetrieveResponse, error) {
+func (s *candidates) RetrievePatchMetadata(ctx context.Context, security operations.CandidatesMetaPatchRetrieveSecurity, xAccountToken string, id string) (*operations.CandidatesMetaPatchRetrieveResponse, error) {
+	request := operations.CandidatesMetaPatchRetrieveRequest{
+		XAccountToken: xAccountToken,
+		ID:            id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/candidates/meta/patch/{id}", request, nil)
 	if err != nil {
@@ -409,7 +361,11 @@ func (s *candidates) RetrievePatchMetadata(ctx context.Context, request operatio
 }
 
 // RetrievePostMetadata - Returns metadata for `Candidate` POSTs.
-func (s *candidates) RetrievePostMetadata(ctx context.Context, request operations.CandidatesMetaPostRetrieveRequest, security operations.CandidatesMetaPostRetrieveSecurity) (*operations.CandidatesMetaPostRetrieveResponse, error) {
+func (s *candidates) RetrievePostMetadata(ctx context.Context, security operations.CandidatesMetaPostRetrieveSecurity, xAccountToken string) (*operations.CandidatesMetaPostRetrieveResponse, error) {
+	request := operations.CandidatesMetaPostRetrieveRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/candidates/meta/post"
 
@@ -456,6 +412,79 @@ func (s *candidates) RetrievePostMetadata(ctx context.Context, request operation
 			}
 
 			res.MetaResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	}
+
+	return res, nil
+}
+
+// Update - Updates a `Candidate` object with the given `id`.
+func (s *candidates) Update(ctx context.Context, request operations.PartialUpdateRequest, security operations.PartialUpdateSecurity) (*operations.PartialUpdateResponse, error) {
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/candidates/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PatchedCandidateEndpointRequest", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+	if bodyReader == nil {
+		return nil, fmt.Errorf("request body is required")
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "PATCH", url, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	utils.PopulateHeaders(ctx, req, request)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, security)
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.PartialUpdateResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.CandidateResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.CandidateResponse = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

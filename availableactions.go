@@ -26,7 +26,11 @@ func newAvailableActions(sdkConfig sdkConfiguration) *availableActions {
 }
 
 // Retrieve - Returns a list of models and actions available for an account.
-func (s *availableActions) Retrieve(ctx context.Context, request operations.AvailableActionsRetrieveRequest, security operations.AvailableActionsRetrieveSecurity) (*operations.AvailableActionsRetrieveResponse, error) {
+func (s *availableActions) Retrieve(ctx context.Context, security operations.AvailableActionsRetrieveSecurity, xAccountToken string) (*operations.AvailableActionsRetrieveResponse, error) {
+	request := operations.AvailableActionsRetrieveRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/available-actions"
 

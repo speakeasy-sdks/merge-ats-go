@@ -22,14 +22,13 @@ import(
 
 func main() {
     s := ats.New()
+    publicToken := "distinctio"
     operationSecurity := operations.AccountTokenRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.AccountToken.Retrieve(ctx, operations.AccountTokenRetrieveRequest{
-        PublicToken: "distinctio",
-    }, operationSecurity)
+    res, err := s.AccountToken.Retrieve(ctx, operationSecurity, publicToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -45,8 +44,8 @@ func main() {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.AccountTokenRetrieveRequest](../../models/operations/accounttokenretrieverequest.md)   | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `security`                                                                                         | [operations.AccountTokenRetrieveSecurity](../../models/operations/accounttokenretrievesecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
+| `publicToken`                                                                                      | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
 
 
 ### Response

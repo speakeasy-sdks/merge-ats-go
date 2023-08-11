@@ -30,20 +30,20 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Offers.List(ctx, operations.OffersListRequest{
-        XAccountToken: "est",
+        XAccountToken: "ipsam",
         ApplicationID: ats.String("culpa"),
-        CreatedAfter: types.MustTimeFromString("2022-01-15T21:54:49.962Z"),
-        CreatedBefore: types.MustTimeFromString("2022-09-09T21:19:27.244Z"),
-        CreatorID: ats.String("fuga"),
-        Cursor: ats.String("pariatur"),
-        Expand: operations.OffersListExpandCreator.ToPointer(),
+        CreatedAfter: types.MustTimeFromString("2022-09-10T19:23:06.016Z"),
+        CreatedBefore: types.MustTimeFromString("2022-06-18T21:26:08.081Z"),
+        CreatorID: ats.String("veritatis"),
+        Cursor: ats.String("tempora"),
+        Expand: operations.OffersListExpandApplication.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-12-31T13:25:17.006Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-02-15T19:55:34.024Z"),
-        PageSize: ats.Int64(404244),
+        ModifiedAfter: types.MustTimeFromString("2022-11-25T11:52:35.630Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-09-26T06:15:07.269Z"),
+        PageSize: ats.Int64(144286),
         RemoteFields: operations.OffersListRemoteFieldsStatus.ToPointer(),
-        RemoteID: ats.String("sapiente"),
+        RemoteID: ats.String("ab"),
         ShowEnumOrigins: operations.OffersListShowEnumOriginsStatus.ToPointer(),
     }, operationSecurity)
     if err != nil {
@@ -94,9 +94,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Offers.Retrieve(ctx, operations.OffersRetrieveRequest{
-        XAccountToken: "rem",
-        Expand: operations.OffersRetrieveExpandCreator.ToPointer(),
-        ID: "5f350d8c-db5a-4341-8143-010421813d52",
+        XAccountToken: "laudantium",
+        Expand: operations.OffersRetrieveExpandApplication.ToPointer(),
+        ID: "3d5208ec-e7e2-453b-a684-51c6c6e205e1",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.OffersRetrieveRemoteFieldsStatus.ToPointer(),
         ShowEnumOrigins: operations.OffersRetrieveShowEnumOriginsStatus.ToPointer(),

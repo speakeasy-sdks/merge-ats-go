@@ -24,7 +24,11 @@ func newDeleteAccount(sdkConfig sdkConfiguration) *deleteAccount {
 }
 
 // DeleteAccountDelete - Delete a linked account.
-func (s *deleteAccount) DeleteAccountDelete(ctx context.Context, request operations.DeleteAccountDeleteRequest, security operations.DeleteAccountDeleteSecurity) (*operations.DeleteAccountDeleteResponse, error) {
+func (s *deleteAccount) DeleteAccountDelete(ctx context.Context, security operations.DeleteAccountDeleteSecurity, xAccountToken string) (*operations.DeleteAccountDeleteResponse, error) {
+	request := operations.DeleteAccountDeleteRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/delete-account"
 

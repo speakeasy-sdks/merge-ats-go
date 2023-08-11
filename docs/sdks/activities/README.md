@@ -26,37 +26,36 @@ import(
 
 func main() {
     s := ats.New()
+    activityEndpointRequest := shared.ActivityEndpointRequest{
+        Model: shared.ActivityRequest{
+            ActivityType: shared.ActivityRequestActivityTypeNote.ToPointer(),
+            Body: ats.String("Candidate loves integrations!!."),
+            Candidate: ats.String("03455bc6-6040-430a-848e-aafacbfdf4fg"),
+            IntegrationParams: map[string]interface{}{
+                "unde": "nulla",
+                "corrupti": "illum",
+                "vel": "error",
+                "deserunt": "suscipit",
+            },
+            LinkedAccountParams: map[string]interface{}{
+                "magnam": "debitis",
+                "ipsa": "delectus",
+            },
+            Subject: ats.String("Gil Feig's interview"),
+            User: ats.String("9d892439-5fab-4dbb-8bd8-34f7f96c7912"),
+            Visibility: shared.ActivityRequestVisibilityPrivate.ToPointer(),
+        },
+        RemoteUserID: "tempora",
+    }
+    xAccountToken := "suscipit"
+    isDebugMode := false
+    runAsync := false
     operationSecurity := operations.ActivitiesCreateSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.Activities.Create(ctx, operations.ActivitiesCreateRequest{
-        ActivityEndpointRequest: shared.ActivityEndpointRequest{
-            Model: shared.ActivityRequest{
-                ActivityType: shared.ActivityRequestActivityTypeNote.ToPointer(),
-                Body: ats.String("Candidate loves integrations!!."),
-                Candidate: ats.String("03455bc6-6040-430a-848e-aafacbfdf4fg"),
-                IntegrationParams: map[string]interface{}{
-                    "unde": "nulla",
-                    "corrupti": "illum",
-                    "vel": "error",
-                    "deserunt": "suscipit",
-                },
-                LinkedAccountParams: map[string]interface{}{
-                    "magnam": "debitis",
-                    "ipsa": "delectus",
-                },
-                Subject: ats.String("Gil Feig's interview"),
-                User: ats.String("9d892439-5fab-4dbb-8bd8-34f7f96c7912"),
-                Visibility: shared.ActivityRequestVisibilityPrivate.ToPointer(),
-            },
-            RemoteUserID: "tempora",
-        },
-        XAccountToken: "suscipit",
-        IsDebugMode: ats.Bool(false),
-        RunAsync: ats.Bool(false),
-    }, operationSecurity)
+    res, err := s.Activities.Create(ctx, operationSecurity, activityEndpointRequest, xAccountToken, isDebugMode, runAsync)
     if err != nil {
         log.Fatal(err)
     }
@@ -72,8 +71,11 @@ func main() {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.ActivitiesCreateRequest](../../models/operations/activitiescreaterequest.md)   | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `security`                                                                                 | [operations.ActivitiesCreateSecurity](../../models/operations/activitiescreatesecurity.md) | :heavy_check_mark:                                                                         | The security requirements to use for the request.                                          |
+| `activityEndpointRequest`                                                                  | [shared.ActivityEndpointRequest](../../models/shared/activityendpointrequest.md)           | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `xAccountToken`                                                                            | *string*                                                                                   | :heavy_check_mark:                                                                         | Token identifying the end user.                                                            |
+| `isDebugMode`                                                                              | **bool*                                                                                    | :heavy_minus_sign:                                                                         | Whether to include debug fields (such as log file links) in the response.                  |
+| `runAsync`                                                                                 | **bool*                                                                                    | :heavy_minus_sign:                                                                         | Whether or not third-party updates should be run asynchronously.                           |
 
 
 ### Response
@@ -218,14 +220,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "perferendis"
     operationSecurity := operations.ActivitiesMetaPostRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.Activities.RetrievePostMetadata(ctx, operations.ActivitiesMetaPostRetrieveRequest{
-        XAccountToken: "perferendis",
-    }, operationSecurity)
+    res, err := s.Activities.RetrievePostMetadata(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -241,8 +242,8 @@ func main() {
 | Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
-| `request`                                                                                                      | [operations.ActivitiesMetaPostRetrieveRequest](../../models/operations/activitiesmetapostretrieverequest.md)   | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `security`                                                                                                     | [operations.ActivitiesMetaPostRetrieveSecurity](../../models/operations/activitiesmetapostretrievesecurity.md) | :heavy_check_mark:                                                                                             | The security requirements to use for the request.                                                              |
+| `xAccountToken`                                                                                                | *string*                                                                                                       | :heavy_check_mark:                                                                                             | Token identifying the end user.                                                                                |
 
 
 ### Response

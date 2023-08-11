@@ -22,14 +22,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "adipisci"
     operationSecurity := operations.DeleteAccountDeleteSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.DeleteAccount.DeleteAccountDelete(ctx, operations.DeleteAccountDeleteRequest{
-        XAccountToken: "nesciunt",
-    }, operationSecurity)
+    res, err := s.DeleteAccount.DeleteAccountDelete(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -45,8 +44,8 @@ func main() {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.DeleteAccountDeleteRequest](../../models/operations/deleteaccountdeleterequest.md)   | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `security`                                                                                       | [operations.DeleteAccountDeleteSecurity](../../models/operations/deleteaccountdeletesecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| `xAccountToken`                                                                                  | *string*                                                                                         | :heavy_check_mark:                                                                               | Token identifying the end user.                                                                  |
 
 
 ### Response

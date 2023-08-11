@@ -30,16 +30,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Departments.List(ctx, operations.DepartmentsListRequest{
-        XAccountToken: "culpa",
-        CreatedAfter: types.MustTimeFromString("2021-04-07T21:05:22.480Z"),
-        CreatedBefore: types.MustTimeFromString("2021-02-13T15:31:34.151Z"),
-        Cursor: ats.String("exercitationem"),
+        XAccountToken: "cum",
+        CreatedAfter: types.MustTimeFromString("2021-11-21T14:04:14.152Z"),
+        CreatedBefore: types.MustTimeFromString("2022-05-25T08:06:51.452Z"),
+        Cursor: ats.String("culpa"),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-12-05T00:59:14.180Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-09-14T08:30:37.763Z"),
-        PageSize: ats.Int64(967966),
-        RemoteID: ats.String("explicabo"),
+        ModifiedAfter: types.MustTimeFromString("2021-04-07T21:05:22.480Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-02-13T15:31:34.151Z"),
+        PageSize: ats.Int64(348783),
+        RemoteID: ats.String("nobis"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -83,16 +83,15 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "sit"
+    id := "b2f2fb7b-194a-4276-b269-16fe1f08f429"
+    includeRemoteData := false
     operationSecurity := operations.DepartmentsRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.Departments.Retrieve(ctx, operations.DepartmentsRetrieveRequest{
-        XAccountToken: "asperiores",
-        ID: "b7b194a2-76b2-4691-afe1-f08f4294e369",
-        IncludeRemoteData: ats.Bool(false),
-    }, operationSecurity)
+    res, err := s.Departments.Retrieve(ctx, operationSecurity, xAccountToken, id, includeRemoteData)
     if err != nil {
         log.Fatal(err)
     }
@@ -108,8 +107,10 @@ func main() {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.DepartmentsRetrieveRequest](../../models/operations/departmentsretrieverequest.md)   | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `security`                                                                                       | [operations.DepartmentsRetrieveSecurity](../../models/operations/departmentsretrievesecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| `xAccountToken`                                                                                  | *string*                                                                                         | :heavy_check_mark:                                                                               | Token identifying the end user.                                                                  |
+| `id`                                                                                             | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `includeRemoteData`                                                                              | **bool*                                                                                          | :heavy_minus_sign:                                                                               | Whether to include the original data Merge fetched from the third-party to produce these models. |
 
 
 ### Response

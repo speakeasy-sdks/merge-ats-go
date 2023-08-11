@@ -86,7 +86,13 @@ func (s *departments) List(ctx context.Context, request operations.DepartmentsLi
 }
 
 // Retrieve - Returns a `Department` object with the given `id`.
-func (s *departments) Retrieve(ctx context.Context, request operations.DepartmentsRetrieveRequest, security operations.DepartmentsRetrieveSecurity) (*operations.DepartmentsRetrieveResponse, error) {
+func (s *departments) Retrieve(ctx context.Context, security operations.DepartmentsRetrieveSecurity, xAccountToken string, id string, includeRemoteData *bool) (*operations.DepartmentsRetrieveResponse, error) {
+	request := operations.DepartmentsRetrieveRequest{
+		XAccountToken:     xAccountToken,
+		ID:                id,
+		IncludeRemoteData: includeRemoteData,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/departments/{id}", request, nil)
 	if err != nil {

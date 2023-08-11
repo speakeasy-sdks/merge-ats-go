@@ -26,7 +26,14 @@ func newAttachments(sdkConfig sdkConfiguration) *attachments {
 }
 
 // Create - Creates an `Attachment` object with the given values.
-func (s *attachments) Create(ctx context.Context, request operations.AttachmentsCreateRequest, security operations.AttachmentsCreateSecurity) (*operations.AttachmentsCreateResponse, error) {
+func (s *attachments) Create(ctx context.Context, security operations.AttachmentsCreateSecurity, attachmentEndpointRequest shared.AttachmentEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.AttachmentsCreateResponse, error) {
+	request := operations.AttachmentsCreateRequest{
+		AttachmentEndpointRequest: attachmentEndpointRequest,
+		XAccountToken:             xAccountToken,
+		IsDebugMode:               isDebugMode,
+		RunAsync:                  runAsync,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/attachments"
 
@@ -219,7 +226,11 @@ func (s *attachments) Retrieve(ctx context.Context, request operations.Attachmen
 }
 
 // RetrievePostMetadata - Returns metadata for `Attachment` POSTs.
-func (s *attachments) RetrievePostMetadata(ctx context.Context, request operations.AttachmentsMetaPostRetrieveRequest, security operations.AttachmentsMetaPostRetrieveSecurity) (*operations.AttachmentsMetaPostRetrieveResponse, error) {
+func (s *attachments) RetrievePostMetadata(ctx context.Context, security operations.AttachmentsMetaPostRetrieveSecurity, xAccountToken string) (*operations.AttachmentsMetaPostRetrieveResponse, error) {
+	request := operations.AttachmentsMetaPostRetrieveRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/attachments/meta/post"
 

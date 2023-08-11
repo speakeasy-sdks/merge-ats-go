@@ -22,16 +22,15 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "nemo"
+    cursor := "molestiae"
+    pageSize := 930840
     operationSecurity := operations.SyncStatusListSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.SyncStatus.List(ctx, operations.SyncStatusListRequest{
-        XAccountToken: "tempore",
-        Cursor: ats.String("veniam"),
-        PageSize: ats.Int64(176499),
-    }, operationSecurity)
+    res, err := s.SyncStatus.List(ctx, operationSecurity, xAccountToken, cursor, pageSize)
     if err != nil {
         log.Fatal(err)
     }
@@ -47,8 +46,10 @@ func main() {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.SyncStatusListRequest](../../models/operations/syncstatuslistrequest.md)   | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `security`                                                                             | [operations.SyncStatusListSecurity](../../models/operations/syncstatuslistsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| `xAccountToken`                                                                        | *string*                                                                               | :heavy_check_mark:                                                                     | Token identifying the end user.                                                        |
+| `cursor`                                                                               | **string*                                                                              | :heavy_minus_sign:                                                                     | The pagination cursor value.                                                           |
+| `pageSize`                                                                             | **int64*                                                                               | :heavy_minus_sign:                                                                     | Number of results to return per page.                                                  |
 
 
 ### Response

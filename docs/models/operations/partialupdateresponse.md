@@ -1,4 +1,4 @@
-# CandidatesPartialUpdateResponse
+# PartialUpdateResponse
 
 
 ## Fields

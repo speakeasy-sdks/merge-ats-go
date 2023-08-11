@@ -26,7 +26,11 @@ func newAccountDetails(sdkConfig sdkConfiguration) *accountDetails {
 }
 
 // Retrieve - Get details for a linked account.
-func (s *accountDetails) Retrieve(ctx context.Context, request operations.AccountDetailsRetrieveRequest, security operations.AccountDetailsRetrieveSecurity) (*operations.AccountDetailsRetrieveResponse, error) {
+func (s *accountDetails) Retrieve(ctx context.Context, security operations.AccountDetailsRetrieveSecurity, xAccountToken string) (*operations.AccountDetailsRetrieveResponse, error) {
+	request := operations.AccountDetailsRetrieveRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/account-details"
 

@@ -26,7 +26,14 @@ func newApplications(sdkConfig sdkConfiguration) *applications {
 }
 
 // Create - Creates an `Application` object with the given values.
-func (s *applications) Create(ctx context.Context, request operations.ApplicationsCreateRequest, security operations.ApplicationsCreateSecurity) (*operations.ApplicationsCreateResponse, error) {
+func (s *applications) Create(ctx context.Context, security operations.ApplicationsCreateSecurity, applicationEndpointRequest shared.ApplicationEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.ApplicationsCreateResponse, error) {
+	request := operations.ApplicationsCreateRequest{
+		ApplicationEndpointRequest: applicationEndpointRequest,
+		XAccountToken:              xAccountToken,
+		IsDebugMode:                isDebugMode,
+		RunAsync:                   runAsync,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/applications"
 
@@ -73,76 +80,6 @@ func (s *applications) Create(ctx context.Context, request operations.Applicatio
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ApplicationsCreateResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 201:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ApplicationResponse
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ApplicationResponse = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
-}
-
-// CreateChangeState - Updates the `current_stage` field of an `Application` object
-func (s *applications) CreateChangeState(ctx context.Context, request operations.ApplicationsChangeStageCreateRequest, security operations.ApplicationsChangeStageCreateSecurity) (*operations.ApplicationsChangeStageCreateResponse, error) {
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/applications/{id}/change-stage", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateApplicationStageRequest", "json")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, security)
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.ApplicationsChangeStageCreateResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -226,7 +163,14 @@ func (s *applications) List(ctx context.Context, request operations.Applications
 }
 
 // Retrieve - Returns an `Application` object with the given `id`.
-func (s *applications) Retrieve(ctx context.Context, request operations.ApplicationsRetrieveRequest, security operations.ApplicationsRetrieveSecurity) (*operations.ApplicationsRetrieveResponse, error) {
+func (s *applications) Retrieve(ctx context.Context, security operations.ApplicationsRetrieveSecurity, xAccountToken string, id string, expand *operations.ApplicationsRetrieveExpand, includeRemoteData *bool) (*operations.ApplicationsRetrieveResponse, error) {
+	request := operations.ApplicationsRetrieveRequest{
+		XAccountToken:     xAccountToken,
+		ID:                id,
+		Expand:            expand,
+		IncludeRemoteData: includeRemoteData,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/applications/{id}", request, nil)
 	if err != nil {
@@ -289,7 +233,12 @@ func (s *applications) Retrieve(ctx context.Context, request operations.Applicat
 }
 
 // RetrievePostMetadata - Returns metadata for `Application` POSTs.
-func (s *applications) RetrievePostMetadata(ctx context.Context, request operations.ApplicationsMetaPostRetrieveRequest, security operations.ApplicationsMetaPostRetrieveSecurity) (*operations.ApplicationsMetaPostRetrieveResponse, error) {
+func (s *applications) RetrievePostMetadata(ctx context.Context, security operations.ApplicationsMetaPostRetrieveSecurity, xAccountToken string, applicationRemoteTemplateID *string) (*operations.ApplicationsMetaPostRetrieveResponse, error) {
+	request := operations.ApplicationsMetaPostRetrieveRequest{
+		XAccountToken:               xAccountToken,
+		ApplicationRemoteTemplateID: applicationRemoteTemplateID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/applications/meta/post"
 
@@ -340,6 +289,76 @@ func (s *applications) RetrievePostMetadata(ctx context.Context, request operati
 			}
 
 			res.MetaResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	}
+
+	return res, nil
+}
+
+// UpdateChangeState - Updates the `current_stage` field of an `Application` object
+func (s *applications) UpdateChangeState(ctx context.Context, request operations.ApplicationsChangeStageCreateRequest, security operations.ApplicationsChangeStageCreateSecurity) (*operations.ApplicationsChangeStageCreateResponse, error) {
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/applications/{id}/change-stage", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateApplicationStageRequest", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	utils.PopulateHeaders(ctx, req, request)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, security)
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ApplicationsChangeStageCreateResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 201:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.ApplicationResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.ApplicationResponse = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

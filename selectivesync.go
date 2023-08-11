@@ -26,7 +26,11 @@ func newSelectiveSync(sdkConfig sdkConfiguration) *selectiveSync {
 }
 
 // List - Get a linked account's selective syncs.
-func (s *selectiveSync) List(ctx context.Context, request operations.SelectiveSyncConfigurationsListRequest, security operations.SelectiveSyncConfigurationsListSecurity) (*operations.SelectiveSyncConfigurationsListResponse, error) {
+func (s *selectiveSync) List(ctx context.Context, security operations.SelectiveSyncConfigurationsListSecurity, xAccountToken string) (*operations.SelectiveSyncConfigurationsListResponse, error) {
+	request := operations.SelectiveSyncConfigurationsListRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/selective-sync/configurations"
 
@@ -82,7 +86,14 @@ func (s *selectiveSync) List(ctx context.Context, request operations.SelectiveSy
 }
 
 // RetrievePostMetadata - Get metadata for the conditions available to a linked account.
-func (s *selectiveSync) RetrievePostMetadata(ctx context.Context, request operations.SelectiveSyncMetaListRequest, security operations.SelectiveSyncMetaListSecurity) (*operations.SelectiveSyncMetaListResponse, error) {
+func (s *selectiveSync) RetrievePostMetadata(ctx context.Context, security operations.SelectiveSyncMetaListSecurity, xAccountToken string, commonModel *string, cursor *string, pageSize *int64) (*operations.SelectiveSyncMetaListResponse, error) {
+	request := operations.SelectiveSyncMetaListRequest{
+		XAccountToken: xAccountToken,
+		CommonModel:   commonModel,
+		Cursor:        cursor,
+		PageSize:      pageSize,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/selective-sync/meta"
 
@@ -141,8 +152,13 @@ func (s *selectiveSync) RetrievePostMetadata(ctx context.Context, request operat
 	return res, nil
 }
 
-// SelectiveSyncConfigurationsUpdate - Replace a linked account's selective syncs.
-func (s *selectiveSync) SelectiveSyncConfigurationsUpdate(ctx context.Context, request operations.SelectiveSyncConfigurationsUpdateRequest, security operations.SelectiveSyncConfigurationsUpdateSecurity) (*operations.SelectiveSyncConfigurationsUpdateResponse, error) {
+// Update - Replace a linked account's selective syncs.
+func (s *selectiveSync) Update(ctx context.Context, security operations.SelectiveSyncConfigurationsUpdateSecurity, linkedAccountSelectiveSyncConfigurationListRequest shared.LinkedAccountSelectiveSyncConfigurationListRequest, xAccountToken string) (*operations.SelectiveSyncConfigurationsUpdateResponse, error) {
+	request := operations.SelectiveSyncConfigurationsUpdateRequest{
+		LinkedAccountSelectiveSyncConfigurationListRequest: linkedAccountSelectiveSyncConfigurationListRequest,
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/selective-sync/configurations"
 

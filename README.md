@@ -32,14 +32,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "corrupti"
     operationSecurity := operations.AccountDetailsRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.AccountDetails.Retrieve(ctx, operations.AccountDetailsRetrieveRequest{
-        XAccountToken: "corrupti",
-    }, operationSecurity)
+    res, err := s.AccountDetails.Retrieve(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -73,10 +72,10 @@ func main() {
 ### [Applications](docs/sdks/applications/README.md)
 
 * [Create](docs/sdks/applications/README.md#create) - Creates an `Application` object with the given values.
-* [CreateChangeState](docs/sdks/applications/README.md#createchangestate) - Updates the `current_stage` field of an `Application` object
 * [List](docs/sdks/applications/README.md#list) - Returns a list of `Application` objects.
 * [Retrieve](docs/sdks/applications/README.md#retrieve) - Returns an `Application` object with the given `id`.
 * [RetrievePostMetadata](docs/sdks/applications/README.md#retrievepostmetadata) - Returns metadata for `Application` POSTs.
+* [UpdateChangeState](docs/sdks/applications/README.md#updatechangestate) - Updates the `current_stage` field of an `Application` object
 
 ### [AsyncPassthrough](docs/sdks/asyncpassthrough/README.md)
 
@@ -96,13 +95,13 @@ func main() {
 
 ### [Candidates](docs/sdks/candidates/README.md)
 
-* [CandidatesPartialUpdate](docs/sdks/candidates/README.md#candidatespartialupdate) - Updates a `Candidate` object with the given `id`.
 * [Create](docs/sdks/candidates/README.md#create) - Creates a `Candidate` object with the given values.
 * [IgnoreCreate](docs/sdks/candidates/README.md#ignorecreate) - Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
 * [List](docs/sdks/candidates/README.md#list) - Returns a list of `Candidate` objects.
 * [Retrieve](docs/sdks/candidates/README.md#retrieve) - Returns a `Candidate` object with the given `id`.
 * [RetrievePatchMetadata](docs/sdks/candidates/README.md#retrievepatchmetadata) - Returns metadata for `Candidate` PATCHs.
 * [RetrievePostMetadata](docs/sdks/candidates/README.md#retrievepostmetadata) - Returns metadata for `Candidate` POSTs.
+* [Update](docs/sdks/candidates/README.md#update) - Updates a `Candidate` object with the given `id`.
 
 ### [DeleteAccount](docs/sdks/deleteaccount/README.md)
 
@@ -188,7 +187,7 @@ func main() {
 
 * [List](docs/sdks/selectivesync/README.md#list) - Get a linked account's selective syncs.
 * [RetrievePostMetadata](docs/sdks/selectivesync/README.md#retrievepostmetadata) - Get metadata for the conditions available to a linked account.
-* [SelectiveSyncConfigurationsUpdate](docs/sdks/selectivesync/README.md#selectivesyncconfigurationsupdate) - Replace a linked account's selective syncs.
+* [Update](docs/sdks/selectivesync/README.md#update) - Replace a linked account's selective syncs.
 
 ### [SyncStatus](docs/sdks/syncstatus/README.md)
 

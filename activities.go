@@ -26,7 +26,14 @@ func newActivities(sdkConfig sdkConfiguration) *activities {
 }
 
 // Create - Creates an `Activity` object with the given values.
-func (s *activities) Create(ctx context.Context, request operations.ActivitiesCreateRequest, security operations.ActivitiesCreateSecurity) (*operations.ActivitiesCreateResponse, error) {
+func (s *activities) Create(ctx context.Context, security operations.ActivitiesCreateSecurity, activityEndpointRequest shared.ActivityEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.ActivitiesCreateResponse, error) {
+	request := operations.ActivitiesCreateRequest{
+		ActivityEndpointRequest: activityEndpointRequest,
+		XAccountToken:           xAccountToken,
+		IsDebugMode:             isDebugMode,
+		RunAsync:                runAsync,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/activities"
 
@@ -219,7 +226,11 @@ func (s *activities) Retrieve(ctx context.Context, request operations.Activities
 }
 
 // RetrievePostMetadata - Returns metadata for `Activity` POSTs.
-func (s *activities) RetrievePostMetadata(ctx context.Context, request operations.ActivitiesMetaPostRetrieveRequest, security operations.ActivitiesMetaPostRetrieveSecurity) (*operations.ActivitiesMetaPostRetrieveResponse, error) {
+func (s *activities) RetrievePostMetadata(ctx context.Context, security operations.ActivitiesMetaPostRetrieveSecurity, xAccountToken string) (*operations.ActivitiesMetaPostRetrieveResponse, error) {
+	request := operations.ActivitiesMetaPostRetrieveRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/activities/meta/post"
 

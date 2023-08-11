@@ -4,7 +4,7 @@
 
 * [List](#list) - Get a linked account's selective syncs.
 * [RetrievePostMetadata](#retrievepostmetadata) - Get metadata for the conditions available to a linked account.
-* [SelectiveSyncConfigurationsUpdate](#selectivesyncconfigurationsupdate) - Replace a linked account's selective syncs.
+* [Update](#update) - Replace a linked account's selective syncs.
 
 ## List
 
@@ -24,14 +24,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "dolor"
     operationSecurity := operations.SelectiveSyncConfigurationsListSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.SelectiveSync.List(ctx, operations.SelectiveSyncConfigurationsListRequest{
-        XAccountToken: "facere",
-    }, operationSecurity)
+    res, err := s.SelectiveSync.List(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -47,8 +46,8 @@ func main() {
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
-| `request`                                                                                                                | [operations.SelectiveSyncConfigurationsListRequest](../../models/operations/selectivesyncconfigurationslistrequest.md)   | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `security`                                                                                                               | [operations.SelectiveSyncConfigurationsListSecurity](../../models/operations/selectivesyncconfigurationslistsecurity.md) | :heavy_check_mark:                                                                                                       | The security requirements to use for the request.                                                                        |
+| `xAccountToken`                                                                                                          | *string*                                                                                                                 | :heavy_check_mark:                                                                                                       | Token identifying the end user.                                                                                          |
 
 
 ### Response
@@ -74,17 +73,16 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "iusto"
+    commonModel := "sit"
+    cursor := "doloremque"
+    pageSize := 7468
     operationSecurity := operations.SelectiveSyncMetaListSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.SelectiveSync.RetrievePostMetadata(ctx, operations.SelectiveSyncMetaListRequest{
-        XAccountToken: "libero",
-        CommonModel: ats.String("architecto"),
-        Cursor: ats.String("voluptatibus"),
-        PageSize: ats.Int64(156383),
-    }, operationSecurity)
+    res, err := s.SelectiveSync.RetrievePostMetadata(ctx, operationSecurity, xAccountToken, commonModel, cursor, pageSize)
     if err != nil {
         log.Fatal(err)
     }
@@ -100,8 +98,11 @@ func main() {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.SelectiveSyncMetaListRequest](../../models/operations/selectivesyncmetalistrequest.md)   | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `security`                                                                                           | [operations.SelectiveSyncMetaListSecurity](../../models/operations/selectivesyncmetalistsecurity.md) | :heavy_check_mark:                                                                                   | The security requirements to use for the request.                                                    |
+| `xAccountToken`                                                                                      | *string*                                                                                             | :heavy_check_mark:                                                                                   | Token identifying the end user.                                                                      |
+| `commonModel`                                                                                        | **string*                                                                                            | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `cursor`                                                                                             | **string*                                                                                            | :heavy_minus_sign:                                                                                   | The pagination cursor value.                                                                         |
+| `pageSize`                                                                                           | **int64*                                                                                             | :heavy_minus_sign:                                                                                   | Number of results to return per page.                                                                |
 
 
 ### Response
@@ -109,7 +110,7 @@ func main() {
 **[*operations.SelectiveSyncMetaListResponse](../../models/operations/selectivesyncmetalistresponse.md), error**
 
 
-## SelectiveSyncConfigurationsUpdate
+## Update
 
 Replace a linked account's selective syncs.
 
@@ -128,89 +129,89 @@ import(
 
 func main() {
     s := ats.New()
+    linkedAccountSelectiveSyncConfigurationListRequest := shared.LinkedAccountSelectiveSyncConfigurationListRequest{
+        SyncConfigurations: []shared.LinkedAccountSelectiveSyncConfigurationRequest{
+            shared.LinkedAccountSelectiveSyncConfigurationRequest{
+                LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "6b6bc9b8-f759-4eac-95a9-741d31135296",
+                        Operator: "nemo",
+                        Value: "soluta",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "b8a72026-1143-45e1-b9db-c2259b1abda8",
+                        Operator: "placeat",
+                        Value: "sit",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "70e1084c-b067-42d1-ad87-9eeb9665b85e",
+                        Operator: "voluptatibus",
+                        Value: "cum",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "d02bae0b-e2d7-4822-99e3-ea4b5197f924",
+                        Operator: "numquam",
+                        Value: "nesciunt",
+                    },
+                },
+            },
+            shared.LinkedAccountSelectiveSyncConfigurationRequest{
+                LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "a7ce52b8-95c5-437c-a454-efb0b34896c3",
+                        Operator: "minus",
+                        Value: "fuga",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "5acfbe2f-d570-4757-b929-177deac646ec",
+                        Operator: "quidem",
+                        Value: "exercitationem",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "73409e3e-b1e5-4a2b-92eb-07f116db9954",
+                        Operator: "nostrum",
+                        Value: "doloribus",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "c95fa889-70e1-489d-bb30-fcb33ea055b1",
+                        Operator: "cupiditate",
+                        Value: "molestiae",
+                    },
+                },
+            },
+            shared.LinkedAccountSelectiveSyncConfigurationRequest{
+                LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "d44e2f52-d82d-4351-bbb6-f48b656bcdb3",
+                        Operator: "ad",
+                        Value: "voluptatibus",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "f2e4b275-37a8-4cd9-a731-9c177d525f77",
+                        Operator: "libero",
+                        Value: "illo",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "14eeb52f-f785-4fc3-b814-d4c98e0c2bb8",
+                        Operator: "provident",
+                        Value: "repudiandae",
+                    },
+                    shared.LinkedAccountConditionRequest{
+                        ConditionSchemaID: "b75dad63-6c60-4050-bd8b-b31180f739ae",
+                        Operator: "provident",
+                        Value: "repudiandae",
+                    },
+                },
+            },
+        },
+    }
+    xAccountToken := "consequatur"
     operationSecurity := operations.SelectiveSyncConfigurationsUpdateSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.SelectiveSync.SelectiveSyncConfigurationsUpdate(ctx, operations.SelectiveSyncConfigurationsUpdateRequest{
-        LinkedAccountSelectiveSyncConfigurationListRequest: shared.LinkedAccountSelectiveSyncConfigurationListRequest{
-            SyncConfigurations: []shared.LinkedAccountSelectiveSyncConfigurationRequest{
-                shared.LinkedAccountSelectiveSyncConfigurationRequest{
-                    LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "310661e9-6349-4e1c-b9e0-6e3a437000ae",
-                            Operator: "ea",
-                            Value: "quidem",
-                        },
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "6bc9b8f7-59ea-4c55-a974-1d311352965b",
-                            Operator: "libero",
-                            Value: "rem",
-                        },
-                    },
-                },
-                shared.LinkedAccountSelectiveSyncConfigurationRequest{
-                    LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "72026114-35e1-439d-bc22-59b1abda8c07",
-                            Operator: "ipsa",
-                            Value: "voluptates",
-                        },
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "1084cb06-72d1-4ad8-b9ee-b9665b85efbd",
-                            Operator: "alias",
-                            Value: "quia",
-                        },
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "bae0be2d-7822-459e-bea4-b5197f92443d",
-                            Operator: "officia",
-                            Value: "dignissimos",
-                        },
-                    },
-                },
-                shared.LinkedAccountSelectiveSyncConfigurationRequest{
-                    LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "e52b895c-537c-4645-8efb-0b34896c3ca5",
-                            Operator: "est",
-                            Value: "impedit",
-                        },
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "fbe2fd57-0757-4792-9177-deac646ecb57",
-                            Operator: "dolorem",
-                            Value: "modi",
-                        },
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "09e3eb1e-5a2b-412e-b07f-116db99545fc",
-                            Operator: "sint",
-                            Value: "enim",
-                        },
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "fa88970e-189d-4bb3-8fcb-33ea055b197c",
-                            Operator: "possimus",
-                            Value: "non",
-                        },
-                    },
-                },
-                shared.LinkedAccountSelectiveSyncConfigurationRequest{
-                    LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "e2f52d82-d351-43bb-af48-b656bcdb35ff",
-                            Operator: "consequuntur",
-                            Value: "debitis",
-                        },
-                        shared.LinkedAccountConditionRequest{
-                            ConditionSchemaID: "4b27537a-8cd9-4e73-99c1-77d525f77b11",
-                            Operator: "incidunt",
-                            Value: "accusamus",
-                        },
-                    },
-                },
-            },
-        },
-        XAccountToken: "saepe",
-    }, operationSecurity)
+    res, err := s.SelectiveSync.Update(ctx, operationSecurity, linkedAccountSelectiveSyncConfigurationListRequest, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -223,11 +224,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                                        | :heavy_check_mark:                                                                                                           | The context to use for the request.                                                                                          |
-| `request`                                                                                                                    | [operations.SelectiveSyncConfigurationsUpdateRequest](../../models/operations/selectivesyncconfigurationsupdaterequest.md)   | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
-| `security`                                                                                                                   | [operations.SelectiveSyncConfigurationsUpdateSecurity](../../models/operations/selectivesyncconfigurationsupdatesecurity.md) | :heavy_check_mark:                                                                                                           | The security requirements to use for the request.                                                                            |
+| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                  | :heavy_check_mark:                                                                                                                     | The context to use for the request.                                                                                                    |
+| `security`                                                                                                                             | [operations.SelectiveSyncConfigurationsUpdateSecurity](../../models/operations/selectivesyncconfigurationsupdatesecurity.md)           | :heavy_check_mark:                                                                                                                     | The security requirements to use for the request.                                                                                      |
+| `linkedAccountSelectiveSyncConfigurationListRequest`                                                                                   | [shared.LinkedAccountSelectiveSyncConfigurationListRequest](../../models/shared/linkedaccountselectivesyncconfigurationlistrequest.md) | :heavy_check_mark:                                                                                                                     | N/A                                                                                                                                    |
+| `xAccountToken`                                                                                                                        | *string*                                                                                                                               | :heavy_check_mark:                                                                                                                     | Token identifying the end user.                                                                                                        |
 
 
 ### Response

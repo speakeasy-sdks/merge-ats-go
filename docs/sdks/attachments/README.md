@@ -26,34 +26,33 @@ import(
 
 func main() {
     s := ats.New()
+    attachmentEndpointRequest := shared.AttachmentEndpointRequest{
+        Model: shared.AttachmentRequest{
+            AttachmentType: shared.AttachmentRequestAttachmentTypeResume.ToPointer(),
+            Candidate: ats.String("2872ba14-4084-492b-be96-e5eee6fc33ef"),
+            FileName: ats.String("Candidate Resume"),
+            FileURL: ats.String("http://alturl.com/p749b"),
+            IntegrationParams: map[string]interface{}{
+                "blanditiis": "deleniti",
+                "sapiente": "amet",
+                "deserunt": "nisi",
+            },
+            LinkedAccountParams: map[string]interface{}{
+                "natus": "omnis",
+                "molestiae": "perferendis",
+            },
+        },
+        RemoteUserID: "nihil",
+    }
+    xAccountToken := "magnam"
+    isDebugMode := false
+    runAsync := false
     operationSecurity := operations.AttachmentsCreateSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.Attachments.Create(ctx, operations.AttachmentsCreateRequest{
-        AttachmentEndpointRequest: shared.AttachmentEndpointRequest{
-            Model: shared.AttachmentRequest{
-                AttachmentType: shared.AttachmentRequestAttachmentTypeResume.ToPointer(),
-                Candidate: ats.String("2872ba14-4084-492b-be96-e5eee6fc33ef"),
-                FileName: ats.String("Candidate Resume"),
-                FileURL: ats.String("http://alturl.com/p749b"),
-                IntegrationParams: map[string]interface{}{
-                    "blanditiis": "deleniti",
-                    "sapiente": "amet",
-                    "deserunt": "nisi",
-                },
-                LinkedAccountParams: map[string]interface{}{
-                    "natus": "omnis",
-                    "molestiae": "perferendis",
-                },
-            },
-            RemoteUserID: "nihil",
-        },
-        XAccountToken: "magnam",
-        IsDebugMode: ats.Bool(false),
-        RunAsync: ats.Bool(false),
-    }, operationSecurity)
+    res, err := s.Attachments.Create(ctx, operationSecurity, attachmentEndpointRequest, xAccountToken, isDebugMode, runAsync)
     if err != nil {
         log.Fatal(err)
     }
@@ -69,8 +68,11 @@ func main() {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.AttachmentsCreateRequest](../../models/operations/attachmentscreaterequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `security`                                                                                   | [operations.AttachmentsCreateSecurity](../../models/operations/attachmentscreatesecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| `attachmentEndpointRequest`                                                                  | [shared.AttachmentEndpointRequest](../../models/shared/attachmentendpointrequest.md)         | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `xAccountToken`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | Token identifying the end user.                                                              |
+| `isDebugMode`                                                                                | **bool*                                                                                      | :heavy_minus_sign:                                                                           | Whether to include debug fields (such as log file links) in the response.                    |
+| `runAsync`                                                                                   | **bool*                                                                                      | :heavy_minus_sign:                                                                           | Whether or not third-party updates should be run asynchronously.                             |
 
 
 ### Response
@@ -215,14 +217,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "sed"
     operationSecurity := operations.AttachmentsMetaPostRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.Attachments.RetrievePostMetadata(ctx, operations.AttachmentsMetaPostRetrieveRequest{
-        XAccountToken: "sed",
-    }, operationSecurity)
+    res, err := s.Attachments.RetrievePostMetadata(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -238,8 +239,8 @@ func main() {
 | Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
-| `request`                                                                                                        | [operations.AttachmentsMetaPostRetrieveRequest](../../models/operations/attachmentsmetapostretrieverequest.md)   | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
 | `security`                                                                                                       | [operations.AttachmentsMetaPostRetrieveSecurity](../../models/operations/attachmentsmetapostretrievesecurity.md) | :heavy_check_mark:                                                                                               | The security requirements to use for the request.                                                                |
+| `xAccountToken`                                                                                                  | *string*                                                                                                         | :heavy_check_mark:                                                                                               | Token identifying the end user.                                                                                  |
 
 
 ### Response

@@ -29,16 +29,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tags.List(ctx, operations.TagsListRequest{
-        XAccountToken: "reiciendis",
-        CreatedAfter: types.MustTimeFromString("2021-09-01T16:29:21.118Z"),
-        CreatedBefore: types.MustTimeFromString("2022-04-08T01:20:58.799Z"),
-        Cursor: ats.String("repellat"),
+        XAccountToken: "facilis",
+        CreatedAfter: types.MustTimeFromString("2022-11-29T21:33:00.572Z"),
+        CreatedBefore: types.MustTimeFromString("2021-03-29T22:47:00.721Z"),
+        Cursor: ats.String("eos"),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-05-30T00:01:15.072Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-06-19T18:12:14.535Z"),
-        PageSize: ats.Int64(75566),
-        RemoteID: ats.String("labore"),
+        ModifiedAfter: types.MustTimeFromString("2022-10-08T10:06:25.237Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-10-03T19:15:55.395Z"),
+        PageSize: ats.Int64(224413),
+        RemoteID: ats.String("sunt"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

@@ -30,20 +30,20 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Eeocs.List(ctx, operations.EeocsListRequest{
-        XAccountToken: "quos",
-        CandidateID: ats.String("voluptatibus"),
-        CreatedAfter: types.MustTimeFromString("2022-09-23T08:26:30.493Z"),
-        CreatedBefore: types.MustTimeFromString("2022-01-11T22:08:32.388Z"),
-        Cursor: ats.String("ex"),
+        XAccountToken: "eius",
+        CandidateID: ats.String("necessitatibus"),
+        CreatedAfter: types.MustTimeFromString("2022-08-05T13:00:56.741Z"),
+        CreatedBefore: types.MustTimeFromString("2021-11-23T23:35:18.899Z"),
+        Cursor: ats.String("voluptatibus"),
         Expand: operations.EeocsListExpandCandidate.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-10-02T07:53:52.364Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-06-26T01:49:52.614Z"),
-        PageSize: ats.Int64(708609),
-        RemoteFields: operations.EeocsListRemoteFieldsDisabilityStatusGenderVeteranStatus.ToPointer(),
-        RemoteID: ats.String("incidunt"),
-        ShowEnumOrigins: operations.EeocsListShowEnumOriginsDisabilityStatusRace.ToPointer(),
+        ModifiedAfter: types.MustTimeFromString("2022-09-23T08:26:30.493Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-01-11T22:08:32.388Z"),
+        PageSize: ats.Int64(401713),
+        RemoteFields: operations.EeocsListRemoteFieldsDisabilityStatus.ToPointer(),
+        RemoteID: ats.String("non"),
+        ShowEnumOrigins: operations.EeocsListShowEnumOriginsRaceVeteranStatus.ToPointer(),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -93,12 +93,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Eeocs.Retrieve(ctx, operations.EeocsRetrieveRequest{
-        XAccountToken: "debitis",
+        XAccountToken: "praesentium",
         Expand: operations.EeocsRetrieveExpandCandidate.ToPointer(),
-        ID: "80ca55ef-d20e-4457-a185-8b6a89fbe3a5",
+        ID: "b445e80c-a55e-4fd2-8e45-7e1858b6a89f",
         IncludeRemoteData: ats.Bool(false),
-        RemoteFields: operations.EeocsRetrieveRemoteFieldsGenderRace.ToPointer(),
-        ShowEnumOrigins: operations.EeocsRetrieveShowEnumOriginsGenderRaceVeteranStatus.ToPointer(),
+        RemoteFields: operations.EeocsRetrieveRemoteFieldsGenderRaceVeteranStatus.ToPointer(),
+        ShowEnumOrigins: operations.EeocsRetrieveShowEnumOriginsRaceVeteranStatus.ToPointer(),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

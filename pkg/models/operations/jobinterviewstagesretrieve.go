@@ -48,9 +48,9 @@ func (e *JobInterviewStagesRetrieveExpand) UnmarshalJSON(data []byte) error {
 type JobInterviewStagesRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
+	ID            string `pathParam:"style=simple,explode=false,name=id"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 	Expand *JobInterviewStagesRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string                            `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 }
@@ -62,18 +62,18 @@ func (o *JobInterviewStagesRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *JobInterviewStagesRetrieveRequest) GetExpand() *JobInterviewStagesRetrieveExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
-}
-
 func (o *JobInterviewStagesRetrieveRequest) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *JobInterviewStagesRetrieveRequest) GetExpand() *JobInterviewStagesRetrieveExpand {
+	if o == nil {
+		return nil
+	}
+	return o.Expand
 }
 
 func (o *JobInterviewStagesRetrieveRequest) GetIncludeRemoteData() *bool {

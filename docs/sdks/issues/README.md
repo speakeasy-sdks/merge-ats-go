@@ -30,18 +30,18 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Issues.List(ctx, operations.IssuesListRequest{
-        AccountToken: ats.String("error"),
-        Cursor: ats.String("illo"),
-        EndDate: ats.String("corporis"),
-        EndUserOrganizationName: ats.String("quidem"),
-        FirstIncidentTimeAfter: types.MustTimeFromString("2022-04-05T02:21:38.050Z"),
-        FirstIncidentTimeBefore: types.MustTimeFromString("2022-11-18T14:54:13.655Z"),
-        IncludeMuted: ats.String("iure"),
-        IntegrationName: ats.String("ipsa"),
-        LastIncidentTimeAfter: types.MustTimeFromString("2022-11-17T09:54:13.457Z"),
-        LastIncidentTimeBefore: types.MustTimeFromString("2022-02-03T16:15:33.352Z"),
-        PageSize: ats.Int64(184362),
-        StartDate: ats.String("cum"),
+        AccountToken: ats.String("mollitia"),
+        Cursor: ats.String("voluptas"),
+        EndDate: ats.String("alias"),
+        EndUserOrganizationName: ats.String("maiores"),
+        FirstIncidentTimeAfter: types.MustTimeFromString("2022-06-23T17:58:38.501Z"),
+        FirstIncidentTimeBefore: types.MustTimeFromString("2022-05-06T13:39:00.258Z"),
+        IncludeMuted: ats.String("dolore"),
+        IntegrationName: ats.String("dolorum"),
+        LastIncidentTimeAfter: types.MustTimeFromString("2022-12-08T22:18:03.712Z"),
+        LastIncidentTimeBefore: types.MustTimeFromString("2021-03-07T01:29:10.520Z"),
+        PageSize: ats.Int64(309251),
+        StartDate: ats.String("molestiae"),
         Status: operations.IssuesListStatusOngoing.ToPointer(),
     }, operationSecurity)
     if err != nil {
@@ -86,14 +86,13 @@ import(
 
 func main() {
     s := ats.New()
+    id := "4a3e865e-7956-4f92-91a5-a9da660ff57b"
     operationSecurity := operations.IssuesRetrieveSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.Issues.Retrieve(ctx, operations.IssuesRetrieveRequest{
-        ID: "e3ab8845-f059-47a6-8ff2-a54a31e94764",
-    }, operationSecurity)
+    res, err := s.Issues.Retrieve(ctx, operationSecurity, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -109,8 +108,8 @@ func main() {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.IssuesRetrieveRequest](../../models/operations/issuesretrieverequest.md)   | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `security`                                                                             | [operations.IssuesRetrieveSecurity](../../models/operations/issuesretrievesecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| `id`                                                                                   | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
 
 
 ### Response

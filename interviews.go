@@ -26,7 +26,14 @@ func newInterviews(sdkConfig sdkConfiguration) *interviews {
 }
 
 // Create - Creates a `ScheduledInterview` object with the given values.
-func (s *interviews) Create(ctx context.Context, request operations.InterviewsCreateRequest, security operations.InterviewsCreateSecurity) (*operations.InterviewsCreateResponse, error) {
+func (s *interviews) Create(ctx context.Context, security operations.InterviewsCreateSecurity, scheduledInterviewEndpointRequest shared.ScheduledInterviewEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.InterviewsCreateResponse, error) {
+	request := operations.InterviewsCreateRequest{
+		ScheduledInterviewEndpointRequest: scheduledInterviewEndpointRequest,
+		XAccountToken:                     xAccountToken,
+		IsDebugMode:                       isDebugMode,
+		RunAsync:                          runAsync,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/interviews"
 
@@ -219,7 +226,11 @@ func (s *interviews) Retrieve(ctx context.Context, request operations.Interviews
 }
 
 // RetrievePostMetadata - Returns metadata for `ScheduledInterview` POSTs.
-func (s *interviews) RetrievePostMetadata(ctx context.Context, request operations.InterviewsMetaPostRetrieveRequest, security operations.InterviewsMetaPostRetrieveSecurity) (*operations.InterviewsMetaPostRetrieveResponse, error) {
+func (s *interviews) RetrievePostMetadata(ctx context.Context, security operations.InterviewsMetaPostRetrieveSecurity, xAccountToken string) (*operations.InterviewsMetaPostRetrieveResponse, error) {
+	request := operations.InterviewsMetaPostRetrieveRequest{
+		XAccountToken: xAccountToken,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/interviews/meta/post"
 

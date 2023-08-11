@@ -24,19 +24,18 @@ import(
 
 func main() {
     s := ats.New()
+    webhookReceiverRequest := shared.WebhookReceiverRequest{
+        Event: "non",
+        IsActive: false,
+        Key: ats.String("distinctio"),
+    }
+    xAccountToken := "in"
     operationSecurity := operations.WebhookReceiversCreateSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.WebhookReceivers.Create(ctx, operations.WebhookReceiversCreateRequest{
-        WebhookReceiverRequest: shared.WebhookReceiverRequest{
-            Event: "itaque",
-            IsActive: false,
-            Key: ats.String("facilis"),
-        },
-        XAccountToken: "corrupti",
-    }, operationSecurity)
+    res, err := s.WebhookReceivers.Create(ctx, operationSecurity, webhookReceiverRequest, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -52,8 +51,9 @@ func main() {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.WebhookReceiversCreateRequest](../../models/operations/webhookreceiverscreaterequest.md)   | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `security`                                                                                             | [operations.WebhookReceiversCreateSecurity](../../models/operations/webhookreceiverscreatesecurity.md) | :heavy_check_mark:                                                                                     | The security requirements to use for the request.                                                      |
+| `webhookReceiverRequest`                                                                               | [shared.WebhookReceiverRequest](../../models/shared/webhookreceiverrequest.md)                         | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `xAccountToken`                                                                                        | *string*                                                                                               | :heavy_check_mark:                                                                                     | Token identifying the end user.                                                                        |
 
 
 ### Response
@@ -79,14 +79,13 @@ import(
 
 func main() {
     s := ats.New()
+    xAccountToken := "exercitationem"
     operationSecurity := operations.WebhookReceiversListSecurity{
             TokenAuth: "",
         }
 
     ctx := context.Background()
-    res, err := s.WebhookReceivers.List(ctx, operations.WebhookReceiversListRequest{
-        XAccountToken: "aperiam",
-    }, operationSecurity)
+    res, err := s.WebhookReceivers.List(ctx, operationSecurity, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -102,8 +101,8 @@ func main() {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.WebhookReceiversListRequest](../../models/operations/webhookreceiverslistrequest.md)   | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `security`                                                                                         | [operations.WebhookReceiversListSecurity](../../models/operations/webhookreceiverslistsecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
+| `xAccountToken`                                                                                    | *string*                                                                                           | :heavy_check_mark:                                                                                 | Token identifying the end user.                                                                    |
 
 
 ### Response

@@ -30,18 +30,18 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Users.List(ctx, operations.UsersListRequest{
-        XAccountToken: "assumenda",
-        CreatedAfter: types.MustTimeFromString("2022-03-18T11:33:01.022Z"),
-        CreatedBefore: types.MustTimeFromString("2021-12-21T01:19:26.741Z"),
-        Cursor: ats.String("repudiandae"),
-        Email: ats.String("Quinten_Collins55@gmail.com"),
+        XAccountToken: "a",
+        CreatedAfter: types.MustTimeFromString("2022-06-02T10:52:44.468Z"),
+        CreatedBefore: types.MustTimeFromString("2022-10-14T13:04:49.369Z"),
+        Cursor: ats.String("at"),
+        Email: ats.String("Percy2@gmail.com"),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2021-02-26T17:19:48.572Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-01-06T13:49:40.637Z"),
-        PageSize: ats.Int64(360934),
+        ModifiedAfter: types.MustTimeFromString("2022-03-06T12:29:45.421Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-07-06T08:20:32.050Z"),
+        PageSize: ats.Int64(998026),
         RemoteFields: operations.UsersListRemoteFieldsAccessRole.ToPointer(),
-        RemoteID: ats.String("vero"),
+        RemoteID: ats.String("velit"),
         ShowEnumOrigins: operations.UsersListShowEnumOriginsAccessRole.ToPointer(),
     }, operationSecurity)
     if err != nil {
@@ -92,8 +92,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Users.Retrieve(ctx, operations.UsersRetrieveRequest{
-        XAccountToken: "similique",
-        ID: "d636c600-503d-48bb-b118-0f739ae9e057",
+        XAccountToken: "porro",
+        ID: "93c73b9d-a3f2-4ced-a7e2-3f2257411faf",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.UsersRetrieveRemoteFieldsAccessRole.ToPointer(),
         ShowEnumOrigins: operations.UsersRetrieveShowEnumOriginsAccessRole.ToPointer(),

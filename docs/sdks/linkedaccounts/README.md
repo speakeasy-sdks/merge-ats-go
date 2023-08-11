@@ -28,19 +28,19 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LinkedAccounts.List(ctx, operations.LinkedAccountsListRequest{
-        Category: operations.LinkedAccountsListCategoryAccounting.ToPointer(),
-        Cursor: ats.String("laborum"),
-        EndUserEmailAddress: ats.String("sunt"),
-        EndUserOrganizationName: ats.String("nostrum"),
-        EndUserOriginID: ats.String("fugiat"),
+        Category: operations.LinkedAccountsListCategoryCrm.ToPointer(),
+        Cursor: ats.String("quo"),
+        EndUserEmailAddress: ats.String("ex"),
+        EndUserOrganizationName: ats.String("ut"),
+        EndUserOriginID: ats.String("ad"),
         EndUserOriginIds: ats.String("expedita"),
-        ID: ats.String("6a660659-a1ad-4eaa-b585-1d6c645b08b6"),
-        Ids: ats.String("beatae"),
+        ID: ats.String("08b61891-baa0-4fe1-ade0-08e6f8c5f350"),
+        Ids: ats.String("illum"),
         IncludeDuplicates: ats.Bool(false),
-        IntegrationName: ats.String("voluptatum"),
-        IsTestAccount: ats.String("omnis"),
-        PageSize: ats.Int64(85233),
-        Status: ats.String("rerum"),
+        IntegrationName: ats.String("totam"),
+        IsTestAccount: ats.String("impedit"),
+        PageSize: ats.Int64(842777),
+        Status: ats.String("nam"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
