@@ -2029,16 +2029,6 @@
                             "schema": {
                                 "$ref": "#/components/schemas/IgnoreCommonModelRequest"
                             }
-                        },
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/IgnoreCommonModelRequest"
-                            }
-                        },
-                        "multipart/form-data": {
-                            "schema": {
-                                "$ref": "#/components/schemas/IgnoreCommonModelRequest"
-                            }
                         }
                     },
                     "required": true
@@ -2713,16 +2703,6 @@
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/GenerateRemoteKeyRequest"
-                            }
-                        },
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/GenerateRemoteKeyRequest"
-                            }
-                        },
-                        "multipart/form-data": {
                             "schema": {
                                 "$ref": "#/components/schemas/GenerateRemoteKeyRequest"
                             }
