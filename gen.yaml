@@ -22,5 +22,5 @@ features:
     nameOverrides: 2.81.1
 go:
   version: 0.1.0
-  maxMethodParams: 0
+  maxMethodParams: 4
   packageName: github.com/speakeasy-sdks/merge-ats-go
