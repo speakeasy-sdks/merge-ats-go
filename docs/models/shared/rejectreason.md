@@ -1,0 +1,20 @@
+# RejectReason
+
+# The RejectReason Object
+### Description
+The `RejectReason` object is used to represent a reason for rejecting an application. These can typically be configured within an ATS system.
+### Usage Example
+Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `FieldMappings`                                                                | map[string]*interface{}*                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |                                                                                |
+| `ID`                                                                           | **string*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            | 8be99a4a-f8d4-4339-bf1e-30eac970e217                                           |
+| `ModifiedAt`                                                                   | [*time.Time](https://pkg.go.dev/time#Time)                                     | :heavy_minus_sign:                                                             | This is the datetime that this object was last updated by Merge                | 2021-10-16T00:00:00Z                                                           |
+| `Name`                                                                         | **string*                                                                      | :heavy_minus_sign:                                                             | The rejection reason’s name.                                                   | Not passionate enough about APIs.                                              |
+| `RemoteData`                                                                   | [][RemoteData](../../models/shared/remotedata.md)                              | :heavy_minus_sign:                                                             | N/A                                                                            |                                                                                |
+| `RemoteID`                                                                     | **string*                                                                      | :heavy_minus_sign:                                                             | The third-party API ID of the matching object.                                 | 876556788                                                                      |
+| `RemoteWasDeleted`                                                             | **bool*                                                                        | :heavy_minus_sign:                                                             | Indicates whether or not this object has been deleted by third party webhooks. |                                                                                |
