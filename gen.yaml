@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 4630b0f9202139f9bda8040d8ed4b8e3
   docVersion: "1.0"
-  speakeasyVersion: 1.71.0
-  generationVersion: 2.83.3
+  speakeasyVersion: 1.76.0
+  generationVersion: 2.89.1
 generation:
   comments:
     disableComments: false
@@ -14,14 +14,14 @@ generation:
   tagNamespacingDisabled: false
 features:
   go:
-    core: 2.82.0
+    core: 2.85.0
     flattening: 2.81.1
     globalSecurity: 2.81.1
-    globalServerURLs: 2.81.1
+    globalServerURLs: 2.82.0
     inputOutputModels: 2.81.1
     methodSecurity: 2.81.1
     nameOverrides: 2.81.1
 go:
-  version: 0.2.0
+  version: 0.3.0
   maxMethodParams: 4
   packageName: github.com/speakeasy-sdks/merge-ats-go

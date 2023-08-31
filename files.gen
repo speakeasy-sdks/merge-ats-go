@@ -610,3 +610,4 @@ docs/models/shared/remoteuseraccessrole.md
 docs/models/shared/remoteuser.md
 docs/models/shared/webhookreceiver.md
 docs/models/shared/webhookreceiverrequest.md
+.gitattributes
