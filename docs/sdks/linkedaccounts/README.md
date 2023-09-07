@@ -28,19 +28,19 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LinkedAccounts.List(ctx, operations.LinkedAccountsListRequest{
-        Category: operations.LinkedAccountsListCategoryCrm.ToPointer(),
-        Cursor: ats.String("quo"),
-        EndUserEmailAddress: ats.String("ex"),
-        EndUserOrganizationName: ats.String("ut"),
-        EndUserOriginID: ats.String("ad"),
-        EndUserOriginIds: ats.String("expedita"),
-        ID: ats.String("08b61891-baa0-4fe1-ade0-08e6f8c5f350"),
-        Ids: ats.String("illum"),
+        Category: operations.LinkedAccountsListCategoryAccounting.ToPointer(),
+        Cursor: ats.String("voluptates"),
+        EndUserEmailAddress: ats.String("libero"),
+        EndUserOrganizationName: ats.String("vitae"),
+        EndUserOriginID: ats.String("accusamus"),
+        EndUserOriginIds: ats.String("similique"),
+        ID: ats.String("426555ba-3c28-4744-ad53-b88f3a8d8f5c"),
+        Ids: ats.String("sit"),
         IncludeDuplicates: ats.Bool(false),
-        IntegrationName: ats.String("totam"),
-        IsTestAccount: ats.String("impedit"),
-        PageSize: ats.Int64(842777),
-        Status: ats.String("nam"),
+        IntegrationName: ats.String("rerum"),
+        IsTestAccount: ats.String("sed"),
+        PageSize: ats.Int64(967966),
+        Status: ats.String("explicabo"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

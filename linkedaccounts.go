@@ -25,7 +25,7 @@ func newLinkedAccounts(sdkConfig sdkConfiguration) *linkedAccounts {
 	}
 }
 
-// List - List linked accounts for your organization.
+// List linked accounts for your organization.
 func (s *linkedAccounts) List(ctx context.Context, request operations.LinkedAccountsListRequest, security operations.LinkedAccountsListSecurity) (*operations.LinkedAccountsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/linked-accounts"

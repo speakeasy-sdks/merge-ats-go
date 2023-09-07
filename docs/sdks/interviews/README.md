@@ -32,30 +32,23 @@ func main() {
             Application: ats.String("92e8a369-fffe-430d-b93a-f7e8a16563f1"),
             EndAt: types.MustTimeFromString("2021-10-15T02:00:00Z"),
             IntegrationParams: map[string]interface{}{
-                "nostrum": "officia",
-                "dolorum": "corrupti",
-                "accusamus": "tempora",
+                "consequatur": "tempora",
             },
             Interviewers: []string{
-                "24d0ab40-7508-48e5-9862-065e904f3b11",
-                "94b8abf6-03a7-49f9-9fe0-ab7da8a50ce1",
-                "87f86bc1-73d6-489e-ae95-26f8d986e881",
+                "e523c7e0-bc71-478e-8796-f2a70c688282",
             },
             JobInterviewStage: ats.String("2f7adb59-3fe6-4b5b-aef6-563f72bd13dc"),
             LinkedAccountParams: map[string]interface{}{
-                "dolorum": "repellendus",
-                "labore": "reiciendis",
-                "doloremque": "repudiandae",
-                "dicta": "accusantium",
+                "fuga": "mollitia",
             },
             Location: ats.String("Embarcadero Center 2"),
             Organizer: ats.String("52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633"),
             StartAt: types.MustTimeFromString("2021-10-15T00:00:00Z"),
             Status: shared.ScheduledInterviewRequestStatusScheduled.ToPointer(),
         },
-        RemoteUserID: "beatae",
+        RemoteUserID: "incidunt",
     }
-    xAccountToken := "dolores"
+    xAccountToken := "atque"
     isDebugMode := false
     runAsync := false
     operationSecurity := operations.InterviewsCreateSecurity{
@@ -116,21 +109,21 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Interviews.List(ctx, operations.InterviewsListRequest{
-        XAccountToken: "enim",
-        ApplicationID: ats.String("laboriosam"),
-        CreatedAfter: types.MustTimeFromString("2022-01-18T11:13:47.798Z"),
-        CreatedBefore: types.MustTimeFromString("2022-05-26T23:29:35.541Z"),
-        Cursor: ats.String("saepe"),
-        Expand: operations.InterviewsListExpandInterviewers.ToPointer(),
+        XAccountToken: "explicabo",
+        ApplicationID: ats.String("minima"),
+        CreatedAfter: types.MustTimeFromString("2022-11-08T08:09:29.073Z"),
+        CreatedBefore: types.MustTimeFromString("2022-07-09T22:36:51.892Z"),
+        Cursor: ats.String("ratione"),
+        Expand: operations.InterviewsListExpandApplicationJobInterviewStage.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        JobInterviewStageID: ats.String("occaecati"),
-        ModifiedAfter: types.MustTimeFromString("2021-03-17T06:13:21.698Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-10-06T02:44:18.773Z"),
+        JobInterviewStageID: ats.String("saepe"),
+        ModifiedAfter: types.MustTimeFromString("2021-11-30T00:31:10.440Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-07-18T05:27:20.858Z"),
         OrganizerID: ats.String("eveniet"),
-        PageSize: ats.Int64(580887),
+        PageSize: ats.Int64(882042),
         RemoteFields: operations.InterviewsListRemoteFieldsStatus.ToPointer(),
-        RemoteID: ats.String("consequuntur"),
+        RemoteID: ats.String("veritatis"),
         ShowEnumOrigins: operations.InterviewsListShowEnumOriginsStatus.ToPointer(),
     }, operationSecurity)
     if err != nil {
@@ -181,9 +174,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Interviews.Retrieve(ctx, operations.InterviewsRetrieveRequest{
-        XAccountToken: "fugit",
-        Expand: operations.InterviewsRetrieveExpandInterviewersOrganizerJobInterviewStage.ToPointer(),
-        ID: "57a15be3-e060-4807-a2b6-e3ab8845f059",
+        XAccountToken: "esse",
+        Expand: operations.InterviewsRetrieveExpandOrganizerApplication.ToPointer(),
+        ID: "be61e6b7-b95b-4c0a-b3c2-0c4f3789fd87",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.InterviewsRetrieveRemoteFieldsStatus.ToPointer(),
         ShowEnumOrigins: operations.InterviewsRetrieveShowEnumOriginsStatus.ToPointer(),
@@ -230,7 +223,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "nihil"
+    xAccountToken := "quasi"
     operationSecurity := operations.InterviewsMetaPostRetrieveSecurity{
             TokenAuth: "",
         }

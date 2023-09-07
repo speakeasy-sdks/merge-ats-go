@@ -25,21 +25,13 @@ import(
 func main() {
     s := ats.New()
     dataPassthroughRequest := shared.DataPassthroughRequest{
-        BaseURLOverride: ats.String("excepturi"),
+        BaseURLOverride: ats.String("quibusdam"),
         Data: ats.String("{"company": "Lime", "model": "Gen 2.5"}"),
         Headers: map[string]interface{}{
-            "facilis": "tempore",
-            "labore": "delectus",
+            "explicabo": "deserunt",
         },
         Method: shared.DataPassthroughRequestMethodPost,
         MultipartFormData: []shared.MultipartFormFieldRequest{
-            shared.MultipartFormFieldRequest{
-                ContentType: ats.String("application/pdf"),
-                Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-                Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                FileName: ats.String("resume.pdf"),
-                Name: "resume",
-            },
             shared.MultipartFormFieldRequest{
                 ContentType: ats.String("application/pdf"),
                 Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
@@ -52,7 +44,7 @@ func main() {
         Path: "/scooters",
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
-    xAccountToken := "non"
+    xAccountToken := "distinctio"
     operationSecurity := operations.AsyncPassthroughCreateSecurity{
             TokenAuth: "",
         }
@@ -102,8 +94,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "eligendi"
-    asyncPassthroughReceiptID := "969e9a3e-fa77-4dfb-94cd-66ae395efb9b"
+    xAccountToken := "quibusdam"
+    asyncPassthroughReceiptID := "44269802-d502-4a94-bb4f-63c969e9a3ef"
     operationSecurity := operations.AsyncPassthroughRetrieveSecurity{
             TokenAuth: "",
         }

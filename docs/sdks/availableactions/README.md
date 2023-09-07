@@ -22,7 +22,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "saepe"
+    xAccountToken := "quos"
     operationSecurity := operations.AvailableActionsRetrieveSecurity{
             TokenAuth: "",
         }

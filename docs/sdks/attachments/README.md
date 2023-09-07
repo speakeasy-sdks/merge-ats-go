@@ -33,18 +33,15 @@ func main() {
             FileName: ats.String("Candidate Resume"),
             FileURL: ats.String("http://alturl.com/p749b"),
             IntegrationParams: map[string]interface{}{
-                "blanditiis": "deleniti",
-                "sapiente": "amet",
-                "deserunt": "nisi",
+                "dolorum": "in",
             },
             LinkedAccountParams: map[string]interface{}{
-                "natus": "omnis",
-                "molestiae": "perferendis",
+                "in": "illum",
             },
         },
-        RemoteUserID: "nihil",
+        RemoteUserID: "maiores",
     }
-    xAccountToken := "magnam"
+    xAccountToken := "rerum"
     isDebugMode := false
     runAsync := false
     operationSecurity := operations.AttachmentsCreateSecurity{
@@ -105,19 +102,19 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Attachments.List(ctx, operations.AttachmentsListRequest{
-        XAccountToken: "distinctio",
-        CandidateID: ats.String("id"),
-        CreatedAfter: types.MustTimeFromString("2022-09-17T02:55:11.783Z"),
-        CreatedBefore: types.MustTimeFromString("2022-05-20T10:11:05.115Z"),
-        Cursor: ats.String("nobis"),
+        XAccountToken: "dicta",
+        CandidateID: ats.String("magnam"),
+        CreatedAfter: types.MustTimeFromString("2020-07-23T21:23:35.691Z"),
+        CreatedBefore: types.MustTimeFromString("2022-08-09T06:36:34.417Z"),
+        Cursor: ats.String("laborum"),
         Expand: operations.AttachmentsListExpandCandidate.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-02-14T08:45:31.579Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-11-24T10:55:00.183Z"),
-        PageSize: ats.Int64(298282),
+        ModifiedAfter: types.MustTimeFromString("2022-04-02T11:21:13.260Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-05-17T08:24:52.669Z"),
+        PageSize: ats.Int64(881736),
         RemoteFields: operations.AttachmentsListRemoteFieldsAttachmentType.ToPointer(),
-        RemoteID: ats.String("et"),
+        RemoteID: ats.String("delectus"),
         ShowEnumOrigins: operations.AttachmentsListShowEnumOriginsAttachmentType.ToPointer(),
     }, operationSecurity)
     if err != nil {
@@ -168,9 +165,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Attachments.Retrieve(ctx, operations.AttachmentsRetrieveRequest{
-        XAccountToken: "excepturi",
+        XAccountToken: "quidem",
         Expand: operations.AttachmentsRetrieveExpandCandidate.ToPointer(),
-        ID: "59890afa-563e-4251-afe4-c8b711e5b7fd",
+        ID: "9ba88f3a-6699-4707-8ba4-469b6e214195",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.AttachmentsRetrieveRemoteFieldsAttachmentType.ToPointer(),
         ShowEnumOrigins: operations.AttachmentsRetrieveShowEnumOriginsAttachmentType.ToPointer(),
@@ -217,7 +214,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "sed"
+    xAccountToken := "provident"
     operationSecurity := operations.AttachmentsMetaPostRetrieveSecurity{
             TokenAuth: "",
         }

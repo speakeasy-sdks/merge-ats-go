@@ -30,22 +30,22 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Jobs.List(ctx, operations.JobsListRequest{
-        XAccountToken: "suscipit",
-        Code: ats.String("dolorem"),
-        CreatedAfter: types.MustTimeFromString("2022-03-27T18:38:54.968Z"),
-        CreatedBefore: types.MustTimeFromString("2022-08-15T23:37:19.342Z"),
-        Cursor: ats.String("animi"),
-        Expand: operations.JobsListExpandOfficesRecruiters.ToPointer(),
+        XAccountToken: "quod",
+        Code: ats.String("labore"),
+        CreatedAfter: types.MustTimeFromString("2022-10-04T21:10:21.697Z"),
+        CreatedBefore: types.MustTimeFromString("2021-09-04T08:55:11.388Z"),
+        Cursor: ats.String("suscipit"),
+        Expand: operations.JobsListExpandDepartmentsOffices.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-12-22T05:17:09.936Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-11-29T01:33:31.768Z"),
-        Offices: ats.String("ducimus"),
-        PageSize: ats.Int64(619183),
+        ModifiedAfter: types.MustTimeFromString("2021-09-01T22:08:53.618Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-06-13T13:07:55.703Z"),
+        Offices: ats.String("fugiat"),
+        PageSize: ats.Int64(424089),
         RemoteFields: operations.JobsListRemoteFieldsStatus.ToPointer(),
-        RemoteID: ats.String("occaecati"),
+        RemoteID: ats.String("ducimus"),
         ShowEnumOrigins: operations.JobsListShowEnumOriginsStatus.ToPointer(),
-        Status: operations.JobsListStatusClosed.ToPointer(),
+        Status: operations.JobsListStatusDraft.ToPointer(),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -95,9 +95,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Jobs.Retrieve(ctx, operations.JobsRetrieveRequest{
-        XAccountToken: "adipisci",
-        Expand: operations.JobsRetrieveExpandDepartmentsHiringManagers.ToPointer(),
-        ID: "2fde0477-1778-4ff6-9d01-7476360a15db",
+        XAccountToken: "vel",
+        Expand: operations.JobsRetrieveExpandDepartmentsOfficesHiringManagers.ToPointer(),
+        ID: "dbb675fd-5e60-4b37-9ed4-f6fbee41f333",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.JobsRetrieveRemoteFieldsStatus.ToPointer(),
         ShowEnumOrigins: operations.JobsRetrieveShowEnumOriginsStatus.ToPointer(),

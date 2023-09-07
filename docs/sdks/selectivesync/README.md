@@ -24,7 +24,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "dolor"
+    xAccountToken := "enim"
     operationSecurity := operations.SelectiveSyncConfigurationsListSecurity{
             TokenAuth: "",
         }
@@ -73,10 +73,10 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "iusto"
-    commonModel := "sit"
-    cursor := "doloremque"
-    pageSize := 7468
+    xAccountToken := "laboriosam"
+    commonModel := "velit"
+    cursor := "a"
+    pageSize := 562783
     operationSecurity := operations.SelectiveSyncMetaListSecurity{
             TokenAuth: "",
         }
@@ -134,78 +134,15 @@ func main() {
             shared.LinkedAccountSelectiveSyncConfigurationRequest{
                 LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
                     shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "6b6bc9b8-f759-4eac-95a9-741d31135296",
-                        Operator: "nemo",
-                        Value: "soluta",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "b8a72026-1143-45e1-b9db-c2259b1abda8",
-                        Operator: "placeat",
-                        Value: "sit",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "70e1084c-b067-42d1-ad87-9eeb9665b85e",
-                        Operator: "voluptatibus",
-                        Value: "cum",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "d02bae0b-e2d7-4822-99e3-ea4b5197f924",
-                        Operator: "numquam",
-                        Value: "nesciunt",
-                    },
-                },
-            },
-            shared.LinkedAccountSelectiveSyncConfigurationRequest{
-                LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "a7ce52b8-95c5-437c-a454-efb0b34896c3",
-                        Operator: "minus",
-                        Value: "fuga",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "5acfbe2f-d570-4757-b929-177deac646ec",
-                        Operator: "quidem",
-                        Value: "exercitationem",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "73409e3e-b1e5-4a2b-92eb-07f116db9954",
-                        Operator: "nostrum",
-                        Value: "doloribus",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "c95fa889-70e1-489d-bb30-fcb33ea055b1",
-                        Operator: "cupiditate",
-                        Value: "molestiae",
-                    },
-                },
-            },
-            shared.LinkedAccountSelectiveSyncConfigurationRequest{
-                LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "d44e2f52-d82d-4351-bbb6-f48b656bcdb3",
-                        Operator: "ad",
-                        Value: "voluptatibus",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "f2e4b275-37a8-4cd9-a731-9c177d525f77",
-                        Operator: "libero",
-                        Value: "illo",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "14eeb52f-f785-4fc3-b814-d4c98e0c2bb8",
-                        Operator: "provident",
-                        Value: "repudiandae",
-                    },
-                    shared.LinkedAccountConditionRequest{
-                        ConditionSchemaID: "b75dad63-6c60-4050-bd8b-b31180f739ae",
-                        Operator: "provident",
-                        Value: "repudiandae",
+                        ConditionSchemaID: "4e29e973-e922-4a57-a15b-e3e060807e2b",
+                        Operator: "iure",
+                        Value: "necessitatibus",
                     },
                 },
             },
         },
     }
-    xAccountToken := "consequatur"
+    xAccountToken := "ratione"
     operationSecurity := operations.SelectiveSyncConfigurationsUpdateSecurity{
             TokenAuth: "",
         }

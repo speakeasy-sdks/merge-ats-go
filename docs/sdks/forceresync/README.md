@@ -22,7 +22,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "neque"
+    xAccountToken := "cupiditate"
     operationSecurity := operations.SyncStatusResyncCreateSecurity{
             TokenAuth: "",
         }

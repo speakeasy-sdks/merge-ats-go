@@ -30,16 +30,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Offices.List(ctx, operations.OfficesListRequest{
-        XAccountToken: "nisi",
-        CreatedAfter: types.MustTimeFromString("2020-05-14T04:22:15.063Z"),
-        CreatedBefore: types.MustTimeFromString("2021-08-14T17:27:02.277Z"),
-        Cursor: ats.String("sequi"),
+        XAccountToken: "rem",
+        CreatedAfter: types.MustTimeFromString("2022-04-02T00:47:15.232Z"),
+        CreatedBefore: types.MustTimeFromString("2022-05-02T12:56:56.327Z"),
+        Cursor: ats.String("minima"),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2020-03-31T16:32:36.866Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-04-06T05:59:09.931Z"),
-        PageSize: ats.Int64(364544),
-        RemoteID: ats.String("voluptate"),
+        ModifiedAfter: types.MustTimeFromString("2020-02-07T00:03:24.642Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-06-30T09:48:42.630Z"),
+        PageSize: ats.Int64(48690),
+        RemoteID: ats.String("saepe"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -83,8 +83,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "blanditiis"
-    id := "a6458427-3a84-418d-9623-09fb0929921a"
+    xAccountToken := "numquam"
+    id := "57e1858b-6a89-4fbe-ba5a-a8e4824d0ab4"
     includeRemoteData := false
     operationSecurity := operations.OfficesRetrieveSecurity{
             TokenAuth: "",

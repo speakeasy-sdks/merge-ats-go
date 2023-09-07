@@ -30,16 +30,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.RejectReasons.List(ctx, operations.RejectReasonsListRequest{
-        XAccountToken: "itaque",
-        CreatedAfter: types.MustTimeFromString("2022-06-24T22:07:46.946Z"),
-        CreatedBefore: types.MustTimeFromString("2022-03-14T09:47:56.289Z"),
-        Cursor: ats.String("nam"),
+        XAccountToken: "voluptatum",
+        CreatedAfter: types.MustTimeFromString("2021-02-26T20:36:25.696Z"),
+        CreatedBefore: types.MustTimeFromString("2022-11-29T08:01:39.148Z"),
+        Cursor: ats.String("blanditiis"),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-11-25T23:21:09.307Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-07-29T12:42:47.911Z"),
-        PageSize: ats.Int64(1383),
-        RemoteID: ats.String("quasi"),
+        ModifiedAfter: types.MustTimeFromString("2022-11-05T22:13:21.002Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-07-29T16:33:10.615Z"),
+        PageSize: ats.Int64(342611),
+        RemoteID: ats.String("saepe"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -83,8 +83,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "non"
-    id := "f59da757-a59e-4cfe-b66e-f1caa3383c2b"
+    xAccountToken := "error"
+    id := "04f3b119-4b8a-4bf6-83a7-9f9dfe0ab7da"
     includeRemoteData := false
     operationSecurity := operations.RejectReasonsRetrieveSecurity{
             TokenAuth: "",

@@ -33,13 +33,10 @@ func main() {
     candidateEndpointRequest := shared.CandidateEndpointRequest{
         Model: shared.CandidateRequest{
             Applications: []string{
-                "028921cd-dc69-4260-9fb5-76b0d5f0d30c",
-                "5fbb2587-0532-402c-b3d5-fe9b90c28909",
-                "b3fe49a8-d9cb-4f48-a333-23f9b77f3a41",
-                "00674ebf-6928-40d1-ba77-a89ebf737ae4",
+                "90afa563-e251-46fe-8c8b-711e5b7fd2ed",
             },
             Attachments: []string{
-                "03ce5e6a-95d8-4a0d-846c-e2af7a73cf3b",
+                "028921cd-dc69-4260-9fb5-76b0d5f0d30c",
             },
             CanEmail: ats.Bool(true),
             Company: ats.String("Columbia Dining App."),
@@ -47,77 +44,34 @@ func main() {
                 shared.EmailAddressRequest{
                     EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                     IntegrationParams: map[string]interface{}{
-                        "enim": "dolorem",
-                        "sapiente": "totam",
+                        "corporis": "hic",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "sit": "expedita",
-                        "neque": "sed",
-                    },
-                    Value: ats.String("merge_is_hiring@merge.dev"),
-                },
-                shared.EmailAddressRequest{
-                    EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
-                    IntegrationParams: map[string]interface{}{
-                        "libero": "voluptas",
-                        "deserunt": "quam",
-                    },
-                    LinkedAccountParams: map[string]interface{}{
-                        "incidunt": "qui",
-                    },
-                    Value: ats.String("merge_is_hiring@merge.dev"),
-                },
-                shared.EmailAddressRequest{
-                    EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
-                    IntegrationParams: map[string]interface{}{
-                        "maxime": "pariatur",
-                        "soluta": "dicta",
-                        "laborum": "totam",
-                    },
-                    LinkedAccountParams: map[string]interface{}{
-                        "aspernatur": "dolores",
-                        "distinctio": "facilis",
-                    },
-                    Value: ats.String("merge_is_hiring@merge.dev"),
-                },
-                shared.EmailAddressRequest{
-                    EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
-                    IntegrationParams: map[string]interface{}{
-                        "quam": "molestias",
-                        "temporibus": "qui",
-                    },
-                    LinkedAccountParams: map[string]interface{}{
-                        "fugit": "magni",
+                        "libero": "nobis",
                     },
                     Value: ats.String("merge_is_hiring@merge.dev"),
                 },
             },
             FirstName: ats.String("Gil"),
             IntegrationParams: map[string]interface{}{
-                "sunt": "ullam",
-                "nam": "hic",
+                "dolores": "quis",
             },
             IsPrivate: ats.Bool(true),
             LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
             LastName: ats.String("Feig"),
             LinkedAccountParams: map[string]interface{}{
-                "cumque": "soluta",
+                "totam": "dignissimos",
             },
             Locations: []string{
-                "et",
-                "saepe",
-                "ipsum",
+                "eaque",
             },
             PhoneNumbers: []shared.PhoneNumberRequest{
                 shared.PhoneNumberRequest{
                     IntegrationParams: map[string]interface{}{
-                        "quos": "tempore",
-                        "cupiditate": "aperiam",
-                        "delectus": "dolorem",
+                        "quis": "nesciunt",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "labore": "adipisci",
-                        "dolorum": "architecto",
+                        "eos": "perferendis",
                     },
                     PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
                     Value: ats.String("+3198675309"),
@@ -125,55 +79,25 @@ func main() {
             },
             RemoteTemplateID: ats.String("92830948203"),
             Tags: []string{
-                "aut",
+                "dolores",
             },
             Title: ats.String("Software Engineer"),
             Urls: []shared.URLRequest{
                 shared.URLRequest{
                     IntegrationParams: map[string]interface{}{
-                        "consequatur": "est",
-                        "repellendus": "porro",
-                        "doloribus": "ut",
-                        "facilis": "cupiditate",
+                        "minus": "quam",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "quae": "laudantium",
-                    },
-                    URLType: shared.URLRequestURLTypePersonal.ToPointer(),
-                    Value: ats.String("http://alturl.com/p749b"),
-                },
-                shared.URLRequest{
-                    IntegrationParams: map[string]interface{}{
-                        "occaecati": "voluptatibus",
-                        "quisquam": "vero",
-                    },
-                    LinkedAccountParams: map[string]interface{}{
-                        "quis": "ipsum",
-                        "delectus": "voluptate",
-                        "consectetur": "vero",
-                    },
-                    URLType: shared.URLRequestURLTypePersonal.ToPointer(),
-                    Value: ats.String("http://alturl.com/p749b"),
-                },
-                shared.URLRequest{
-                    IntegrationParams: map[string]interface{}{
-                        "dignissimos": "hic",
-                        "distinctio": "quod",
-                        "odio": "similique",
-                        "facilis": "vero",
-                    },
-                    LinkedAccountParams: map[string]interface{}{
-                        "dolore": "quibusdam",
-                        "illum": "sequi",
+                        "dolor": "vero",
                     },
                     URLType: shared.URLRequestURLTypePersonal.ToPointer(),
                     Value: ats.String("http://alturl.com/p749b"),
                 },
             },
         },
-        RemoteUserID: "natus",
+        RemoteUserID: "nostrum",
     }
-    xAccountToken := "impedit"
+    xAccountToken := "hic"
     isDebugMode := false
     runAsync := false
     operationSecurity := operations.CandidatesCreateSecurity{
@@ -232,8 +156,8 @@ func main() {
         Message: ats.String("deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"),
         Reason: shared.IgnoreCommonModelRequestReasonGeneralCustomerRequest,
     }
-    xAccountToken := "aut"
-    modelID := "f5d2cff7-c70a-4456-a6d4-36813f16d9f5"
+    xAccountToken := "recusandae"
+    modelID := "9b90c289-09b3-4fe4-9a8d-9cbf48633323"
     operationSecurity := operations.CandidatesIgnoreCreateSecurity{
             TokenAuth: "",
         }
@@ -291,21 +215,21 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Candidates.List(ctx, operations.CandidatesListRequest{
-        XAccountToken: "sapiente",
-        CreatedAfter: types.MustTimeFromString("2020-04-13T07:43:17.350Z"),
-        CreatedBefore: types.MustTimeFromString("2022-03-24T11:20:42.976Z"),
-        Cursor: ats.String("corporis"),
-        EmailAddresses: ats.String("veniam"),
-        Expand: operations.CandidatesListExpandApplicationsAttachments.ToPointer(),
-        FirstName: ats.String("Armando"),
+        XAccountToken: "hic",
+        CreatedAfter: types.MustTimeFromString("2021-07-10T03:04:11.898Z"),
+        CreatedBefore: types.MustTimeFromString("2022-07-05T23:34:50.715Z"),
+        Cursor: ats.String("reiciendis"),
+        EmailAddresses: ats.String("amet"),
+        Expand: operations.CandidatesListExpandAttachments.ToPointer(),
+        FirstName: ats.String("Deonte"),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        LastName: ats.String("Gutkowski"),
-        ModifiedAfter: types.MustTimeFromString("2022-03-24T01:04:28.722Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-01-27T22:22:28.881Z"),
-        PageSize: ats.Int64(132487),
-        RemoteID: ats.String("minima"),
-        Tags: ats.String("eaque"),
+        LastName: ats.String("Bogan"),
+        ModifiedAfter: types.MustTimeFromString("2022-12-11T09:46:30.457Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-07-06T22:32:29.592Z"),
+        PageSize: ats.Int64(311796),
+        RemoteID: ats.String("accusamus"),
+        Tags: ats.String("quidem"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -349,8 +273,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "a"
-    id := "b008c42e-141a-4ac3-a6c8-dd6b14429074"
+    xAccountToken := "voluptatibus"
+    id := "69280d1b-a77a-489e-bf73-7ae4203ce5e6"
     expand := operations.CandidatesRetrieveExpandApplicationsAttachments
     includeRemoteData := false
     operationSecurity := operations.CandidatesRetrieveSecurity{
@@ -404,8 +328,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "eius"
-    id := "778a7bd4-66d2-48c1-8ab3-cdca4251904e"
+    xAccountToken := "provident"
+    id := "5d8a0d44-6ce2-4af7-a73c-f3be453f870b"
     operationSecurity := operations.CandidatesMetaPatchRetrieveSecurity{
             TokenAuth: "",
         }
@@ -455,7 +379,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "ipsam"
+    xAccountToken := "neque"
     operationSecurity := operations.CandidatesMetaPostRetrieveSecurity{
             TokenAuth: "",
         }
@@ -515,12 +439,10 @@ func main() {
         PatchedCandidateEndpointRequest: shared.PatchedCandidateEndpointRequest{
             Model: shared.PatchedCandidateRequest{
                 Applications: []string{
-                    "3c7e0bc7-178e-4479-af2a-70c688282aa4",
+                    "26b5a734-29cd-4b1a-8422-bb679d232271",
                 },
                 Attachments: []string{
-                    "2562f222-e981-47ee-97cb-e61e6b7b95bc",
-                    "0ab3c20c-4f37-489f-9871-f99dd2efd121",
-                    "aa6f1e67-4bdb-404f-9575-6082d68ea19f",
+                    "5bf0cbb1-e31b-48b9-8f34-43a1108e0adc",
                 },
                 CanEmail: ats.Bool(true),
                 Company: ats.String("Columbia Dining App."),
@@ -528,62 +450,34 @@ func main() {
                     shared.EmailAddressRequest{
                         EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                         IntegrationParams: map[string]interface{}{
-                            "et": "voluptate",
-                            "ipsa": "minima",
-                            "veritatis": "consectetur",
-                            "adipisci": "iste",
+                            "doloribus": "ut",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "accusantium": "rem",
-                            "aut": "laudantium",
-                            "eum": "mollitia",
-                            "ab": "corrupti",
+                            "facilis": "cupiditate",
                         },
                         Value: ats.String("merge_is_hiring@merge.dev"),
                     },
                 },
                 FirstName: ats.String("Gil"),
                 IntegrationParams: map[string]interface{}{
-                    "voluptatem": "dolor",
-                    "occaecati": "numquam",
+                    "qui": "quae",
                 },
                 IsPrivate: ats.Bool(true),
                 LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
                 LastName: ats.String("Feig"),
                 LinkedAccountParams: map[string]interface{}{
-                    "explicabo": "voluptas",
-                    "aut": "dignissimos",
-                    "dicta": "maiores",
-                    "natus": "velit",
+                    "laudantium": "odio",
                 },
                 Locations: []string{
-                    "voluptas",
-                    "asperiores",
-                    "aperiam",
-                    "ea",
+                    "occaecati",
                 },
                 PhoneNumbers: []shared.PhoneNumberRequest{
                     shared.PhoneNumberRequest{
                         IntegrationParams: map[string]interface{}{
-                            "repellendus": "officia",
+                            "voluptatibus": "quisquam",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "dignissimos": "officia",
-                            "asperiores": "nemo",
-                            "quae": "quaerat",
-                            "porro": "quod",
-                        },
-                        PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
-                        Value: ats.String("+3198675309"),
-                    },
-                    shared.PhoneNumberRequest{
-                        IntegrationParams: map[string]interface{}{
-                            "ab": "adipisci",
-                            "fuga": "id",
-                        },
-                        LinkedAccountParams: map[string]interface{}{
-                            "velit": "culpa",
-                            "est": "recusandae",
+                            "vero": "omnis",
                         },
                         PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
                         Value: ats.String("+3198675309"),
@@ -591,55 +485,26 @@ func main() {
                 },
                 RemoteTemplateID: ats.String("92830948203"),
                 Tags: []string{
-                    "fugiat",
-                    "vel",
-                    "ducimus",
+                    "quis",
                 },
                 Title: ats.String("Software Engineer"),
                 Urls: []shared.URLRequest{
                     shared.URLRequest{
                         IntegrationParams: map[string]interface{}{
-                            "labore": "possimus",
-                            "facilis": "cum",
+                            "ipsum": "delectus",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "in": "corporis",
-                            "reiciendis": "assumenda",
-                        },
-                        URLType: shared.URLRequestURLTypePersonal.ToPointer(),
-                        Value: ats.String("http://alturl.com/p749b"),
-                    },
-                    shared.URLRequest{
-                        IntegrationParams: map[string]interface{}{
-                            "recusandae": "aliquid",
-                            "aperiam": "cum",
-                        },
-                        LinkedAccountParams: map[string]interface{}{
-                            "in": "exercitationem",
-                        },
-                        URLType: shared.URLRequestURLTypePersonal.ToPointer(),
-                        Value: ats.String("http://alturl.com/p749b"),
-                    },
-                    shared.URLRequest{
-                        IntegrationParams: map[string]interface{}{
-                            "facere": "numquam",
-                            "doloribus": "suscipit",
-                            "reiciendis": "quidem",
-                            "saepe": "necessitatibus",
-                        },
-                        LinkedAccountParams: map[string]interface{}{
-                            "sunt": "asperiores",
-                            "adipisci": "non",
+                            "voluptate": "consectetur",
                         },
                         URLType: shared.URLRequestURLTypePersonal.ToPointer(),
                         Value: ats.String("http://alturl.com/p749b"),
                     },
                 },
             },
-            RemoteUserID: "amet",
+            RemoteUserID: "vero",
         },
-        XAccountToken: "beatae",
-        ID: "7fe35b60-eb1e-4a42-a555-ba3c28744ed5",
+        XAccountToken: "tenetur",
+        ID: "7fbc7abd-74dd-439c-8f5d-2cff7c70a456",
         IsDebugMode: ats.Bool(false),
         RunAsync: ats.Bool(false),
     }, operationSecurity)

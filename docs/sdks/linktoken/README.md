@@ -17,8 +17,8 @@ import(
 	"context"
 	"log"
 	"github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
@@ -30,38 +30,24 @@ func main() {
     ctx := context.Background()
     res, err := s.LinkToken.Create(ctx, shared.EndUserDetailsRequest{
         Categories: []shared.CategoriesEnum{
-            shared.CategoriesEnumCrm,
-            shared.CategoriesEnumAccounting,
+            shared.CategoriesEnumHris,
         },
         CommonModels: []shared.CommonModelScopesBodyRequest{
             shared.CommonModelScopesBodyRequest{
                 DisabledFields: []string{
-                    "eum",
+                    "dignissimos",
                 },
                 EnabledActions: []shared.EnabledActionsEnum{
-                    shared.EnabledActionsEnumWrite,
-                    shared.EnabledActionsEnumWrite,
-                },
-                ModelID: "hris.Employee",
-            },
-            shared.CommonModelScopesBodyRequest{
-                DisabledFields: []string{
-                    "error",
-                },
-                EnabledActions: []shared.EnabledActionsEnum{
-                    shared.EnabledActionsEnumWrite,
-                    shared.EnabledActionsEnumWrite,
-                    shared.EnabledActionsEnumWrite,
                     shared.EnabledActionsEnumWrite,
                 },
                 ModelID: "hris.Employee",
             },
         },
-        EndUserEmailAddress: "ad",
-        EndUserOrganizationName: "deleniti",
-        EndUserOriginID: "enim",
-        Integration: ats.String("vitae"),
-        LinkExpiryMins: ats.Int64(833316),
+        EndUserEmailAddress: "debitis",
+        EndUserOrganizationName: "consectetur",
+        EndUserOriginID: "corporis",
+        Integration: ats.String("harum"),
+        LinkExpiryMins: ats.Int64(385237),
         ShouldCreateMagicLinkURL: ats.Bool(false),
     }, operationSecurity)
     if err != nil {

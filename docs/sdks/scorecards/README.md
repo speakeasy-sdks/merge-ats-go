@@ -30,21 +30,21 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Scorecards.List(ctx, operations.ScorecardsListRequest{
-        XAccountToken: "repudiandae",
-        ApplicationID: ats.String("nam"),
-        CreatedAfter: types.MustTimeFromString("2022-07-08T17:52:09.255Z"),
-        CreatedBefore: types.MustTimeFromString("2022-10-22T04:21:35.753Z"),
-        Cursor: ats.String("dignissimos"),
-        Expand: operations.ScorecardsListExpandApplicationInterview.ToPointer(),
+        XAccountToken: "praesentium",
+        ApplicationID: ats.String("mollitia"),
+        CreatedAfter: types.MustTimeFromString("2022-12-21T09:05:01.168Z"),
+        CreatedBefore: types.MustTimeFromString("2020-03-30T02:42:49.718Z"),
+        Cursor: ats.String("quasi"),
+        Expand: operations.ScorecardsListExpandApplicationInterviewer.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        InterviewID: ats.String("quo"),
-        InterviewerID: ats.String("deleniti"),
-        ModifiedAfter: types.MustTimeFromString("2021-09-08T14:14:28.598Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-01-10T03:05:21.296Z"),
-        PageSize: ats.Int64(426904),
+        InterviewID: ats.String("reprehenderit"),
+        InterviewerID: ats.String("asperiores"),
+        ModifiedAfter: types.MustTimeFromString("2022-03-27T08:02:14.031Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-05-22T03:09:11.884Z"),
+        PageSize: ats.Int64(90885),
         RemoteFields: operations.ScorecardsListRemoteFieldsOverallRecommendation.ToPointer(),
-        RemoteID: ats.String("magnam"),
+        RemoteID: ats.String("esse"),
         ShowEnumOrigins: operations.ScorecardsListShowEnumOriginsOverallRecommendation.ToPointer(),
     }, operationSecurity)
     if err != nil {
@@ -95,9 +95,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Scorecards.Retrieve(ctx, operations.ScorecardsRetrieveRequest{
-        XAccountToken: "quibusdam",
-        Expand: operations.ScorecardsRetrieveExpandApplication.ToPointer(),
-        ID: "db1f2c43-1066-41e9-a349-e1cf9e06e3a4",
+        XAccountToken: "amet",
+        Expand: operations.ScorecardsRetrieveExpandInterviewInterviewer.ToPointer(),
+        ID: "689eee95-26f8-4d98-ae88-1ead4f0e1012",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.ScorecardsRetrieveRemoteFieldsOverallRecommendation.ToPointer(),
         ShowEnumOrigins: operations.ScorecardsRetrieveShowEnumOriginsOverallRecommendation.ToPointer(),

@@ -30,16 +30,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Departments.List(ctx, operations.DepartmentsListRequest{
-        XAccountToken: "cum",
-        CreatedAfter: types.MustTimeFromString("2021-11-21T14:04:14.152Z"),
-        CreatedBefore: types.MustTimeFromString("2022-05-25T08:06:51.452Z"),
-        Cursor: ats.String("culpa"),
+        XAccountToken: "vel",
+        CreatedAfter: types.MustTimeFromString("2022-02-08T20:43:00.221Z"),
+        CreatedBefore: types.MustTimeFromString("2022-08-07T14:04:49.880Z"),
+        Cursor: ats.String("laudantium"),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2021-04-07T21:05:22.480Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-02-13T15:31:34.151Z"),
-        PageSize: ats.Int64(348783),
-        RemoteID: ats.String("nobis"),
+        ModifiedAfter: types.MustTimeFromString("2022-10-11T02:58:57.556Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-09-15T20:38:47.955Z"),
+        PageSize: ats.Int64(406120),
+        RemoteID: ats.String("nulla"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -83,8 +83,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "sit"
-    id := "b2f2fb7b-194a-4276-b269-16fe1f08f429"
+    xAccountToken := "excepturi"
+    id := "f5fce6c5-5614-46c3-a250-fb008c42e141"
     includeRemoteData := false
     operationSecurity := operations.DepartmentsRetrieveSecurity{
             TokenAuth: "",

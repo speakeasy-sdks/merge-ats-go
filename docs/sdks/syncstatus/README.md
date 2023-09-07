@@ -22,9 +22,9 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "nemo"
-    cursor := "molestiae"
-    pageSize := 930840
+    xAccountToken := "laborum"
+    cursor := "distinctio"
+    pageSize := 528940
     operationSecurity := operations.SyncStatusListSecurity{
             TokenAuth: "",
         }

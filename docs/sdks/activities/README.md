@@ -32,22 +32,18 @@ func main() {
             Body: ats.String("Candidate loves integrations!!."),
             Candidate: ats.String("03455bc6-6040-430a-848e-aafacbfdf4fg"),
             IntegrationParams: map[string]interface{}{
-                "unde": "nulla",
-                "corrupti": "illum",
-                "vel": "error",
-                "deserunt": "suscipit",
+                "quibusdam": "unde",
             },
             LinkedAccountParams: map[string]interface{}{
-                "magnam": "debitis",
-                "ipsa": "delectus",
+                "nulla": "corrupti",
             },
             Subject: ats.String("Gil Feig's interview"),
             User: ats.String("9d892439-5fab-4dbb-8bd8-34f7f96c7912"),
             Visibility: shared.ActivityRequestVisibilityPrivate.ToPointer(),
         },
-        RemoteUserID: "tempora",
+        RemoteUserID: "illum",
     }
-    xAccountToken := "suscipit"
+    xAccountToken := "vel"
     isDebugMode := false
     runAsync := false
     operationSecurity := operations.ActivitiesCreateSecurity{
@@ -108,20 +104,20 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Activities.List(ctx, operations.ActivitiesListRequest{
-        XAccountToken: "molestiae",
-        CreatedAfter: types.MustTimeFromString("2020-07-25T16:12:20.938Z"),
-        CreatedBefore: types.MustTimeFromString("2022-01-15T14:47:59.325Z"),
-        Cursor: ats.String("excepturi"),
+        XAccountToken: "error",
+        CreatedAfter: types.MustTimeFromString("2022-03-26T09:37:56.283Z"),
+        CreatedBefore: types.MustTimeFromString("2022-09-14T09:35:47.986Z"),
+        Cursor: ats.String("debitis"),
         Expand: operations.ActivitiesListExpandUser.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-01-28T03:46:24.500Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-10-15T05:10:19.629Z"),
-        PageSize: ats.Int64(337396),
-        RemoteFields: operations.ActivitiesListRemoteFieldsActivityType.ToPointer(),
-        RemoteID: ats.String("deserunt"),
-        ShowEnumOrigins: operations.ActivitiesListShowEnumOriginsActivityType.ToPointer(),
-        UserID: ats.String("ipsam"),
+        ModifiedAfter: types.MustTimeFromString("2022-01-14T06:18:51.036Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-08-14T01:03:07.567Z"),
+        PageSize: ats.Int64(477665),
+        RemoteFields: operations.ActivitiesListRemoteFieldsVisibility.ToPointer(),
+        RemoteID: ats.String("placeat"),
+        ShowEnumOrigins: operations.ActivitiesListShowEnumOriginsActivityTypeVisibility.ToPointer(),
+        UserID: ats.String("iusto"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -171,9 +167,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Activities.Retrieve(ctx, operations.ActivitiesRetrieveRequest{
-        XAccountToken: "repellendus",
+        XAccountToken: "excepturi",
         Expand: operations.ActivitiesRetrieveExpandUser.ToPointer(),
-        ID: "fc2ddf7c-c78c-4a1b-a928-fc816742cb73",
+        ID: "6ed151a0-5dfc-42dd-b7cc-78ca1ba928fc",
         IncludeRemoteData: ats.Bool(false),
         RemoteFields: operations.ActivitiesRetrieveRemoteFieldsActivityTypeVisibility.ToPointer(),
         ShowEnumOrigins: operations.ActivitiesRetrieveShowEnumOriginsActivityType.ToPointer(),
@@ -220,7 +216,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "perferendis"
+    xAccountToken := "commodi"
     operationSecurity := operations.ActivitiesMetaPostRetrieveSecurity{
             TokenAuth: "",
         }

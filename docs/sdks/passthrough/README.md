@@ -24,30 +24,13 @@ import(
 func main() {
     s := ats.New()
     dataPassthroughRequest := shared.DataPassthroughRequest{
-        BaseURLOverride: ats.String("accusamus"),
+        BaseURLOverride: ats.String("consequatur"),
         Data: ats.String("{"company": "Lime", "model": "Gen 2.5"}"),
         Headers: map[string]interface{}{
-            "distinctio": "omnis",
-            "delectus": "minima",
-            "praesentium": "maxime",
-            "magnam": "temporibus",
+            "esse": "ipsam",
         },
         Method: shared.DataPassthroughRequestMethodPost,
         MultipartFormData: []shared.MultipartFormFieldRequest{
-            shared.MultipartFormFieldRequest{
-                ContentType: ats.String("application/pdf"),
-                Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-                Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                FileName: ats.String("resume.pdf"),
-                Name: "resume",
-            },
-            shared.MultipartFormFieldRequest{
-                ContentType: ats.String("application/pdf"),
-                Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-                Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                FileName: ats.String("resume.pdf"),
-                Name: "resume",
-            },
             shared.MultipartFormFieldRequest{
                 ContentType: ats.String("application/pdf"),
                 Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
@@ -60,7 +43,7 @@ func main() {
         Path: "/scooters",
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
-    xAccountToken := "commodi"
+    xAccountToken := "sit"
     operationSecurity := operations.PassthroughCreateSecurity{
             TokenAuth: "",
         }

@@ -22,7 +22,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "adipisci"
+    xAccountToken := "aspernatur"
     operationSecurity := operations.DeleteAccountDeleteSecurity{
             TokenAuth: "",
         }

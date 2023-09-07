@@ -30,18 +30,18 @@ func main() {
 
     ctx := context.Background()
     res, err := s.JobInterviewStages.List(ctx, operations.JobInterviewStagesListRequest{
-        XAccountToken: "earum",
-        CreatedAfter: types.MustTimeFromString("2021-08-28T09:50:26.086Z"),
-        CreatedBefore: types.MustTimeFromString("2022-03-14T23:12:21.252Z"),
-        Cursor: ats.String("voluptatibus"),
+        XAccountToken: "minima",
+        CreatedAfter: types.MustTimeFromString("2022-10-08T01:09:40.281Z"),
+        CreatedBefore: types.MustTimeFromString("2022-05-21T17:17:20.623Z"),
+        Cursor: ats.String("temporibus"),
         Expand: operations.JobInterviewStagesListExpandJob.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        JobID: ats.String("molestias"),
-        ModifiedAfter: types.MustTimeFromString("2020-02-18T03:48:05.478Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-08-29T17:35:23.458Z"),
-        PageSize: ats.Int64(698249),
-        RemoteID: ats.String("tempora"),
+        JobID: ats.String("accusantium"),
+        ModifiedAfter: types.MustTimeFromString("2022-12-20T14:34:53.149Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-02-21T23:29:55.837Z"),
+        PageSize: ats.Int64(649832),
+        RemoteID: ats.String("ab"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -85,8 +85,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "quis"
-    id := "12c10326-48dc-42f6-9519-9ebfd0e9fe6c"
+    xAccountToken := "corrupti"
+    id := "40394c26-071f-493f-9f06-42dac7af515c"
     expand := operations.JobInterviewStagesRetrieveExpandJob
     includeRemoteData := false
     operationSecurity := operations.JobInterviewStagesRetrieveSecurity{

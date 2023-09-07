@@ -25,7 +25,7 @@ func newGenerateKey(sdkConfig sdkConfiguration) *generateKey {
 	}
 }
 
-// Create - Create a remote key.
+// Create a remote key.
 func (s *generateKey) Create(ctx context.Context, request shared.GenerateRemoteKeyRequest, security operations.GenerateKeyCreateSecurity) (*operations.GenerateKeyCreateResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/generate-key"

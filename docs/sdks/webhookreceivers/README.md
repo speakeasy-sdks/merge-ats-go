@@ -25,11 +25,11 @@ import(
 func main() {
     s := ats.New()
     webhookReceiverRequest := shared.WebhookReceiverRequest{
-        Event: "non",
+        Event: "voluptatibus",
         IsActive: false,
-        Key: ats.String("distinctio"),
+        Key: ats.String("molestias"),
     }
-    xAccountToken := "in"
+    xAccountToken := "officiis"
     operationSecurity := operations.WebhookReceiversCreateSecurity{
             TokenAuth: "",
         }
@@ -79,7 +79,7 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "exercitationem"
+    xAccountToken := "sapiente"
     operationSecurity := operations.WebhookReceiversListSecurity{
             TokenAuth: "",
         }

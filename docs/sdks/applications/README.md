@@ -35,23 +35,20 @@ func main() {
             CreditedTo: ats.String("58166795-8d68-4b30-9bfb-bfd402479484"),
             CurrentStage: ats.String("d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea"),
             IntegrationParams: map[string]interface{}{
-                "natus": "sed",
-                "iste": "dolor",
+                "molestiae": "modi",
             },
             Job: ats.String("52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633"),
             LinkedAccountParams: map[string]interface{}{
-                "laboriosam": "hic",
-                "saepe": "fuga",
-                "in": "corporis",
+                "qui": "impedit",
             },
             RejectReason: ats.String("59b25f2b-da02-40f5-9656-9fa0db555784"),
             RejectedAt: types.MustTimeFromString("2021-11-15T00:00:00Z"),
             RemoteTemplateID: ats.String("92830948203"),
             Source: ats.String("Campus recruiting event"),
         },
-        RemoteUserID: "iste",
+        RemoteUserID: "cum",
     }
-    xAccountToken := "iure"
+    xAccountToken := "esse"
     isDebugMode := false
     runAsync := false
     operationSecurity := operations.ApplicationsCreateSecurity{
@@ -112,23 +109,23 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Applications.List(ctx, operations.ApplicationsListRequest{
-        XAccountToken: "saepe",
-        CandidateID: ats.String("quidem"),
-        CreatedAfter: types.MustTimeFromString("2022-12-10T00:25:28.749Z"),
-        CreatedBefore: types.MustTimeFromString("2020-12-31T21:22:14.646Z"),
-        CreditedToID: ats.String("mollitia"),
-        CurrentStageID: ats.String("laborum"),
-        Cursor: ats.String("dolores"),
-        Expand: operations.ApplicationsListExpandCandidateCurrentStageRejectReason.ToPointer(),
+        XAccountToken: "ipsum",
+        CandidateID: ats.String("excepturi"),
+        CreatedAfter: types.MustTimeFromString("2022-12-25T03:24:03.949Z"),
+        CreatedBefore: types.MustTimeFromString("2022-05-20T13:30:46.463Z"),
+        CreditedToID: ats.String("sed"),
+        CurrentStageID: ats.String("iste"),
+        Cursor: ats.String("dolor"),
+        Expand: operations.ApplicationsListExpandCreditedToRejectReason.ToPointer(),
         IncludeDeletedData: ats.Bool(false),
         IncludeRemoteData: ats.Bool(false),
-        JobID: ats.String("corporis"),
-        ModifiedAfter: types.MustTimeFromString("2022-04-01T23:59:21.675Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-05-24T03:24:11.703Z"),
-        PageSize: ats.Int64(363711),
-        RejectReasonID: ats.String("minima"),
-        RemoteID: ats.String("excepturi"),
-        Source: ats.String("accusantium"),
+        JobID: ats.String("laboriosam"),
+        ModifiedAfter: types.MustTimeFromString("2020-04-17T15:42:43.722Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-02-06T12:52:33.708Z"),
+        PageSize: ats.Int64(359508),
+        RejectReasonID: ats.String("iste"),
+        RemoteID: ats.String("iure"),
+        Source: ats.String("saepe"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -172,9 +169,9 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "iure"
-    id := "aff1a3a2-fa94-4677-b925-1aa52c3f5ad0"
-    expand := operations.ApplicationsRetrieveExpandCandidateCreditedToCurrentStageRejectReason
+    xAccountToken := "quidem"
+    id := "10faaa23-52c5-4955-907a-ff1a3a2fa946"
+    expand := operations.ApplicationsRetrieveExpandCandidateJobRejectReason
     includeRemoteData := false
     operationSecurity := operations.ApplicationsRetrieveSecurity{
             TokenAuth: "",
@@ -227,8 +224,8 @@ import(
 
 func main() {
     s := ats.New()
-    xAccountToken := "error"
-    applicationRemoteTemplateID := "temporibus"
+    xAccountToken := "molestiae"
+    applicationRemoteTemplateID := "velit"
     operationSecurity := operations.ApplicationsMetaPostRetrieveSecurity{
             TokenAuth: "",
         }
@@ -286,11 +283,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Applications.UpdateChangeState(ctx, operations.ApplicationsChangeStageCreateRequest{
         UpdateApplicationStageRequest: &shared.UpdateApplicationStageRequest{
-            JobInterviewStage: ats.String("a1ffe78f-097b-4007-8f15-471b5e6e13b9"),
-            RemoteUserID: ats.String("excepturi"),
+            JobInterviewStage: ats.String("9251aa52-c3f5-4ad0-99da-1ffe78f097b0"),
+            RemoteUserID: ats.String("doloremque"),
         },
-        XAccountToken: "pariatur",
-        ID: "488e1e91-e450-4ad2-abd4-4269802d502a",
+        XAccountToken: "reprehenderit",
+        ID: "4f15471b-5e6e-413b-99d4-88e1e91e450a",
         IsDebugMode: ats.Bool(false),
         RunAsync: ats.Bool(false),
     }, operationSecurity)

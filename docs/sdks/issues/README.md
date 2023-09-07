@@ -30,18 +30,18 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Issues.List(ctx, operations.IssuesListRequest{
-        AccountToken: ats.String("mollitia"),
-        Cursor: ats.String("voluptas"),
-        EndDate: ats.String("alias"),
-        EndUserOrganizationName: ats.String("maiores"),
-        FirstIncidentTimeAfter: types.MustTimeFromString("2022-06-23T17:58:38.501Z"),
-        FirstIncidentTimeBefore: types.MustTimeFromString("2022-05-06T13:39:00.258Z"),
-        IncludeMuted: ats.String("dolore"),
-        IntegrationName: ats.String("dolorum"),
-        LastIncidentTimeAfter: types.MustTimeFromString("2022-12-08T22:18:03.712Z"),
-        LastIncidentTimeBefore: types.MustTimeFromString("2021-03-07T01:29:10.520Z"),
-        PageSize: ats.Int64(309251),
-        StartDate: ats.String("molestiae"),
+        AccountToken: ats.String("a"),
+        Cursor: ats.String("error"),
+        EndDate: ats.String("sint"),
+        EndUserOrganizationName: ats.String("pariatur"),
+        FirstIncidentTimeAfter: types.MustTimeFromString("2022-07-12T09:25:25.257Z"),
+        FirstIncidentTimeBefore: types.MustTimeFromString("2020-01-10T06:57:07.831Z"),
+        IncludeMuted: ats.String("facere"),
+        IntegrationName: ats.String("veritatis"),
+        LastIncidentTimeAfter: types.MustTimeFromString("2022-11-27T12:32:54.264Z"),
+        LastIncidentTimeBefore: types.MustTimeFromString("2021-09-25T11:11:22.943Z"),
+        PageSize: ats.Int64(398434),
+        StartDate: ats.String("tenetur"),
         Status: operations.IssuesListStatusOngoing.ToPointer(),
     }, operationSecurity)
     if err != nil {
@@ -86,7 +86,7 @@ import(
 
 func main() {
     s := ats.New()
-    id := "4a3e865e-7956-4f92-91a5-a9da660ff57b"
+    id := "e674bdb0-4f15-4756-882d-68ea19f1d170"
     operationSecurity := operations.IssuesRetrieveSecurity{
             TokenAuth: "",
         }
