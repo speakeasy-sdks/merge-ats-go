@@ -16,13 +16,13 @@ type ConditionSchema struct {
 	// * `LIST_OF_STRINGS` - LIST_OF_STRINGS
 	ConditionType ConditionTypeEnum `json:"condition_type"`
 	// The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. "location_type".
-	FieldName string `json:"field_name"`
+	FieldName *string `json:"field_name"`
 	// The ID of the condition schema. This ID is used when updating selective syncs for a linked account.
 	ID string `json:"id"`
 	// Whether this condition can only be applied once. If false, the condition can be AND'd together multiple times.
 	IsUnique *bool `json:"is_unique,omitempty"`
 	// User-facing *native condition* name. e.g. "Skip Manager".
-	NativeName string `json:"native_name"`
+	NativeName *string `json:"native_name"`
 	// The schemas for the operators that can be used on a condition.
 	Operators []OperatorSchema `json:"operators"`
 }
@@ -41,9 +41,9 @@ func (o *ConditionSchema) GetConditionType() ConditionTypeEnum {
 	return o.ConditionType
 }
 
-func (o *ConditionSchema) GetFieldName() string {
+func (o *ConditionSchema) GetFieldName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.FieldName
 }
@@ -62,9 +62,9 @@ func (o *ConditionSchema) GetIsUnique() *bool {
 	return o.IsUnique
 }
 
-func (o *ConditionSchema) GetNativeName() string {
+func (o *ConditionSchema) GetNativeName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.NativeName
 }

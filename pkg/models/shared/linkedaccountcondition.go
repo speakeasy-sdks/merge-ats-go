@@ -8,9 +8,9 @@ type LinkedAccountCondition struct {
 	// The ID indicating which condition schema to use for a specific condition.
 	ConditionSchemaID string `json:"condition_schema_id"`
 	// The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. "location_type".
-	FieldName string `json:"field_name"`
+	FieldName *string `json:"field_name"`
 	// User-facing *native condition* name. e.g. "Skip Manager".
-	NativeName string `json:"native_name"`
+	NativeName *string `json:"native_name"`
 	// The operator for a specific condition.
 	Operator string `json:"operator"`
 	// The value for a condition.
@@ -31,16 +31,16 @@ func (o *LinkedAccountCondition) GetConditionSchemaID() string {
 	return o.ConditionSchemaID
 }
 
-func (o *LinkedAccountCondition) GetFieldName() string {
+func (o *LinkedAccountCondition) GetFieldName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.FieldName
 }
 
-func (o *LinkedAccountCondition) GetNativeName() string {
+func (o *LinkedAccountCondition) GetNativeName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.NativeName
 }
