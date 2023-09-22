@@ -17,40 +17,41 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
+            TokenAuth: "",
+        }),
+    )
     dataPassthroughRequest := shared.DataPassthroughRequest{
-        BaseURLOverride: ats.String("quibusdam"),
-        Data: ats.String("{"company": "Lime", "model": "Gen 2.5"}"),
+        BaseURLOverride: mergeatsgo.String("distinctio"),
+        Data: mergeatsgo.String("{"company": "Lime", "model": "Gen 2.5"}"),
         Headers: map[string]interface{}{
-            "explicabo": "deserunt",
+            "quibusdam": "labore",
         },
         Method: shared.DataPassthroughRequestMethodPost,
         MultipartFormData: []shared.MultipartFormFieldRequest{
             shared.MultipartFormFieldRequest{
-                ContentType: ats.String("application/pdf"),
+                ContentType: mergeatsgo.String("application/pdf"),
                 Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
                 Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                FileName: ats.String("resume.pdf"),
+                FileName: mergeatsgo.String("resume.pdf"),
                 Name: "resume",
             },
         },
-        NormalizeResponse: ats.Bool(false),
+        NormalizeResponse: mergeatsgo.Bool(false),
         Path: "/scooters",
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
-    xAccountToken := "distinctio"
-    operationSecurity := operations.AsyncPassthroughCreateSecurity{
-            TokenAuth: "",
-        }
+    xAccountToken := "modi"
 
     ctx := context.Background()
-    res, err := s.AsyncPassthrough.Create(ctx, operationSecurity, dataPassthroughRequest, xAccountToken)
+    res, err := s.AsyncPassthrough.Create(ctx, dataPassthroughRequest, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -63,12 +64,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `security`                                                                                             | [operations.AsyncPassthroughCreateSecurity](../../models/operations/asyncpassthroughcreatesecurity.md) | :heavy_check_mark:                                                                                     | The security requirements to use for the request.                                                      |
-| `dataPassthroughRequest`                                                                               | [shared.DataPassthroughRequest](../../models/shared/datapassthroughrequest.md)                         | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
-| `xAccountToken`                                                                                        | *string*                                                                                               | :heavy_check_mark:                                                                                     | Token identifying the end user.                                                                        |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `dataPassthroughRequest`                                                       | [shared.DataPassthroughRequest](../../models/shared/datapassthroughrequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| `xAccountToken`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Token identifying the end user.                                                |
 
 
 ### Response
@@ -88,20 +88,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    xAccountToken := "quibusdam"
-    asyncPassthroughReceiptID := "44269802-d502-4a94-bb4f-63c969e9a3ef"
-    operationSecurity := operations.AsyncPassthroughRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
+    xAccountToken := "qui"
+    asyncPassthroughReceiptID := "69802d50-2a94-4bb4-b63c-969e9a3efa77"
 
     ctx := context.Background()
-    res, err := s.AsyncPassthrough.Retrieve(ctx, operationSecurity, xAccountToken, asyncPassthroughReceiptID)
+    res, err := s.AsyncPassthrough.Retrieve(ctx, xAccountToken, asyncPassthroughReceiptID)
     if err != nil {
         log.Fatal(err)
     }
@@ -114,12 +116,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `security`                                                                                                 | [operations.AsyncPassthroughRetrieveSecurity](../../models/operations/asyncpassthroughretrievesecurity.md) | :heavy_check_mark:                                                                                         | The security requirements to use for the request.                                                          |
-| `xAccountToken`                                                                                            | *string*                                                                                                   | :heavy_check_mark:                                                                                         | Token identifying the end user.                                                                            |
-| `asyncPassthroughReceiptID`                                                                                | *string*                                                                                                   | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `xAccountToken`                                       | *string*                                              | :heavy_check_mark:                                    | Token identifying the end user.                       |
+| `asyncPassthroughReceiptID`                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response

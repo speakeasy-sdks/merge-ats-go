@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type PartialUpdateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *PartialUpdateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type PartialUpdateRequest struct {
 	PatchedCandidateEndpointRequest shared.PatchedCandidateEndpointRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.

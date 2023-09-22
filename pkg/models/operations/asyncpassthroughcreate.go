@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type AsyncPassthroughCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *AsyncPassthroughCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type AsyncPassthroughCreateRequest struct {
 	DataPassthroughRequest shared.DataPassthroughRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.

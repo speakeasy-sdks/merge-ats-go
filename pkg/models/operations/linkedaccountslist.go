@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type LinkedAccountsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *LinkedAccountsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // LinkedAccountsListCategory - Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')
 //
 // * `hris` - hris

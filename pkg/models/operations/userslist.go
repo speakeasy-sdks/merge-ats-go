@@ -3,73 +3,12 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type UsersListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *UsersListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// UsersListRemoteFields - Deprecated. Use show_enum_origins.
-type UsersListRemoteFields string
-
-const (
-	UsersListRemoteFieldsAccessRole UsersListRemoteFields = "access_role"
-)
-
-func (e UsersListRemoteFields) ToPointer() *UsersListRemoteFields {
-	return &e
-}
-
-func (e *UsersListRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "access_role":
-		*e = UsersListRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UsersListRemoteFields: %v", v)
-	}
-}
-
-// UsersListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type UsersListShowEnumOrigins string
-
-const (
-	UsersListShowEnumOriginsAccessRole UsersListShowEnumOrigins = "access_role"
-)
-
-func (e UsersListShowEnumOrigins) ToPointer() *UsersListShowEnumOrigins {
-	return &e
-}
-
-func (e *UsersListShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "access_role":
-		*e = UsersListShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UsersListShowEnumOrigins: %v", v)
-	}
-}
 
 type UsersListRequest struct {
 	// Token identifying the end user.
@@ -93,11 +32,22 @@ type UsersListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *UsersListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"access_role" queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *UsersListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"access_role" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (u UsersListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UsersListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UsersListRequest) GetXAccountToken() string {
@@ -170,11 +120,8 @@ func (o *UsersListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *UsersListRequest) GetRemoteFields() *UsersListRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *UsersListRequest) GetRemoteFields() *string {
+	return types.String("access_role")
 }
 
 func (o *UsersListRequest) GetRemoteID() *string {
@@ -184,11 +131,8 @@ func (o *UsersListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *UsersListRequest) GetShowEnumOrigins() *UsersListShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *UsersListRequest) GetShowEnumOrigins() *string {
+	return types.String("access_role")
 }
 
 type UsersListResponse struct {

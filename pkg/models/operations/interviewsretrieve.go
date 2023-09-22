@@ -6,19 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type InterviewsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *InterviewsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // InterviewsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type InterviewsRetrieveExpand string
@@ -87,56 +78,6 @@ func (e *InterviewsRetrieveExpand) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// InterviewsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type InterviewsRetrieveRemoteFields string
-
-const (
-	InterviewsRetrieveRemoteFieldsStatus InterviewsRetrieveRemoteFields = "status"
-)
-
-func (e InterviewsRetrieveRemoteFields) ToPointer() *InterviewsRetrieveRemoteFields {
-	return &e
-}
-
-func (e *InterviewsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = InterviewsRetrieveRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InterviewsRetrieveRemoteFields: %v", v)
-	}
-}
-
-// InterviewsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type InterviewsRetrieveShowEnumOrigins string
-
-const (
-	InterviewsRetrieveShowEnumOriginsStatus InterviewsRetrieveShowEnumOrigins = "status"
-)
-
-func (e InterviewsRetrieveShowEnumOrigins) ToPointer() *InterviewsRetrieveShowEnumOrigins {
-	return &e
-}
-
-func (e *InterviewsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = InterviewsRetrieveShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InterviewsRetrieveShowEnumOrigins: %v", v)
-	}
-}
-
 type InterviewsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -146,9 +87,20 @@ type InterviewsRetrieveRequest struct {
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *InterviewsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"status" queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *InterviewsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"status" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (i InterviewsRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InterviewsRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InterviewsRetrieveRequest) GetXAccountToken() string {
@@ -179,18 +131,12 @@ func (o *InterviewsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *InterviewsRetrieveRequest) GetRemoteFields() *InterviewsRetrieveRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *InterviewsRetrieveRequest) GetRemoteFields() *string {
+	return types.String("status")
 }
 
-func (o *InterviewsRetrieveRequest) GetShowEnumOrigins() *InterviewsRetrieveShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *InterviewsRetrieveRequest) GetShowEnumOrigins() *string {
+	return types.String("status")
 }
 
 type InterviewsRetrieveResponse struct {

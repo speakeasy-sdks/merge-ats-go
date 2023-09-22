@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -80,6 +81,17 @@ type ScheduledInterview struct {
 	// * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
 	// * `COMPLETE` - COMPLETE
 	Status *ScheduledInterviewStatus `json:"status,omitempty"`
+}
+
+func (s ScheduledInterview) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduledInterview) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ScheduledInterview) GetApplication() *string {
