@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -32,6 +33,17 @@ type ApplicationRequest struct {
 	RemoteTemplateID *string    `json:"remote_template_id,omitempty"`
 	// The application's source.
 	Source *string `json:"source,omitempty"`
+}
+
+func (a ApplicationRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ApplicationRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ApplicationRequest) GetAppliedAt() *time.Time {

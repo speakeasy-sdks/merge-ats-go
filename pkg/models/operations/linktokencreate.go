@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type LinkTokenCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *LinkTokenCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type LinkTokenCreateResponse struct {
 	ContentType string
 	LinkToken   *shared.LinkToken

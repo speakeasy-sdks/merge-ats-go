@@ -6,20 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type ScorecardsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ScorecardsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // ScorecardsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type ScorecardsListExpand string
@@ -64,56 +55,6 @@ func (e *ScorecardsListExpand) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ScorecardsListRemoteFields - Deprecated. Use show_enum_origins.
-type ScorecardsListRemoteFields string
-
-const (
-	ScorecardsListRemoteFieldsOverallRecommendation ScorecardsListRemoteFields = "overall_recommendation"
-)
-
-func (e ScorecardsListRemoteFields) ToPointer() *ScorecardsListRemoteFields {
-	return &e
-}
-
-func (e *ScorecardsListRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "overall_recommendation":
-		*e = ScorecardsListRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ScorecardsListRemoteFields: %v", v)
-	}
-}
-
-// ScorecardsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type ScorecardsListShowEnumOrigins string
-
-const (
-	ScorecardsListShowEnumOriginsOverallRecommendation ScorecardsListShowEnumOrigins = "overall_recommendation"
-)
-
-func (e ScorecardsListShowEnumOrigins) ToPointer() *ScorecardsListShowEnumOrigins {
-	return &e
-}
-
-func (e *ScorecardsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "overall_recommendation":
-		*e = ScorecardsListShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ScorecardsListShowEnumOrigins: %v", v)
-	}
-}
-
 type ScorecardsListRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -142,11 +83,22 @@ type ScorecardsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *ScorecardsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"overall_recommendation" queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *ScorecardsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"overall_recommendation" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (s ScorecardsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScorecardsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ScorecardsListRequest) GetXAccountToken() string {
@@ -240,11 +192,8 @@ func (o *ScorecardsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *ScorecardsListRequest) GetRemoteFields() *ScorecardsListRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *ScorecardsListRequest) GetRemoteFields() *string {
+	return types.String("overall_recommendation")
 }
 
 func (o *ScorecardsListRequest) GetRemoteID() *string {
@@ -254,11 +203,8 @@ func (o *ScorecardsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *ScorecardsListRequest) GetShowEnumOrigins() *ScorecardsListShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *ScorecardsListRequest) GetShowEnumOrigins() *string {
+	return types.String("overall_recommendation")
 }
 
 type ScorecardsListResponse struct {

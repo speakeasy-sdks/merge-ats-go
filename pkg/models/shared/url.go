@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -77,6 +78,17 @@ type URL struct {
 	URLType *URLURLType `json:"url_type,omitempty"`
 	// The site's url.
 	Value *string `json:"value,omitempty"`
+}
+
+func (u URL) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *URL) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *URL) GetModifiedAt() *time.Time {

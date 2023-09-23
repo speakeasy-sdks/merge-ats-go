@@ -6,20 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type InterviewsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *InterviewsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // InterviewsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type InterviewsListExpand string
@@ -88,56 +79,6 @@ func (e *InterviewsListExpand) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// InterviewsListRemoteFields - Deprecated. Use show_enum_origins.
-type InterviewsListRemoteFields string
-
-const (
-	InterviewsListRemoteFieldsStatus InterviewsListRemoteFields = "status"
-)
-
-func (e InterviewsListRemoteFields) ToPointer() *InterviewsListRemoteFields {
-	return &e
-}
-
-func (e *InterviewsListRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = InterviewsListRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InterviewsListRemoteFields: %v", v)
-	}
-}
-
-// InterviewsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type InterviewsListShowEnumOrigins string
-
-const (
-	InterviewsListShowEnumOriginsStatus InterviewsListShowEnumOrigins = "status"
-)
-
-func (e InterviewsListShowEnumOrigins) ToPointer() *InterviewsListShowEnumOrigins {
-	return &e
-}
-
-func (e *InterviewsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = InterviewsListShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InterviewsListShowEnumOrigins: %v", v)
-	}
-}
-
 type InterviewsListRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -166,11 +107,22 @@ type InterviewsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *InterviewsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"status" queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *InterviewsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"status" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (i InterviewsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InterviewsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InterviewsListRequest) GetXAccountToken() string {
@@ -264,11 +216,8 @@ func (o *InterviewsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *InterviewsListRequest) GetRemoteFields() *InterviewsListRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *InterviewsListRequest) GetRemoteFields() *string {
+	return types.String("status")
 }
 
 func (o *InterviewsListRequest) GetRemoteID() *string {
@@ -278,11 +227,8 @@ func (o *InterviewsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *InterviewsListRequest) GetShowEnumOrigins() *InterviewsListShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *InterviewsListRequest) GetShowEnumOrigins() *string {
+	return types.String("status")
 }
 
 type InterviewsListResponse struct {
