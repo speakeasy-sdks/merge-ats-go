@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -27,6 +28,17 @@ type JobInterviewStage struct {
 	RemoteWasDeleted *bool `json:"remote_was_deleted,omitempty"`
 	// The stage’s order, with the lowest values ordered first. If the third-party does not return details on the order of stages, this field will not be populated.
 	StageOrder *int64 `json:"stage_order,omitempty"`
+}
+
+func (j JobInterviewStage) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JobInterviewStage) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JobInterviewStage) GetFieldMappings() map[string]interface{} {

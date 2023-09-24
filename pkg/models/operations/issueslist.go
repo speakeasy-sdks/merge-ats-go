@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type IssuesListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *IssuesListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // IssuesListStatus - Status of the issue. Options: ('ONGOING', 'RESOLVED')
 //
@@ -79,6 +69,17 @@ type IssuesListRequest struct {
 	// * `ONGOING` - ONGOING
 	// * `RESOLVED` - RESOLVED
 	Status *IssuesListStatus `queryParam:"style=form,explode=true,name=status"`
+}
+
+func (i IssuesListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *IssuesListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *IssuesListRequest) GetAccountToken() *string {

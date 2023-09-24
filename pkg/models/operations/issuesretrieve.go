@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type IssuesRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *IssuesRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type IssuesRetrieveRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }

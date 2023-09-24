@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type AttachmentsCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *AttachmentsCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type AttachmentsCreateRequest struct {
 	AttachmentEndpointRequest shared.AttachmentEndpointRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.

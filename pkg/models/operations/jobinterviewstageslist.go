@@ -3,48 +3,12 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type JobInterviewStagesListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *JobInterviewStagesListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// JobInterviewStagesListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type JobInterviewStagesListExpand string
-
-const (
-	JobInterviewStagesListExpandJob JobInterviewStagesListExpand = "job"
-)
-
-func (e JobInterviewStagesListExpand) ToPointer() *JobInterviewStagesListExpand {
-	return &e
-}
-
-func (e *JobInterviewStagesListExpand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "job":
-		*e = JobInterviewStagesListExpand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobInterviewStagesListExpand: %v", v)
-	}
-}
 
 type JobInterviewStagesListRequest struct {
 	// Token identifying the end user.
@@ -56,7 +20,7 @@ type JobInterviewStagesListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *JobInterviewStagesListExpand `queryParam:"style=form,explode=true,name=expand"`
+	expand *string `const:"job" queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -71,6 +35,17 @@ type JobInterviewStagesListRequest struct {
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
+}
+
+func (j JobInterviewStagesListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JobInterviewStagesListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JobInterviewStagesListRequest) GetXAccountToken() string {
@@ -101,11 +76,8 @@ func (o *JobInterviewStagesListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *JobInterviewStagesListRequest) GetExpand() *JobInterviewStagesListExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
+func (o *JobInterviewStagesListRequest) GetExpand() *string {
+	return types.String("job")
 }
 
 func (o *JobInterviewStagesListRequest) GetIncludeDeletedData() *bool {

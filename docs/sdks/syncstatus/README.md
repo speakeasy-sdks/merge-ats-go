@@ -16,21 +16,23 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    xAccountToken := "laborum"
-    cursor := "distinctio"
-    pageSize := 528940
-    operationSecurity := operations.SyncStatusListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
+    xAccountToken := "culpa"
+    cursor := "adipisci"
+    pageSize := 890653
 
     ctx := context.Background()
-    res, err := s.SyncStatus.List(ctx, operationSecurity, xAccountToken, cursor, pageSize)
+    res, err := s.SyncStatus.List(ctx, xAccountToken, cursor, pageSize)
     if err != nil {
         log.Fatal(err)
     }
@@ -43,13 +45,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `security`                                                                             | [operations.SyncStatusListSecurity](../../models/operations/syncstatuslistsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
-| `xAccountToken`                                                                        | *string*                                                                               | :heavy_check_mark:                                                                     | Token identifying the end user.                                                        |
-| `cursor`                                                                               | **string*                                                                              | :heavy_minus_sign:                                                                     | The pagination cursor value.                                                           |
-| `pageSize`                                                                             | **int64*                                                                               | :heavy_minus_sign:                                                                     | Number of results to return per page.                                                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `xAccountToken`                                       | *string*                                              | :heavy_check_mark:                                    | Token identifying the end user.                       |
+| `cursor`                                              | **string*                                             | :heavy_minus_sign:                                    | The pagination cursor value.                          |
+| `pageSize`                                            | **int64*                                              | :heavy_minus_sign:                                    | Number of results to return per page.                 |
 
 
 ### Response

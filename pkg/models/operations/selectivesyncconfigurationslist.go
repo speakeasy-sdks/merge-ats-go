@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type SelectiveSyncConfigurationsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *SelectiveSyncConfigurationsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type SelectiveSyncConfigurationsListRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`

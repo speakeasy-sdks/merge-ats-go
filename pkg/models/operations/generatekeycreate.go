@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type GenerateKeyCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *GenerateKeyCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type GenerateKeyCreateResponse struct {
 	ContentType string
 	RemoteKey   *shared.RemoteKey
