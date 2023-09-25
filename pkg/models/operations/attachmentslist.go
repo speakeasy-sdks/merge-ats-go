@@ -3,98 +3,12 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type AttachmentsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *AttachmentsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// AttachmentsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type AttachmentsListExpand string
-
-const (
-	AttachmentsListExpandCandidate AttachmentsListExpand = "candidate"
-)
-
-func (e AttachmentsListExpand) ToPointer() *AttachmentsListExpand {
-	return &e
-}
-
-func (e *AttachmentsListExpand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "candidate":
-		*e = AttachmentsListExpand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AttachmentsListExpand: %v", v)
-	}
-}
-
-// AttachmentsListRemoteFields - Deprecated. Use show_enum_origins.
-type AttachmentsListRemoteFields string
-
-const (
-	AttachmentsListRemoteFieldsAttachmentType AttachmentsListRemoteFields = "attachment_type"
-)
-
-func (e AttachmentsListRemoteFields) ToPointer() *AttachmentsListRemoteFields {
-	return &e
-}
-
-func (e *AttachmentsListRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "attachment_type":
-		*e = AttachmentsListRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AttachmentsListRemoteFields: %v", v)
-	}
-}
-
-// AttachmentsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type AttachmentsListShowEnumOrigins string
-
-const (
-	AttachmentsListShowEnumOriginsAttachmentType AttachmentsListShowEnumOrigins = "attachment_type"
-)
-
-func (e AttachmentsListShowEnumOrigins) ToPointer() *AttachmentsListShowEnumOrigins {
-	return &e
-}
-
-func (e *AttachmentsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "attachment_type":
-		*e = AttachmentsListShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AttachmentsListShowEnumOrigins: %v", v)
-	}
-}
 
 type AttachmentsListRequest struct {
 	// Token identifying the end user.
@@ -108,7 +22,7 @@ type AttachmentsListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *AttachmentsListExpand `queryParam:"style=form,explode=true,name=expand"`
+	expand *string `const:"candidate" queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -120,11 +34,22 @@ type AttachmentsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *AttachmentsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"attachment_type" queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *AttachmentsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"attachment_type" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (a AttachmentsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttachmentsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AttachmentsListRequest) GetXAccountToken() string {
@@ -162,11 +87,8 @@ func (o *AttachmentsListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *AttachmentsListRequest) GetExpand() *AttachmentsListExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
+func (o *AttachmentsListRequest) GetExpand() *string {
+	return types.String("candidate")
 }
 
 func (o *AttachmentsListRequest) GetIncludeDeletedData() *bool {
@@ -204,11 +126,8 @@ func (o *AttachmentsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *AttachmentsListRequest) GetRemoteFields() *AttachmentsListRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *AttachmentsListRequest) GetRemoteFields() *string {
+	return types.String("attachment_type")
 }
 
 func (o *AttachmentsListRequest) GetRemoteID() *string {
@@ -218,11 +137,8 @@ func (o *AttachmentsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *AttachmentsListRequest) GetShowEnumOrigins() *AttachmentsListShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *AttachmentsListRequest) GetShowEnumOrigins() *string {
+	return types.String("attachment_type")
 }
 
 type AttachmentsListResponse struct {

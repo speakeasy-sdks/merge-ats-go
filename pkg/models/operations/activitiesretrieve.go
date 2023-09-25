@@ -6,44 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type ActivitiesRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ActivitiesRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// ActivitiesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ActivitiesRetrieveExpand string
-
-const (
-	ActivitiesRetrieveExpandUser ActivitiesRetrieveExpand = "user"
-)
-
-func (e ActivitiesRetrieveExpand) ToPointer() *ActivitiesRetrieveExpand {
-	return &e
-}
-
-func (e *ActivitiesRetrieveExpand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "user":
-		*e = ActivitiesRetrieveExpand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ActivitiesRetrieveExpand: %v", v)
-	}
-}
 
 // ActivitiesRetrieveRemoteFields - Deprecated. Use show_enum_origins.
 type ActivitiesRetrieveRemoteFields string
@@ -111,14 +77,25 @@ type ActivitiesRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ActivitiesRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string                    `pathParam:"style=simple,explode=false,name=id"`
+	expand *string `const:"user" queryParam:"style=form,explode=true,name=expand"`
+	ID     string  `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
 	RemoteFields *ActivitiesRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
 	ShowEnumOrigins *ActivitiesRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (a ActivitiesRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ActivitiesRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ActivitiesRetrieveRequest) GetXAccountToken() string {
@@ -128,11 +105,8 @@ func (o *ActivitiesRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *ActivitiesRetrieveRequest) GetExpand() *ActivitiesRetrieveExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
+func (o *ActivitiesRetrieveRequest) GetExpand() *string {
+	return types.String("user")
 }
 
 func (o *ActivitiesRetrieveRequest) GetID() string {

@@ -6,45 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type EeocsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *EeocsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// EeocsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type EeocsListExpand string
-
-const (
-	EeocsListExpandCandidate EeocsListExpand = "candidate"
-)
-
-func (e EeocsListExpand) ToPointer() *EeocsListExpand {
-	return &e
-}
-
-func (e *EeocsListExpand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "candidate":
-		*e = EeocsListExpand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EeocsListExpand: %v", v)
-	}
-}
 
 // EeocsListRemoteFields - Deprecated. Use show_enum_origins.
 type EeocsListRemoteFields string
@@ -192,7 +158,7 @@ type EeocsListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *EeocsListExpand `queryParam:"style=form,explode=true,name=expand"`
+	expand *string `const:"candidate" queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -209,6 +175,17 @@ type EeocsListRequest struct {
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
 	ShowEnumOrigins *EeocsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (e EeocsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EeocsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EeocsListRequest) GetXAccountToken() string {
@@ -246,11 +223,8 @@ func (o *EeocsListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *EeocsListRequest) GetExpand() *EeocsListExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
+func (o *EeocsListRequest) GetExpand() *string {
+	return types.String("candidate")
 }
 
 func (o *EeocsListRequest) GetIncludeDeletedData() *bool {

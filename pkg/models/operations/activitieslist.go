@@ -6,45 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type ActivitiesListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ActivitiesListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// ActivitiesListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ActivitiesListExpand string
-
-const (
-	ActivitiesListExpandUser ActivitiesListExpand = "user"
-)
-
-func (e ActivitiesListExpand) ToPointer() *ActivitiesListExpand {
-	return &e
-}
-
-func (e *ActivitiesListExpand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "user":
-		*e = ActivitiesListExpand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ActivitiesListExpand: %v", v)
-	}
-}
 
 // ActivitiesListRemoteFields - Deprecated. Use show_enum_origins.
 type ActivitiesListRemoteFields string
@@ -118,7 +84,7 @@ type ActivitiesListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ActivitiesListExpand `queryParam:"style=form,explode=true,name=expand"`
+	expand *string `const:"user" queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -137,6 +103,17 @@ type ActivitiesListRequest struct {
 	ShowEnumOrigins *ActivitiesListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 	// If provided, will only return activities done by this user.
 	UserID *string `queryParam:"style=form,explode=true,name=user_id"`
+}
+
+func (a ActivitiesListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ActivitiesListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ActivitiesListRequest) GetXAccountToken() string {
@@ -167,11 +144,8 @@ func (o *ActivitiesListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *ActivitiesListRequest) GetExpand() *ActivitiesListExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
+func (o *ActivitiesListRequest) GetExpand() *string {
+	return types.String("user")
 }
 
 func (o *ActivitiesListRequest) GetIncludeDeletedData() *bool {

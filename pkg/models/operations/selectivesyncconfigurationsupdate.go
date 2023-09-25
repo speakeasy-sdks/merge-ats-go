@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type SelectiveSyncConfigurationsUpdateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *SelectiveSyncConfigurationsUpdateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type SelectiveSyncConfigurationsUpdateRequest struct {
 	LinkedAccountSelectiveSyncConfigurationListRequest shared.LinkedAccountSelectiveSyncConfigurationListRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.

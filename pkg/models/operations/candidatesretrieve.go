@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type CandidatesRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *CandidatesRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // CandidatesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type CandidatesRetrieveExpand string
 

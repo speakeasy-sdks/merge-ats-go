@@ -17,32 +17,34 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.JobInterviewStagesListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.JobInterviewStages.List(ctx, operations.JobInterviewStagesListRequest{
-        XAccountToken: "minima",
-        CreatedAfter: types.MustTimeFromString("2022-10-08T01:09:40.281Z"),
-        CreatedBefore: types.MustTimeFromString("2022-05-21T17:17:20.623Z"),
-        Cursor: ats.String("temporibus"),
-        Expand: operations.JobInterviewStagesListExpandJob.ToPointer(),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        JobID: ats.String("accusantium"),
-        ModifiedAfter: types.MustTimeFromString("2022-12-20T14:34:53.149Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-02-21T23:29:55.837Z"),
-        PageSize: ats.Int64(649832),
-        RemoteID: ats.String("ab"),
-    }, operationSecurity)
+        XAccountToken: "voluptatem",
+        CreatedAfter: types.MustTimeFromString("2022-06-03T05:52:14.954Z"),
+        CreatedBefore: types.MustTimeFromString("2022-03-25T13:15:35.424Z"),
+        Cursor: mergeatsgo.String("explicabo"),
+        Expand: mergeatsgo.String("voluptas"),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        JobID: mergeatsgo.String("aut"),
+        ModifiedAfter: types.MustTimeFromString("2022-11-19T20:21:26.456Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-02-22T18:20:18.826Z"),
+        PageSize: mergeatsgo.Int64(244651),
+        RemoteID: mergeatsgo.String("voluptatibus"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -55,11 +57,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.JobInterviewStagesListRequest](../../models/operations/jobinterviewstageslistrequest.md)   | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `security`                                                                                             | [operations.JobInterviewStagesListSecurity](../../models/operations/jobinterviewstageslistsecurity.md) | :heavy_check_mark:                                                                                     | The security requirements to use for the request.                                                      |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.JobInterviewStagesListRequest](../../models/operations/jobinterviewstageslistrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 
 
 ### Response
@@ -79,22 +80,24 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    xAccountToken := "corrupti"
-    id := "40394c26-071f-493f-9f06-42dac7af515c"
-    expand := operations.JobInterviewStagesRetrieveExpandJob
-    includeRemoteData := false
-    operationSecurity := operations.JobInterviewStagesRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
+    xAccountToken := "voluptas"
+    id := "f0642dac-7af5-415c-8413-aa63aae8d678"
+    expand := "vel"
+    includeRemoteData := false
 
     ctx := context.Background()
-    res, err := s.JobInterviewStages.Retrieve(ctx, operationSecurity, xAccountToken, id, expand, includeRemoteData)
+    res, err := s.JobInterviewStages.Retrieve(ctx, xAccountToken, id, expand, includeRemoteData)
     if err != nil {
         log.Fatal(err)
     }
@@ -110,10 +113,9 @@ func main() {
 | Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
 | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
-| `security`                                                                                                             | [operations.JobInterviewStagesRetrieveSecurity](../../models/operations/jobinterviewstagesretrievesecurity.md)         | :heavy_check_mark:                                                                                                     | The security requirements to use for the request.                                                                      |
 | `xAccountToken`                                                                                                        | *string*                                                                                                               | :heavy_check_mark:                                                                                                     | Token identifying the end user.                                                                                        |
 | `id`                                                                                                                   | *string*                                                                                                               | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
-| `expand`                                                                                                               | [*operations.JobInterviewStagesRetrieveExpand](../../models/operations/jobinterviewstagesretrieveexpand.md)            | :heavy_minus_sign:                                                                                                     | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. |
+| `expand`                                                                                                               | **string*                                                                                                              | :heavy_minus_sign:                                                                                                     | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. |
 | `includeRemoteData`                                                                                                    | **bool*                                                                                                                | :heavy_minus_sign:                                                                                                     | Whether to include the original data Merge fetched from the third-party to produce these models.                       |
 
 

@@ -6,20 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type JobsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *JobsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // JobsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type JobsListExpand string
@@ -85,56 +76,6 @@ func (e *JobsListExpand) UnmarshalJSON(data []byte) error {
 		return nil
 	default:
 		return fmt.Errorf("invalid value for JobsListExpand: %v", v)
-	}
-}
-
-// JobsListRemoteFields - Deprecated. Use show_enum_origins.
-type JobsListRemoteFields string
-
-const (
-	JobsListRemoteFieldsStatus JobsListRemoteFields = "status"
-)
-
-func (e JobsListRemoteFields) ToPointer() *JobsListRemoteFields {
-	return &e
-}
-
-func (e *JobsListRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = JobsListRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobsListRemoteFields: %v", v)
-	}
-}
-
-// JobsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type JobsListShowEnumOrigins string
-
-const (
-	JobsListShowEnumOriginsStatus JobsListShowEnumOrigins = "status"
-)
-
-func (e JobsListShowEnumOrigins) ToPointer() *JobsListShowEnumOrigins {
-	return &e
-}
-
-func (e *JobsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = JobsListShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobsListShowEnumOrigins: %v", v)
 	}
 }
 
@@ -207,11 +148,11 @@ type JobsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *JobsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"status" queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *JobsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"status" queryParam:"style=form,explode=true,name=show_enum_origins"`
 	// If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')
 	//
 	// * `OPEN` - OPEN
@@ -220,6 +161,17 @@ type JobsListRequest struct {
 	// * `ARCHIVED` - ARCHIVED
 	// * `PENDING` - PENDING
 	Status *JobsListStatus `queryParam:"style=form,explode=true,name=status"`
+}
+
+func (j JobsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JobsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JobsListRequest) GetXAccountToken() string {
@@ -306,11 +258,8 @@ func (o *JobsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *JobsListRequest) GetRemoteFields() *JobsListRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *JobsListRequest) GetRemoteFields() *string {
+	return types.String("status")
 }
 
 func (o *JobsListRequest) GetRemoteID() *string {
@@ -320,11 +269,8 @@ func (o *JobsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *JobsListRequest) GetShowEnumOrigins() *JobsListShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *JobsListRequest) GetShowEnumOrigins() *string {
+	return types.String("status")
 }
 
 func (o *JobsListRequest) GetStatus() *JobsListStatus {

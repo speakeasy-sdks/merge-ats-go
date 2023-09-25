@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -57,6 +58,17 @@ type EmailAddress struct {
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// The email address.
 	Value *string `json:"value,omitempty"`
+}
+
+func (e EmailAddress) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmailAddress) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EmailAddress) GetEmailAddressType() *EmailAddressEmailAddressType {

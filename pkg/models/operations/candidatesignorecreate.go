@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type CandidatesIgnoreCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *CandidatesIgnoreCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type CandidatesIgnoreCreateRequest struct {
 	IgnoreCommonModelRequest shared.IgnoreCommonModelRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.

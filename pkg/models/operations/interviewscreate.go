@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type InterviewsCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *InterviewsCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type InterviewsCreateRequest struct {
 	ScheduledInterviewEndpointRequest shared.ScheduledInterviewEndpointRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.

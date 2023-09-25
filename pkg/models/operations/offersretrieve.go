@@ -6,19 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type OffersRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *OffersRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // OffersRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type OffersRetrieveExpand string
@@ -51,56 +42,6 @@ func (e *OffersRetrieveExpand) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// OffersRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type OffersRetrieveRemoteFields string
-
-const (
-	OffersRetrieveRemoteFieldsStatus OffersRetrieveRemoteFields = "status"
-)
-
-func (e OffersRetrieveRemoteFields) ToPointer() *OffersRetrieveRemoteFields {
-	return &e
-}
-
-func (e *OffersRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = OffersRetrieveRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OffersRetrieveRemoteFields: %v", v)
-	}
-}
-
-// OffersRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type OffersRetrieveShowEnumOrigins string
-
-const (
-	OffersRetrieveShowEnumOriginsStatus OffersRetrieveShowEnumOrigins = "status"
-)
-
-func (e OffersRetrieveShowEnumOrigins) ToPointer() *OffersRetrieveShowEnumOrigins {
-	return &e
-}
-
-func (e *OffersRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = OffersRetrieveShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OffersRetrieveShowEnumOrigins: %v", v)
-	}
-}
-
 type OffersRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -110,9 +51,20 @@ type OffersRetrieveRequest struct {
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *OffersRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"status" queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *OffersRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"status" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (o OffersRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OffersRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OffersRetrieveRequest) GetXAccountToken() string {
@@ -143,18 +95,12 @@ func (o *OffersRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *OffersRetrieveRequest) GetRemoteFields() *OffersRetrieveRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *OffersRetrieveRequest) GetRemoteFields() *string {
+	return types.String("status")
 }
 
-func (o *OffersRetrieveRequest) GetShowEnumOrigins() *OffersRetrieveShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *OffersRetrieveRequest) GetShowEnumOrigins() *string {
+	return types.String("status")
 }
 
 type OffersRetrieveResponse struct {

@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type ApplicationsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ApplicationsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // ApplicationsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type ApplicationsListExpand string
@@ -171,6 +161,17 @@ type ApplicationsListRequest struct {
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// If provided, will only return applications with this source.
 	Source *string `queryParam:"style=form,explode=true,name=source"`
+}
+
+func (a ApplicationsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ApplicationsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ApplicationsListRequest) GetXAccountToken() string {
