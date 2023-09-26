@@ -4,20 +4,10 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type OfficesListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *OfficesListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 type OfficesListRequest struct {
 	// Token identifying the end user.
@@ -40,6 +30,17 @@ type OfficesListRequest struct {
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
+}
+
+func (o OfficesListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OfficesListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OfficesListRequest) GetXAccountToken() string {
@@ -113,10 +114,13 @@ func (o *OfficesListRequest) GetRemoteID() *string {
 }
 
 type OfficesListResponse struct {
+	// HTTP response content type for this operation
 	ContentType         string
 	PaginatedOfficeList *shared.PaginatedOfficeList
-	StatusCode          int
-	RawResponse         *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *OfficesListResponse) GetContentType() string {

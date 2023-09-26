@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -22,6 +23,17 @@ type Tag struct {
 	RemoteID *string `json:"remote_id,omitempty"`
 	// Indicates whether or not this object has been deleted by third party webhooks.
 	RemoteWasDeleted *bool `json:"remote_was_deleted,omitempty"`
+}
+
+func (t Tag) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *Tag) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Tag) GetFieldMappings() map[string]interface{} {

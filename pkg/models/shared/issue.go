@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -50,6 +51,17 @@ type Issue struct {
 	// * `ONGOING` - ONGOING
 	// * `RESOLVED` - RESOLVED
 	Status *IssueStatus `json:"status,omitempty"`
+}
+
+func (i Issue) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *Issue) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Issue) GetEndUser() map[string]interface{} {
