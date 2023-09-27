@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type CandidatesRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *CandidatesRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // CandidatesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type CandidatesRetrieveExpand string
 
@@ -90,9 +79,12 @@ func (o *CandidatesRetrieveRequest) GetIncludeRemoteData() *bool {
 }
 
 type CandidatesRetrieveResponse struct {
-	Candidate   *shared.Candidate
+	Candidate *shared.Candidate
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

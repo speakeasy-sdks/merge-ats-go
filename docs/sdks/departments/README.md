@@ -1,4 +1,5 @@
 # Departments
+(*Departments*)
 
 ### Available Operations
 
@@ -17,30 +18,32 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.DepartmentsListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Departments.List(ctx, operations.DepartmentsListRequest{
-        XAccountToken: "vel",
-        CreatedAfter: types.MustTimeFromString("2022-02-08T20:43:00.221Z"),
-        CreatedBefore: types.MustTimeFromString("2022-08-07T14:04:49.880Z"),
-        Cursor: ats.String("laudantium"),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-10-11T02:58:57.556Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-09-15T20:38:47.955Z"),
-        PageSize: ats.Int64(406120),
-        RemoteID: ats.String("nulla"),
-    }, operationSecurity)
+        XAccountToken: "quasi",
+        CreatedAfter: types.MustTimeFromString("2022-02-20T07:12:08.273Z"),
+        CreatedBefore: types.MustTimeFromString("2021-01-20T18:27:01.887Z"),
+        Cursor: mergeatsgo.String("nostrum"),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        ModifiedAfter: types.MustTimeFromString("2020-08-20T04:25:24.387Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-10-07T13:07:57.949Z"),
+        PageSize: mergeatsgo.Int64(774048),
+        RemoteID: mergeatsgo.String("corporis"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -53,11 +56,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.DepartmentsListRequest](../../models/operations/departmentslistrequest.md)   | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `security`                                                                               | [operations.DepartmentsListSecurity](../../models/operations/departmentslistsecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.DepartmentsListRequest](../../models/operations/departmentslistrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -77,21 +79,23 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    xAccountToken := "excepturi"
-    id := "f5fce6c5-5614-46c3-a250-fb008c42e141"
-    includeRemoteData := false
-    operationSecurity := operations.DepartmentsRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
+    xAccountToken := "veniam"
+    id := "6146c3e2-50fb-4008-842e-141aac366c8d"
+    includeRemoteData := false
 
     ctx := context.Background()
-    res, err := s.Departments.Retrieve(ctx, operationSecurity, xAccountToken, id, includeRemoteData)
+    res, err := s.Departments.Retrieve(ctx, xAccountToken, id, includeRemoteData)
     if err != nil {
         log.Fatal(err)
     }
@@ -107,7 +111,6 @@ func main() {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `security`                                                                                       | [operations.DepartmentsRetrieveSecurity](../../models/operations/departmentsretrievesecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
 | `xAccountToken`                                                                                  | *string*                                                                                         | :heavy_check_mark:                                                                               | Token identifying the end user.                                                                  |
 | `id`                                                                                             | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
 | `includeRemoteData`                                                                              | **bool*                                                                                          | :heavy_minus_sign:                                                                               | Whether to include the original data Merge fetched from the third-party to produce these models. |

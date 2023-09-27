@@ -6,44 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type EeocsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *EeocsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// EeocsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type EeocsRetrieveExpand string
-
-const (
-	EeocsRetrieveExpandCandidate EeocsRetrieveExpand = "candidate"
-)
-
-func (e EeocsRetrieveExpand) ToPointer() *EeocsRetrieveExpand {
-	return &e
-}
-
-func (e *EeocsRetrieveExpand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "candidate":
-		*e = EeocsRetrieveExpand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EeocsRetrieveExpand: %v", v)
-	}
-}
 
 // EeocsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
 type EeocsRetrieveRemoteFields string
@@ -183,14 +149,25 @@ type EeocsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *EeocsRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string               `pathParam:"style=simple,explode=false,name=id"`
+	expand *string `const:"candidate" queryParam:"style=form,explode=true,name=expand"`
+	ID     string  `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
 	RemoteFields *EeocsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
 	ShowEnumOrigins *EeocsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (e EeocsRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EeocsRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EeocsRetrieveRequest) GetXAccountToken() string {
@@ -200,11 +177,8 @@ func (o *EeocsRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *EeocsRetrieveRequest) GetExpand() *EeocsRetrieveExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
+func (o *EeocsRetrieveRequest) GetExpand() *string {
+	return types.String("candidate")
 }
 
 func (o *EeocsRetrieveRequest) GetID() string {
@@ -236,9 +210,12 @@ func (o *EeocsRetrieveRequest) GetShowEnumOrigins() *EeocsRetrieveShowEnumOrigin
 }
 
 type EeocsRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Eeoc        *shared.Eeoc
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

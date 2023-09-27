@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -104,6 +105,17 @@ type Offer struct {
 	// * `SIGNED` - SIGNED
 	// * `DEPRECATED` - DEPRECATED
 	Status *OfferStatus `json:"status,omitempty"`
+}
+
+func (o Offer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *Offer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Offer) GetApplication() *string {

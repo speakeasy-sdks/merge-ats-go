@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type AsyncPassthroughRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *AsyncPassthroughRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type AsyncPassthroughRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken             string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -39,10 +28,13 @@ func (o *AsyncPassthroughRetrieveRequest) GetAsyncPassthroughReceiptID() string 
 }
 
 type AsyncPassthroughRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType    string
 	RemoteResponse *shared.RemoteResponse
-	StatusCode     int
-	RawResponse    *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *AsyncPassthroughRetrieveResponse) GetContentType() string {

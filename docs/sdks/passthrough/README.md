@@ -1,4 +1,5 @@
 # Passthrough
+(*Passthrough*)
 
 ### Available Operations
 
@@ -16,40 +17,41 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
+            TokenAuth: "",
+        }),
+    )
     dataPassthroughRequest := shared.DataPassthroughRequest{
-        BaseURLOverride: ats.String("consequatur"),
-        Data: ats.String("{"company": "Lime", "model": "Gen 2.5"}"),
+        BaseURLOverride: mergeatsgo.String("labore"),
+        Data: mergeatsgo.String("{"company": "Lime", "model": "Gen 2.5"}"),
         Headers: map[string]interface{}{
-            "esse": "ipsam",
+            "quidem": "atque",
         },
         Method: shared.DataPassthroughRequestMethodPost,
         MultipartFormData: []shared.MultipartFormFieldRequest{
             shared.MultipartFormFieldRequest{
-                ContentType: ats.String("application/pdf"),
+                ContentType: mergeatsgo.String("application/pdf"),
                 Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
                 Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
-                FileName: ats.String("resume.pdf"),
+                FileName: mergeatsgo.String("resume.pdf"),
                 Name: "resume",
             },
         },
-        NormalizeResponse: ats.Bool(false),
+        NormalizeResponse: mergeatsgo.Bool(false),
         Path: "/scooters",
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
-    xAccountToken := "sit"
-    operationSecurity := operations.PassthroughCreateSecurity{
-            TokenAuth: "",
-        }
+    xAccountToken := "laborum"
 
     ctx := context.Background()
-    res, err := s.Passthrough.Create(ctx, operationSecurity, dataPassthroughRequest, xAccountToken)
+    res, err := s.Passthrough.Create(ctx, dataPassthroughRequest, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -62,12 +64,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `security`                                                                                   | [operations.PassthroughCreateSecurity](../../models/operations/passthroughcreatesecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
-| `dataPassthroughRequest`                                                                     | [shared.DataPassthroughRequest](../../models/shared/datapassthroughrequest.md)               | :heavy_check_mark:                                                                           | N/A                                                                                          |
-| `xAccountToken`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | Token identifying the end user.                                                              |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `dataPassthroughRequest`                                                       | [shared.DataPassthroughRequest](../../models/shared/datapassthroughrequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| `xAccountToken`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Token identifying the end user.                                                |
 
 
 ### Response
