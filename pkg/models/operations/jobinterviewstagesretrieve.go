@@ -3,56 +3,31 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type JobInterviewStagesRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *JobInterviewStagesRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// JobInterviewStagesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type JobInterviewStagesRetrieveExpand string
-
-const (
-	JobInterviewStagesRetrieveExpandJob JobInterviewStagesRetrieveExpand = "job"
-)
-
-func (e JobInterviewStagesRetrieveExpand) ToPointer() *JobInterviewStagesRetrieveExpand {
-	return &e
-}
-
-func (e *JobInterviewStagesRetrieveExpand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "job":
-		*e = JobInterviewStagesRetrieveExpand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobInterviewStagesRetrieveExpand: %v", v)
-	}
-}
 
 type JobInterviewStagesRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	ID            string `pathParam:"style=simple,explode=false,name=id"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *JobInterviewStagesRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
+	expand *string `const:"job" queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
+}
+
+func (j JobInterviewStagesRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JobInterviewStagesRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JobInterviewStagesRetrieveRequest) GetXAccountToken() string {
@@ -69,11 +44,8 @@ func (o *JobInterviewStagesRetrieveRequest) GetID() string {
 	return o.ID
 }
 
-func (o *JobInterviewStagesRetrieveRequest) GetExpand() *JobInterviewStagesRetrieveExpand {
-	if o == nil {
-		return nil
-	}
-	return o.Expand
+func (o *JobInterviewStagesRetrieveRequest) GetExpand() *string {
+	return types.String("job")
 }
 
 func (o *JobInterviewStagesRetrieveRequest) GetIncludeRemoteData() *bool {
@@ -84,10 +56,13 @@ func (o *JobInterviewStagesRetrieveRequest) GetIncludeRemoteData() *bool {
 }
 
 type JobInterviewStagesRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType       string
 	JobInterviewStage *shared.JobInterviewStage
-	StatusCode        int
-	RawResponse       *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *JobInterviewStagesRetrieveResponse) GetContentType() string {

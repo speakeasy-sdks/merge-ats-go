@@ -1,4 +1,5 @@
 # LinkToken
+(*LinkToken*)
 
 ### Available Operations
 
@@ -16,26 +17,26 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.LinkTokenCreateSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.LinkToken.Create(ctx, shared.EndUserDetailsRequest{
         Categories: []shared.CategoriesEnum{
-            shared.CategoriesEnumHris,
+            shared.CategoriesEnumCrm,
         },
         CommonModels: []shared.CommonModelScopesBodyRequest{
             shared.CommonModelScopesBodyRequest{
                 DisabledFields: []string{
-                    "dignissimos",
+                    "adipisci",
                 },
                 EnabledActions: []shared.EnabledActionsEnum{
                     shared.EnabledActionsEnumWrite,
@@ -43,13 +44,13 @@ func main() {
                 ModelID: "hris.Employee",
             },
         },
-        EndUserEmailAddress: "debitis",
-        EndUserOrganizationName: "consectetur",
-        EndUserOriginID: "corporis",
-        Integration: ats.String("harum"),
-        LinkExpiryMins: ats.Int64(385237),
-        ShouldCreateMagicLinkURL: ats.Bool(false),
-    }, operationSecurity)
+        EndUserEmailAddress: "dolores",
+        EndUserOrganizationName: "blanditiis",
+        EndUserOriginID: "in",
+        Integration: mergeatsgo.String("dolore"),
+        LinkExpiryMins: mergeatsgo.Int64(304468),
+        ShouldCreateMagicLinkURL: mergeatsgo.Bool(false),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -62,11 +63,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [shared.EndUserDetailsRequest](../../models/shared/enduserdetailsrequest.md)             | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `security`                                                                               | [operations.LinkTokenCreateSecurity](../../models/operations/linktokencreatesecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [shared.EndUserDetailsRequest](../../models/shared/enduserdetailsrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response

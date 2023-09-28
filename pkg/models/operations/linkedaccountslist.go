@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type LinkedAccountsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *LinkedAccountsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // LinkedAccountsListCategory - Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')
 //
 // * `hris` - hris
@@ -199,10 +188,13 @@ func (o *LinkedAccountsListRequest) GetStatus() *string {
 }
 
 type LinkedAccountsListResponse struct {
+	// HTTP response content type for this operation
 	ContentType                           string
 	PaginatedAccountDetailsAndActionsList *shared.PaginatedAccountDetailsAndActionsList
-	StatusCode                            int
-	RawResponse                           *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *LinkedAccountsListResponse) GetContentType() string {

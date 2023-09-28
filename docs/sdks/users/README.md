@@ -1,4 +1,5 @@
 # Users
+(*Users*)
 
 ### Available Operations
 
@@ -17,33 +18,35 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.UsersListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Users.List(ctx, operations.UsersListRequest{
-        XAccountToken: "reiciendis",
-        CreatedAfter: types.MustTimeFromString("2022-05-03T16:31:59.395Z"),
-        CreatedBefore: types.MustTimeFromString("2022-09-16T00:03:17.363Z"),
-        Cursor: ats.String("dolorum"),
-        Email: ats.String("Angus.Walsh@gmail.com"),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-08-06T19:48:35.360Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-05-14T22:22:36.102Z"),
-        PageSize: ats.Int64(238413),
-        RemoteFields: operations.UsersListRemoteFieldsAccessRole.ToPointer(),
-        RemoteID: ats.String("debitis"),
-        ShowEnumOrigins: operations.UsersListShowEnumOriginsAccessRole.ToPointer(),
-    }, operationSecurity)
+        XAccountToken: "quasi",
+        CreatedAfter: types.MustTimeFromString("2022-04-25T07:46:36.414Z"),
+        CreatedBefore: types.MustTimeFromString("2021-10-26T13:12:31.139Z"),
+        Cursor: mergeatsgo.String("possimus"),
+        Email: mergeatsgo.String("Guadalupe99@yahoo.com"),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        ModifiedAfter: types.MustTimeFromString("2021-12-11T16:15:06.555Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-04-12T16:28:39.239Z"),
+        PageSize: mergeatsgo.Int64(937636),
+        RemoteFields: mergeatsgo.String("officia"),
+        RemoteID: mergeatsgo.String("laborum"),
+        ShowEnumOrigins: mergeatsgo.String("placeat"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -56,11 +59,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.UsersListRequest](../../models/operations/userslistrequest.md)   | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `security`                                                                   | [operations.UsersListSecurity](../../models/operations/userslistsecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [operations.UsersListRequest](../../models/operations/userslistrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
 
 ### Response
@@ -80,24 +82,26 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.UsersRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Users.Retrieve(ctx, operations.UsersRetrieveRequest{
-        XAccountToken: "laudantium",
-        ID: "65e7956f-9251-4a5a-9da6-60ff57bfaad4",
-        IncludeRemoteData: ats.Bool(false),
-        RemoteFields: operations.UsersRetrieveRemoteFieldsAccessRole.ToPointer(),
-        ShowEnumOrigins: operations.UsersRetrieveShowEnumOriginsAccessRole.ToPointer(),
-    }, operationSecurity)
+        XAccountToken: "modi",
+        ID: "f9efc1b4-512c-4103-a648-dc2f615199eb",
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        RemoteFields: mergeatsgo.String("hic"),
+        ShowEnumOrigins: mergeatsgo.String("illum"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -110,11 +114,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.UsersRetrieveRequest](../../models/operations/usersretrieverequest.md)   | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `security`                                                                           | [operations.UsersRetrieveSecurity](../../models/operations/usersretrievesecurity.md) | :heavy_check_mark:                                                                   | The security requirements to use for the request.                                    |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.UsersRetrieveRequest](../../models/operations/usersretrieverequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 
 ### Response
