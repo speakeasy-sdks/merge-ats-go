@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -69,6 +70,17 @@ type SyncStatus struct {
 	// * `IN_LAST_SYNC` - IN_LAST_SYNC
 	SelectiveSyncConfigurationsUsage *SelectiveSyncConfigurationsUsageEnum `json:"selective_sync_configurations_usage,omitempty"`
 	Status                           SyncStatusStatus                      `json:"status"`
+}
+
+func (s SyncStatus) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncStatus) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SyncStatus) GetIsInitialSync() bool {
