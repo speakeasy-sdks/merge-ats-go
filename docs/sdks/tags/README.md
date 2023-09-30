@@ -1,4 +1,5 @@
 # Tags
+(*Tags*)
 
 ### Available Operations
 
@@ -16,30 +17,32 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.TagsListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Tags.List(ctx, operations.TagsListRequest{
-        XAccountToken: "rem",
-        CreatedAfter: types.MustTimeFromString("2022-09-05T23:50:51.335Z"),
-        CreatedBefore: types.MustTimeFromString("2022-12-28T14:32:37.413Z"),
-        Cursor: ats.String("corporis"),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-01-22T10:13:48.972Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-03-30T21:08:39.591Z"),
-        PageSize: ats.Int64(5189),
-        RemoteID: ats.String("maiores"),
-    }, operationSecurity)
+        XAccountToken: "Northeast Metal Canada",
+        CreatedAfter: types.MustTimeFromString("2023-10-02T13:41:25.267Z"),
+        CreatedBefore: types.MustTimeFromString("2022-11-27T21:47:17.392Z"),
+        Cursor: mergeatsgo.String("Response West male"),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        ModifiedAfter: types.MustTimeFromString("2021-04-05T07:45:35.369Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-06-14T06:59:01.434Z"),
+        PageSize: mergeatsgo.Int64(68504),
+        RemoteID: mergeatsgo.String("Designer hacking"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -52,11 +55,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.TagsListRequest](../../models/operations/tagslistrequest.md)   | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `security`                                                                 | [operations.TagsListSecurity](../../models/operations/tagslistsecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [operations.TagsListRequest](../../models/operations/tagslistrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
 
 ### Response

@@ -1,4 +1,5 @@
 # Attachments
+(*Attachments*)
 
 ### Available Operations
 
@@ -19,37 +20,38 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
+            TokenAuth: "",
+        }),
+    )
     attachmentEndpointRequest := shared.AttachmentEndpointRequest{
         Model: shared.AttachmentRequest{
             AttachmentType: shared.AttachmentRequestAttachmentTypeResume.ToPointer(),
-            Candidate: ats.String("2872ba14-4084-492b-be96-e5eee6fc33ef"),
-            FileName: ats.String("Candidate Resume"),
-            FileURL: ats.String("http://alturl.com/p749b"),
+            Candidate: mergeatsgo.String("2872ba14-4084-492b-be96-e5eee6fc33ef"),
+            FileName: mergeatsgo.String("Candidate Resume"),
+            FileURL: mergeatsgo.String("http://alturl.com/p749b"),
             IntegrationParams: map[string]interface{}{
-                "dolorum": "in",
+                "odio": "bluetooth",
             },
             LinkedAccountParams: map[string]interface{}{
-                "in": "illum",
+                "nulla": "Money",
             },
         },
-        RemoteUserID: "maiores",
+        RemoteUserID: "Cambridgeshire grey technology",
     }
-    xAccountToken := "rerum"
+    xAccountToken := "East"
     isDebugMode := false
     runAsync := false
-    operationSecurity := operations.AttachmentsCreateSecurity{
-            TokenAuth: "",
-        }
 
     ctx := context.Background()
-    res, err := s.Attachments.Create(ctx, operationSecurity, attachmentEndpointRequest, xAccountToken, isDebugMode, runAsync)
+    res, err := s.Attachments.Create(ctx, attachmentEndpointRequest, xAccountToken, isDebugMode, runAsync)
     if err != nil {
         log.Fatal(err)
     }
@@ -62,14 +64,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `security`                                                                                   | [operations.AttachmentsCreateSecurity](../../models/operations/attachmentscreatesecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
-| `attachmentEndpointRequest`                                                                  | [shared.AttachmentEndpointRequest](../../models/shared/attachmentendpointrequest.md)         | :heavy_check_mark:                                                                           | N/A                                                                                          |
-| `xAccountToken`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | Token identifying the end user.                                                              |
-| `isDebugMode`                                                                                | **bool*                                                                                      | :heavy_minus_sign:                                                                           | Whether to include debug fields (such as log file links) in the response.                    |
-| `runAsync`                                                                                   | **bool*                                                                                      | :heavy_minus_sign:                                                                           | Whether or not third-party updates should be run asynchronously.                             |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `attachmentEndpointRequest`                                                          | [shared.AttachmentEndpointRequest](../../models/shared/attachmentendpointrequest.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `xAccountToken`                                                                      | *string*                                                                             | :heavy_check_mark:                                                                   | Token identifying the end user.                                                      |
+| `isDebugMode`                                                                        | **bool*                                                                              | :heavy_minus_sign:                                                                   | Whether to include debug fields (such as log file links) in the response.            |
+| `runAsync`                                                                           | **bool*                                                                              | :heavy_minus_sign:                                                                   | Whether or not third-party updates should be run asynchronously.                     |
 
 
 ### Response
@@ -89,34 +90,36 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.AttachmentsListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Attachments.List(ctx, operations.AttachmentsListRequest{
-        XAccountToken: "dicta",
-        CandidateID: ats.String("magnam"),
-        CreatedAfter: types.MustTimeFromString("2020-07-23T21:23:35.691Z"),
-        CreatedBefore: types.MustTimeFromString("2022-08-09T06:36:34.417Z"),
-        Cursor: ats.String("laborum"),
-        Expand: operations.AttachmentsListExpandCandidate.ToPointer(),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-04-02T11:21:13.260Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-05-17T08:24:52.669Z"),
-        PageSize: ats.Int64(881736),
-        RemoteFields: operations.AttachmentsListRemoteFieldsAttachmentType.ToPointer(),
-        RemoteID: ats.String("delectus"),
-        ShowEnumOrigins: operations.AttachmentsListShowEnumOriginsAttachmentType.ToPointer(),
-    }, operationSecurity)
+        XAccountToken: "Northeast Metal Canada",
+        CandidateID: mergeatsgo.String("Data Response West"),
+        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
+        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
+        Cursor: mergeatsgo.String("primary"),
+        Expand: mergeatsgo.String("Designer hacking"),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        ModifiedAfter: types.MustTimeFromString("2022-11-26T03:10:34.253Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-12-18T09:50:13.895Z"),
+        PageSize: mergeatsgo.Int64(7468),
+        RemoteFields: mergeatsgo.String("Guyana empowering"),
+        RemoteID: mergeatsgo.String("optimize itaque"),
+        ShowEnumOrigins: mergeatsgo.String("accusantium defensive"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -129,11 +132,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.AttachmentsListRequest](../../models/operations/attachmentslistrequest.md)   | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `security`                                                                               | [operations.AttachmentsListSecurity](../../models/operations/attachmentslistsecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.AttachmentsListRequest](../../models/operations/attachmentslistrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -153,25 +155,27 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.AttachmentsRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Attachments.Retrieve(ctx, operations.AttachmentsRetrieveRequest{
-        XAccountToken: "quidem",
-        Expand: operations.AttachmentsRetrieveExpandCandidate.ToPointer(),
-        ID: "9ba88f3a-6699-4707-8ba4-469b6e214195",
-        IncludeRemoteData: ats.Bool(false),
-        RemoteFields: operations.AttachmentsRetrieveRemoteFieldsAttachmentType.ToPointer(),
-        ShowEnumOrigins: operations.AttachmentsRetrieveShowEnumOriginsAttachmentType.ToPointer(),
-    }, operationSecurity)
+        XAccountToken: "tracksuit Markets",
+        Expand: mergeatsgo.String("McKinney"),
+        ID: "1ad20d60-4c8e-492b-a41f-a379087a1539",
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        RemoteFields: mergeatsgo.String("circuit Global edible"),
+        ShowEnumOrigins: mergeatsgo.String("Funk Fiat"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -184,11 +188,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.AttachmentsRetrieveRequest](../../models/operations/attachmentsretrieverequest.md)   | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `security`                                                                                       | [operations.AttachmentsRetrieveSecurity](../../models/operations/attachmentsretrievesecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.AttachmentsRetrieveRequest](../../models/operations/attachmentsretrieverequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
 
 ### Response
@@ -208,19 +211,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    xAccountToken := "provident"
-    operationSecurity := operations.AttachmentsMetaPostRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
+    xAccountToken := "Borders"
 
     ctx := context.Background()
-    res, err := s.Attachments.RetrievePostMetadata(ctx, operationSecurity, xAccountToken)
+    res, err := s.Attachments.RetrievePostMetadata(ctx, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }
@@ -233,11 +238,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
-| `security`                                                                                                       | [operations.AttachmentsMetaPostRetrieveSecurity](../../models/operations/attachmentsmetapostretrievesecurity.md) | :heavy_check_mark:                                                                                               | The security requirements to use for the request.                                                                |
-| `xAccountToken`                                                                                                  | *string*                                                                                                         | :heavy_check_mark:                                                                                               | Token identifying the end user.                                                                                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `xAccountToken`                                       | *string*                                              | :heavy_check_mark:                                    | Token identifying the end user.                       |
 
 
 ### Response

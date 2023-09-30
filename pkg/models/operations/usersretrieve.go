@@ -3,72 +3,11 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type UsersRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *UsersRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
-// UsersRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type UsersRetrieveRemoteFields string
-
-const (
-	UsersRetrieveRemoteFieldsAccessRole UsersRetrieveRemoteFields = "access_role"
-)
-
-func (e UsersRetrieveRemoteFields) ToPointer() *UsersRetrieveRemoteFields {
-	return &e
-}
-
-func (e *UsersRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "access_role":
-		*e = UsersRetrieveRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UsersRetrieveRemoteFields: %v", v)
-	}
-}
-
-// UsersRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type UsersRetrieveShowEnumOrigins string
-
-const (
-	UsersRetrieveShowEnumOriginsAccessRole UsersRetrieveShowEnumOrigins = "access_role"
-)
-
-func (e UsersRetrieveShowEnumOrigins) ToPointer() *UsersRetrieveShowEnumOrigins {
-	return &e
-}
-
-func (e *UsersRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "access_role":
-		*e = UsersRetrieveShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UsersRetrieveShowEnumOrigins: %v", v)
-	}
-}
 
 type UsersRetrieveRequest struct {
 	// Token identifying the end user.
@@ -77,9 +16,20 @@ type UsersRetrieveRequest struct {
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *UsersRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"access_role" queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *UsersRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"access_role" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (u UsersRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UsersRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UsersRetrieveRequest) GetXAccountToken() string {
@@ -103,24 +53,21 @@ func (o *UsersRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *UsersRetrieveRequest) GetRemoteFields() *UsersRetrieveRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *UsersRetrieveRequest) GetRemoteFields() *string {
+	return types.String("access_role")
 }
 
-func (o *UsersRetrieveRequest) GetShowEnumOrigins() *UsersRetrieveShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *UsersRetrieveRequest) GetShowEnumOrigins() *string {
+	return types.String("access_role")
 }
 
 type UsersRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	RemoteUser  *shared.RemoteUser
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

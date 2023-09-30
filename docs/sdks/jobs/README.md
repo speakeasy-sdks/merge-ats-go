@@ -1,4 +1,5 @@
 # Jobs
+(*Jobs*)
 
 ### Available Operations
 
@@ -17,36 +18,38 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.JobsListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Jobs.List(ctx, operations.JobsListRequest{
-        XAccountToken: "quod",
-        Code: ats.String("labore"),
-        CreatedAfter: types.MustTimeFromString("2022-10-04T21:10:21.697Z"),
-        CreatedBefore: types.MustTimeFromString("2021-09-04T08:55:11.388Z"),
-        Cursor: ats.String("suscipit"),
-        Expand: operations.JobsListExpandDepartmentsOffices.ToPointer(),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2021-09-01T22:08:53.618Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-06-13T13:07:55.703Z"),
-        Offices: ats.String("fugiat"),
-        PageSize: ats.Int64(424089),
-        RemoteFields: operations.JobsListRemoteFieldsStatus.ToPointer(),
-        RemoteID: ats.String("ducimus"),
-        ShowEnumOrigins: operations.JobsListShowEnumOriginsStatus.ToPointer(),
+        XAccountToken: "Northeast Metal Canada",
+        Code: mergeatsgo.String("Data Response West"),
+        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
+        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
+        Cursor: mergeatsgo.String("primary"),
+        Expand: operations.JobsListExpandHiringManagers.ToPointer(),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        ModifiedAfter: types.MustTimeFromString("2023-01-24T07:34:45.759Z"),
+        ModifiedBefore: types.MustTimeFromString("2022-09-05T09:00:22.788Z"),
+        Offices: mergeatsgo.String("orchid synergies"),
+        PageSize: mergeatsgo.Int64(504966),
+        RemoteFields: mergeatsgo.String("explicit"),
+        RemoteID: mergeatsgo.String("virtual"),
+        ShowEnumOrigins: mergeatsgo.String("itaque"),
         Status: operations.JobsListStatusDraft.ToPointer(),
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -59,11 +62,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.JobsListRequest](../../models/operations/jobslistrequest.md)   | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `security`                                                                 | [operations.JobsListSecurity](../../models/operations/jobslistsecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [operations.JobsListRequest](../../models/operations/jobslistrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
 
 ### Response
@@ -83,25 +85,27 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.JobsRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Jobs.Retrieve(ctx, operations.JobsRetrieveRequest{
-        XAccountToken: "vel",
-        Expand: operations.JobsRetrieveExpandDepartmentsOfficesHiringManagers.ToPointer(),
-        ID: "dbb675fd-5e60-4b37-9ed4-f6fbee41f333",
-        IncludeRemoteData: ats.Bool(false),
-        RemoteFields: operations.JobsRetrieveRemoteFieldsStatus.ToPointer(),
-        ShowEnumOrigins: operations.JobsRetrieveShowEnumOriginsStatus.ToPointer(),
-    }, operationSecurity)
+        XAccountToken: "tracksuit Markets",
+        Expand: operations.JobsRetrieveExpandDepartmentsHiringManagers.ToPointer(),
+        ID: "081ad20d-604c-48e9-ab24-1fa379087a15",
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        RemoteFields: mergeatsgo.String("Mobility"),
+        ShowEnumOrigins: mergeatsgo.String("recklessly program"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -114,11 +118,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.JobsRetrieveRequest](../../models/operations/jobsretrieverequest.md)   | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `security`                                                                         | [operations.JobsRetrieveSecurity](../../models/operations/jobsretrievesecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.JobsRetrieveRequest](../../models/operations/jobsretrieverequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 
 ### Response

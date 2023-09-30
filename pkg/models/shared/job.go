@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -93,6 +94,17 @@ type Job struct {
 	// * `ARCHIVED` - ARCHIVED
 	// * `PENDING` - PENDING
 	Status *JobStatus `json:"status,omitempty"`
+}
+
+func (j Job) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *Job) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Job) GetCode() *string {

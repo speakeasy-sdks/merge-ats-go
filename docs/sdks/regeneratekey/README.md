@@ -1,4 +1,5 @@
 # RegenerateKey
+(*RegenerateKey*)
 
 ### Available Operations
 
@@ -16,21 +17,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.RegenerateKeyCreateSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.RegenerateKey.Create(ctx, shared.RemoteKeyForRegenerationRequest{
         Name: "Remote Deployment Key 1",
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -47,7 +48,6 @@ func main() {
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
 | `request`                                                                                        | [shared.RemoteKeyForRegenerationRequest](../../models/shared/remotekeyforregenerationrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `security`                                                                                       | [operations.RegenerateKeyCreateSecurity](../../models/operations/regeneratekeycreatesecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
 
 
 ### Response

@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type CandidatesIgnoreCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *CandidatesIgnoreCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type CandidatesIgnoreCreateRequest struct {
 	IgnoreCommonModelRequest shared.IgnoreCommonModelRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.
@@ -47,8 +36,11 @@ func (o *CandidatesIgnoreCreateRequest) GetModelID() string {
 }
 
 type CandidatesIgnoreCreateResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
