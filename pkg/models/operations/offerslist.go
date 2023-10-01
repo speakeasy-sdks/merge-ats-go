@@ -6,20 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type OffersListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *OffersListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // OffersListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type OffersListExpand string
@@ -52,56 +43,6 @@ func (e *OffersListExpand) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// OffersListRemoteFields - Deprecated. Use show_enum_origins.
-type OffersListRemoteFields string
-
-const (
-	OffersListRemoteFieldsStatus OffersListRemoteFields = "status"
-)
-
-func (e OffersListRemoteFields) ToPointer() *OffersListRemoteFields {
-	return &e
-}
-
-func (e *OffersListRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = OffersListRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OffersListRemoteFields: %v", v)
-	}
-}
-
-// OffersListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type OffersListShowEnumOrigins string
-
-const (
-	OffersListShowEnumOriginsStatus OffersListShowEnumOrigins = "status"
-)
-
-func (e OffersListShowEnumOrigins) ToPointer() *OffersListShowEnumOrigins {
-	return &e
-}
-
-func (e *OffersListShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = OffersListShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OffersListShowEnumOrigins: %v", v)
-	}
-}
-
 type OffersListRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -128,11 +69,22 @@ type OffersListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *OffersListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"status" queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *OffersListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"status" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (o OffersListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OffersListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OffersListRequest) GetXAccountToken() string {
@@ -219,11 +171,8 @@ func (o *OffersListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *OffersListRequest) GetRemoteFields() *OffersListRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *OffersListRequest) GetRemoteFields() *string {
+	return types.String("status")
 }
 
 func (o *OffersListRequest) GetRemoteID() *string {
@@ -233,18 +182,18 @@ func (o *OffersListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *OffersListRequest) GetShowEnumOrigins() *OffersListShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *OffersListRequest) GetShowEnumOrigins() *string {
+	return types.String("status")
 }
 
 type OffersListResponse struct {
+	// HTTP response content type for this operation
 	ContentType        string
 	PaginatedOfferList *shared.PaginatedOfferList
-	StatusCode         int
-	RawResponse        *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *OffersListResponse) GetContentType() string {

@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
+)
+
 type EndUserDetailsRequest struct {
 	// The integration categories to show in Merge Link.
 	Categories []CategoriesEnum `json:"categories" form:"name=categories" multipartForm:"name=categories"`
@@ -16,9 +20,20 @@ type EndUserDetailsRequest struct {
 	// The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.
 	Integration *string `json:"integration,omitempty" form:"name=integration" multipartForm:"name=integration"`
 	// An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.
-	LinkExpiryMins *int64 `json:"link_expiry_mins,omitempty" form:"name=link_expiry_mins" multipartForm:"name=link_expiry_mins"`
+	LinkExpiryMins *int64 `default:"30" json:"link_expiry_mins" form:"name=link_expiry_mins" multipartForm:"name=link_expiry_mins"`
 	// Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.
-	ShouldCreateMagicLinkURL *bool `json:"should_create_magic_link_url,omitempty" form:"name=should_create_magic_link_url" multipartForm:"name=should_create_magic_link_url"`
+	ShouldCreateMagicLinkURL *bool `default:"false" json:"should_create_magic_link_url" form:"name=should_create_magic_link_url" multipartForm:"name=should_create_magic_link_url"`
+}
+
+func (e EndUserDetailsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EndUserDetailsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EndUserDetailsRequest) GetCategories() []CategoriesEnum {

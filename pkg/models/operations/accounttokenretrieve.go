@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type AccountTokenRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *AccountTokenRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type AccountTokenRetrieveRequest struct {
 	PublicToken string `pathParam:"style=simple,explode=false,name=public_token"`
 }
@@ -31,9 +20,12 @@ func (o *AccountTokenRetrieveRequest) GetPublicToken() string {
 
 type AccountTokenRetrieveResponse struct {
 	AccountToken *shared.AccountToken
-	ContentType  string
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *AccountTokenRetrieveResponse) GetAccountToken() *shared.AccountToken {

@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type ActivitiesCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ActivitiesCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type ActivitiesCreateRequest struct {
 	ActivityEndpointRequest shared.ActivityEndpointRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.
@@ -58,9 +47,12 @@ func (o *ActivitiesCreateRequest) GetRunAsync() *bool {
 
 type ActivitiesCreateResponse struct {
 	ActivityResponse *shared.ActivityResponse
-	ContentType      string
-	StatusCode       int
-	RawResponse      *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ActivitiesCreateResponse) GetActivityResponse() *shared.ActivityResponse {

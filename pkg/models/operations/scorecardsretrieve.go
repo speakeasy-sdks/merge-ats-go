@@ -6,19 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type ScorecardsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ScorecardsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // ScorecardsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type ScorecardsRetrieveExpand string
@@ -63,56 +54,6 @@ func (e *ScorecardsRetrieveExpand) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ScorecardsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type ScorecardsRetrieveRemoteFields string
-
-const (
-	ScorecardsRetrieveRemoteFieldsOverallRecommendation ScorecardsRetrieveRemoteFields = "overall_recommendation"
-)
-
-func (e ScorecardsRetrieveRemoteFields) ToPointer() *ScorecardsRetrieveRemoteFields {
-	return &e
-}
-
-func (e *ScorecardsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "overall_recommendation":
-		*e = ScorecardsRetrieveRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ScorecardsRetrieveRemoteFields: %v", v)
-	}
-}
-
-// ScorecardsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type ScorecardsRetrieveShowEnumOrigins string
-
-const (
-	ScorecardsRetrieveShowEnumOriginsOverallRecommendation ScorecardsRetrieveShowEnumOrigins = "overall_recommendation"
-)
-
-func (e ScorecardsRetrieveShowEnumOrigins) ToPointer() *ScorecardsRetrieveShowEnumOrigins {
-	return &e
-}
-
-func (e *ScorecardsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "overall_recommendation":
-		*e = ScorecardsRetrieveShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ScorecardsRetrieveShowEnumOrigins: %v", v)
-	}
-}
-
 type ScorecardsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -122,9 +63,20 @@ type ScorecardsRetrieveRequest struct {
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *ScorecardsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"overall_recommendation" queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *ScorecardsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"overall_recommendation" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (s ScorecardsRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScorecardsRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ScorecardsRetrieveRequest) GetXAccountToken() string {
@@ -155,24 +107,21 @@ func (o *ScorecardsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *ScorecardsRetrieveRequest) GetRemoteFields() *ScorecardsRetrieveRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *ScorecardsRetrieveRequest) GetRemoteFields() *string {
+	return types.String("overall_recommendation")
 }
 
-func (o *ScorecardsRetrieveRequest) GetShowEnumOrigins() *ScorecardsRetrieveShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *ScorecardsRetrieveRequest) GetShowEnumOrigins() *string {
+	return types.String("overall_recommendation")
 }
 
 type ScorecardsRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Scorecard   *shared.Scorecard
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
