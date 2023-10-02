@@ -1,4 +1,5 @@
 # Offers
+(*Offers*)
 
 ### Available Operations
 
@@ -17,35 +18,37 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.OffersListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Offers.List(ctx, operations.OffersListRequest{
-        XAccountToken: "asperiores",
-        ApplicationID: ats.String("facilis"),
-        CreatedAfter: types.MustTimeFromString("2022-04-17T04:31:41.347Z"),
-        CreatedBefore: types.MustTimeFromString("2022-05-22T17:05:01.514Z"),
-        CreatorID: ats.String("dolore"),
-        Cursor: ats.String("laborum"),
-        Expand: operations.OffersListExpandApplication.ToPointer(),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-08-01T14:49:09.199Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-09-27T03:48:38.490Z"),
-        PageSize: ats.Int64(378326),
-        RemoteFields: operations.OffersListRemoteFieldsStatus.ToPointer(),
-        RemoteID: ats.String("unde"),
-        ShowEnumOrigins: operations.OffersListShowEnumOriginsStatus.ToPointer(),
-    }, operationSecurity)
+        XAccountToken: "Northeast Metal Canada",
+        ApplicationID: mergeatsgo.String("Data Response West"),
+        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
+        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
+        CreatorID: mergeatsgo.String("primary"),
+        Cursor: mergeatsgo.String("Designer hacking"),
+        Expand: operations.OffersListExpandApplicationCreator.ToPointer(),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        ModifiedAfter: types.MustTimeFromString("2021-12-18T09:50:13.895Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-01-09T04:15:41.822Z"),
+        PageSize: mergeatsgo.Int64(504966),
+        RemoteFields: mergeatsgo.String("explicit"),
+        RemoteID: mergeatsgo.String("virtual"),
+        ShowEnumOrigins: mergeatsgo.String("itaque"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -58,11 +61,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.OffersListRequest](../../models/operations/offerslistrequest.md)   | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `security`                                                                     | [operations.OffersListSecurity](../../models/operations/offerslistsecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.OffersListRequest](../../models/operations/offerslistrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response
@@ -82,25 +84,27 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.OffersRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Offers.Retrieve(ctx, operations.OffersRetrieveRequest{
-        XAccountToken: "architecto",
-        Expand: operations.OffersRetrieveExpandApplicationCreator.ToPointer(),
-        ID: "fe1f08f4-294e-4369-8f44-7f603e8b445e",
-        IncludeRemoteData: ats.Bool(false),
-        RemoteFields: operations.OffersRetrieveRemoteFieldsStatus.ToPointer(),
-        ShowEnumOrigins: operations.OffersRetrieveShowEnumOriginsStatus.ToPointer(),
-    }, operationSecurity)
+        XAccountToken: "tracksuit Markets",
+        Expand: operations.OffersRetrieveExpandApplication.ToPointer(),
+        ID: "081ad20d-604c-48e9-ab24-1fa379087a15",
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        RemoteFields: mergeatsgo.String("Mobility"),
+        ShowEnumOrigins: mergeatsgo.String("recklessly program"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -113,11 +117,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.OffersRetrieveRequest](../../models/operations/offersretrieverequest.md)   | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `security`                                                                             | [operations.OffersRetrieveSecurity](../../models/operations/offersretrievesecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.OffersRetrieveRequest](../../models/operations/offersretrieverequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 
 ### Response

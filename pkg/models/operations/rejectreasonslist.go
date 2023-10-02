@@ -4,20 +4,10 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type RejectReasonsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *RejectReasonsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 type RejectReasonsListRequest struct {
 	// Token identifying the end user.
@@ -40,6 +30,17 @@ type RejectReasonsListRequest struct {
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
+}
+
+func (r RejectReasonsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RejectReasonsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *RejectReasonsListRequest) GetXAccountToken() string {
@@ -113,10 +114,13 @@ func (o *RejectReasonsListRequest) GetRemoteID() *string {
 }
 
 type RejectReasonsListResponse struct {
+	// HTTP response content type for this operation
 	ContentType               string
 	PaginatedRejectReasonList *shared.PaginatedRejectReasonList
-	StatusCode                int
-	RawResponse               *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *RejectReasonsListResponse) GetContentType() string {

@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -71,6 +72,17 @@ type Attachment struct {
 	// The third-party API ID of the matching object.
 	RemoteID         *string `json:"remote_id,omitempty"`
 	RemoteWasDeleted *bool   `json:"remote_was_deleted,omitempty"`
+}
+
+func (a Attachment) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *Attachment) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Attachment) GetAttachmentType() *AttachmentAttachmentType {
