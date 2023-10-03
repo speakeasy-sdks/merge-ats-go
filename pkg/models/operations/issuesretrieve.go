@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type IssuesRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *IssuesRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type IssuesRetrieveRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
@@ -30,9 +19,12 @@ func (o *IssuesRetrieveRequest) GetID() string {
 }
 
 type IssuesRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Issue       *shared.Issue
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

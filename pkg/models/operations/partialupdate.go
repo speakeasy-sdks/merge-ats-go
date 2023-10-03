@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type PartialUpdateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *PartialUpdateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type PartialUpdateRequest struct {
 	PatchedCandidateEndpointRequest shared.PatchedCandidateEndpointRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.
@@ -66,9 +55,12 @@ func (o *PartialUpdateRequest) GetRunAsync() *bool {
 
 type PartialUpdateResponse struct {
 	CandidateResponse *shared.CandidateResponse
-	ContentType       string
-	StatusCode        int
-	RawResponse       *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *PartialUpdateResponse) GetCandidateResponse() *shared.CandidateResponse {

@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type SyncStatusListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *SyncStatusListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type SyncStatusListRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -49,10 +38,13 @@ func (o *SyncStatusListRequest) GetPageSize() *int64 {
 }
 
 type SyncStatusListResponse struct {
+	// HTTP response content type for this operation
 	ContentType             string
 	PaginatedSyncStatusList *shared.PaginatedSyncStatusList
-	StatusCode              int
-	RawResponse             *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *SyncStatusListResponse) GetContentType() string {

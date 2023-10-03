@@ -6,19 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 )
-
-type JobsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *JobsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // JobsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type JobsRetrieveExpand string
@@ -87,56 +78,6 @@ func (e *JobsRetrieveExpand) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// JobsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type JobsRetrieveRemoteFields string
-
-const (
-	JobsRetrieveRemoteFieldsStatus JobsRetrieveRemoteFields = "status"
-)
-
-func (e JobsRetrieveRemoteFields) ToPointer() *JobsRetrieveRemoteFields {
-	return &e
-}
-
-func (e *JobsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = JobsRetrieveRemoteFields(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobsRetrieveRemoteFields: %v", v)
-	}
-}
-
-// JobsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type JobsRetrieveShowEnumOrigins string
-
-const (
-	JobsRetrieveShowEnumOriginsStatus JobsRetrieveShowEnumOrigins = "status"
-)
-
-func (e JobsRetrieveShowEnumOrigins) ToPointer() *JobsRetrieveShowEnumOrigins {
-	return &e
-}
-
-func (e *JobsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status":
-		*e = JobsRetrieveShowEnumOrigins(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobsRetrieveShowEnumOrigins: %v", v)
-	}
-}
-
 type JobsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -146,9 +87,20 @@ type JobsRetrieveRequest struct {
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *JobsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	remoteFields *string `const:"status" queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *JobsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	showEnumOrigins *string `const:"status" queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (j JobsRetrieveRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JobsRetrieveRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JobsRetrieveRequest) GetXAccountToken() string {
@@ -179,24 +131,21 @@ func (o *JobsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *JobsRetrieveRequest) GetRemoteFields() *JobsRetrieveRemoteFields {
-	if o == nil {
-		return nil
-	}
-	return o.RemoteFields
+func (o *JobsRetrieveRequest) GetRemoteFields() *string {
+	return types.String("status")
 }
 
-func (o *JobsRetrieveRequest) GetShowEnumOrigins() *JobsRetrieveShowEnumOrigins {
-	if o == nil {
-		return nil
-	}
-	return o.ShowEnumOrigins
+func (o *JobsRetrieveRequest) GetShowEnumOrigins() *string {
+	return types.String("status")
 }
 
 type JobsRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Job         *shared.Job
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
