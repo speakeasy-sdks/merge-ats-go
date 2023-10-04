@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -82,6 +83,17 @@ type Scorecard struct {
 	RemoteWasDeleted *bool `json:"remote_was_deleted,omitempty"`
 	// When the scorecard was submitted.
 	SubmittedAt *time.Time `json:"submitted_at,omitempty"`
+}
+
+func (s Scorecard) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Scorecard) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Scorecard) GetApplication() *string {

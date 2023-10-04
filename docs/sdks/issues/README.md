@@ -1,4 +1,5 @@
 # Issues
+(*Issues*)
 
 ### Available Operations
 
@@ -17,33 +18,35 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.IssuesListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Issues.List(ctx, operations.IssuesListRequest{
-        AccountToken: ats.String("a"),
-        Cursor: ats.String("error"),
-        EndDate: ats.String("sint"),
-        EndUserOrganizationName: ats.String("pariatur"),
-        FirstIncidentTimeAfter: types.MustTimeFromString("2022-07-12T09:25:25.257Z"),
-        FirstIncidentTimeBefore: types.MustTimeFromString("2020-01-10T06:57:07.831Z"),
-        IncludeMuted: ats.String("facere"),
-        IntegrationName: ats.String("veritatis"),
-        LastIncidentTimeAfter: types.MustTimeFromString("2022-11-27T12:32:54.264Z"),
-        LastIncidentTimeBefore: types.MustTimeFromString("2021-09-25T11:11:22.943Z"),
-        PageSize: ats.Int64(398434),
-        StartDate: ats.String("tenetur"),
+        AccountToken: mergeatsgo.String("Northeast Metal Canada"),
+        Cursor: mergeatsgo.String("Data Response West"),
+        EndDate: mergeatsgo.String("boil primary synthesize"),
+        EndUserOrganizationName: mergeatsgo.String("hacking Paradigm"),
+        FirstIncidentTimeAfter: types.MustTimeFromString("2021-01-09T04:15:41.822Z"),
+        FirstIncidentTimeBefore: types.MustTimeFromString("2022-07-07T22:30:40.342Z"),
+        IncludeMuted: mergeatsgo.String("explicit"),
+        IntegrationName: mergeatsgo.String("virtual"),
+        LastIncidentTimeAfter: types.MustTimeFromString("2021-03-22T04:25:28.253Z"),
+        LastIncidentTimeBefore: types.MustTimeFromString("2022-09-19T00:01:59.827Z"),
+        PageSize: mergeatsgo.Int64(931165),
+        StartDate: mergeatsgo.String("accusantium defensive"),
         Status: operations.IssuesListStatusOngoing.ToPointer(),
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -56,11 +59,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.IssuesListRequest](../../models/operations/issueslistrequest.md)   | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `security`                                                                     | [operations.IssuesListSecurity](../../models/operations/issueslistsecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.IssuesListRequest](../../models/operations/issueslistrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response
@@ -80,19 +82,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    id := "e674bdb0-4f15-4756-882d-68ea19f1d170"
-    operationSecurity := operations.IssuesRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
+    id := "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
     ctx := context.Background()
-    res, err := s.Issues.Retrieve(ctx, operationSecurity, id)
+    res, err := s.Issues.Retrieve(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -105,11 +109,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `security`                                                                             | [operations.IssuesRetrieveSecurity](../../models/operations/issuesretrievesecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
-| `id`                                                                                   | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response

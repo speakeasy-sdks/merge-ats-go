@@ -7,19 +7,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    xAccountToken := "corrupti"
-    operationSecurity := operations.AccountDetailsRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
+    xAccountToken := "till"
 
     ctx := context.Background()
-    res, err := s.AccountDetails.Retrieve(ctx, operationSecurity, xAccountToken)
+    res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)
     if err != nil {
         log.Fatal(err)
     }

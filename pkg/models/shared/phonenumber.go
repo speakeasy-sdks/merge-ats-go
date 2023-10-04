@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -67,6 +68,17 @@ type PhoneNumber struct {
 	PhoneNumberType *PhoneNumberPhoneNumberType `json:"phone_number_type,omitempty"`
 	// The phone number.
 	Value *string `json:"value,omitempty"`
+}
+
+func (p PhoneNumber) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PhoneNumber) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PhoneNumber) GetModifiedAt() *time.Time {

@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type ApplicationsMetaPostRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ApplicationsMetaPostRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type ApplicationsMetaPostRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -40,10 +29,13 @@ func (o *ApplicationsMetaPostRetrieveRequest) GetApplicationRemoteTemplateID() *
 }
 
 type ApplicationsMetaPostRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType  string
 	MetaResponse *shared.MetaResponse
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ApplicationsMetaPostRetrieveResponse) GetContentType() string {

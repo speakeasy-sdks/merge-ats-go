@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"time"
 )
 
@@ -40,6 +41,17 @@ type CandidateRequest struct {
 	// The candidate's current title.
 	Title *string      `json:"title,omitempty"`
 	Urls  []URLRequest `json:"urls,omitempty"`
+}
+
+func (c CandidateRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CandidateRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CandidateRequest) GetApplications() []string {
