@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type OffersRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *OffersRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // OffersRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type OffersRetrieveExpand string
 
@@ -158,9 +147,12 @@ func (o *OffersRetrieveRequest) GetShowEnumOrigins() *OffersRetrieveShowEnumOrig
 }
 
 type OffersRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Offer       *shared.Offer
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 )
 
 // MultipartFormFieldRequestEncoding - * `RAW` - RAW
@@ -56,11 +57,22 @@ type MultipartFormFieldRequest struct {
 	// * `RAW` - RAW
 	// * `BASE64` - BASE64
 	// * `GZIP_BASE64` - GZIP_BASE64
-	Encoding *MultipartFormFieldRequestEncoding `json:"encoding,omitempty"`
+	Encoding *MultipartFormFieldRequestEncoding `default:"RAW" json:"encoding"`
 	// The file name of the form field, if the field is for a file.
 	FileName *string `json:"file_name,omitempty"`
 	// The name of the form field
 	Name string `json:"name"`
+}
+
+func (m MultipartFormFieldRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MultipartFormFieldRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MultipartFormFieldRequest) GetContentType() *string {

@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type AttachmentsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *AttachmentsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // AttachmentsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type AttachmentsListExpand string
@@ -127,6 +117,17 @@ type AttachmentsListRequest struct {
 	ShowEnumOrigins *AttachmentsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
+func (a AttachmentsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttachmentsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *AttachmentsListRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
@@ -226,10 +227,13 @@ func (o *AttachmentsListRequest) GetShowEnumOrigins() *AttachmentsListShowEnumOr
 }
 
 type AttachmentsListResponse struct {
+	// HTTP response content type for this operation
 	ContentType             string
 	PaginatedAttachmentList *shared.PaginatedAttachmentList
-	StatusCode              int
-	RawResponse             *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *AttachmentsListResponse) GetContentType() string {

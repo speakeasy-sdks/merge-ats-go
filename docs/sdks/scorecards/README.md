@@ -1,4 +1,5 @@
 # Scorecards
+(*Scorecards*)
 
 ### Available Operations
 
@@ -17,36 +18,38 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.ScorecardsListSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Scorecards.List(ctx, operations.ScorecardsListRequest{
-        XAccountToken: "praesentium",
-        ApplicationID: ats.String("mollitia"),
-        CreatedAfter: types.MustTimeFromString("2022-12-21T09:05:01.168Z"),
-        CreatedBefore: types.MustTimeFromString("2020-03-30T02:42:49.718Z"),
-        Cursor: ats.String("quasi"),
+        XAccountToken: "Northeast Metal Canada",
+        ApplicationID: mergeatsgo.String("Data Response West"),
+        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
+        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
+        Cursor: mergeatsgo.String("primary"),
         Expand: operations.ScorecardsListExpandApplicationInterviewer.ToPointer(),
-        IncludeDeletedData: ats.Bool(false),
-        IncludeRemoteData: ats.Bool(false),
-        InterviewID: ats.String("reprehenderit"),
-        InterviewerID: ats.String("asperiores"),
-        ModifiedAfter: types.MustTimeFromString("2022-03-27T08:02:14.031Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-05-22T03:09:11.884Z"),
-        PageSize: ats.Int64(90885),
+        IncludeDeletedData: mergeatsgo.Bool(false),
+        IncludeRemoteData: mergeatsgo.Bool(false),
+        InterviewID: mergeatsgo.String("generate orchid synergies"),
+        InterviewerID: mergeatsgo.String("Guyana empowering"),
+        ModifiedAfter: types.MustTimeFromString("2022-06-16T20:57:25.031Z"),
+        ModifiedBefore: types.MustTimeFromString("2021-12-06T18:55:39.498Z"),
+        PageSize: mergeatsgo.Int64(73227),
         RemoteFields: operations.ScorecardsListRemoteFieldsOverallRecommendation.ToPointer(),
-        RemoteID: ats.String("esse"),
+        RemoteID: mergeatsgo.String("gah accusantium"),
         ShowEnumOrigins: operations.ScorecardsListShowEnumOriginsOverallRecommendation.ToPointer(),
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -59,11 +62,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.ScorecardsListRequest](../../models/operations/scorecardslistrequest.md)   | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `security`                                                                             | [operations.ScorecardsListSecurity](../../models/operations/scorecardslistsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.ScorecardsListRequest](../../models/operations/scorecardslistrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 
 ### Response
@@ -83,25 +85,27 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/merge-ats-go"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := ats.New()
-    operationSecurity := operations.ScorecardsRetrieveSecurity{
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(shared.Security{
             TokenAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Scorecards.Retrieve(ctx, operations.ScorecardsRetrieveRequest{
-        XAccountToken: "amet",
-        Expand: operations.ScorecardsRetrieveExpandInterviewInterviewer.ToPointer(),
-        ID: "689eee95-26f8-4d98-ae88-1ead4f0e1012",
-        IncludeRemoteData: ats.Bool(false),
+        XAccountToken: "tracksuit Markets",
+        Expand: operations.ScorecardsRetrieveExpandApplication.ToPointer(),
+        ID: "081ad20d-604c-48e9-ab24-1fa379087a15",
+        IncludeRemoteData: mergeatsgo.Bool(false),
         RemoteFields: operations.ScorecardsRetrieveRemoteFieldsOverallRecommendation.ToPointer(),
         ShowEnumOrigins: operations.ScorecardsRetrieveShowEnumOriginsOverallRecommendation.ToPointer(),
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -114,11 +118,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.ScorecardsRetrieveRequest](../../models/operations/scorecardsretrieverequest.md)   | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `security`                                                                                     | [operations.ScorecardsRetrieveSecurity](../../models/operations/scorecardsretrievesecurity.md) | :heavy_check_mark:                                                                             | The security requirements to use for the request.                                              |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.ScorecardsRetrieveRequest](../../models/operations/scorecardsretrieverequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
 
 ### Response

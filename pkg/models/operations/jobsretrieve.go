@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type JobsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *JobsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // JobsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type JobsRetrieveExpand string
 
@@ -194,9 +183,12 @@ func (o *JobsRetrieveRequest) GetShowEnumOrigins() *JobsRetrieveShowEnumOrigins 
 }
 
 type JobsRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Job         *shared.Job
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

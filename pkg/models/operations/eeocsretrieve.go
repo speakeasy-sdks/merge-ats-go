@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type EeocsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *EeocsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // EeocsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type EeocsRetrieveExpand string
 
@@ -236,9 +225,12 @@ func (o *EeocsRetrieveRequest) GetShowEnumOrigins() *EeocsRetrieveShowEnumOrigin
 }
 
 type EeocsRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Eeoc        *shared.Eeoc
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

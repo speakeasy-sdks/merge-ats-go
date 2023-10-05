@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type InterviewsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *InterviewsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // InterviewsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type InterviewsListExpand string
@@ -173,6 +163,17 @@ type InterviewsListRequest struct {
 	ShowEnumOrigins *InterviewsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
+func (i InterviewsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InterviewsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *InterviewsListRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
@@ -286,10 +287,13 @@ func (o *InterviewsListRequest) GetShowEnumOrigins() *InterviewsListShowEnumOrig
 }
 
 type InterviewsListResponse struct {
+	// HTTP response content type for this operation
 	ContentType                     string
 	PaginatedScheduledInterviewList *shared.PaginatedScheduledInterviewList
-	StatusCode                      int
-	RawResponse                     *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *InterviewsListResponse) GetContentType() string {

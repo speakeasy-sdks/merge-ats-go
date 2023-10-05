@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type InterviewsCreateSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *InterviewsCreateSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type InterviewsCreateRequest struct {
 	ScheduledInterviewEndpointRequest shared.ScheduledInterviewEndpointRequest `request:"mediaType=application/json"`
 	// Token identifying the end user.
@@ -57,10 +46,13 @@ func (o *InterviewsCreateRequest) GetRunAsync() *bool {
 }
 
 type InterviewsCreateResponse struct {
+	// HTTP response content type for this operation
 	ContentType                string
 	ScheduledInterviewResponse *shared.ScheduledInterviewResponse
-	StatusCode                 int
-	RawResponse                *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *InterviewsCreateResponse) GetContentType() string {

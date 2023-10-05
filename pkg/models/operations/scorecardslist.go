@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type ScorecardsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ScorecardsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // ScorecardsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type ScorecardsListExpand string
@@ -149,6 +139,17 @@ type ScorecardsListRequest struct {
 	ShowEnumOrigins *ScorecardsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
+func (s ScorecardsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScorecardsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *ScorecardsListRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
@@ -262,10 +263,13 @@ func (o *ScorecardsListRequest) GetShowEnumOrigins() *ScorecardsListShowEnumOrig
 }
 
 type ScorecardsListResponse struct {
+	// HTTP response content type for this operation
 	ContentType            string
 	PaginatedScorecardList *shared.PaginatedScorecardList
-	StatusCode             int
-	RawResponse            *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ScorecardsListResponse) GetContentType() string {

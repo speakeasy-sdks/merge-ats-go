@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type JobInterviewStagesRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *JobInterviewStagesRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // JobInterviewStagesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type JobInterviewStagesRetrieveExpand string
 
@@ -84,10 +73,13 @@ func (o *JobInterviewStagesRetrieveRequest) GetIncludeRemoteData() *bool {
 }
 
 type JobInterviewStagesRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType       string
 	JobInterviewStage *shared.JobInterviewStage
-	StatusCode        int
-	RawResponse       *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *JobInterviewStagesRetrieveResponse) GetContentType() string {

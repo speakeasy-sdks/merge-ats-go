@@ -6,17 +6,6 @@ import (
 	"net/http"
 )
 
-type DeleteAccountDeleteSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *DeleteAccountDeleteSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 type DeleteAccountDeleteRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
@@ -30,8 +19,11 @@ func (o *DeleteAccountDeleteRequest) GetXAccountToken() string {
 }
 
 type DeleteAccountDeleteResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

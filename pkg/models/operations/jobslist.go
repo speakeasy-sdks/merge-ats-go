@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type JobsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *JobsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // JobsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type JobsListExpand string
@@ -222,6 +212,17 @@ type JobsListRequest struct {
 	Status *JobsListStatus `queryParam:"style=form,explode=true,name=status"`
 }
 
+func (j JobsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JobsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *JobsListRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
@@ -335,10 +336,13 @@ func (o *JobsListRequest) GetStatus() *JobsListStatus {
 }
 
 type JobsListResponse struct {
+	// HTTP response content type for this operation
 	ContentType      string
 	PaginatedJobList *shared.PaginatedJobList
-	StatusCode       int
-	RawResponse      *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *JobsListResponse) GetContentType() string {

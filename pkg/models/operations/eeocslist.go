@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type EeocsListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *EeocsListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // EeocsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type EeocsListExpand string
@@ -211,6 +201,17 @@ type EeocsListRequest struct {
 	ShowEnumOrigins *EeocsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
+func (e EeocsListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EeocsListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *EeocsListRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
@@ -310,10 +311,13 @@ func (o *EeocsListRequest) GetShowEnumOrigins() *EeocsListShowEnumOrigins {
 }
 
 type EeocsListResponse struct {
+	// HTTP response content type for this operation
 	ContentType       string
 	PaginatedEEOCList *shared.PaginatedEEOCList
-	StatusCode        int
-	RawResponse       *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *EeocsListResponse) GetContentType() string {

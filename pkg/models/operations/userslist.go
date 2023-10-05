@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type UsersListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *UsersListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // UsersListRemoteFields - Deprecated. Use show_enum_origins.
 type UsersListRemoteFields string
@@ -98,6 +88,17 @@ type UsersListRequest struct {
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
 	ShowEnumOrigins *UsersListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+}
+
+func (u UsersListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UsersListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UsersListRequest) GetXAccountToken() string {
@@ -192,10 +193,13 @@ func (o *UsersListRequest) GetShowEnumOrigins() *UsersListShowEnumOrigins {
 }
 
 type UsersListResponse struct {
+	// HTTP response content type for this operation
 	ContentType             string
 	PaginatedRemoteUserList *shared.PaginatedRemoteUserList
-	StatusCode              int
-	RawResponse             *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *UsersListResponse) GetContentType() string {

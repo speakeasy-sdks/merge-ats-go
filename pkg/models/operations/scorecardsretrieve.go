@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type ScorecardsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ScorecardsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // ScorecardsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type ScorecardsRetrieveExpand string
 
@@ -170,9 +159,12 @@ func (o *ScorecardsRetrieveRequest) GetShowEnumOrigins() *ScorecardsRetrieveShow
 }
 
 type ScorecardsRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Scorecard   *shared.Scorecard
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

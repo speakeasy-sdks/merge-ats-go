@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type AttachmentsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *AttachmentsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // AttachmentsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type AttachmentsRetrieveExpand string
 
@@ -152,9 +141,12 @@ func (o *AttachmentsRetrieveRequest) GetShowEnumOrigins() *AttachmentsRetrieveSh
 }
 
 type AttachmentsRetrieveResponse struct {
-	Attachment  *shared.Attachment
+	Attachment *shared.Attachment
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

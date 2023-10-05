@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type UsersRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *UsersRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // UsersRetrieveRemoteFields - Deprecated. Use show_enum_origins.
 type UsersRetrieveRemoteFields string
 
@@ -118,9 +107,12 @@ func (o *UsersRetrieveRequest) GetShowEnumOrigins() *UsersRetrieveShowEnumOrigin
 }
 
 type UsersRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	RemoteUser  *shared.RemoteUser
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

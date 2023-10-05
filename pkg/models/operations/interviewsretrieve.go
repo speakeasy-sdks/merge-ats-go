@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type InterviewsRetrieveSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *InterviewsRetrieveSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
-
 // InterviewsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type InterviewsRetrieveExpand string
 
@@ -194,10 +183,13 @@ func (o *InterviewsRetrieveRequest) GetShowEnumOrigins() *InterviewsRetrieveShow
 }
 
 type InterviewsRetrieveResponse struct {
+	// HTTP response content type for this operation
 	ContentType        string
 	ScheduledInterview *shared.ScheduledInterview
-	StatusCode         int
-	RawResponse        *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *InterviewsRetrieveResponse) GetContentType() string {

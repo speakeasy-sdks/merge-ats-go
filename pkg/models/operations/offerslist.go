@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type OffersListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *OffersListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // OffersListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type OffersListExpand string
@@ -135,6 +125,17 @@ type OffersListRequest struct {
 	ShowEnumOrigins *OffersListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
+func (o OffersListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OffersListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *OffersListRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
@@ -241,10 +242,13 @@ func (o *OffersListRequest) GetShowEnumOrigins() *OffersListShowEnumOrigins {
 }
 
 type OffersListResponse struct {
+	// HTTP response content type for this operation
 	ContentType        string
 	PaginatedOfferList *shared.PaginatedOfferList
-	StatusCode         int
-	RawResponse        *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *OffersListResponse) GetContentType() string {

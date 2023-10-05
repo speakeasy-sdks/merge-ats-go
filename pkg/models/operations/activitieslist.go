@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type ActivitiesListSecurity struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
-}
-
-func (o *ActivitiesListSecurity) GetTokenAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.TokenAuth
-}
 
 // ActivitiesListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
 type ActivitiesListExpand string
@@ -139,6 +129,17 @@ type ActivitiesListRequest struct {
 	UserID *string `queryParam:"style=form,explode=true,name=user_id"`
 }
 
+func (a ActivitiesListRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ActivitiesListRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *ActivitiesListRequest) GetXAccountToken() string {
 	if o == nil {
 		return ""
@@ -238,10 +239,13 @@ func (o *ActivitiesListRequest) GetUserID() *string {
 }
 
 type ActivitiesListResponse struct {
+	// HTTP response content type for this operation
 	ContentType           string
 	PaginatedActivityList *shared.PaginatedActivityList
-	StatusCode            int
-	RawResponse           *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ActivitiesListResponse) GetContentType() string {
