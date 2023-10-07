@@ -21,7 +21,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -34,18 +33,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Users.List(ctx, operations.UsersListRequest{
         XAccountToken: "Northeast Metal Canada",
-        CreatedAfter: types.MustTimeFromString("2023-10-02T13:41:25.267Z"),
-        CreatedBefore: types.MustTimeFromString("2022-11-27T21:47:17.392Z"),
-        Cursor: mergeatsgo.String("Response West male"),
-        Email: mergeatsgo.String("Jayne_Bernhard@gmail.com"),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-09-05T09:00:22.788Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-07-13T07:43:19.370Z"),
-        PageSize: mergeatsgo.Int64(166320),
-        RemoteFields: operations.UsersListRemoteFieldsAccessRole.ToPointer(),
-        RemoteID: mergeatsgo.String("synergies backing"),
-        ShowEnumOrigins: operations.UsersListShowEnumOriginsAccessRole.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -98,9 +85,6 @@ func main() {
     res, err := s.Users.Retrieve(ctx, operations.UsersRetrieveRequest{
         XAccountToken: "tracksuit Markets",
         ID: "1081ad20-d604-4c8e-92b2-41fa379087a1",
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        RemoteFields: operations.UsersRetrieveRemoteFieldsAccessRole.ToPointer(),
-        ShowEnumOrigins: operations.UsersRetrieveShowEnumOriginsAccessRole.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

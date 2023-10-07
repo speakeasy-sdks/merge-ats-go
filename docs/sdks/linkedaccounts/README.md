@@ -30,21 +30,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.LinkedAccounts.List(ctx, operations.LinkedAccountsListRequest{
-        Category: operations.LinkedAccountsListCategoryMktg.ToPointer(),
-        Cursor: mergeatsgo.String("compress"),
-        EndUserEmailAddress: mergeatsgo.String("Canada that orchid"),
-        EndUserOrganizationName: mergeatsgo.String("West"),
-        EndUserOriginID: mergeatsgo.String("boil primary synthesize"),
-        EndUserOriginIds: mergeatsgo.String("hacking Paradigm"),
-        ID: mergeatsgo.String("08055574-19e7-490e-a720-55dd402eb66e"),
-        Ids: mergeatsgo.String("lavender Borders often"),
-        IncludeDuplicates: mergeatsgo.Bool(false),
-        IntegrationName: mergeatsgo.String("nor"),
-        IsTestAccount: mergeatsgo.String("Namibia Executive card"),
-        PageSize: mergeatsgo.Int64(841031),
-        Status: mergeatsgo.String("Account"),
-    })
+    res, err := s.LinkedAccounts.List(ctx, operations.LinkedAccountsListRequest{})
     if err != nil {
         log.Fatal(err)
     }

@@ -21,7 +21,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -30,7 +29,7 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Bicycle"
+    var xAccountToken string = "Bicycle"
 
     ctx := context.Background()
     res, err := s.SelectiveSync.List(ctx, xAccountToken)
@@ -71,7 +70,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -80,10 +78,10 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Borders"
-    commonModel := "Home"
-    cursor := "Country"
-    pageSize := 925730
+    var xAccountToken string = "Borders"
+    var commonModel *string = "Home"
+    var cursor *string = "Country"
+    var pageSize *int64 = 925730
 
     ctx := context.Background()
     res, err := s.SelectiveSync.RetrievePostMetadata(ctx, xAccountToken, commonModel, cursor, pageSize)
@@ -127,7 +125,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -149,7 +146,7 @@ func main() {
             },
         },
     }
-    xAccountToken := "guestbook"
+    var xAccountToken string = "guestbook"
 
     ctx := context.Background()
     res, err := s.SelectiveSync.Update(ctx, linkedAccountSelectiveSyncConfigurationListRequest, xAccountToken)

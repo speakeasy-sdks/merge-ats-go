@@ -21,7 +21,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -34,21 +33,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Scorecards.List(ctx, operations.ScorecardsListRequest{
         XAccountToken: "Northeast Metal Canada",
-        ApplicationID: mergeatsgo.String("Data Response West"),
-        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
-        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
-        Cursor: mergeatsgo.String("primary"),
-        Expand: operations.ScorecardsListExpandApplicationInterviewer.ToPointer(),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        InterviewID: mergeatsgo.String("generate orchid synergies"),
-        InterviewerID: mergeatsgo.String("Guyana empowering"),
-        ModifiedAfter: types.MustTimeFromString("2022-06-16T20:57:25.031Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-12-06T18:55:39.498Z"),
-        PageSize: mergeatsgo.Int64(73227),
-        RemoteFields: operations.ScorecardsListRemoteFieldsOverallRecommendation.ToPointer(),
-        RemoteID: mergeatsgo.String("gah accusantium"),
-        ShowEnumOrigins: operations.ScorecardsListShowEnumOriginsOverallRecommendation.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -100,11 +84,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Scorecards.Retrieve(ctx, operations.ScorecardsRetrieveRequest{
         XAccountToken: "tracksuit Markets",
-        Expand: operations.ScorecardsRetrieveExpandApplication.ToPointer(),
-        ID: "081ad20d-604c-48e9-ab24-1fa379087a15",
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        RemoteFields: operations.ScorecardsRetrieveRemoteFieldsOverallRecommendation.ToPointer(),
-        ShowEnumOrigins: operations.ScorecardsRetrieveShowEnumOriginsOverallRecommendation.ToPointer(),
+        ID: "1081ad20-d604-4c8e-92b2-41fa379087a1",
     })
     if err != nil {
         log.Fatal(err)

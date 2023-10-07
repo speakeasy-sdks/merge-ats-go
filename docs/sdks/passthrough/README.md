@@ -19,7 +19,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -29,10 +28,9 @@ func main() {
         }),
     )
     dataPassthroughRequest := shared.DataPassthroughRequest{
-        BaseURLOverride: mergeatsgo.String("bluetooth Extended"),
         Data: mergeatsgo.String("{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}"),
         Headers: map[string]interface{}{
-            "aspernatur": "blue",
+            "EXTRA-HEADER": "online",
         },
         Method: shared.DataPassthroughRequestMethodPost,
         MultipartFormData: []shared.MultipartFormFieldRequest{
@@ -44,11 +42,10 @@ func main() {
                 Name: "resume",
             },
         },
-        NormalizeResponse: mergeatsgo.Bool(false),
         Path: "/scooters",
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
-    xAccountToken := "shred"
+    var xAccountToken string = "Configuration"
 
     ctx := context.Background()
     res, err := s.Passthrough.Create(ctx, dataPassthroughRequest, xAccountToken)

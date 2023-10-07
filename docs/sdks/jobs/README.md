@@ -21,7 +21,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -34,21 +33,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Jobs.List(ctx, operations.JobsListRequest{
         XAccountToken: "Northeast Metal Canada",
-        Code: mergeatsgo.String("Data Response West"),
-        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
-        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
-        Cursor: mergeatsgo.String("primary"),
-        Expand: operations.JobsListExpandHiringManagers.ToPointer(),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2023-01-24T07:34:45.759Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-09-05T09:00:22.788Z"),
-        Offices: mergeatsgo.String("orchid synergies"),
-        PageSize: mergeatsgo.Int64(504966),
-        RemoteFields: operations.JobsListRemoteFieldsStatus.ToPointer(),
-        RemoteID: mergeatsgo.String("explicit"),
-        ShowEnumOrigins: operations.JobsListShowEnumOriginsStatus.ToPointer(),
-        Status: operations.JobsListStatusClosed.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -100,11 +84,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Jobs.Retrieve(ctx, operations.JobsRetrieveRequest{
         XAccountToken: "tracksuit Markets",
-        Expand: operations.JobsRetrieveExpandDepartmentsHiringManagers.ToPointer(),
-        ID: "081ad20d-604c-48e9-ab24-1fa379087a15",
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        RemoteFields: operations.JobsRetrieveRemoteFieldsStatus.ToPointer(),
-        ShowEnumOrigins: operations.JobsRetrieveShowEnumOriginsStatus.ToPointer(),
+        ID: "1081ad20-d604-4c8e-92b2-41fa379087a1",
     })
     if err != nil {
         log.Fatal(err)

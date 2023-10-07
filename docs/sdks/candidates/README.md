@@ -25,7 +25,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
@@ -38,10 +37,12 @@ func main() {
     candidateEndpointRequest := shared.CandidateEndpointRequest{
         Model: shared.CandidateRequest{
             Applications: []string{
-                "77ad642c-1fc6-4fe0-b241-bcdd89dc7fa5",
+                "29eb9867-ce2a-403f-b8ce-f2844b89f078",
+                "b4d08e5c-de00-4d64-a29f-66addac9af99",
+                "4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56",
             },
             Attachments: []string{
-                "04e08333-b1d5-4e26-9915-a25d0d9ea132",
+                "bea08964-32b4-4a20-8bb4-2612ba09de1d",
             },
             CanEmail: mergeatsgo.Bool(true),
             Company: mergeatsgo.String("Columbia Dining App."),
@@ -49,34 +50,36 @@ func main() {
                 shared.EmailAddressRequest{
                     EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                     IntegrationParams: map[string]interface{}{
-                        "aut": "or",
+                        "unique_integration_field": "online",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "quis": "Edinburg",
+                        "unique_linked_account_field": "Configuration",
                     },
                     Value: mergeatsgo.String("merge_is_hiring@merge.dev"),
                 },
             },
             FirstName: mergeatsgo.String("Gil"),
             IntegrationParams: map[string]interface{}{
-                "id": "Global",
+                "unique_integration_field": "Money",
             },
             IsPrivate: mergeatsgo.Bool(true),
             LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
             LastName: mergeatsgo.String("Feig"),
             LinkedAccountParams: map[string]interface{}{
-                "quisquam": "likewise",
+                "unique_linked_account_field": "blue",
             },
             Locations: []string{
-                "payment",
+                "San Francisco",
+                "New York",
+                "Miami",
             },
             PhoneNumbers: []shared.PhoneNumberRequest{
                 shared.PhoneNumberRequest{
                     IntegrationParams: map[string]interface{}{
-                        "ducimus": "Bicycle",
+                        "unique_integration_field": "shred",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "porro": "choke",
+                        "unique_linked_account_field": "abnormally",
                     },
                     PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
                     Value: mergeatsgo.String("+3198675309"),
@@ -84,27 +87,27 @@ func main() {
             },
             RemoteTemplateID: mergeatsgo.String("92830948203"),
             Tags: []string{
-                "Sausages",
+                "High-Priority",
             },
             Title: mergeatsgo.String("Software Engineer"),
             Urls: []shared.URLRequest{
                 shared.URLRequest{
                     IntegrationParams: map[string]interface{}{
-                        "porro": "round",
+                        "unique_integration_field": "deposit",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "odit": "Salad",
+                        "unique_linked_account_field": "evolve",
                     },
                     URLType: shared.URLRequestURLTypePersonal.ToPointer(),
                     Value: mergeatsgo.String("http://alturl.com/p749b"),
                 },
             },
         },
-        RemoteUserID: "incompatible overhang",
+        RemoteUserID: "fuchsia Gasoline Screen",
     }
-    xAccountToken := "Electronic"
-    isDebugMode := false
-    runAsync := false
+    var xAccountToken string = "mobile"
+    var isDebugMode *bool = false
+    var runAsync *bool = false
 
     ctx := context.Background()
     res, err := s.Candidates.Create(ctx, candidateEndpointRequest, xAccountToken, isDebugMode, runAsync)
@@ -148,7 +151,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -161,8 +163,8 @@ func main() {
         Message: mergeatsgo.String("deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"),
         Reason: shared.IgnoreCommonModelRequestReasonGeneralCustomerRequest,
     }
-    xAccountToken := "Bicycle"
-    modelID := "17a75bf5-7b4d-4567-8fdd-dc7d0884291f"
+    var xAccountToken string = "Bicycle"
+    var modelID string = "17a75bf5-7b4d-4567-8fdd-dc7d0884291f"
 
     ctx := context.Background()
     res, err := s.Candidates.IgnoreCreate(ctx, ignoreCommonModelRequest, xAccountToken, modelID)
@@ -206,7 +208,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -219,20 +220,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Candidates.List(ctx, operations.CandidatesListRequest{
         XAccountToken: "Northeast Metal Canada",
-        CreatedAfter: types.MustTimeFromString("2023-10-02T13:41:25.267Z"),
-        CreatedBefore: types.MustTimeFromString("2022-11-27T21:47:17.392Z"),
-        Cursor: mergeatsgo.String("Response West male"),
-        EmailAddresses: mergeatsgo.String("primary"),
-        Expand: operations.CandidatesListExpandApplicationsAttachments.ToPointer(),
-        FirstName: mergeatsgo.String("Martin"),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        LastName: mergeatsgo.String("Macejkovic"),
-        ModifiedAfter: types.MustTimeFromString("2022-07-13T07:43:19.370Z"),
-        ModifiedBefore: types.MustTimeFromString("2021-07-02T02:53:52.767Z"),
-        PageSize: mergeatsgo.Int64(633911),
-        RemoteID: mergeatsgo.String("South"),
-        Tags: mergeatsgo.String("explicit"),
     })
     if err != nil {
         log.Fatal(err)
@@ -280,10 +267,10 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "till"
-    id := "56591081-ad20-4d60-8c8e-92b241fa3790"
-    expand := operations.CandidatesRetrieveExpandApplicationsAttachments
-    includeRemoteData := false
+    var xAccountToken string = "till"
+    var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var expand *operations.CandidatesRetrieveExpand = operations.CandidatesRetrieveExpandApplicationsAttachments
+    var includeRemoteData *bool = false
 
     ctx := context.Background()
     res, err := s.Candidates.Retrieve(ctx, xAccountToken, id, expand, includeRemoteData)
@@ -327,7 +314,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -336,8 +322,8 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Cambridgeshire"
-    id := "4cbcd8c9-a865-4916-82a5-4bbda71d58ff"
+    var xAccountToken string = "Cambridgeshire"
+    var id string = "4cbcd8c9-a865-4916-82a5-4bbda71d58ff"
 
     ctx := context.Background()
     res, err := s.Candidates.RetrievePatchMetadata(ctx, xAccountToken, id)
@@ -379,7 +365,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -388,7 +373,7 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Borders"
+    var xAccountToken string = "Borders"
 
     ctx := context.Background()
     res, err := s.Candidates.RetrievePostMetadata(ctx, xAccountToken)
@@ -445,10 +430,12 @@ func main() {
         PatchedCandidateEndpointRequest: shared.PatchedCandidateEndpointRequest{
             Model: shared.PatchedCandidateRequest{
                 Applications: []string{
-                    "d0905bf4-aa77-4f20-8e77-54c352acfe54",
+                    "29eb9867-ce2a-403f-b8ce-f2844b89f078",
+                    "b4d08e5c-de00-4d64-a29f-66addac9af99",
+                    "4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56",
                 },
                 Attachments: []string{
-                    "077cabf6-805c-45ca-b187-14355ad7d4e1",
+                    "bea08964-32b4-4a20-8bb4-2612ba09de1d",
                 },
                 CanEmail: mergeatsgo.Bool(true),
                 Company: mergeatsgo.String("Columbia Dining App."),
@@ -456,34 +443,36 @@ func main() {
                     shared.EmailAddressRequest{
                         EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                         IntegrationParams: map[string]interface{}{
-                            "expedita": "frictionless",
+                            "unique_integration_field": "Van",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "dignissimos": "parse",
+                            "unique_linked_account_field": "East",
                         },
                         Value: mergeatsgo.String("merge_is_hiring@merge.dev"),
                     },
                 },
                 FirstName: mergeatsgo.String("Gil"),
                 IntegrationParams: map[string]interface{}{
-                    "occaecati": "Kia",
+                    "unique_integration_field": "male",
                 },
                 IsPrivate: mergeatsgo.Bool(true),
                 LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
                 LastName: mergeatsgo.String("Feig"),
                 LinkedAccountParams: map[string]interface{}{
-                    "vel": "Diesel",
+                    "unique_linked_account_field": "Metal",
                 },
                 Locations: []string{
-                    "Avon",
+                    "San Francisco",
+                    "New York",
+                    "Miami",
                 },
                 PhoneNumbers: []shared.PhoneNumberRequest{
                     shared.PhoneNumberRequest{
                         IntegrationParams: map[string]interface{}{
-                            "sed": "hungrily",
+                            "unique_integration_field": "cheater",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "facilis": "Global",
+                            "unique_linked_account_field": "Islands",
                         },
                         PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
                         Value: mergeatsgo.String("+3198675309"),
@@ -491,28 +480,26 @@ func main() {
                 },
                 RemoteTemplateID: mergeatsgo.String("92830948203"),
                 Tags: []string{
-                    "Northeast",
+                    "High-Priority",
                 },
                 Title: mergeatsgo.String("Software Engineer"),
                 Urls: []shared.URLRequest{
                     shared.URLRequest{
                         IntegrationParams: map[string]interface{}{
-                            "omnis": "absolve",
+                            "unique_integration_field": "online",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "veritatis": "ADP",
+                            "unique_linked_account_field": "dynamic",
                         },
                         URLType: shared.URLRequestURLTypePersonal.ToPointer(),
                         Value: mergeatsgo.String("http://alturl.com/p749b"),
                     },
                 },
             },
-            RemoteUserID: "quisquam",
+            RemoteUserID: "Plastic Carolina syndicate",
         },
-        XAccountToken: "deliverables Ergonomic Money",
-        ID: "ba6ff676-e456-4fd9-aedf-b53dab384135",
-        IsDebugMode: mergeatsgo.Bool(false),
-        RunAsync: mergeatsgo.Bool(false),
+        XAccountToken: "implement JBOD",
+        ID: "cabf6805-c5ca-4718-b143-55ad7d4e1b58",
     })
     if err != nil {
         log.Fatal(err)

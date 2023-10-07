@@ -22,7 +22,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -38,17 +37,17 @@ func main() {
             FileName: mergeatsgo.String("Candidate Resume"),
             FileURL: mergeatsgo.String("http://alturl.com/p749b"),
             IntegrationParams: map[string]interface{}{
-                "odio": "bluetooth",
+                "unique_integration_field": "online",
             },
             LinkedAccountParams: map[string]interface{}{
-                "nulla": "Money",
+                "unique_linked_account_field": "Configuration",
             },
         },
-        RemoteUserID: "Cambridgeshire grey technology",
+        RemoteUserID: "innovative blue",
     }
-    xAccountToken := "East"
-    isDebugMode := false
-    runAsync := false
+    var xAccountToken string = "shred"
+    var isDebugMode *bool = false
+    var runAsync *bool = false
 
     ctx := context.Background()
     res, err := s.Attachments.Create(ctx, attachmentEndpointRequest, xAccountToken, isDebugMode, runAsync)
@@ -93,7 +92,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -106,19 +104,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Attachments.List(ctx, operations.AttachmentsListRequest{
         XAccountToken: "Northeast Metal Canada",
-        CandidateID: mergeatsgo.String("Data Response West"),
-        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
-        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
-        Cursor: mergeatsgo.String("primary"),
-        Expand: operations.AttachmentsListExpandCandidate.ToPointer(),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2022-09-01T09:24:49.063Z"),
-        ModifiedBefore: types.MustTimeFromString("2023-01-24T07:34:45.759Z"),
-        PageSize: mergeatsgo.Int64(559247),
-        RemoteFields: operations.AttachmentsListRemoteFieldsAttachmentType.ToPointer(),
-        RemoteID: mergeatsgo.String("orchid synergies"),
-        ShowEnumOrigins: operations.AttachmentsListShowEnumOriginsAttachmentType.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -170,11 +155,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Attachments.Retrieve(ctx, operations.AttachmentsRetrieveRequest{
         XAccountToken: "tracksuit Markets",
-        Expand: operations.AttachmentsRetrieveExpandCandidate.ToPointer(),
         ID: "1081ad20-d604-4c8e-92b2-41fa379087a1",
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        RemoteFields: operations.AttachmentsRetrieveRemoteFieldsAttachmentType.ToPointer(),
-        ShowEnumOrigins: operations.AttachmentsRetrieveShowEnumOriginsAttachmentType.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -213,7 +194,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -222,7 +202,7 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Borders"
+    var xAccountToken string = "Borders"
 
     ctx := context.Background()
     res, err := s.Attachments.RetrievePostMetadata(ctx, xAccountToken)

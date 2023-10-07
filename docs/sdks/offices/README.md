@@ -21,7 +21,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -34,15 +33,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Offices.List(ctx, operations.OfficesListRequest{
         XAccountToken: "Northeast Metal Canada",
-        CreatedAfter: types.MustTimeFromString("2023-10-02T13:41:25.267Z"),
-        CreatedBefore: types.MustTimeFromString("2022-11-27T21:47:17.392Z"),
-        Cursor: mergeatsgo.String("Response West male"),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2021-04-05T07:45:35.369Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-06-14T06:59:01.434Z"),
-        PageSize: mergeatsgo.Int64(68504),
-        RemoteID: mergeatsgo.String("Designer hacking"),
     })
     if err != nil {
         log.Fatal(err)
@@ -81,7 +71,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -90,9 +79,9 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "till"
-    id := "56591081-ad20-4d60-8c8e-92b241fa3790"
-    includeRemoteData := false
+    var xAccountToken string = "till"
+    var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var includeRemoteData *bool = false
 
     ctx := context.Background()
     res, err := s.Offices.Retrieve(ctx, xAccountToken, id, includeRemoteData)

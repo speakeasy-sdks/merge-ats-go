@@ -23,7 +23,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
@@ -40,22 +39,22 @@ func main() {
             CreditedTo: mergeatsgo.String("58166795-8d68-4b30-9bfb-bfd402479484"),
             CurrentStage: mergeatsgo.String("d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea"),
             IntegrationParams: map[string]interface{}{
-                "odio": "bluetooth",
+                "unique_integration_field": "online",
             },
             Job: mergeatsgo.String("52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633"),
             LinkedAccountParams: map[string]interface{}{
-                "nulla": "Money",
+                "unique_linked_account_field": "Configuration",
             },
             RejectReason: mergeatsgo.String("59b25f2b-da02-40f5-9656-9fa0db555784"),
             RejectedAt: types.MustTimeFromString("2021-11-15T00:00:00Z"),
             RemoteTemplateID: mergeatsgo.String("92830948203"),
             Source: mergeatsgo.String("Campus recruiting event"),
         },
-        RemoteUserID: "Cambridgeshire grey technology",
+        RemoteUserID: "innovative blue",
     }
-    xAccountToken := "East"
-    isDebugMode := false
-    runAsync := false
+    var xAccountToken string = "shred"
+    var isDebugMode *bool = false
+    var runAsync *bool = false
 
     ctx := context.Background()
     res, err := s.Applications.Create(ctx, applicationEndpointRequest, xAccountToken, isDebugMode, runAsync)
@@ -100,7 +99,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -113,22 +111,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Applications.List(ctx, operations.ApplicationsListRequest{
         XAccountToken: "Northeast Metal Canada",
-        CandidateID: mergeatsgo.String("Data Response West"),
-        CreatedAfter: types.MustTimeFromString("2023-02-26T13:00:25.189Z"),
-        CreatedBefore: types.MustTimeFromString("2023-12-20T19:28:33.339Z"),
-        CreditedToID: mergeatsgo.String("primary"),
-        CurrentStageID: mergeatsgo.String("Designer hacking"),
-        Cursor: mergeatsgo.String("synergies backing"),
-        Expand: operations.ApplicationsListExpandCandidateJobCreditedToRejectReason.ToPointer(),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        JobID: mergeatsgo.String("virtual"),
-        ModifiedAfter: types.MustTimeFromString("2021-03-22T04:25:28.253Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-09-19T00:01:59.827Z"),
-        PageSize: mergeatsgo.Int64(931165),
-        RejectReasonID: mergeatsgo.String("accusantium defensive"),
-        RemoteID: mergeatsgo.String("green Smart"),
-        Source: mergeatsgo.String("North"),
     })
     if err != nil {
         log.Fatal(err)
@@ -176,10 +158,10 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "till"
-    id := "56591081-ad20-4d60-8c8e-92b241fa3790"
-    expand := operations.ApplicationsRetrieveExpandCreditedTo
-    includeRemoteData := false
+    var xAccountToken string = "till"
+    var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var expand *operations.ApplicationsRetrieveExpand = operations.ApplicationsRetrieveExpandCreditedTo
+    var includeRemoteData *bool = false
 
     ctx := context.Background()
     res, err := s.Applications.Retrieve(ctx, xAccountToken, id, expand, includeRemoteData)
@@ -223,7 +205,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -232,8 +213,8 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Borders"
-    applicationRemoteTemplateID := "Home"
+    var xAccountToken string = "Borders"
+    var applicationRemoteTemplateID *string = "Home"
 
     ctx := context.Background()
     res, err := s.Applications.RetrievePostMetadata(ctx, xAccountToken, applicationRemoteTemplateID)
@@ -287,14 +268,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Applications.UpdateChangeState(ctx, operations.ApplicationsChangeStageCreateRequest{
-        UpdateApplicationStageRequest: &shared.UpdateApplicationStageRequest{
-            JobInterviewStage: mergeatsgo.String("c8893fee-92d0-4f72-9f7b-bfee92506581"),
-            RemoteUserID: mergeatsgo.String("Nissan Dollar"),
-        },
-        XAccountToken: "Internal",
-        ID: "ed279139-548e-4b48-9cd8-42f688a13cc6",
-        IsDebugMode: mergeatsgo.Bool(false),
-        RunAsync: mergeatsgo.Bool(false),
+        UpdateApplicationStageRequest: &shared.UpdateApplicationStageRequest{},
+        XAccountToken: "firewall amet supersized",
+        ID: "e92d0f72-1f7b-4bfe-a925-065816db61a2",
     })
     if err != nil {
         log.Fatal(err)

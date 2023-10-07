@@ -20,7 +20,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -32,9 +31,8 @@ func main() {
     webhookReceiverRequest := shared.WebhookReceiverRequest{
         Event: "bluetooth Extended",
         IsActive: false,
-        Key: mergeatsgo.String("<key>"),
     }
-    xAccountToken := "South"
+    var xAccountToken string = "South"
 
     ctx := context.Background()
     res, err := s.WebhookReceivers.Create(ctx, webhookReceiverRequest, xAccountToken)
@@ -76,7 +74,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -85,7 +82,7 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Bicycle"
+    var xAccountToken string = "Bicycle"
 
     ctx := context.Background()
     res, err := s.WebhookReceivers.List(ctx, xAccountToken)

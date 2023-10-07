@@ -21,7 +21,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -34,17 +33,6 @@ func main() {
     ctx := context.Background()
     res, err := s.JobInterviewStages.List(ctx, operations.JobInterviewStagesListRequest{
         XAccountToken: "Northeast Metal Canada",
-        CreatedAfter: types.MustTimeFromString("2023-10-02T13:41:25.267Z"),
-        CreatedBefore: types.MustTimeFromString("2022-11-27T21:47:17.392Z"),
-        Cursor: mergeatsgo.String("Response West male"),
-        Expand: operations.JobInterviewStagesListExpandJob.ToPointer(),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        JobID: mergeatsgo.String("primary"),
-        ModifiedAfter: types.MustTimeFromString("2022-09-01T09:24:49.063Z"),
-        ModifiedBefore: types.MustTimeFromString("2023-01-24T07:34:45.759Z"),
-        PageSize: mergeatsgo.Int64(559247),
-        RemoteID: mergeatsgo.String("orchid synergies"),
     })
     if err != nil {
         log.Fatal(err)
@@ -92,10 +80,10 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "till"
-    id := "56591081-ad20-4d60-8c8e-92b241fa3790"
-    expand := operations.JobInterviewStagesRetrieveExpandJob
-    includeRemoteData := false
+    var xAccountToken string = "till"
+    var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var expand *operations.JobInterviewStagesRetrieveExpand = operations.JobInterviewStagesRetrieveExpandJob
+    var includeRemoteData *bool = false
 
     ctx := context.Background()
     res, err := s.JobInterviewStages.Retrieve(ctx, xAccountToken, id, expand, includeRemoteData)

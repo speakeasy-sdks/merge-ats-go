@@ -19,7 +19,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -28,9 +27,9 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Bicycle"
-    cursor := "Metal"
-    pageSize := 297548
+    var xAccountToken string = "Bicycle"
+    var cursor *string = "Metal"
+    var pageSize *int64 = 297548
 
     ctx := context.Background()
     res, err := s.SyncStatus.List(ctx, xAccountToken, cursor, pageSize)

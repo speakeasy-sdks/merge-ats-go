@@ -19,7 +19,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -28,7 +27,7 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "throw"
+    var xAccountToken string = "throw"
 
     ctx := context.Background()
     res, err := s.DeleteAccount.DeleteAccountDelete(ctx, xAccountToken)

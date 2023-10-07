@@ -36,20 +36,18 @@ func main() {
         CommonModels: []shared.CommonModelScopesBodyRequest{
             shared.CommonModelScopesBodyRequest{
                 DisabledFields: []string{
-                    "bluetooth",
+                    "first_name",
                 },
                 EnabledActions: []shared.EnabledActionsEnum{
+                    shared.EnabledActionsEnumRead,
                     shared.EnabledActionsEnumWrite,
                 },
                 ModelID: "hris.Employee",
             },
         },
-        EndUserEmailAddress: "innovative blue",
-        EndUserOrganizationName: "grey technology East",
-        EndUserOriginID: "evolve",
-        Integration: mergeatsgo.String("fuchsia Gasoline Screen"),
-        LinkExpiryMins: mergeatsgo.Int64(491570),
-        ShouldCreateMagicLinkURL: mergeatsgo.Bool(false),
+        EndUserEmailAddress: "Configuration Money",
+        EndUserOrganizationName: "Cambridgeshire grey technology",
+        EndUserOriginID: "deposit",
     })
     if err != nil {
         log.Fatal(err)

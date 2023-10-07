@@ -21,7 +21,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -32,21 +31,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Issues.List(ctx, operations.IssuesListRequest{
-        AccountToken: mergeatsgo.String("Northeast Metal Canada"),
-        Cursor: mergeatsgo.String("Data Response West"),
-        EndDate: mergeatsgo.String("boil primary synthesize"),
-        EndUserOrganizationName: mergeatsgo.String("hacking Paradigm"),
-        FirstIncidentTimeAfter: types.MustTimeFromString("2021-01-09T04:15:41.822Z"),
-        FirstIncidentTimeBefore: types.MustTimeFromString("2022-07-07T22:30:40.342Z"),
-        IncludeMuted: mergeatsgo.String("explicit"),
-        IntegrationName: mergeatsgo.String("virtual"),
-        LastIncidentTimeAfter: types.MustTimeFromString("2021-03-22T04:25:28.253Z"),
-        LastIncidentTimeBefore: types.MustTimeFromString("2022-09-19T00:01:59.827Z"),
-        PageSize: mergeatsgo.Int64(931165),
-        StartDate: mergeatsgo.String("accusantium defensive"),
-        Status: operations.IssuesListStatusOngoing.ToPointer(),
-    })
+    res, err := s.Issues.List(ctx, operations.IssuesListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -84,7 +69,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -93,7 +77,7 @@ func main() {
             TokenAuth: "",
         }),
     )
-    id := "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
+    var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
     ctx := context.Background()
     res, err := s.Issues.Retrieve(ctx, id)

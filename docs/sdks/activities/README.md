@@ -22,7 +22,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -37,20 +36,20 @@ func main() {
             Body: mergeatsgo.String("Candidate loves integrations!!."),
             Candidate: mergeatsgo.String("03455bc6-6040-430a-848e-aafacbfdf4fg"),
             IntegrationParams: map[string]interface{}{
-                "odio": "bluetooth",
+                "unique_integration_field": "online",
             },
             LinkedAccountParams: map[string]interface{}{
-                "nulla": "Money",
+                "unique_linked_account_field": "Configuration",
             },
             Subject: mergeatsgo.String("Gil Feig's interview"),
             User: mergeatsgo.String("9d892439-5fab-4dbb-8bd8-34f7f96c7912"),
             Visibility: shared.ActivityRequestVisibilityPrivate.ToPointer(),
         },
-        RemoteUserID: "Cambridgeshire grey technology",
+        RemoteUserID: "innovative blue",
     }
-    xAccountToken := "East"
-    isDebugMode := false
-    runAsync := false
+    var xAccountToken string = "shred"
+    var isDebugMode *bool = false
+    var runAsync *bool = false
 
     ctx := context.Background()
     res, err := s.Activities.Create(ctx, activityEndpointRequest, xAccountToken, isDebugMode, runAsync)
@@ -95,7 +94,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
@@ -108,19 +106,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Activities.List(ctx, operations.ActivitiesListRequest{
         XAccountToken: "Northeast Metal Canada",
-        CreatedAfter: types.MustTimeFromString("2023-10-02T13:41:25.267Z"),
-        CreatedBefore: types.MustTimeFromString("2022-11-27T21:47:17.392Z"),
-        Cursor: mergeatsgo.String("Response West male"),
-        Expand: operations.ActivitiesListExpandUser.ToPointer(),
-        IncludeDeletedData: mergeatsgo.Bool(false),
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        ModifiedAfter: types.MustTimeFromString("2021-04-05T07:45:35.369Z"),
-        ModifiedBefore: types.MustTimeFromString("2022-06-14T06:59:01.434Z"),
-        PageSize: mergeatsgo.Int64(68504),
-        RemoteFields: operations.ActivitiesListRemoteFieldsActivityTypeVisibility.ToPointer(),
-        RemoteID: mergeatsgo.String("generate orchid synergies"),
-        ShowEnumOrigins: operations.ActivitiesListShowEnumOriginsActivityTypeVisibility.ToPointer(),
-        UserID: mergeatsgo.String("explicit"),
     })
     if err != nil {
         log.Fatal(err)
@@ -172,11 +157,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Activities.Retrieve(ctx, operations.ActivitiesRetrieveRequest{
         XAccountToken: "tracksuit Markets",
-        Expand: operations.ActivitiesRetrieveExpandUser.ToPointer(),
         ID: "1081ad20-d604-4c8e-92b2-41fa379087a1",
-        IncludeRemoteData: mergeatsgo.Bool(false),
-        RemoteFields: operations.ActivitiesRetrieveRemoteFieldsActivityType.ToPointer(),
-        ShowEnumOrigins: operations.ActivitiesRetrieveShowEnumOriginsActivityType.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -215,7 +196,6 @@ import(
 	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
@@ -224,7 +204,7 @@ func main() {
             TokenAuth: "",
         }),
     )
-    xAccountToken := "Borders"
+    var xAccountToken string = "Borders"
 
     ctx := context.Background()
     res, err := s.Activities.RetrievePostMetadata(ctx, xAccountToken)
