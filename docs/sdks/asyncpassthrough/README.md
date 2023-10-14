@@ -24,10 +24,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     dataPassthroughRequest := shared.DataPassthroughRequest{
         Data: mergeatsgo.String("{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}"),
         Headers: map[string]interface{}{
@@ -46,6 +46,7 @@ func main() {
         Path: "/scooters",
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
+
     var xAccountToken string = "Configuration"
 
     ctx := context.Background()
@@ -92,11 +93,12 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "till"
+
     var asyncPassthroughReceiptID string = "56591081-ad20-4d60-8c8e-92b241fa3790"
 
     ctx := context.Background()

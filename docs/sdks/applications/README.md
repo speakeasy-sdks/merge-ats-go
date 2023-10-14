@@ -28,10 +28,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     applicationEndpointRequest := shared.ApplicationEndpointRequest{
         Model: shared.ApplicationRequest{
             AppliedAt: types.MustTimeFromString("2021-10-15T00:00:00Z"),
@@ -52,8 +52,11 @@ func main() {
         },
         RemoteUserID: "innovative blue",
     }
+
     var xAccountToken string = "shred"
+
     var isDebugMode *bool = false
+
     var runAsync *bool = false
 
     ctx := context.Background()
@@ -103,9 +106,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -154,13 +155,16 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "till"
+
     var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+
     var expand *operations.ApplicationsRetrieveExpand = operations.ApplicationsRetrieveExpandCreditedTo
+
     var includeRemoteData *bool = false
 
     ctx := context.Background()
@@ -209,11 +213,12 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Borders"
+
     var applicationRemoteTemplateID *string = "Home"
 
     ctx := context.Background()
@@ -261,9 +266,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()

@@ -25,9 +25,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -76,13 +74,16 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "till"
+
     var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+
     var expand *operations.JobInterviewStagesRetrieveExpand = operations.JobInterviewStagesRetrieveExpandJob
+
     var includeRemoteData *bool = false
 
     ctx := context.Background()

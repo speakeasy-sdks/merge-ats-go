@@ -23,10 +23,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "online"
 
     ctx := context.Background()

@@ -30,10 +30,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     candidateEndpointRequest := shared.CandidateEndpointRequest{
         Model: shared.CandidateRequest{
             Applications: []string{
@@ -105,8 +105,11 @@ func main() {
         },
         RemoteUserID: "fuchsia Gasoline Screen",
     }
+
     var xAccountToken string = "mobile"
+
     var isDebugMode *bool = false
+
     var runAsync *bool = false
 
     ctx := context.Background()
@@ -155,15 +158,17 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     ignoreCommonModelRequest := shared.IgnoreCommonModelRequest{
         Message: mergeatsgo.String("deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"),
         Reason: shared.IgnoreCommonModelRequestReasonGeneralCustomerRequest,
     }
+
     var xAccountToken string = "Bicycle"
+
     var modelID string = "17a75bf5-7b4d-4567-8fdd-dc7d0884291f"
 
     ctx := context.Background()
@@ -212,9 +217,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -263,13 +266,16 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "till"
+
     var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+
     var expand *operations.CandidatesRetrieveExpand = operations.CandidatesRetrieveExpandApplicationsAttachments
+
     var includeRemoteData *bool = false
 
     ctx := context.Background()
@@ -318,11 +324,12 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Cambridgeshire"
+
     var id string = "4cbcd8c9-a865-4916-82a5-4bbda71d58ff"
 
     ctx := context.Background()
@@ -369,10 +376,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Borders"
 
     ctx := context.Background()
@@ -420,9 +427,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()

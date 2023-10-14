@@ -25,10 +25,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Bicycle"
 
     ctx := context.Background()
@@ -74,13 +74,16 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Borders"
+
     var commonModel *string = "Home"
+
     var cursor *string = "Country"
+
     var pageSize *int64 = 925730
 
     ctx := context.Background()
@@ -129,10 +132,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     linkedAccountSelectiveSyncConfigurationListRequest := shared.LinkedAccountSelectiveSyncConfigurationListRequest{
         SyncConfigurations: []shared.LinkedAccountSelectiveSyncConfigurationRequest{
             shared.LinkedAccountSelectiveSyncConfigurationRequest{
@@ -146,6 +149,7 @@ func main() {
             },
         },
     }
+
     var xAccountToken string = "guestbook"
 
     ctx := context.Background()

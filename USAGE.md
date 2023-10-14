@@ -4,30 +4,30 @@
 ```go
 package main
 
-import(
+import (
 	"context"
-	"log"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
-    )
-    var xAccountToken string = "till"
+	s := mergeatsgo.New(
+		mergeatsgo.WithSecurity(""),
+	)
 
-    ctx := context.Background()
-    res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)
-    if err != nil {
-        log.Fatal(err)
-    }
+	var xAccountToken string = "till"
 
-    if res.AccountDetails != nil {
-        // handle response
-    }
+	ctx := context.Background()
+	res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.AccountDetails != nil {
+		// handle response
+	}
 }
+
 ```
 <!-- End SDK Example Usage -->

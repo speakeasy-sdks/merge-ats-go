@@ -23,12 +23,14 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Bicycle"
+
     var cursor *string = "Metal"
+
     var pageSize *int64 = 297548
 
     ctx := context.Background()

@@ -24,14 +24,15 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     webhookReceiverRequest := shared.WebhookReceiverRequest{
         Event: "bluetooth Extended",
         IsActive: false,
     }
+
     var xAccountToken string = "South"
 
     ctx := context.Background()
@@ -78,10 +79,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Bicycle"
 
     ctx := context.Background()

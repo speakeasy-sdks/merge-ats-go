@@ -27,10 +27,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     scheduledInterviewEndpointRequest := shared.ScheduledInterviewEndpointRequest{
         Model: shared.ScheduledInterviewRequest{
             Application: mergeatsgo.String("92e8a369-fffe-430d-b93a-f7e8a16563f1"),
@@ -53,8 +53,11 @@ func main() {
         },
         RemoteUserID: "innovative blue",
     }
+
     var xAccountToken string = "shred"
+
     var isDebugMode *bool = false
+
     var runAsync *bool = false
 
     ctx := context.Background()
@@ -104,9 +107,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -155,9 +156,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -206,10 +205,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Borders"
 
     ctx := context.Background()

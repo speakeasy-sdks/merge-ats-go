@@ -23,10 +23,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     dataPassthroughRequest := shared.DataPassthroughRequest{
         Data: mergeatsgo.String("{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}"),
         Headers: map[string]interface{}{
@@ -45,6 +45,7 @@ func main() {
         Path: "/scooters",
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
+
     var xAccountToken string = "Configuration"
 
     ctx := context.Background()

@@ -26,10 +26,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     activityEndpointRequest := shared.ActivityEndpointRequest{
         Model: shared.ActivityRequest{
             ActivityType: shared.ActivityRequestActivityTypeNote.ToPointer(),
@@ -47,8 +47,11 @@ func main() {
         },
         RemoteUserID: "innovative blue",
     }
+
     var xAccountToken string = "shred"
+
     var isDebugMode *bool = false
+
     var runAsync *bool = false
 
     ctx := context.Background()
@@ -98,9 +101,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -149,9 +150,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -200,10 +199,10 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(shared.Security{
-            TokenAuth: "",
-        }),
+        mergeatsgo.WithSecurity(""),
     )
+
+
     var xAccountToken string = "Borders"
 
     ctx := context.Background()
