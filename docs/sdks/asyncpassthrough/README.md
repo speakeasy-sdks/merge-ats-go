@@ -31,7 +31,7 @@ func main() {
     dataPassthroughRequest := shared.DataPassthroughRequest{
         Data: mergeatsgo.String("{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}"),
         Headers: map[string]interface{}{
-            "EXTRA-HEADER": "online",
+            "EXTRA-HEADER": "string",
         },
         Method: shared.DataPassthroughRequestMethodPost,
         MultipartFormData: []shared.MultipartFormFieldRequest{
@@ -47,7 +47,7 @@ func main() {
         RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
     }
 
-    var xAccountToken string = "Configuration"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.AsyncPassthrough.Create(ctx, dataPassthroughRequest, xAccountToken)
@@ -97,9 +97,9 @@ func main() {
     )
 
 
-    var xAccountToken string = "till"
+    var xAccountToken string = "string"
 
-    var asyncPassthroughReceiptID string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var asyncPassthroughReceiptID string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
     ctx := context.Background()
     res, err := s.AsyncPassthrough.Retrieve(ctx, xAccountToken, asyncPassthroughReceiptID)

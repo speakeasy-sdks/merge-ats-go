@@ -39,21 +39,21 @@ func main() {
             CreditedTo: mergeatsgo.String("58166795-8d68-4b30-9bfb-bfd402479484"),
             CurrentStage: mergeatsgo.String("d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "online",
+                "unique_integration_field": "string",
             },
             Job: mergeatsgo.String("52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633"),
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "Configuration",
+                "unique_linked_account_field": "string",
             },
             RejectReason: mergeatsgo.String("59b25f2b-da02-40f5-9656-9fa0db555784"),
             RejectedAt: types.MustTimeFromString("2021-11-15T00:00:00Z"),
             RemoteTemplateID: mergeatsgo.String("92830948203"),
             Source: mergeatsgo.String("Campus recruiting event"),
         },
-        RemoteUserID: "innovative blue",
+        RemoteUserID: "string",
     }
 
-    var xAccountToken string = "shred"
+    var xAccountToken string = "string"
 
     var isDebugMode *bool = false
 
@@ -111,7 +111,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Applications.List(ctx, operations.ApplicationsListRequest{
-        XAccountToken: "Northeast Metal Canada",
+        XAccountToken: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -159,11 +159,11 @@ func main() {
     )
 
 
-    var xAccountToken string = "till"
+    var xAccountToken string = "string"
 
-    var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
-    var expand *operations.ApplicationsRetrieveExpand = operations.ApplicationsRetrieveExpandCreditedTo
+    var expand *operations.ApplicationsRetrieveExpand = operations.ApplicationsRetrieveExpandCandidateCurrentStageRejectReason
 
     var includeRemoteData *bool = false
 
@@ -217,9 +217,9 @@ func main() {
     )
 
 
-    var xAccountToken string = "Borders"
+    var xAccountToken string = "string"
 
-    var applicationRemoteTemplateID *string = "Home"
+    var applicationRemoteTemplateID *string = "string"
 
     ctx := context.Background()
     res, err := s.Applications.RetrievePostMetadata(ctx, xAccountToken, applicationRemoteTemplateID)
@@ -272,8 +272,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Applications.UpdateChangeState(ctx, operations.ApplicationsChangeStageCreateRequest{
         UpdateApplicationStageRequest: &shared.UpdateApplicationStageRequest{},
-        XAccountToken: "firewall amet supersized",
-        ID: "e92d0f72-1f7b-4bfe-a925-065816db61a2",
+        XAccountToken: "string",
+        ID: "c8893fee-92d0-4f72-9f7b-bfee92506581",
     })
     if err != nil {
         log.Fatal(err)

@@ -27,7 +27,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "till"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.AvailableActions.Retrieve(ctx, xAccountToken)

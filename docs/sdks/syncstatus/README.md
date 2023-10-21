@@ -27,11 +27,11 @@ func main() {
     )
 
 
-    var xAccountToken string = "Bicycle"
+    var xAccountToken string = "string"
 
-    var cursor *string = "Metal"
+    var cursor *string = "string"
 
-    var pageSize *int64 = 297548
+    var pageSize *int64 = 768578
 
     ctx := context.Background()
     res, err := s.SyncStatus.List(ctx, xAccountToken, cursor, pageSize)

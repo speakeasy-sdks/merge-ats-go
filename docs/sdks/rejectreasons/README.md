@@ -30,7 +30,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.RejectReasons.List(ctx, operations.RejectReasonsListRequest{
-        XAccountToken: "Northeast Metal Canada",
+        XAccountToken: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -77,9 +77,9 @@ func main() {
     )
 
 
-    var xAccountToken string = "till"
+    var xAccountToken string = "string"
 
-    var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
     var includeRemoteData *bool = false
 

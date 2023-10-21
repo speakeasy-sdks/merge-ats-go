@@ -50,23 +50,23 @@ func main() {
                 shared.EmailAddressRequest{
                     EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                     IntegrationParams: map[string]interface{}{
-                        "unique_integration_field": "online",
+                        "unique_integration_field": "string",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "unique_linked_account_field": "Configuration",
+                        "unique_linked_account_field": "string",
                     },
                     Value: mergeatsgo.String("merge_is_hiring@merge.dev"),
                 },
             },
             FirstName: mergeatsgo.String("Gil"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "Money",
+                "unique_integration_field": "string",
             },
             IsPrivate: mergeatsgo.Bool(true),
             LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
             LastName: mergeatsgo.String("Feig"),
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "blue",
+                "unique_linked_account_field": "string",
             },
             Locations: []string{
                 "San Francisco",
@@ -76,10 +76,10 @@ func main() {
             PhoneNumbers: []shared.PhoneNumberRequest{
                 shared.PhoneNumberRequest{
                     IntegrationParams: map[string]interface{}{
-                        "unique_integration_field": "shred",
+                        "unique_integration_field": "string",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "unique_linked_account_field": "abnormally",
+                        "unique_linked_account_field": "string",
                     },
                     PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
                     Value: mergeatsgo.String("+3198675309"),
@@ -93,20 +93,20 @@ func main() {
             Urls: []shared.URLRequest{
                 shared.URLRequest{
                     IntegrationParams: map[string]interface{}{
-                        "unique_integration_field": "deposit",
+                        "unique_integration_field": "string",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "unique_linked_account_field": "evolve",
+                        "unique_linked_account_field": "string",
                     },
                     URLType: shared.URLRequestURLTypePersonal.ToPointer(),
                     Value: mergeatsgo.String("http://alturl.com/p749b"),
                 },
             },
         },
-        RemoteUserID: "fuchsia Gasoline Screen",
+        RemoteUserID: "string",
     }
 
-    var xAccountToken string = "mobile"
+    var xAccountToken string = "string"
 
     var isDebugMode *bool = false
 
@@ -167,9 +167,9 @@ func main() {
         Reason: shared.IgnoreCommonModelRequestReasonGeneralCustomerRequest,
     }
 
-    var xAccountToken string = "Bicycle"
+    var xAccountToken string = "string"
 
-    var modelID string = "17a75bf5-7b4d-4567-8fdd-dc7d0884291f"
+    var modelID string = "c7c17a75-bf57-4b4d-967c-fdddc7d08842"
 
     ctx := context.Background()
     res, err := s.Candidates.IgnoreCreate(ctx, ignoreCommonModelRequest, xAccountToken, modelID)
@@ -222,7 +222,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Candidates.List(ctx, operations.CandidatesListRequest{
-        XAccountToken: "Northeast Metal Canada",
+        XAccountToken: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -270,11 +270,11 @@ func main() {
     )
 
 
-    var xAccountToken string = "till"
+    var xAccountToken string = "string"
 
-    var id string = "56591081-ad20-4d60-8c8e-92b241fa3790"
+    var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
-    var expand *operations.CandidatesRetrieveExpand = operations.CandidatesRetrieveExpandApplicationsAttachments
+    var expand *operations.CandidatesRetrieveExpand = operations.CandidatesRetrieveExpandApplications
 
     var includeRemoteData *bool = false
 
@@ -328,9 +328,9 @@ func main() {
     )
 
 
-    var xAccountToken string = "Cambridgeshire"
+    var xAccountToken string = "string"
 
-    var id string = "4cbcd8c9-a865-4916-82a5-4bbda71d58ff"
+    var id string = "1e4cbcd8-c9a8-4659-9682-a54bbda71d58"
 
     ctx := context.Background()
     res, err := s.Candidates.RetrievePatchMetadata(ctx, xAccountToken, id)
@@ -380,7 +380,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "Borders"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.Candidates.RetrievePostMetadata(ctx, xAccountToken)
@@ -448,23 +448,23 @@ func main() {
                     shared.EmailAddressRequest{
                         EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                         IntegrationParams: map[string]interface{}{
-                            "unique_integration_field": "Van",
+                            "unique_integration_field": "string",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "unique_linked_account_field": "East",
+                            "unique_linked_account_field": "string",
                         },
                         Value: mergeatsgo.String("merge_is_hiring@merge.dev"),
                     },
                 },
                 FirstName: mergeatsgo.String("Gil"),
                 IntegrationParams: map[string]interface{}{
-                    "unique_integration_field": "male",
+                    "unique_integration_field": "string",
                 },
                 IsPrivate: mergeatsgo.Bool(true),
                 LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
                 LastName: mergeatsgo.String("Feig"),
                 LinkedAccountParams: map[string]interface{}{
-                    "unique_linked_account_field": "Metal",
+                    "unique_linked_account_field": "string",
                 },
                 Locations: []string{
                     "San Francisco",
@@ -474,10 +474,10 @@ func main() {
                 PhoneNumbers: []shared.PhoneNumberRequest{
                     shared.PhoneNumberRequest{
                         IntegrationParams: map[string]interface{}{
-                            "unique_integration_field": "cheater",
+                            "unique_integration_field": "string",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "unique_linked_account_field": "Islands",
+                            "unique_linked_account_field": "string",
                         },
                         PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
                         Value: mergeatsgo.String("+3198675309"),
@@ -491,20 +491,20 @@ func main() {
                 Urls: []shared.URLRequest{
                     shared.URLRequest{
                         IntegrationParams: map[string]interface{}{
-                            "unique_integration_field": "online",
+                            "unique_integration_field": "string",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "unique_linked_account_field": "dynamic",
+                            "unique_linked_account_field": "string",
                         },
                         URLType: shared.URLRequestURLTypePersonal.ToPointer(),
                         Value: mergeatsgo.String("http://alturl.com/p749b"),
                     },
                 },
             },
-            RemoteUserID: "Plastic Carolina syndicate",
+            RemoteUserID: "string",
         },
-        XAccountToken: "implement JBOD",
-        ID: "cabf6805-c5ca-4718-b143-55ad7d4e1b58",
+        XAccountToken: "string",
+        ID: "d0905bf4-aa77-4f20-8e77-54c352acfe54",
     })
     if err != nil {
         log.Fatal(err)

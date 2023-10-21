@@ -36,19 +36,19 @@ func main() {
             Body: mergeatsgo.String("Candidate loves integrations!!."),
             Candidate: mergeatsgo.String("03455bc6-6040-430a-848e-aafacbfdf4fg"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "online",
+                "unique_integration_field": "string",
             },
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "Configuration",
+                "unique_linked_account_field": "string",
             },
             Subject: mergeatsgo.String("Gil Feig's interview"),
             User: mergeatsgo.String("9d892439-5fab-4dbb-8bd8-34f7f96c7912"),
             Visibility: shared.ActivityRequestVisibilityPrivate.ToPointer(),
         },
-        RemoteUserID: "innovative blue",
+        RemoteUserID: "string",
     }
 
-    var xAccountToken string = "shred"
+    var xAccountToken string = "string"
 
     var isDebugMode *bool = false
 
@@ -106,7 +106,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Activities.List(ctx, operations.ActivitiesListRequest{
-        XAccountToken: "Northeast Metal Canada",
+        XAccountToken: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -155,8 +155,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Activities.Retrieve(ctx, operations.ActivitiesRetrieveRequest{
-        XAccountToken: "tracksuit Markets",
-        ID: "1081ad20-d604-4c8e-92b2-41fa379087a1",
+        XAccountToken: "string",
+        ID: "5fea5659-1081-4ad2-8d60-4c8e92b241fa",
     })
     if err != nil {
         log.Fatal(err)
@@ -203,7 +203,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "Borders"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.Activities.RetrievePostMetadata(ctx, xAccountToken)

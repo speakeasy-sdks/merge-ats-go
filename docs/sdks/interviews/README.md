@@ -36,7 +36,7 @@ func main() {
             Application: mergeatsgo.String("92e8a369-fffe-430d-b93a-f7e8a16563f1"),
             EndAt: types.MustTimeFromString("2021-10-15T02:00:00Z"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "online",
+                "unique_integration_field": "string",
             },
             Interviewers: []string{
                 "f9813dd5-e70b-484c-91d8-00acd6065b07",
@@ -44,17 +44,17 @@ func main() {
             },
             JobInterviewStage: mergeatsgo.String("2f7adb59-3fe6-4b5b-aef6-563f72bd13dc"),
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "Configuration",
+                "unique_linked_account_field": "string",
             },
             Location: mergeatsgo.String("Embarcadero Center 2"),
             Organizer: mergeatsgo.String("52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633"),
             StartAt: types.MustTimeFromString("2021-10-15T00:00:00Z"),
             Status: shared.ScheduledInterviewRequestStatusScheduled.ToPointer(),
         },
-        RemoteUserID: "innovative blue",
+        RemoteUserID: "string",
     }
 
-    var xAccountToken string = "shred"
+    var xAccountToken string = "string"
 
     var isDebugMode *bool = false
 
@@ -112,7 +112,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Interviews.List(ctx, operations.InterviewsListRequest{
-        XAccountToken: "Northeast Metal Canada",
+        XAccountToken: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -161,8 +161,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Interviews.Retrieve(ctx, operations.InterviewsRetrieveRequest{
-        XAccountToken: "tracksuit Markets",
-        ID: "1081ad20-d604-4c8e-92b2-41fa379087a1",
+        XAccountToken: "string",
+        ID: "5fea5659-1081-4ad2-8d60-4c8e92b241fa",
     })
     if err != nil {
         log.Fatal(err)
@@ -209,7 +209,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "Borders"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.Interviews.RetrievePostMetadata(ctx, xAccountToken)

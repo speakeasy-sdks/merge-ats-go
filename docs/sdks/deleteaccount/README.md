@@ -27,7 +27,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "throw"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.DeleteAccount.DeleteAccountDelete(ctx, xAccountToken)

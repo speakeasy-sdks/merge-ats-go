@@ -29,7 +29,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "Bicycle"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.SelectiveSync.List(ctx, xAccountToken)
@@ -78,13 +78,13 @@ func main() {
     )
 
 
-    var xAccountToken string = "Borders"
+    var xAccountToken string = "string"
 
-    var commonModel *string = "Home"
+    var commonModel *string = "string"
 
-    var cursor *string = "Country"
+    var cursor *string = "string"
 
-    var pageSize *int64 = 925730
+    var pageSize *int64 = 70130
 
     ctx := context.Background()
     res, err := s.SelectiveSync.RetrievePostMetadata(ctx, xAccountToken, commonModel, cursor, pageSize)
@@ -142,15 +142,15 @@ func main() {
                 LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
                     shared.LinkedAccountConditionRequest{
                         ConditionSchemaID: "d0905bf4-aa77-4f20-8e77-54c352acfe54",
-                        Operator: "JBOD",
-                        Value: "Bicycle",
+                        Operator: "string",
+                        Value: "string",
                     },
                 },
             },
         },
     }
 
-    var xAccountToken string = "guestbook"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.SelectiveSync.Update(ctx, linkedAccountSelectiveSyncConfigurationListRequest, xAccountToken)

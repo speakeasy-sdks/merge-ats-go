@@ -29,11 +29,11 @@ func main() {
 
 
     webhookReceiverRequest := shared.WebhookReceiverRequest{
-        Event: "bluetooth Extended",
+        Event: "string",
         IsActive: false,
     }
 
-    var xAccountToken string = "South"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.WebhookReceivers.Create(ctx, webhookReceiverRequest, xAccountToken)
@@ -83,7 +83,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "Bicycle"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.WebhookReceivers.List(ctx, xAccountToken)

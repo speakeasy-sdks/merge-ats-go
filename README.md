@@ -33,7 +33,7 @@ func main() {
 		mergeatsgo.WithSecurity(""),
 	)
 
-	var xAccountToken string = "till"
+	var xAccountToken string = "string"
 
 	ctx := context.Background()
 	res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)

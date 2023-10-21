@@ -27,7 +27,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "online"
+    var xAccountToken string = "string"
 
     ctx := context.Background()
     res, err := s.ForceResync.Create(ctx, xAccountToken)

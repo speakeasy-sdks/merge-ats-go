@@ -43,9 +43,9 @@ func main() {
                 ModelID: "hris.Employee",
             },
         },
-        EndUserEmailAddress: "Configuration Money",
-        EndUserOrganizationName: "Cambridgeshire grey technology",
-        EndUserOriginID: "deposit",
+        EndUserEmailAddress: "string",
+        EndUserOrganizationName: "string",
+        EndUserOriginID: "string",
     })
     if err != nil {
         log.Fatal(err)
