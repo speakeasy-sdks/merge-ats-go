@@ -7,24 +7,25 @@ import (
 	"context"
 	"fmt"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
 )
 
-type deleteAccount struct {
+type DeleteAccount struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newDeleteAccount(sdkConfig sdkConfiguration) *deleteAccount {
-	return &deleteAccount{
+func newDeleteAccount(sdkConfig sdkConfiguration) *DeleteAccount {
+	return &DeleteAccount{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAccountDelete - Delete a linked account.
-func (s *deleteAccount) DeleteAccountDelete(ctx context.Context, xAccountToken string) (*operations.DeleteAccountDeleteResponse, error) {
+func (s *DeleteAccount) DeleteAccountDelete(ctx context.Context, xAccountToken string) (*operations.DeleteAccountDeleteResponse, error) {
 	request := operations.DeleteAccountDeleteRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -67,6 +68,10 @@ func (s *deleteAccount) DeleteAccountDelete(ctx context.Context, xAccountToken s
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

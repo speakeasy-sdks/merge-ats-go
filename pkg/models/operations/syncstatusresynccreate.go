@@ -25,8 +25,8 @@ type SyncStatusResyncCreateResponse struct {
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
-	RawResponse  *http.Response
-	SyncStatuses []shared.SyncStatus
+	RawResponse *http.Response
+	Classes     []shared.SyncStatus
 }
 
 func (o *SyncStatusResyncCreateResponse) GetContentType() string {
@@ -50,9 +50,9 @@ func (o *SyncStatusResyncCreateResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *SyncStatusResyncCreateResponse) GetSyncStatuses() []shared.SyncStatus {
+func (o *SyncStatusResyncCreateResponse) GetClasses() []shared.SyncStatus {
 	if o == nil {
 		return nil
 	}
-	return o.SyncStatuses
+	return o.Classes
 }

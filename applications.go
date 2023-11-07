@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type applications struct {
+type Applications struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newApplications(sdkConfig sdkConfiguration) *applications {
-	return &applications{
+func newApplications(sdkConfig sdkConfiguration) *Applications {
+	return &Applications{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Creates an `Application` object with the given values.
-func (s *applications) Create(ctx context.Context, applicationEndpointRequest shared.ApplicationEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.ApplicationsCreateResponse, error) {
+func (s *Applications) Create(ctx context.Context, applicationEndpointRequest shared.ApplicationEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.ApplicationsCreateResponse, error) {
 	request := operations.ApplicationsCreateRequest{
 		ApplicationEndpointRequest: applicationEndpointRequest,
 		XAccountToken:              xAccountToken,
@@ -97,13 +97,17 @@ func (s *applications) Create(ctx context.Context, applicationEndpointRequest sh
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // List - Returns a list of `Application` objects.
-func (s *applications) List(ctx context.Context, request operations.ApplicationsListRequest) (*operations.ApplicationsListResponse, error) {
+func (s *Applications) List(ctx context.Context, request operations.ApplicationsListRequest) (*operations.ApplicationsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/applications"
 
@@ -157,13 +161,17 @@ func (s *applications) List(ctx context.Context, request operations.Applications
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns an `Application` object with the given `id`.
-func (s *applications) Retrieve(ctx context.Context, xAccountToken string, id string, expand *operations.ApplicationsRetrieveExpand, includeRemoteData *bool) (*operations.ApplicationsRetrieveResponse, error) {
+func (s *Applications) Retrieve(ctx context.Context, xAccountToken string, id string, expand *operations.ApplicationsRetrieveQueryParamExpand, includeRemoteData *bool) (*operations.ApplicationsRetrieveResponse, error) {
 	request := operations.ApplicationsRetrieveRequest{
 		XAccountToken:     xAccountToken,
 		ID:                id,
@@ -227,13 +235,17 @@ func (s *applications) Retrieve(ctx context.Context, xAccountToken string, id st
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // RetrievePostMetadata - Returns metadata for `Application` POSTs.
-func (s *applications) RetrievePostMetadata(ctx context.Context, xAccountToken string, applicationRemoteTemplateID *string) (*operations.ApplicationsMetaPostRetrieveResponse, error) {
+func (s *Applications) RetrievePostMetadata(ctx context.Context, xAccountToken string, applicationRemoteTemplateID *string) (*operations.ApplicationsMetaPostRetrieveResponse, error) {
 	request := operations.ApplicationsMetaPostRetrieveRequest{
 		XAccountToken:               xAccountToken,
 		ApplicationRemoteTemplateID: applicationRemoteTemplateID,
@@ -292,13 +304,17 @@ func (s *applications) RetrievePostMetadata(ctx context.Context, xAccountToken s
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // UpdateChangeState - Updates the `current_stage` field of an `Application` object
-func (s *applications) UpdateChangeState(ctx context.Context, request operations.ApplicationsChangeStageCreateRequest) (*operations.ApplicationsChangeStageCreateResponse, error) {
+func (s *Applications) UpdateChangeState(ctx context.Context, request operations.ApplicationsChangeStageCreateRequest) (*operations.ApplicationsChangeStageCreateResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/applications/{id}/change-stage", request, nil)
 	if err != nil {
@@ -362,6 +378,10 @@ func (s *applications) UpdateChangeState(ctx context.Context, request operations
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

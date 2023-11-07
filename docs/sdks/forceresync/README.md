@@ -1,5 +1,5 @@
 # ForceResync
-(*ForceResync*)
+(*.ForceResync*)
 
 ### Available Operations
 
@@ -35,7 +35,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.SyncStatuses != nil {
+    if res.Classes != nil {
         // handle response
     }
 }

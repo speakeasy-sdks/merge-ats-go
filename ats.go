@@ -66,36 +66,36 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 
 // Ats - Merge ATS API: The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 type Ats struct {
-	AccountDetails     *accountDetails
-	AccountToken       *accountToken
-	Activities         *activities
-	Applications       *applications
-	AsyncPassthrough   *asyncPassthrough
-	Attachments        *attachments
-	AvailableActions   *availableActions
-	Candidates         *candidates
-	DeleteAccount      *deleteAccount
-	Departments        *departments
-	Eeocs              *eeocs
-	ForceResync        *forceResync
-	GenerateKey        *generateKey
-	Interviews         *interviews
-	Issues             *issues
-	JobInterviewStages *jobInterviewStages
-	Jobs               *jobs
-	LinkToken          *linkToken
-	LinkedAccounts     *linkedAccounts
-	Offers             *offers
-	Offices            *offices
-	Passthrough        *passthrough
-	RegenerateKey      *regenerateKey
-	RejectReasons      *rejectReasons
-	Scorecards         *scorecards
-	SelectiveSync      *selectiveSync
-	SyncStatus         *syncStatus
-	Tags               *tags
-	Users              *users
-	WebhookReceivers   *webhookReceivers
+	AccountDetails     *AccountDetails
+	AccountToken       *AccountToken
+	Activities         *Activities
+	Applications       *Applications
+	AsyncPassthrough   *AsyncPassthrough
+	Attachments        *Attachments
+	AvailableActions   *AvailableActions
+	Candidates         *Candidates
+	DeleteAccount      *DeleteAccount
+	Departments        *Departments
+	Eeocs              *Eeocs
+	GenerateKey        *GenerateKey
+	Interviews         *Interviews
+	Issues             *Issues
+	JobInterviewStages *JobInterviewStages
+	Jobs               *Jobs
+	LinkToken          *LinkToken
+	LinkedAccounts     *LinkedAccounts
+	Offers             *Offers
+	Offices            *Offices
+	Passthrough        *Passthrough
+	RegenerateKey      *RegenerateKey
+	RejectReasons      *RejectReasons
+	Scorecards         *Scorecards
+	SelectiveSync      *SelectiveSync
+	SyncStatus         *SyncStatus
+	ForceResync        *ForceResync
+	Tags               *Tags
+	Users              *Users
+	WebhookReceivers   *WebhookReceivers
 
 	sdkConfiguration sdkConfiguration
 }
@@ -165,9 +165,9 @@ func New(opts ...SDKOption) *Ats {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
-			SDKVersion:        "0.7.0",
-			GenVersion:        "2.169.0",
-			UserAgent:         "speakeasy-sdk/go 0.7.0 2.169.0 1.0 github.com/speakeasy-sdks/merge-ats-go",
+			SDKVersion:        "0.8.0",
+			GenVersion:        "2.181.1",
+			UserAgent:         "speakeasy-sdk/go 0.8.0 2.181.1 1.0 github.com/speakeasy-sdks/merge-ats-go",
 		},
 	}
 	for _, opt := range opts {
@@ -208,8 +208,6 @@ func New(opts ...SDKOption) *Ats {
 
 	sdk.Eeocs = newEeocs(sdk.sdkConfiguration)
 
-	sdk.ForceResync = newForceResync(sdk.sdkConfiguration)
-
 	sdk.GenerateKey = newGenerateKey(sdk.sdkConfiguration)
 
 	sdk.Interviews = newInterviews(sdk.sdkConfiguration)
@@ -239,6 +237,8 @@ func New(opts ...SDKOption) *Ats {
 	sdk.SelectiveSync = newSelectiveSync(sdk.sdkConfiguration)
 
 	sdk.SyncStatus = newSyncStatus(sdk.sdkConfiguration)
+
+	sdk.ForceResync = newForceResync(sdk.sdkConfiguration)
 
 	sdk.Tags = newTags(sdk.sdkConfiguration)
 

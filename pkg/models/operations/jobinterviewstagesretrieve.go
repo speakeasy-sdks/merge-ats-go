@@ -9,28 +9,28 @@ import (
 	"net/http"
 )
 
-// JobInterviewStagesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type JobInterviewStagesRetrieveExpand string
+// JobInterviewStagesRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type JobInterviewStagesRetrieveQueryParamExpand string
 
 const (
-	JobInterviewStagesRetrieveExpandJob JobInterviewStagesRetrieveExpand = "job"
+	JobInterviewStagesRetrieveQueryParamExpandJob JobInterviewStagesRetrieveQueryParamExpand = "job"
 )
 
-func (e JobInterviewStagesRetrieveExpand) ToPointer() *JobInterviewStagesRetrieveExpand {
+func (e JobInterviewStagesRetrieveQueryParamExpand) ToPointer() *JobInterviewStagesRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *JobInterviewStagesRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *JobInterviewStagesRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "job":
-		*e = JobInterviewStagesRetrieveExpand(v)
+		*e = JobInterviewStagesRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobInterviewStagesRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for JobInterviewStagesRetrieveQueryParamExpand: %v", v)
 	}
 }
 
@@ -39,7 +39,7 @@ type JobInterviewStagesRetrieveRequest struct {
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	ID            string `pathParam:"style=simple,explode=false,name=id"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *JobInterviewStagesRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *JobInterviewStagesRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 }
@@ -58,7 +58,7 @@ func (o *JobInterviewStagesRetrieveRequest) GetID() string {
 	return o.ID
 }
 
-func (o *JobInterviewStagesRetrieveRequest) GetExpand() *JobInterviewStagesRetrieveExpand {
+func (o *JobInterviewStagesRetrieveRequest) GetExpand() *JobInterviewStagesRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}

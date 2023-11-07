@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type generateKey struct {
+type GenerateKey struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newGenerateKey(sdkConfig sdkConfiguration) *generateKey {
-	return &generateKey{
+func newGenerateKey(sdkConfig sdkConfiguration) *GenerateKey {
+	return &GenerateKey{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create a remote key.
-func (s *generateKey) Create(ctx context.Context, request shared.GenerateRemoteKeyRequest) (*operations.GenerateKeyCreateResponse, error) {
+func (s *GenerateKey) Create(ctx context.Context, request shared.GenerateRemoteKeyRequest) (*operations.GenerateKeyCreateResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/generate-key"
 
@@ -84,6 +84,10 @@ func (s *generateKey) Create(ctx context.Context, request shared.GenerateRemoteK
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

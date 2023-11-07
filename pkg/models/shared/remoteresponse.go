@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// RemoteResponseResponseType - * `JSON` - JSON
+// ResponseType - * `JSON` - JSON
 // * `BASE64_GZIP` - BASE64_GZIP
-type RemoteResponseResponseType string
+type ResponseType string
 
 const (
-	RemoteResponseResponseTypeJSON       RemoteResponseResponseType = "JSON"
-	RemoteResponseResponseTypeBase64Gzip RemoteResponseResponseType = "BASE64_GZIP"
+	ResponseTypeJSON       ResponseType = "JSON"
+	ResponseTypeBase64Gzip ResponseType = "BASE64_GZIP"
 )
 
-func (e RemoteResponseResponseType) ToPointer() *RemoteResponseResponseType {
+func (e ResponseType) ToPointer() *ResponseType {
 	return &e
 }
 
-func (e *RemoteResponseResponseType) UnmarshalJSON(data []byte) error {
+func (e *ResponseType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -29,10 +29,10 @@ func (e *RemoteResponseResponseType) UnmarshalJSON(data []byte) error {
 	case "JSON":
 		fallthrough
 	case "BASE64_GZIP":
-		*e = RemoteResponseResponseType(v)
+		*e = ResponseType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RemoteResponseResponseType: %v", v)
+		return fmt.Errorf("invalid value for ResponseType: %v", v)
 	}
 }
 
@@ -43,13 +43,13 @@ func (e *RemoteResponseResponseType) UnmarshalJSON(data []byte) error {
 // ### Usage Example
 // View the `RemoteResponse` returned from your `DataPassthrough`.
 type RemoteResponse struct {
-	Headers         map[string]interface{}      `json:"headers,omitempty"`
-	Method          string                      `json:"method"`
-	Path            string                      `json:"path"`
-	Response        interface{}                 `json:"response"`
-	ResponseHeaders map[string]interface{}      `json:"response_headers,omitempty"`
-	ResponseType    *RemoteResponseResponseType `json:"response_type,omitempty"`
-	Status          int64                       `json:"status"`
+	Headers         map[string]interface{} `json:"headers,omitempty"`
+	Method          string                 `json:"method"`
+	Path            string                 `json:"path"`
+	Response        interface{}            `json:"response"`
+	ResponseHeaders map[string]interface{} `json:"response_headers,omitempty"`
+	ResponseType    *ResponseType          `json:"response_type,omitempty"`
+	Status          int64                  `json:"status"`
 }
 
 func (o *RemoteResponse) GetHeaders() map[string]interface{} {
@@ -87,7 +87,7 @@ func (o *RemoteResponse) GetResponseHeaders() map[string]interface{} {
 	return o.ResponseHeaders
 }
 
-func (o *RemoteResponse) GetResponseType() *RemoteResponseResponseType {
+func (o *RemoteResponse) GetResponseType() *ResponseType {
 	if o == nil {
 		return nil
 	}

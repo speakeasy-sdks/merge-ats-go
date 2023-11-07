@@ -9,20 +9,20 @@ import (
 	"net/http"
 )
 
-// CandidatesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type CandidatesRetrieveExpand string
+// CandidatesRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type CandidatesRetrieveQueryParamExpand string
 
 const (
-	CandidatesRetrieveExpandApplications            CandidatesRetrieveExpand = "applications"
-	CandidatesRetrieveExpandApplicationsAttachments CandidatesRetrieveExpand = "applications,attachments"
-	CandidatesRetrieveExpandAttachments             CandidatesRetrieveExpand = "attachments"
+	CandidatesRetrieveQueryParamExpandApplications            CandidatesRetrieveQueryParamExpand = "applications"
+	CandidatesRetrieveQueryParamExpandApplicationsAttachments CandidatesRetrieveQueryParamExpand = "applications,attachments"
+	CandidatesRetrieveQueryParamExpandAttachments             CandidatesRetrieveQueryParamExpand = "attachments"
 )
 
-func (e CandidatesRetrieveExpand) ToPointer() *CandidatesRetrieveExpand {
+func (e CandidatesRetrieveQueryParamExpand) ToPointer() *CandidatesRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *CandidatesRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *CandidatesRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +33,10 @@ func (e *CandidatesRetrieveExpand) UnmarshalJSON(data []byte) error {
 	case "applications,attachments":
 		fallthrough
 	case "attachments":
-		*e = CandidatesRetrieveExpand(v)
+		*e = CandidatesRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CandidatesRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for CandidatesRetrieveQueryParamExpand: %v", v)
 	}
 }
 
@@ -45,7 +45,7 @@ type CandidatesRetrieveRequest struct {
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	ID            string `pathParam:"style=simple,explode=false,name=id"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *CandidatesRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *CandidatesRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 }
@@ -64,7 +64,7 @@ func (o *CandidatesRetrieveRequest) GetID() string {
 	return o.ID
 }
 
-func (o *CandidatesRetrieveRequest) GetExpand() *CandidatesRetrieveExpand {
+func (o *CandidatesRetrieveRequest) GetExpand() *CandidatesRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}

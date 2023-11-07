@@ -1,5 +1,5 @@
 # Activities
-(*Activities*)
+(*.Activities*)
 
 ### Available Operations
 

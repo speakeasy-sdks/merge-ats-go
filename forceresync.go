@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type forceResync struct {
+type ForceResync struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newForceResync(sdkConfig sdkConfiguration) *forceResync {
-	return &forceResync{
+func newForceResync(sdkConfig sdkConfiguration) *ForceResync {
+	return &ForceResync{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Force re-sync of all models. This is available for all organizations via the dashboard. Force re-sync is also available programmatically via API for monthly, quarterly, and highest sync frequency customers on the Core, Professional, or Enterprise plans. Doing so will consume a sync credit for the relevant linked account.
-func (s *forceResync) Create(ctx context.Context, xAccountToken string) (*operations.SyncStatusResyncCreateResponse, error) {
+func (s *ForceResync) Create(ctx context.Context, xAccountToken string) (*operations.SyncStatusResyncCreateResponse, error) {
 	request := operations.SyncStatusResyncCreateRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -76,10 +76,14 @@ func (s *forceResync) Create(ctx context.Context, xAccountToken string) (*operat
 				return nil, err
 			}
 
-			res.SyncStatuses = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

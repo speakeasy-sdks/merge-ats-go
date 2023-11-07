@@ -25,8 +25,8 @@ type WebhookReceiversListResponse struct {
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
-	RawResponse      *http.Response
-	WebhookReceivers []shared.WebhookReceiver
+	RawResponse *http.Response
+	Classes     []shared.WebhookReceiver
 }
 
 func (o *WebhookReceiversListResponse) GetContentType() string {
@@ -50,9 +50,9 @@ func (o *WebhookReceiversListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *WebhookReceiversListResponse) GetWebhookReceivers() []shared.WebhookReceiver {
+func (o *WebhookReceiversListResponse) GetClasses() []shared.WebhookReceiver {
 	if o == nil {
 		return nil
 	}
-	return o.WebhookReceivers
+	return o.Classes
 }

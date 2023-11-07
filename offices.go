@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type offices struct {
+type Offices struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newOffices(sdkConfig sdkConfiguration) *offices {
-	return &offices{
+func newOffices(sdkConfig sdkConfiguration) *Offices {
+	return &Offices{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Returns a list of `Office` objects.
-func (s *offices) List(ctx context.Context, request operations.OfficesListRequest) (*operations.OfficesListResponse, error) {
+func (s *Offices) List(ctx context.Context, request operations.OfficesListRequest) (*operations.OfficesListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/offices"
 
@@ -80,13 +80,17 @@ func (s *offices) List(ctx context.Context, request operations.OfficesListReques
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns an `Office` object with the given `id`.
-func (s *offices) Retrieve(ctx context.Context, xAccountToken string, id string, includeRemoteData *bool) (*operations.OfficesRetrieveResponse, error) {
+func (s *Offices) Retrieve(ctx context.Context, xAccountToken string, id string, includeRemoteData *bool) (*operations.OfficesRetrieveResponse, error) {
 	request := operations.OfficesRetrieveRequest{
 		XAccountToken:     xAccountToken,
 		ID:                id,
@@ -149,6 +153,10 @@ func (s *offices) Retrieve(ctx context.Context, xAccountToken string, id string,
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

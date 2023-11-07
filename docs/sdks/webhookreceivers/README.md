@@ -1,5 +1,5 @@
 # WebhookReceivers
-(*WebhookReceivers*)
+(*.WebhookReceivers*)
 
 ### Available Operations
 
@@ -91,7 +91,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.WebhookReceivers != nil {
+    if res.Classes != nil {
         // handle response
     }
 }

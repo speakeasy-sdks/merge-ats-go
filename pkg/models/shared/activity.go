@@ -9,22 +9,22 @@ import (
 	"time"
 )
 
-// ActivityActivityType - * `NOTE` - NOTE
+// ActivityType - * `NOTE` - NOTE
 // * `EMAIL` - EMAIL
 // * `OTHER` - OTHER
-type ActivityActivityType string
+type ActivityType string
 
 const (
-	ActivityActivityTypeNote  ActivityActivityType = "NOTE"
-	ActivityActivityTypeEmail ActivityActivityType = "EMAIL"
-	ActivityActivityTypeOther ActivityActivityType = "OTHER"
+	ActivityTypeNote  ActivityType = "NOTE"
+	ActivityTypeEmail ActivityType = "EMAIL"
+	ActivityTypeOther ActivityType = "OTHER"
 )
 
-func (e ActivityActivityType) ToPointer() *ActivityActivityType {
+func (e ActivityType) ToPointer() *ActivityType {
 	return &e
 }
 
-func (e *ActivityActivityType) UnmarshalJSON(data []byte) error {
+func (e *ActivityType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,29 +35,29 @@ func (e *ActivityActivityType) UnmarshalJSON(data []byte) error {
 	case "EMAIL":
 		fallthrough
 	case "OTHER":
-		*e = ActivityActivityType(v)
+		*e = ActivityType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivityActivityType: %v", v)
+		return fmt.Errorf("invalid value for ActivityType: %v", v)
 	}
 }
 
-// ActivityVisibility - * `ADMIN_ONLY` - ADMIN_ONLY
+// Visibility - * `ADMIN_ONLY` - ADMIN_ONLY
 // * `PUBLIC` - PUBLIC
 // * `PRIVATE` - PRIVATE
-type ActivityVisibility string
+type Visibility string
 
 const (
-	ActivityVisibilityAdminOnly ActivityVisibility = "ADMIN_ONLY"
-	ActivityVisibilityPublic    ActivityVisibility = "PUBLIC"
-	ActivityVisibilityPrivate   ActivityVisibility = "PRIVATE"
+	VisibilityAdminOnly Visibility = "ADMIN_ONLY"
+	VisibilityPublic    Visibility = "PUBLIC"
+	VisibilityPrivate   Visibility = "PRIVATE"
 )
 
-func (e ActivityVisibility) ToPointer() *ActivityVisibility {
+func (e Visibility) ToPointer() *Visibility {
 	return &e
 }
 
-func (e *ActivityVisibility) UnmarshalJSON(data []byte) error {
+func (e *Visibility) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -68,10 +68,10 @@ func (e *ActivityVisibility) UnmarshalJSON(data []byte) error {
 	case "PUBLIC":
 		fallthrough
 	case "PRIVATE":
-		*e = ActivityVisibility(v)
+		*e = Visibility(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivityVisibility: %v", v)
+		return fmt.Errorf("invalid value for Visibility: %v", v)
 	}
 }
 
@@ -86,7 +86,7 @@ type Activity struct {
 	// * `NOTE` - NOTE
 	// * `EMAIL` - EMAIL
 	// * `OTHER` - OTHER
-	ActivityType *ActivityActivityType `json:"activity_type,omitempty"`
+	ActivityType *ActivityType `json:"activity_type,omitempty"`
 	// The activity's body.
 	Body *string `json:"body,omitempty"`
 	// The activity’s candidate.
@@ -111,7 +111,7 @@ type Activity struct {
 	// * `ADMIN_ONLY` - ADMIN_ONLY
 	// * `PUBLIC` - PUBLIC
 	// * `PRIVATE` - PRIVATE
-	Visibility *ActivityVisibility `json:"visibility,omitempty"`
+	Visibility *Visibility `json:"visibility,omitempty"`
 }
 
 func (a Activity) MarshalJSON() ([]byte, error) {
@@ -125,7 +125,7 @@ func (a *Activity) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Activity) GetActivityType() *ActivityActivityType {
+func (o *Activity) GetActivityType() *ActivityType {
 	if o == nil {
 		return nil
 	}
@@ -209,7 +209,7 @@ func (o *Activity) GetUser() *string {
 	return o.User
 }
 
-func (o *Activity) GetVisibility() *ActivityVisibility {
+func (o *Activity) GetVisibility() *Visibility {
 	if o == nil {
 		return nil
 	}

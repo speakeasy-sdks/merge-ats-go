@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type interviews struct {
+type Interviews struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newInterviews(sdkConfig sdkConfiguration) *interviews {
-	return &interviews{
+func newInterviews(sdkConfig sdkConfiguration) *Interviews {
+	return &Interviews{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Creates a `ScheduledInterview` object with the given values.
-func (s *interviews) Create(ctx context.Context, scheduledInterviewEndpointRequest shared.ScheduledInterviewEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.InterviewsCreateResponse, error) {
+func (s *Interviews) Create(ctx context.Context, scheduledInterviewEndpointRequest shared.ScheduledInterviewEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.InterviewsCreateResponse, error) {
 	request := operations.InterviewsCreateRequest{
 		ScheduledInterviewEndpointRequest: scheduledInterviewEndpointRequest,
 		XAccountToken:                     xAccountToken,
@@ -97,13 +97,17 @@ func (s *interviews) Create(ctx context.Context, scheduledInterviewEndpointReque
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // List - Returns a list of `ScheduledInterview` objects.
-func (s *interviews) List(ctx context.Context, request operations.InterviewsListRequest) (*operations.InterviewsListResponse, error) {
+func (s *Interviews) List(ctx context.Context, request operations.InterviewsListRequest) (*operations.InterviewsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/interviews"
 
@@ -157,13 +161,17 @@ func (s *interviews) List(ctx context.Context, request operations.InterviewsList
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns a `ScheduledInterview` object with the given `id`.
-func (s *interviews) Retrieve(ctx context.Context, request operations.InterviewsRetrieveRequest) (*operations.InterviewsRetrieveResponse, error) {
+func (s *Interviews) Retrieve(ctx context.Context, request operations.InterviewsRetrieveRequest) (*operations.InterviewsRetrieveResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/interviews/{id}", request, nil)
 	if err != nil {
@@ -220,13 +228,17 @@ func (s *interviews) Retrieve(ctx context.Context, request operations.Interviews
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // RetrievePostMetadata - Returns metadata for `ScheduledInterview` POSTs.
-func (s *interviews) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.InterviewsMetaPostRetrieveResponse, error) {
+func (s *Interviews) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.InterviewsMetaPostRetrieveResponse, error) {
 	request := operations.InterviewsMetaPostRetrieveRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -280,6 +292,10 @@ func (s *interviews) RetrievePostMetadata(ctx context.Context, xAccountToken str
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

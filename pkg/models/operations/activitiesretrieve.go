@@ -9,45 +9,45 @@ import (
 	"net/http"
 )
 
-// ActivitiesRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ActivitiesRetrieveExpand string
+// QueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type QueryParamExpand string
 
 const (
-	ActivitiesRetrieveExpandUser ActivitiesRetrieveExpand = "user"
+	QueryParamExpandUser QueryParamExpand = "user"
 )
 
-func (e ActivitiesRetrieveExpand) ToPointer() *ActivitiesRetrieveExpand {
+func (e QueryParamExpand) ToPointer() *QueryParamExpand {
 	return &e
 }
 
-func (e *ActivitiesRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *QueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "user":
-		*e = ActivitiesRetrieveExpand(v)
+		*e = QueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivitiesRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for QueryParamExpand: %v", v)
 	}
 }
 
-// ActivitiesRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type ActivitiesRetrieveRemoteFields string
+// QueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type QueryParamRemoteFields string
 
 const (
-	ActivitiesRetrieveRemoteFieldsActivityType           ActivitiesRetrieveRemoteFields = "activity_type"
-	ActivitiesRetrieveRemoteFieldsActivityTypeVisibility ActivitiesRetrieveRemoteFields = "activity_type,visibility"
-	ActivitiesRetrieveRemoteFieldsVisibility             ActivitiesRetrieveRemoteFields = "visibility"
+	QueryParamRemoteFieldsActivityType           QueryParamRemoteFields = "activity_type"
+	QueryParamRemoteFieldsActivityTypeVisibility QueryParamRemoteFields = "activity_type,visibility"
+	QueryParamRemoteFieldsVisibility             QueryParamRemoteFields = "visibility"
 )
 
-func (e ActivitiesRetrieveRemoteFields) ToPointer() *ActivitiesRetrieveRemoteFields {
+func (e QueryParamRemoteFields) ToPointer() *QueryParamRemoteFields {
 	return &e
 }
 
-func (e *ActivitiesRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *QueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -58,27 +58,27 @@ func (e *ActivitiesRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
 	case "activity_type,visibility":
 		fallthrough
 	case "visibility":
-		*e = ActivitiesRetrieveRemoteFields(v)
+		*e = QueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivitiesRetrieveRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for QueryParamRemoteFields: %v", v)
 	}
 }
 
-// ActivitiesRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type ActivitiesRetrieveShowEnumOrigins string
+// QueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type QueryParamShowEnumOrigins string
 
 const (
-	ActivitiesRetrieveShowEnumOriginsActivityType           ActivitiesRetrieveShowEnumOrigins = "activity_type"
-	ActivitiesRetrieveShowEnumOriginsActivityTypeVisibility ActivitiesRetrieveShowEnumOrigins = "activity_type,visibility"
-	ActivitiesRetrieveShowEnumOriginsVisibility             ActivitiesRetrieveShowEnumOrigins = "visibility"
+	QueryParamShowEnumOriginsActivityType           QueryParamShowEnumOrigins = "activity_type"
+	QueryParamShowEnumOriginsActivityTypeVisibility QueryParamShowEnumOrigins = "activity_type,visibility"
+	QueryParamShowEnumOriginsVisibility             QueryParamShowEnumOrigins = "visibility"
 )
 
-func (e ActivitiesRetrieveShowEnumOrigins) ToPointer() *ActivitiesRetrieveShowEnumOrigins {
+func (e QueryParamShowEnumOrigins) ToPointer() *QueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *ActivitiesRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *QueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -89,10 +89,10 @@ func (e *ActivitiesRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	case "activity_type,visibility":
 		fallthrough
 	case "visibility":
-		*e = ActivitiesRetrieveShowEnumOrigins(v)
+		*e = QueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivitiesRetrieveShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for QueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -100,14 +100,14 @@ type ActivitiesRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ActivitiesRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string                    `pathParam:"style=simple,explode=false,name=id"`
+	Expand *QueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
+	ID     string            `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *ActivitiesRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *QueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *ActivitiesRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *QueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o *ActivitiesRetrieveRequest) GetXAccountToken() string {
@@ -117,7 +117,7 @@ func (o *ActivitiesRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *ActivitiesRetrieveRequest) GetExpand() *ActivitiesRetrieveExpand {
+func (o *ActivitiesRetrieveRequest) GetExpand() *QueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -138,14 +138,14 @@ func (o *ActivitiesRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *ActivitiesRetrieveRequest) GetRemoteFields() *ActivitiesRetrieveRemoteFields {
+func (o *ActivitiesRetrieveRequest) GetRemoteFields() *QueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
 	return o.RemoteFields
 }
 
-func (o *ActivitiesRetrieveRequest) GetShowEnumOrigins() *ActivitiesRetrieveShowEnumOrigins {
+func (o *ActivitiesRetrieveRequest) GetShowEnumOrigins() *QueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

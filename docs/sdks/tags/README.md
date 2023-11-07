@@ -1,5 +1,5 @@
 # Tags
-(*Tags*)
+(*.Tags*)
 
 ### Available Operations
 

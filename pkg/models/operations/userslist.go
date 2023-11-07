@@ -11,53 +11,53 @@ import (
 	"time"
 )
 
-// UsersListRemoteFields - Deprecated. Use show_enum_origins.
-type UsersListRemoteFields string
+// UsersListQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type UsersListQueryParamRemoteFields string
 
 const (
-	UsersListRemoteFieldsAccessRole UsersListRemoteFields = "access_role"
+	UsersListQueryParamRemoteFieldsAccessRole UsersListQueryParamRemoteFields = "access_role"
 )
 
-func (e UsersListRemoteFields) ToPointer() *UsersListRemoteFields {
+func (e UsersListQueryParamRemoteFields) ToPointer() *UsersListQueryParamRemoteFields {
 	return &e
 }
 
-func (e *UsersListRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *UsersListQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "access_role":
-		*e = UsersListRemoteFields(v)
+		*e = UsersListQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UsersListRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for UsersListQueryParamRemoteFields: %v", v)
 	}
 }
 
-// UsersListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type UsersListShowEnumOrigins string
+// UsersListQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type UsersListQueryParamShowEnumOrigins string
 
 const (
-	UsersListShowEnumOriginsAccessRole UsersListShowEnumOrigins = "access_role"
+	UsersListQueryParamShowEnumOriginsAccessRole UsersListQueryParamShowEnumOrigins = "access_role"
 )
 
-func (e UsersListShowEnumOrigins) ToPointer() *UsersListShowEnumOrigins {
+func (e UsersListQueryParamShowEnumOrigins) ToPointer() *UsersListQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *UsersListShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *UsersListQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "access_role":
-		*e = UsersListShowEnumOrigins(v)
+		*e = UsersListQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UsersListShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for UsersListQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -83,11 +83,11 @@ type UsersListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *UsersListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *UsersListQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *UsersListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *UsersListQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (u UsersListRequest) MarshalJSON() ([]byte, error) {
@@ -171,7 +171,7 @@ func (o *UsersListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *UsersListRequest) GetRemoteFields() *UsersListRemoteFields {
+func (o *UsersListRequest) GetRemoteFields() *UsersListQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
@@ -185,7 +185,7 @@ func (o *UsersListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *UsersListRequest) GetShowEnumOrigins() *UsersListShowEnumOrigins {
+func (o *UsersListRequest) GetShowEnumOrigins() *UsersListQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

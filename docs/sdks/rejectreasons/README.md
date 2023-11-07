@@ -1,5 +1,5 @@
 # RejectReasons
-(*RejectReasons*)
+(*.RejectReasons*)
 
 ### Available Operations
 

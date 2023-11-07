@@ -11,20 +11,20 @@ import (
 	"time"
 )
 
-// OffersListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type OffersListExpand string
+// OffersListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type OffersListQueryParamExpand string
 
 const (
-	OffersListExpandApplication        OffersListExpand = "application"
-	OffersListExpandApplicationCreator OffersListExpand = "application,creator"
-	OffersListExpandCreator            OffersListExpand = "creator"
+	OffersListQueryParamExpandApplication        OffersListQueryParamExpand = "application"
+	OffersListQueryParamExpandApplicationCreator OffersListQueryParamExpand = "application,creator"
+	OffersListQueryParamExpandCreator            OffersListQueryParamExpand = "creator"
 )
 
-func (e OffersListExpand) ToPointer() *OffersListExpand {
+func (e OffersListQueryParamExpand) ToPointer() *OffersListQueryParamExpand {
 	return &e
 }
 
-func (e *OffersListExpand) UnmarshalJSON(data []byte) error {
+func (e *OffersListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,60 +35,60 @@ func (e *OffersListExpand) UnmarshalJSON(data []byte) error {
 	case "application,creator":
 		fallthrough
 	case "creator":
-		*e = OffersListExpand(v)
+		*e = OffersListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OffersListExpand: %v", v)
+		return fmt.Errorf("invalid value for OffersListQueryParamExpand: %v", v)
 	}
 }
 
-// OffersListRemoteFields - Deprecated. Use show_enum_origins.
-type OffersListRemoteFields string
+// OffersListQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type OffersListQueryParamRemoteFields string
 
 const (
-	OffersListRemoteFieldsStatus OffersListRemoteFields = "status"
+	OffersListQueryParamRemoteFieldsStatus OffersListQueryParamRemoteFields = "status"
 )
 
-func (e OffersListRemoteFields) ToPointer() *OffersListRemoteFields {
+func (e OffersListQueryParamRemoteFields) ToPointer() *OffersListQueryParamRemoteFields {
 	return &e
 }
 
-func (e *OffersListRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *OffersListQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = OffersListRemoteFields(v)
+		*e = OffersListQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OffersListRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for OffersListQueryParamRemoteFields: %v", v)
 	}
 }
 
-// OffersListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type OffersListShowEnumOrigins string
+// OffersListQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type OffersListQueryParamShowEnumOrigins string
 
 const (
-	OffersListShowEnumOriginsStatus OffersListShowEnumOrigins = "status"
+	OffersListQueryParamShowEnumOriginsStatus OffersListQueryParamShowEnumOrigins = "status"
 )
 
-func (e OffersListShowEnumOrigins) ToPointer() *OffersListShowEnumOrigins {
+func (e OffersListQueryParamShowEnumOrigins) ToPointer() *OffersListQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *OffersListShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *OffersListQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = OffersListShowEnumOrigins(v)
+		*e = OffersListQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OffersListShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for OffersListQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -106,7 +106,7 @@ type OffersListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *OffersListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *OffersListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -118,11 +118,11 @@ type OffersListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *OffersListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *OffersListQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *OffersListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *OffersListQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o OffersListRequest) MarshalJSON() ([]byte, error) {
@@ -178,7 +178,7 @@ func (o *OffersListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *OffersListRequest) GetExpand() *OffersListExpand {
+func (o *OffersListRequest) GetExpand() *OffersListQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -220,7 +220,7 @@ func (o *OffersListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *OffersListRequest) GetRemoteFields() *OffersListRemoteFields {
+func (o *OffersListRequest) GetRemoteFields() *OffersListQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
@@ -234,7 +234,7 @@ func (o *OffersListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *OffersListRequest) GetShowEnumOrigins() *OffersListShowEnumOrigins {
+func (o *OffersListRequest) GetShowEnumOrigins() *OffersListQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

@@ -1,5 +1,5 @@
 # Passthrough
-(*Passthrough*)
+(*.Passthrough*)
 
 ### Available Operations
 
@@ -32,18 +32,18 @@ func main() {
         Headers: map[string]interface{}{
             "EXTRA-HEADER": "string",
         },
-        Method: shared.DataPassthroughRequestMethodPost,
+        Method: shared.MethodPost,
         MultipartFormData: []shared.MultipartFormFieldRequest{
             shared.MultipartFormFieldRequest{
                 ContentType: mergeatsgo.String("application/pdf"),
                 Data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-                Encoding: shared.MultipartFormFieldRequestEncodingBase64.ToPointer(),
+                Encoding: shared.EncodingBase64.ToPointer(),
                 FileName: mergeatsgo.String("resume.pdf"),
                 Name: "resume",
             },
         },
         Path: "/scooters",
-        RequestFormat: shared.DataPassthroughRequestRequestFormatJSON.ToPointer(),
+        RequestFormat: shared.RequestFormatJSON.ToPointer(),
     }
 
     var xAccountToken string = "string"

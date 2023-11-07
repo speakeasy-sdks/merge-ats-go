@@ -9,32 +9,32 @@ import (
 	"net/http"
 )
 
-// JobsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type JobsRetrieveExpand string
+// JobsRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type JobsRetrieveQueryParamExpand string
 
 const (
-	JobsRetrieveExpandDepartments                                JobsRetrieveExpand = "departments"
-	JobsRetrieveExpandDepartmentsHiringManagers                  JobsRetrieveExpand = "departments,hiring_managers"
-	JobsRetrieveExpandDepartmentsHiringManagersRecruiters        JobsRetrieveExpand = "departments,hiring_managers,recruiters"
-	JobsRetrieveExpandDepartmentsOffices                         JobsRetrieveExpand = "departments,offices"
-	JobsRetrieveExpandDepartmentsOfficesHiringManagers           JobsRetrieveExpand = "departments,offices,hiring_managers"
-	JobsRetrieveExpandDepartmentsOfficesHiringManagersRecruiters JobsRetrieveExpand = "departments,offices,hiring_managers,recruiters"
-	JobsRetrieveExpandDepartmentsOfficesRecruiters               JobsRetrieveExpand = "departments,offices,recruiters"
-	JobsRetrieveExpandDepartmentsRecruiters                      JobsRetrieveExpand = "departments,recruiters"
-	JobsRetrieveExpandHiringManagers                             JobsRetrieveExpand = "hiring_managers"
-	JobsRetrieveExpandHiringManagersRecruiters                   JobsRetrieveExpand = "hiring_managers,recruiters"
-	JobsRetrieveExpandOffices                                    JobsRetrieveExpand = "offices"
-	JobsRetrieveExpandOfficesHiringManagers                      JobsRetrieveExpand = "offices,hiring_managers"
-	JobsRetrieveExpandOfficesHiringManagersRecruiters            JobsRetrieveExpand = "offices,hiring_managers,recruiters"
-	JobsRetrieveExpandOfficesRecruiters                          JobsRetrieveExpand = "offices,recruiters"
-	JobsRetrieveExpandRecruiters                                 JobsRetrieveExpand = "recruiters"
+	JobsRetrieveQueryParamExpandDepartments                                JobsRetrieveQueryParamExpand = "departments"
+	JobsRetrieveQueryParamExpandDepartmentsHiringManagers                  JobsRetrieveQueryParamExpand = "departments,hiring_managers"
+	JobsRetrieveQueryParamExpandDepartmentsHiringManagersRecruiters        JobsRetrieveQueryParamExpand = "departments,hiring_managers,recruiters"
+	JobsRetrieveQueryParamExpandDepartmentsOffices                         JobsRetrieveQueryParamExpand = "departments,offices"
+	JobsRetrieveQueryParamExpandDepartmentsOfficesHiringManagers           JobsRetrieveQueryParamExpand = "departments,offices,hiring_managers"
+	JobsRetrieveQueryParamExpandDepartmentsOfficesHiringManagersRecruiters JobsRetrieveQueryParamExpand = "departments,offices,hiring_managers,recruiters"
+	JobsRetrieveQueryParamExpandDepartmentsOfficesRecruiters               JobsRetrieveQueryParamExpand = "departments,offices,recruiters"
+	JobsRetrieveQueryParamExpandDepartmentsRecruiters                      JobsRetrieveQueryParamExpand = "departments,recruiters"
+	JobsRetrieveQueryParamExpandHiringManagers                             JobsRetrieveQueryParamExpand = "hiring_managers"
+	JobsRetrieveQueryParamExpandHiringManagersRecruiters                   JobsRetrieveQueryParamExpand = "hiring_managers,recruiters"
+	JobsRetrieveQueryParamExpandOffices                                    JobsRetrieveQueryParamExpand = "offices"
+	JobsRetrieveQueryParamExpandOfficesHiringManagers                      JobsRetrieveQueryParamExpand = "offices,hiring_managers"
+	JobsRetrieveQueryParamExpandOfficesHiringManagersRecruiters            JobsRetrieveQueryParamExpand = "offices,hiring_managers,recruiters"
+	JobsRetrieveQueryParamExpandOfficesRecruiters                          JobsRetrieveQueryParamExpand = "offices,recruiters"
+	JobsRetrieveQueryParamExpandRecruiters                                 JobsRetrieveQueryParamExpand = "recruiters"
 )
 
-func (e JobsRetrieveExpand) ToPointer() *JobsRetrieveExpand {
+func (e JobsRetrieveQueryParamExpand) ToPointer() *JobsRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *JobsRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *JobsRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -69,60 +69,60 @@ func (e *JobsRetrieveExpand) UnmarshalJSON(data []byte) error {
 	case "offices,recruiters":
 		fallthrough
 	case "recruiters":
-		*e = JobsRetrieveExpand(v)
+		*e = JobsRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobsRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for JobsRetrieveQueryParamExpand: %v", v)
 	}
 }
 
-// JobsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type JobsRetrieveRemoteFields string
+// JobsRetrieveQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type JobsRetrieveQueryParamRemoteFields string
 
 const (
-	JobsRetrieveRemoteFieldsStatus JobsRetrieveRemoteFields = "status"
+	JobsRetrieveQueryParamRemoteFieldsStatus JobsRetrieveQueryParamRemoteFields = "status"
 )
 
-func (e JobsRetrieveRemoteFields) ToPointer() *JobsRetrieveRemoteFields {
+func (e JobsRetrieveQueryParamRemoteFields) ToPointer() *JobsRetrieveQueryParamRemoteFields {
 	return &e
 }
 
-func (e *JobsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *JobsRetrieveQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = JobsRetrieveRemoteFields(v)
+		*e = JobsRetrieveQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobsRetrieveRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for JobsRetrieveQueryParamRemoteFields: %v", v)
 	}
 }
 
-// JobsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type JobsRetrieveShowEnumOrigins string
+// JobsRetrieveQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type JobsRetrieveQueryParamShowEnumOrigins string
 
 const (
-	JobsRetrieveShowEnumOriginsStatus JobsRetrieveShowEnumOrigins = "status"
+	JobsRetrieveQueryParamShowEnumOriginsStatus JobsRetrieveQueryParamShowEnumOrigins = "status"
 )
 
-func (e JobsRetrieveShowEnumOrigins) ToPointer() *JobsRetrieveShowEnumOrigins {
+func (e JobsRetrieveQueryParamShowEnumOrigins) ToPointer() *JobsRetrieveQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *JobsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *JobsRetrieveQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = JobsRetrieveShowEnumOrigins(v)
+		*e = JobsRetrieveQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobsRetrieveShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for JobsRetrieveQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -130,14 +130,14 @@ type JobsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *JobsRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string              `pathParam:"style=simple,explode=false,name=id"`
+	Expand *JobsRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
+	ID     string                        `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *JobsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *JobsRetrieveQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *JobsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *JobsRetrieveQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o *JobsRetrieveRequest) GetXAccountToken() string {
@@ -147,7 +147,7 @@ func (o *JobsRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *JobsRetrieveRequest) GetExpand() *JobsRetrieveExpand {
+func (o *JobsRetrieveRequest) GetExpand() *JobsRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -168,14 +168,14 @@ func (o *JobsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *JobsRetrieveRequest) GetRemoteFields() *JobsRetrieveRemoteFields {
+func (o *JobsRetrieveRequest) GetRemoteFields() *JobsRetrieveQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
 	return o.RemoteFields
 }
 
-func (o *JobsRetrieveRequest) GetShowEnumOrigins() *JobsRetrieveShowEnumOrigins {
+func (o *JobsRetrieveRequest) GetShowEnumOrigins() *JobsRetrieveQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

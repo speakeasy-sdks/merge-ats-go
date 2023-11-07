@@ -9,22 +9,22 @@ import (
 	"time"
 )
 
-// EmailAddressEmailAddressType - * `PERSONAL` - PERSONAL
+// EmailAddressType - * `PERSONAL` - PERSONAL
 // * `WORK` - WORK
 // * `OTHER` - OTHER
-type EmailAddressEmailAddressType string
+type EmailAddressType string
 
 const (
-	EmailAddressEmailAddressTypePersonal EmailAddressEmailAddressType = "PERSONAL"
-	EmailAddressEmailAddressTypeWork     EmailAddressEmailAddressType = "WORK"
-	EmailAddressEmailAddressTypeOther    EmailAddressEmailAddressType = "OTHER"
+	EmailAddressTypePersonal EmailAddressType = "PERSONAL"
+	EmailAddressTypeWork     EmailAddressType = "WORK"
+	EmailAddressTypeOther    EmailAddressType = "OTHER"
 )
 
-func (e EmailAddressEmailAddressType) ToPointer() *EmailAddressEmailAddressType {
+func (e EmailAddressType) ToPointer() *EmailAddressType {
 	return &e
 }
 
-func (e *EmailAddressEmailAddressType) UnmarshalJSON(data []byte) error {
+func (e *EmailAddressType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,10 +35,10 @@ func (e *EmailAddressEmailAddressType) UnmarshalJSON(data []byte) error {
 	case "WORK":
 		fallthrough
 	case "OTHER":
-		*e = EmailAddressEmailAddressType(v)
+		*e = EmailAddressType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EmailAddressEmailAddressType: %v", v)
+		return fmt.Errorf("invalid value for EmailAddressType: %v", v)
 	}
 }
 
@@ -53,7 +53,7 @@ type EmailAddress struct {
 	// * `PERSONAL` - PERSONAL
 	// * `WORK` - WORK
 	// * `OTHER` - OTHER
-	EmailAddressType *EmailAddressEmailAddressType `json:"email_address_type,omitempty"`
+	EmailAddressType *EmailAddressType `json:"email_address_type,omitempty"`
 	// This is the datetime that this object was last updated by Merge
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// The email address.
@@ -71,7 +71,7 @@ func (e *EmailAddress) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EmailAddress) GetEmailAddressType() *EmailAddressEmailAddressType {
+func (o *EmailAddress) GetEmailAddressType() *EmailAddressType {
 	if o == nil {
 		return nil
 	}

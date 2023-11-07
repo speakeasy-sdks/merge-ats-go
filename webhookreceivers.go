@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type webhookReceivers struct {
+type WebhookReceivers struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newWebhookReceivers(sdkConfig sdkConfiguration) *webhookReceivers {
-	return &webhookReceivers{
+func newWebhookReceivers(sdkConfig sdkConfiguration) *WebhookReceivers {
+	return &WebhookReceivers{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Creates a `WebhookReceiver` object with the given values.
-func (s *webhookReceivers) Create(ctx context.Context, webhookReceiverRequest shared.WebhookReceiverRequest, xAccountToken string) (*operations.WebhookReceiversCreateResponse, error) {
+func (s *WebhookReceivers) Create(ctx context.Context, webhookReceiverRequest shared.WebhookReceiverRequest, xAccountToken string) (*operations.WebhookReceiversCreateResponse, error) {
 	request := operations.WebhookReceiversCreateRequest{
 		WebhookReceiverRequest: webhookReceiverRequest,
 		XAccountToken:          xAccountToken,
@@ -91,13 +91,17 @@ func (s *webhookReceivers) Create(ctx context.Context, webhookReceiverRequest sh
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // List - Returns a list of `WebhookReceiver` objects.
-func (s *webhookReceivers) List(ctx context.Context, xAccountToken string) (*operations.WebhookReceiversListResponse, error) {
+func (s *WebhookReceivers) List(ctx context.Context, xAccountToken string) (*operations.WebhookReceiversListResponse, error) {
 	request := operations.WebhookReceiversListRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -147,10 +151,14 @@ func (s *webhookReceivers) List(ctx context.Context, xAccountToken string) (*ope
 				return nil, err
 			}
 
-			res.WebhookReceivers = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

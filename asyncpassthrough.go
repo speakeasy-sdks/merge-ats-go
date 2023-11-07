@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type asyncPassthrough struct {
+type AsyncPassthrough struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAsyncPassthrough(sdkConfig sdkConfiguration) *asyncPassthrough {
-	return &asyncPassthrough{
+func newAsyncPassthrough(sdkConfig sdkConfiguration) *AsyncPassthrough {
+	return &AsyncPassthrough{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Asynchronously pull data from an endpoint not currently supported by Merge.
-func (s *asyncPassthrough) Create(ctx context.Context, dataPassthroughRequest shared.DataPassthroughRequest, xAccountToken string) (*operations.AsyncPassthroughCreateResponse, error) {
+func (s *AsyncPassthrough) Create(ctx context.Context, dataPassthroughRequest shared.DataPassthroughRequest, xAccountToken string) (*operations.AsyncPassthroughCreateResponse, error) {
 	request := operations.AsyncPassthroughCreateRequest{
 		DataPassthroughRequest: dataPassthroughRequest,
 		XAccountToken:          xAccountToken,
@@ -91,13 +91,17 @@ func (s *asyncPassthrough) Create(ctx context.Context, dataPassthroughRequest sh
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Retrieves data from earlier async-passthrough POST request
-func (s *asyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, asyncPassthroughReceiptID string) (*operations.AsyncPassthroughRetrieveResponse, error) {
+func (s *AsyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, asyncPassthroughReceiptID string) (*operations.AsyncPassthroughRetrieveResponse, error) {
 	request := operations.AsyncPassthroughRetrieveRequest{
 		XAccountToken:             xAccountToken,
 		AsyncPassthroughReceiptID: asyncPassthroughReceiptID,
@@ -155,6 +159,10 @@ func (s *asyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, a
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

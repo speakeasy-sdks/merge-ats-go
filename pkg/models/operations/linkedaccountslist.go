@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-// LinkedAccountsListCategory - Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')
+// Category - Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')
 //
 // * `hris` - hris
 // * `ats` - ats
@@ -18,23 +18,23 @@ import (
 // * `crm` - crm
 // * `mktg` - mktg
 // * `filestorage` - filestorage
-type LinkedAccountsListCategory string
+type Category string
 
 const (
-	LinkedAccountsListCategoryAccounting  LinkedAccountsListCategory = "accounting"
-	LinkedAccountsListCategoryAts         LinkedAccountsListCategory = "ats"
-	LinkedAccountsListCategoryCrm         LinkedAccountsListCategory = "crm"
-	LinkedAccountsListCategoryFilestorage LinkedAccountsListCategory = "filestorage"
-	LinkedAccountsListCategoryHris        LinkedAccountsListCategory = "hris"
-	LinkedAccountsListCategoryMktg        LinkedAccountsListCategory = "mktg"
-	LinkedAccountsListCategoryTicketing   LinkedAccountsListCategory = "ticketing"
+	CategoryAccounting  Category = "accounting"
+	CategoryAts         Category = "ats"
+	CategoryCrm         Category = "crm"
+	CategoryFilestorage Category = "filestorage"
+	CategoryHris        Category = "hris"
+	CategoryMktg        Category = "mktg"
+	CategoryTicketing   Category = "ticketing"
 )
 
-func (e LinkedAccountsListCategory) ToPointer() *LinkedAccountsListCategory {
+func (e Category) ToPointer() *Category {
 	return &e
 }
 
-func (e *LinkedAccountsListCategory) UnmarshalJSON(data []byte) error {
+func (e *Category) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -53,10 +53,10 @@ func (e *LinkedAccountsListCategory) UnmarshalJSON(data []byte) error {
 	case "mktg":
 		fallthrough
 	case "ticketing":
-		*e = LinkedAccountsListCategory(v)
+		*e = Category(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for LinkedAccountsListCategory: %v", v)
+		return fmt.Errorf("invalid value for Category: %v", v)
 	}
 }
 
@@ -70,7 +70,7 @@ type LinkedAccountsListRequest struct {
 	// * `crm` - crm
 	// * `mktg` - mktg
 	// * `filestorage` - filestorage
-	Category *LinkedAccountsListCategory `queryParam:"style=form,explode=true,name=category"`
+	Category *Category `queryParam:"style=form,explode=true,name=category"`
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// If provided, will only return linked accounts associated with the given email address.
@@ -96,7 +96,7 @@ type LinkedAccountsListRequest struct {
 	Status *string `queryParam:"style=form,explode=true,name=status"`
 }
 
-func (o *LinkedAccountsListRequest) GetCategory() *LinkedAccountsListCategory {
+func (o *LinkedAccountsListRequest) GetCategory() *Category {
 	if o == nil {
 		return nil
 	}

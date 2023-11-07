@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// IgnoreCommonModelRequestReason - * `GENERAL_CUSTOMER_REQUEST` - GENERAL_CUSTOMER_REQUEST
+// Reason - * `GENERAL_CUSTOMER_REQUEST` - GENERAL_CUSTOMER_REQUEST
 // * `GDPR` - GDPR
 // * `OTHER` - OTHER
-type IgnoreCommonModelRequestReason string
+type Reason string
 
 const (
-	IgnoreCommonModelRequestReasonGeneralCustomerRequest IgnoreCommonModelRequestReason = "GENERAL_CUSTOMER_REQUEST"
-	IgnoreCommonModelRequestReasonGdpr                   IgnoreCommonModelRequestReason = "GDPR"
-	IgnoreCommonModelRequestReasonOther                  IgnoreCommonModelRequestReason = "OTHER"
+	ReasonGeneralCustomerRequest Reason = "GENERAL_CUSTOMER_REQUEST"
+	ReasonGdpr                   Reason = "GDPR"
+	ReasonOther                  Reason = "OTHER"
 )
 
-func (e IgnoreCommonModelRequestReason) ToPointer() *IgnoreCommonModelRequestReason {
+func (e Reason) ToPointer() *Reason {
 	return &e
 }
 
-func (e *IgnoreCommonModelRequestReason) UnmarshalJSON(data []byte) error {
+func (e *Reason) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,16 +33,16 @@ func (e *IgnoreCommonModelRequestReason) UnmarshalJSON(data []byte) error {
 	case "GDPR":
 		fallthrough
 	case "OTHER":
-		*e = IgnoreCommonModelRequestReason(v)
+		*e = Reason(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for IgnoreCommonModelRequestReason: %v", v)
+		return fmt.Errorf("invalid value for Reason: %v", v)
 	}
 }
 
 type IgnoreCommonModelRequest struct {
-	Message *string                        `json:"message,omitempty"`
-	Reason  IgnoreCommonModelRequestReason `json:"reason"`
+	Message *string `json:"message,omitempty"`
+	Reason  Reason  `json:"reason"`
 }
 
 func (o *IgnoreCommonModelRequest) GetMessage() *string {
@@ -52,9 +52,9 @@ func (o *IgnoreCommonModelRequest) GetMessage() *string {
 	return o.Message
 }
 
-func (o *IgnoreCommonModelRequest) GetReason() IgnoreCommonModelRequestReason {
+func (o *IgnoreCommonModelRequest) GetReason() Reason {
 	if o == nil {
-		return IgnoreCommonModelRequestReason("")
+		return Reason("")
 	}
 	return o.Reason
 }

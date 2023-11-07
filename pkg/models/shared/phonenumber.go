@@ -9,26 +9,26 @@ import (
 	"time"
 )
 
-// PhoneNumberPhoneNumberType - * `HOME` - HOME
+// PhoneNumberType - * `HOME` - HOME
 // * `WORK` - WORK
 // * `MOBILE` - MOBILE
 // * `SKYPE` - SKYPE
 // * `OTHER` - OTHER
-type PhoneNumberPhoneNumberType string
+type PhoneNumberType string
 
 const (
-	PhoneNumberPhoneNumberTypeHome   PhoneNumberPhoneNumberType = "HOME"
-	PhoneNumberPhoneNumberTypeWork   PhoneNumberPhoneNumberType = "WORK"
-	PhoneNumberPhoneNumberTypeMobile PhoneNumberPhoneNumberType = "MOBILE"
-	PhoneNumberPhoneNumberTypeSkype  PhoneNumberPhoneNumberType = "SKYPE"
-	PhoneNumberPhoneNumberTypeOther  PhoneNumberPhoneNumberType = "OTHER"
+	PhoneNumberTypeHome   PhoneNumberType = "HOME"
+	PhoneNumberTypeWork   PhoneNumberType = "WORK"
+	PhoneNumberTypeMobile PhoneNumberType = "MOBILE"
+	PhoneNumberTypeSkype  PhoneNumberType = "SKYPE"
+	PhoneNumberTypeOther  PhoneNumberType = "OTHER"
 )
 
-func (e PhoneNumberPhoneNumberType) ToPointer() *PhoneNumberPhoneNumberType {
+func (e PhoneNumberType) ToPointer() *PhoneNumberType {
 	return &e
 }
 
-func (e *PhoneNumberPhoneNumberType) UnmarshalJSON(data []byte) error {
+func (e *PhoneNumberType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,10 +43,10 @@ func (e *PhoneNumberPhoneNumberType) UnmarshalJSON(data []byte) error {
 	case "SKYPE":
 		fallthrough
 	case "OTHER":
-		*e = PhoneNumberPhoneNumberType(v)
+		*e = PhoneNumberType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PhoneNumberPhoneNumberType: %v", v)
+		return fmt.Errorf("invalid value for PhoneNumberType: %v", v)
 	}
 }
 
@@ -65,7 +65,7 @@ type PhoneNumber struct {
 	// * `MOBILE` - MOBILE
 	// * `SKYPE` - SKYPE
 	// * `OTHER` - OTHER
-	PhoneNumberType *PhoneNumberPhoneNumberType `json:"phone_number_type,omitempty"`
+	PhoneNumberType *PhoneNumberType `json:"phone_number_type,omitempty"`
 	// The phone number.
 	Value *string `json:"value,omitempty"`
 }
@@ -88,7 +88,7 @@ func (o *PhoneNumber) GetModifiedAt() *time.Time {
 	return o.ModifiedAt
 }
 
-func (o *PhoneNumber) GetPhoneNumberType() *PhoneNumberPhoneNumberType {
+func (o *PhoneNumber) GetPhoneNumberType() *PhoneNumberType {
 	if o == nil {
 		return nil
 	}

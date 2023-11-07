@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type scorecards struct {
+type Scorecards struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newScorecards(sdkConfig sdkConfiguration) *scorecards {
-	return &scorecards{
+func newScorecards(sdkConfig sdkConfiguration) *Scorecards {
+	return &Scorecards{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Returns a list of `Scorecard` objects.
-func (s *scorecards) List(ctx context.Context, request operations.ScorecardsListRequest) (*operations.ScorecardsListResponse, error) {
+func (s *Scorecards) List(ctx context.Context, request operations.ScorecardsListRequest) (*operations.ScorecardsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/scorecards"
 
@@ -80,13 +80,17 @@ func (s *scorecards) List(ctx context.Context, request operations.ScorecardsList
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns a `Scorecard` object with the given `id`.
-func (s *scorecards) Retrieve(ctx context.Context, request operations.ScorecardsRetrieveRequest) (*operations.ScorecardsRetrieveResponse, error) {
+func (s *Scorecards) Retrieve(ctx context.Context, request operations.ScorecardsRetrieveRequest) (*operations.ScorecardsRetrieveResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/scorecards/{id}", request, nil)
 	if err != nil {
@@ -143,6 +147,10 @@ func (s *scorecards) Retrieve(ctx context.Context, request operations.Scorecards
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

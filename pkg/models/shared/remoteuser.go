@@ -9,26 +9,26 @@ import (
 	"time"
 )
 
-// RemoteUserAccessRole - * `SUPER_ADMIN` - SUPER_ADMIN
+// AccessRole - * `SUPER_ADMIN` - SUPER_ADMIN
 // * `ADMIN` - ADMIN
 // * `TEAM_MEMBER` - TEAM_MEMBER
 // * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
 // * `INTERVIEWER` - INTERVIEWER
-type RemoteUserAccessRole string
+type AccessRole string
 
 const (
-	RemoteUserAccessRoleSuperAdmin        RemoteUserAccessRole = "SUPER_ADMIN"
-	RemoteUserAccessRoleAdmin             RemoteUserAccessRole = "ADMIN"
-	RemoteUserAccessRoleTeamMember        RemoteUserAccessRole = "TEAM_MEMBER"
-	RemoteUserAccessRoleLimitedTeamMember RemoteUserAccessRole = "LIMITED_TEAM_MEMBER"
-	RemoteUserAccessRoleInterviewer       RemoteUserAccessRole = "INTERVIEWER"
+	AccessRoleSuperAdmin        AccessRole = "SUPER_ADMIN"
+	AccessRoleAdmin             AccessRole = "ADMIN"
+	AccessRoleTeamMember        AccessRole = "TEAM_MEMBER"
+	AccessRoleLimitedTeamMember AccessRole = "LIMITED_TEAM_MEMBER"
+	AccessRoleInterviewer       AccessRole = "INTERVIEWER"
 )
 
-func (e RemoteUserAccessRole) ToPointer() *RemoteUserAccessRole {
+func (e AccessRole) ToPointer() *AccessRole {
 	return &e
 }
 
-func (e *RemoteUserAccessRole) UnmarshalJSON(data []byte) error {
+func (e *AccessRole) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,10 +43,10 @@ func (e *RemoteUserAccessRole) UnmarshalJSON(data []byte) error {
 	case "LIMITED_TEAM_MEMBER":
 		fallthrough
 	case "INTERVIEWER":
-		*e = RemoteUserAccessRole(v)
+		*e = AccessRole(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RemoteUserAccessRole: %v", v)
+		return fmt.Errorf("invalid value for AccessRole: %v", v)
 	}
 }
 
@@ -63,7 +63,7 @@ type RemoteUser struct {
 	// * `TEAM_MEMBER` - TEAM_MEMBER
 	// * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
 	// * `INTERVIEWER` - INTERVIEWER
-	AccessRole *RemoteUserAccessRole `json:"access_role,omitempty"`
+	AccessRole *AccessRole `json:"access_role,omitempty"`
 	// Whether the user's account had been disabled.
 	Disabled *bool `json:"disabled,omitempty"`
 	// The user's email.
@@ -96,7 +96,7 @@ func (r *RemoteUser) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *RemoteUser) GetAccessRole() *RemoteUserAccessRole {
+func (o *RemoteUser) GetAccessRole() *AccessRole {
 	if o == nil {
 		return nil
 	}

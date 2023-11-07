@@ -9,78 +9,78 @@ import (
 	"net/http"
 )
 
-// AttachmentsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type AttachmentsRetrieveExpand string
+// AttachmentsRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type AttachmentsRetrieveQueryParamExpand string
 
 const (
-	AttachmentsRetrieveExpandCandidate AttachmentsRetrieveExpand = "candidate"
+	AttachmentsRetrieveQueryParamExpandCandidate AttachmentsRetrieveQueryParamExpand = "candidate"
 )
 
-func (e AttachmentsRetrieveExpand) ToPointer() *AttachmentsRetrieveExpand {
+func (e AttachmentsRetrieveQueryParamExpand) ToPointer() *AttachmentsRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *AttachmentsRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *AttachmentsRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "candidate":
-		*e = AttachmentsRetrieveExpand(v)
+		*e = AttachmentsRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AttachmentsRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for AttachmentsRetrieveQueryParamExpand: %v", v)
 	}
 }
 
-// AttachmentsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type AttachmentsRetrieveRemoteFields string
+// AttachmentsRetrieveQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type AttachmentsRetrieveQueryParamRemoteFields string
 
 const (
-	AttachmentsRetrieveRemoteFieldsAttachmentType AttachmentsRetrieveRemoteFields = "attachment_type"
+	AttachmentsRetrieveQueryParamRemoteFieldsAttachmentType AttachmentsRetrieveQueryParamRemoteFields = "attachment_type"
 )
 
-func (e AttachmentsRetrieveRemoteFields) ToPointer() *AttachmentsRetrieveRemoteFields {
+func (e AttachmentsRetrieveQueryParamRemoteFields) ToPointer() *AttachmentsRetrieveQueryParamRemoteFields {
 	return &e
 }
 
-func (e *AttachmentsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *AttachmentsRetrieveQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "attachment_type":
-		*e = AttachmentsRetrieveRemoteFields(v)
+		*e = AttachmentsRetrieveQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AttachmentsRetrieveRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for AttachmentsRetrieveQueryParamRemoteFields: %v", v)
 	}
 }
 
-// AttachmentsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type AttachmentsRetrieveShowEnumOrigins string
+// AttachmentsRetrieveQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type AttachmentsRetrieveQueryParamShowEnumOrigins string
 
 const (
-	AttachmentsRetrieveShowEnumOriginsAttachmentType AttachmentsRetrieveShowEnumOrigins = "attachment_type"
+	AttachmentsRetrieveQueryParamShowEnumOriginsAttachmentType AttachmentsRetrieveQueryParamShowEnumOrigins = "attachment_type"
 )
 
-func (e AttachmentsRetrieveShowEnumOrigins) ToPointer() *AttachmentsRetrieveShowEnumOrigins {
+func (e AttachmentsRetrieveQueryParamShowEnumOrigins) ToPointer() *AttachmentsRetrieveQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *AttachmentsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *AttachmentsRetrieveQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "attachment_type":
-		*e = AttachmentsRetrieveShowEnumOrigins(v)
+		*e = AttachmentsRetrieveQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AttachmentsRetrieveShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for AttachmentsRetrieveQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -88,14 +88,14 @@ type AttachmentsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *AttachmentsRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string                     `pathParam:"style=simple,explode=false,name=id"`
+	Expand *AttachmentsRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
+	ID     string                               `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *AttachmentsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *AttachmentsRetrieveQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *AttachmentsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *AttachmentsRetrieveQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o *AttachmentsRetrieveRequest) GetXAccountToken() string {
@@ -105,7 +105,7 @@ func (o *AttachmentsRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *AttachmentsRetrieveRequest) GetExpand() *AttachmentsRetrieveExpand {
+func (o *AttachmentsRetrieveRequest) GetExpand() *AttachmentsRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -126,14 +126,14 @@ func (o *AttachmentsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *AttachmentsRetrieveRequest) GetRemoteFields() *AttachmentsRetrieveRemoteFields {
+func (o *AttachmentsRetrieveRequest) GetRemoteFields() *AttachmentsRetrieveQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
 	return o.RemoteFields
 }
 
-func (o *AttachmentsRetrieveRequest) GetShowEnumOrigins() *AttachmentsRetrieveShowEnumOrigins {
+func (o *AttachmentsRetrieveRequest) GetShowEnumOrigins() *AttachmentsRetrieveQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

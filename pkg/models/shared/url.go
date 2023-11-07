@@ -9,30 +9,30 @@ import (
 	"time"
 )
 
-// URLURLType - * `PERSONAL` - PERSONAL
+// URLType - * `PERSONAL` - PERSONAL
 // * `COMPANY` - COMPANY
 // * `PORTFOLIO` - PORTFOLIO
 // * `BLOG` - BLOG
 // * `SOCIAL_MEDIA` - SOCIAL_MEDIA
 // * `OTHER` - OTHER
 // * `JOB_POSTING` - JOB_POSTING
-type URLURLType string
+type URLType string
 
 const (
-	URLURLTypePersonal    URLURLType = "PERSONAL"
-	URLURLTypeCompany     URLURLType = "COMPANY"
-	URLURLTypePortfolio   URLURLType = "PORTFOLIO"
-	URLURLTypeBlog        URLURLType = "BLOG"
-	URLURLTypeSocialMedia URLURLType = "SOCIAL_MEDIA"
-	URLURLTypeOther       URLURLType = "OTHER"
-	URLURLTypeJobPosting  URLURLType = "JOB_POSTING"
+	URLTypePersonal    URLType = "PERSONAL"
+	URLTypeCompany     URLType = "COMPANY"
+	URLTypePortfolio   URLType = "PORTFOLIO"
+	URLTypeBlog        URLType = "BLOG"
+	URLTypeSocialMedia URLType = "SOCIAL_MEDIA"
+	URLTypeOther       URLType = "OTHER"
+	URLTypeJobPosting  URLType = "JOB_POSTING"
 )
 
-func (e URLURLType) ToPointer() *URLURLType {
+func (e URLType) ToPointer() *URLType {
 	return &e
 }
 
-func (e *URLURLType) UnmarshalJSON(data []byte) error {
+func (e *URLType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -51,10 +51,10 @@ func (e *URLURLType) UnmarshalJSON(data []byte) error {
 	case "OTHER":
 		fallthrough
 	case "JOB_POSTING":
-		*e = URLURLType(v)
+		*e = URLType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for URLURLType: %v", v)
+		return fmt.Errorf("invalid value for URLType: %v", v)
 	}
 }
 
@@ -75,7 +75,7 @@ type URL struct {
 	// * `SOCIAL_MEDIA` - SOCIAL_MEDIA
 	// * `OTHER` - OTHER
 	// * `JOB_POSTING` - JOB_POSTING
-	URLType *URLURLType `json:"url_type,omitempty"`
+	URLType *URLType `json:"url_type,omitempty"`
 	// The site's url.
 	Value *string `json:"value,omitempty"`
 }
@@ -98,7 +98,7 @@ func (o *URL) GetModifiedAt() *time.Time {
 	return o.ModifiedAt
 }
 
-func (o *URL) GetURLType() *URLURLType {
+func (o *URL) GetURLType() *URLType {
 	if o == nil {
 		return nil
 	}

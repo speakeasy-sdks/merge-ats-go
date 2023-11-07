@@ -11,48 +11,48 @@ import (
 	"time"
 )
 
-// ApplicationsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ApplicationsListExpand string
+// ApplicationsListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type ApplicationsListQueryParamExpand string
 
 const (
-	ApplicationsListExpandCandidate                                      ApplicationsListExpand = "candidate"
-	ApplicationsListExpandCandidateCreditedTo                            ApplicationsListExpand = "candidate,credited_to"
-	ApplicationsListExpandCandidateCreditedToCurrentStage                ApplicationsListExpand = "candidate,credited_to,current_stage"
-	ApplicationsListExpandCandidateCreditedToCurrentStageRejectReason    ApplicationsListExpand = "candidate,credited_to,current_stage,reject_reason"
-	ApplicationsListExpandCandidateCreditedToRejectReason                ApplicationsListExpand = "candidate,credited_to,reject_reason"
-	ApplicationsListExpandCandidateCurrentStage                          ApplicationsListExpand = "candidate,current_stage"
-	ApplicationsListExpandCandidateCurrentStageRejectReason              ApplicationsListExpand = "candidate,current_stage,reject_reason"
-	ApplicationsListExpandCandidateJob                                   ApplicationsListExpand = "candidate,job"
-	ApplicationsListExpandCandidateJobCreditedTo                         ApplicationsListExpand = "candidate,job,credited_to"
-	ApplicationsListExpandCandidateJobCreditedToCurrentStage             ApplicationsListExpand = "candidate,job,credited_to,current_stage"
-	ApplicationsListExpandCandidateJobCreditedToCurrentStageRejectReason ApplicationsListExpand = "candidate,job,credited_to,current_stage,reject_reason"
-	ApplicationsListExpandCandidateJobCreditedToRejectReason             ApplicationsListExpand = "candidate,job,credited_to,reject_reason"
-	ApplicationsListExpandCandidateJobCurrentStage                       ApplicationsListExpand = "candidate,job,current_stage"
-	ApplicationsListExpandCandidateJobCurrentStageRejectReason           ApplicationsListExpand = "candidate,job,current_stage,reject_reason"
-	ApplicationsListExpandCandidateJobRejectReason                       ApplicationsListExpand = "candidate,job,reject_reason"
-	ApplicationsListExpandCandidateRejectReason                          ApplicationsListExpand = "candidate,reject_reason"
-	ApplicationsListExpandCreditedTo                                     ApplicationsListExpand = "credited_to"
-	ApplicationsListExpandCreditedToCurrentStage                         ApplicationsListExpand = "credited_to,current_stage"
-	ApplicationsListExpandCreditedToCurrentStageRejectReason             ApplicationsListExpand = "credited_to,current_stage,reject_reason"
-	ApplicationsListExpandCreditedToRejectReason                         ApplicationsListExpand = "credited_to,reject_reason"
-	ApplicationsListExpandCurrentStage                                   ApplicationsListExpand = "current_stage"
-	ApplicationsListExpandCurrentStageRejectReason                       ApplicationsListExpand = "current_stage,reject_reason"
-	ApplicationsListExpandJob                                            ApplicationsListExpand = "job"
-	ApplicationsListExpandJobCreditedTo                                  ApplicationsListExpand = "job,credited_to"
-	ApplicationsListExpandJobCreditedToCurrentStage                      ApplicationsListExpand = "job,credited_to,current_stage"
-	ApplicationsListExpandJobCreditedToCurrentStageRejectReason          ApplicationsListExpand = "job,credited_to,current_stage,reject_reason"
-	ApplicationsListExpandJobCreditedToRejectReason                      ApplicationsListExpand = "job,credited_to,reject_reason"
-	ApplicationsListExpandJobCurrentStage                                ApplicationsListExpand = "job,current_stage"
-	ApplicationsListExpandJobCurrentStageRejectReason                    ApplicationsListExpand = "job,current_stage,reject_reason"
-	ApplicationsListExpandJobRejectReason                                ApplicationsListExpand = "job,reject_reason"
-	ApplicationsListExpandRejectReason                                   ApplicationsListExpand = "reject_reason"
+	ApplicationsListQueryParamExpandCandidate                                      ApplicationsListQueryParamExpand = "candidate"
+	ApplicationsListQueryParamExpandCandidateCreditedTo                            ApplicationsListQueryParamExpand = "candidate,credited_to"
+	ApplicationsListQueryParamExpandCandidateCreditedToCurrentStage                ApplicationsListQueryParamExpand = "candidate,credited_to,current_stage"
+	ApplicationsListQueryParamExpandCandidateCreditedToCurrentStageRejectReason    ApplicationsListQueryParamExpand = "candidate,credited_to,current_stage,reject_reason"
+	ApplicationsListQueryParamExpandCandidateCreditedToRejectReason                ApplicationsListQueryParamExpand = "candidate,credited_to,reject_reason"
+	ApplicationsListQueryParamExpandCandidateCurrentStage                          ApplicationsListQueryParamExpand = "candidate,current_stage"
+	ApplicationsListQueryParamExpandCandidateCurrentStageRejectReason              ApplicationsListQueryParamExpand = "candidate,current_stage,reject_reason"
+	ApplicationsListQueryParamExpandCandidateJob                                   ApplicationsListQueryParamExpand = "candidate,job"
+	ApplicationsListQueryParamExpandCandidateJobCreditedTo                         ApplicationsListQueryParamExpand = "candidate,job,credited_to"
+	ApplicationsListQueryParamExpandCandidateJobCreditedToCurrentStage             ApplicationsListQueryParamExpand = "candidate,job,credited_to,current_stage"
+	ApplicationsListQueryParamExpandCandidateJobCreditedToCurrentStageRejectReason ApplicationsListQueryParamExpand = "candidate,job,credited_to,current_stage,reject_reason"
+	ApplicationsListQueryParamExpandCandidateJobCreditedToRejectReason             ApplicationsListQueryParamExpand = "candidate,job,credited_to,reject_reason"
+	ApplicationsListQueryParamExpandCandidateJobCurrentStage                       ApplicationsListQueryParamExpand = "candidate,job,current_stage"
+	ApplicationsListQueryParamExpandCandidateJobCurrentStageRejectReason           ApplicationsListQueryParamExpand = "candidate,job,current_stage,reject_reason"
+	ApplicationsListQueryParamExpandCandidateJobRejectReason                       ApplicationsListQueryParamExpand = "candidate,job,reject_reason"
+	ApplicationsListQueryParamExpandCandidateRejectReason                          ApplicationsListQueryParamExpand = "candidate,reject_reason"
+	ApplicationsListQueryParamExpandCreditedTo                                     ApplicationsListQueryParamExpand = "credited_to"
+	ApplicationsListQueryParamExpandCreditedToCurrentStage                         ApplicationsListQueryParamExpand = "credited_to,current_stage"
+	ApplicationsListQueryParamExpandCreditedToCurrentStageRejectReason             ApplicationsListQueryParamExpand = "credited_to,current_stage,reject_reason"
+	ApplicationsListQueryParamExpandCreditedToRejectReason                         ApplicationsListQueryParamExpand = "credited_to,reject_reason"
+	ApplicationsListQueryParamExpandCurrentStage                                   ApplicationsListQueryParamExpand = "current_stage"
+	ApplicationsListQueryParamExpandCurrentStageRejectReason                       ApplicationsListQueryParamExpand = "current_stage,reject_reason"
+	ApplicationsListQueryParamExpandJob                                            ApplicationsListQueryParamExpand = "job"
+	ApplicationsListQueryParamExpandJobCreditedTo                                  ApplicationsListQueryParamExpand = "job,credited_to"
+	ApplicationsListQueryParamExpandJobCreditedToCurrentStage                      ApplicationsListQueryParamExpand = "job,credited_to,current_stage"
+	ApplicationsListQueryParamExpandJobCreditedToCurrentStageRejectReason          ApplicationsListQueryParamExpand = "job,credited_to,current_stage,reject_reason"
+	ApplicationsListQueryParamExpandJobCreditedToRejectReason                      ApplicationsListQueryParamExpand = "job,credited_to,reject_reason"
+	ApplicationsListQueryParamExpandJobCurrentStage                                ApplicationsListQueryParamExpand = "job,current_stage"
+	ApplicationsListQueryParamExpandJobCurrentStageRejectReason                    ApplicationsListQueryParamExpand = "job,current_stage,reject_reason"
+	ApplicationsListQueryParamExpandJobRejectReason                                ApplicationsListQueryParamExpand = "job,reject_reason"
+	ApplicationsListQueryParamExpandRejectReason                                   ApplicationsListQueryParamExpand = "reject_reason"
 )
 
-func (e ApplicationsListExpand) ToPointer() *ApplicationsListExpand {
+func (e ApplicationsListQueryParamExpand) ToPointer() *ApplicationsListQueryParamExpand {
 	return &e
 }
 
-func (e *ApplicationsListExpand) UnmarshalJSON(data []byte) error {
+func (e *ApplicationsListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -119,10 +119,10 @@ func (e *ApplicationsListExpand) UnmarshalJSON(data []byte) error {
 	case "job,reject_reason":
 		fallthrough
 	case "reject_reason":
-		*e = ApplicationsListExpand(v)
+		*e = ApplicationsListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ApplicationsListExpand: %v", v)
+		return fmt.Errorf("invalid value for ApplicationsListQueryParamExpand: %v", v)
 	}
 }
 
@@ -142,7 +142,7 @@ type ApplicationsListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ApplicationsListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *ApplicationsListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -223,7 +223,7 @@ func (o *ApplicationsListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *ApplicationsListRequest) GetExpand() *ApplicationsListExpand {
+func (o *ApplicationsListRequest) GetExpand() *ApplicationsListQueryParamExpand {
 	if o == nil {
 		return nil
 	}

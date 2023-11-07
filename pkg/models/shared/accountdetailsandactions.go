@@ -56,22 +56,22 @@ func (e *AccountDetailsAndActionsCategory) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// AccountDetailsAndActionsStatus - * `COMPLETE` - COMPLETE
+// Status - * `COMPLETE` - COMPLETE
 // * `INCOMPLETE` - INCOMPLETE
 // * `RELINK_NEEDED` - RELINK_NEEDED
-type AccountDetailsAndActionsStatus string
+type Status string
 
 const (
-	AccountDetailsAndActionsStatusComplete     AccountDetailsAndActionsStatus = "COMPLETE"
-	AccountDetailsAndActionsStatusIncomplete   AccountDetailsAndActionsStatus = "INCOMPLETE"
-	AccountDetailsAndActionsStatusRelinkNeeded AccountDetailsAndActionsStatus = "RELINK_NEEDED"
+	StatusComplete     Status = "COMPLETE"
+	StatusIncomplete   Status = "INCOMPLETE"
+	StatusRelinkNeeded Status = "RELINK_NEEDED"
 )
 
-func (e AccountDetailsAndActionsStatus) ToPointer() *AccountDetailsAndActionsStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *AccountDetailsAndActionsStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -82,10 +82,10 @@ func (e *AccountDetailsAndActionsStatus) UnmarshalJSON(data []byte) error {
 	case "INCOMPLETE":
 		fallthrough
 	case "RELINK_NEEDED":
-		*e = AccountDetailsAndActionsStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountDetailsAndActionsStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
@@ -103,10 +103,10 @@ type AccountDetailsAndActions struct {
 	ID                      string                               `json:"id"`
 	Integration             *AccountDetailsAndActionsIntegration `json:"integration,omitempty"`
 	// Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
-	IsDuplicate        *bool                          `json:"is_duplicate,omitempty"`
-	Status             AccountDetailsAndActionsStatus `json:"status"`
-	StatusDetail       *string                        `json:"status_detail,omitempty"`
-	WebhookListenerURL string                         `json:"webhook_listener_url"`
+	IsDuplicate        *bool   `json:"is_duplicate,omitempty"`
+	Status             Status  `json:"status"`
+	StatusDetail       *string `json:"status_detail,omitempty"`
+	WebhookListenerURL string  `json:"webhook_listener_url"`
 }
 
 func (o *AccountDetailsAndActions) GetCategory() *AccountDetailsAndActionsCategory {
@@ -158,9 +158,9 @@ func (o *AccountDetailsAndActions) GetIsDuplicate() *bool {
 	return o.IsDuplicate
 }
 
-func (o *AccountDetailsAndActions) GetStatus() AccountDetailsAndActionsStatus {
+func (o *AccountDetailsAndActions) GetStatus() Status {
 	if o == nil {
-		return AccountDetailsAndActionsStatus("")
+		return Status("")
 	}
 	return o.Status
 }

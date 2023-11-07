@@ -1,5 +1,5 @@
 # GenerateKey
-(*GenerateKey*)
+(*.GenerateKey*)
 
 ### Available Operations
 

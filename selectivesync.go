@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type selectiveSync struct {
+type SelectiveSync struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSelectiveSync(sdkConfig sdkConfiguration) *selectiveSync {
-	return &selectiveSync{
+func newSelectiveSync(sdkConfig sdkConfiguration) *SelectiveSync {
+	return &SelectiveSync{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Get a linked account's selective syncs.
-func (s *selectiveSync) List(ctx context.Context, xAccountToken string) (*operations.SelectiveSyncConfigurationsListResponse, error) {
+func (s *SelectiveSync) List(ctx context.Context, xAccountToken string) (*operations.SelectiveSyncConfigurationsListResponse, error) {
 	request := operations.SelectiveSyncConfigurationsListRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -76,17 +76,21 @@ func (s *selectiveSync) List(ctx context.Context, xAccountToken string) (*operat
 				return nil, err
 			}
 
-			res.LinkedAccountSelectiveSyncConfigurations = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // RetrievePostMetadata - Get metadata for the conditions available to a linked account.
-func (s *selectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken string, commonModel *string, cursor *string, pageSize *int64) (*operations.SelectiveSyncMetaListResponse, error) {
+func (s *SelectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken string, commonModel *string, cursor *string, pageSize *int64) (*operations.SelectiveSyncMetaListResponse, error) {
 	request := operations.SelectiveSyncMetaListRequest{
 		XAccountToken: xAccountToken,
 		CommonModel:   commonModel,
@@ -147,13 +151,17 @@ func (s *selectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken 
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Update - Replace a linked account's selective syncs.
-func (s *selectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncConfigurationListRequest shared.LinkedAccountSelectiveSyncConfigurationListRequest, xAccountToken string) (*operations.SelectiveSyncConfigurationsUpdateResponse, error) {
+func (s *SelectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncConfigurationListRequest shared.LinkedAccountSelectiveSyncConfigurationListRequest, xAccountToken string) (*operations.SelectiveSyncConfigurationsUpdateResponse, error) {
 	request := operations.SelectiveSyncConfigurationsUpdateRequest{
 		LinkedAccountSelectiveSyncConfigurationListRequest: linkedAccountSelectiveSyncConfigurationListRequest,
 		XAccountToken: xAccountToken,
@@ -214,10 +222,14 @@ func (s *selectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncCo
 				return nil, err
 			}
 
-			res.LinkedAccountSelectiveSyncConfigurations = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

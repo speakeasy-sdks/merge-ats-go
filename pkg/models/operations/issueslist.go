@@ -11,22 +11,22 @@ import (
 	"time"
 )
 
-// IssuesListStatus - Status of the issue. Options: ('ONGOING', 'RESOLVED')
+// Status of the issue. Options: ('ONGOING', 'RESOLVED')
 //
 // * `ONGOING` - ONGOING
 // * `RESOLVED` - RESOLVED
-type IssuesListStatus string
+type Status string
 
 const (
-	IssuesListStatusOngoing  IssuesListStatus = "ONGOING"
-	IssuesListStatusResolved IssuesListStatus = "RESOLVED"
+	StatusOngoing  Status = "ONGOING"
+	StatusResolved Status = "RESOLVED"
 )
 
-func (e IssuesListStatus) ToPointer() *IssuesListStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *IssuesListStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,10 +35,10 @@ func (e *IssuesListStatus) UnmarshalJSON(data []byte) error {
 	case "ONGOING":
 		fallthrough
 	case "RESOLVED":
-		*e = IssuesListStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for IssuesListStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
@@ -68,7 +68,7 @@ type IssuesListRequest struct {
 	//
 	// * `ONGOING` - ONGOING
 	// * `RESOLVED` - RESOLVED
-	Status *IssuesListStatus `queryParam:"style=form,explode=true,name=status"`
+	Status *Status `queryParam:"style=form,explode=true,name=status"`
 }
 
 func (i IssuesListRequest) MarshalJSON() ([]byte, error) {
@@ -166,7 +166,7 @@ func (o *IssuesListRequest) GetStartDate() *string {
 	return o.StartDate
 }
 
-func (o *IssuesListRequest) GetStatus() *IssuesListStatus {
+func (o *IssuesListRequest) GetStatus() *Status {
 	if o == nil {
 		return nil
 	}

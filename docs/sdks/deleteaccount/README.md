@@ -1,5 +1,5 @@
 # DeleteAccount
-(*DeleteAccount*)
+(*.DeleteAccount*)
 
 ### Available Operations
 

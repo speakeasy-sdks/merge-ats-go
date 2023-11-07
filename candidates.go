@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type candidates struct {
+type Candidates struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCandidates(sdkConfig sdkConfiguration) *candidates {
-	return &candidates{
+func newCandidates(sdkConfig sdkConfiguration) *Candidates {
+	return &Candidates{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Creates a `Candidate` object with the given values.
-func (s *candidates) Create(ctx context.Context, candidateEndpointRequest shared.CandidateEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.CandidatesCreateResponse, error) {
+func (s *Candidates) Create(ctx context.Context, candidateEndpointRequest shared.CandidateEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.CandidatesCreateResponse, error) {
 	request := operations.CandidatesCreateRequest{
 		CandidateEndpointRequest: candidateEndpointRequest,
 		XAccountToken:            xAccountToken,
@@ -97,13 +97,17 @@ func (s *candidates) Create(ctx context.Context, candidateEndpointRequest shared
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // IgnoreCreate - Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
-func (s *candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest shared.IgnoreCommonModelRequest, xAccountToken string, modelID string) (*operations.CandidatesIgnoreCreateResponse, error) {
+func (s *Candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest shared.IgnoreCommonModelRequest, xAccountToken string, modelID string) (*operations.CandidatesIgnoreCreateResponse, error) {
 	request := operations.CandidatesIgnoreCreateRequest{
 		IgnoreCommonModelRequest: ignoreCommonModelRequest,
 		XAccountToken:            xAccountToken,
@@ -161,13 +165,17 @@ func (s *candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest 
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // List - Returns a list of `Candidate` objects.
-func (s *candidates) List(ctx context.Context, request operations.CandidatesListRequest) (*operations.CandidatesListResponse, error) {
+func (s *Candidates) List(ctx context.Context, request operations.CandidatesListRequest) (*operations.CandidatesListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/candidates"
 
@@ -221,13 +229,17 @@ func (s *candidates) List(ctx context.Context, request operations.CandidatesList
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns a `Candidate` object with the given `id`.
-func (s *candidates) Retrieve(ctx context.Context, xAccountToken string, id string, expand *operations.CandidatesRetrieveExpand, includeRemoteData *bool) (*operations.CandidatesRetrieveResponse, error) {
+func (s *Candidates) Retrieve(ctx context.Context, xAccountToken string, id string, expand *operations.CandidatesRetrieveQueryParamExpand, includeRemoteData *bool) (*operations.CandidatesRetrieveResponse, error) {
 	request := operations.CandidatesRetrieveRequest{
 		XAccountToken:     xAccountToken,
 		ID:                id,
@@ -291,13 +303,17 @@ func (s *candidates) Retrieve(ctx context.Context, xAccountToken string, id stri
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // RetrievePatchMetadata - Returns metadata for `Candidate` PATCHs.
-func (s *candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken string, id string) (*operations.CandidatesMetaPatchRetrieveResponse, error) {
+func (s *Candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken string, id string) (*operations.CandidatesMetaPatchRetrieveResponse, error) {
 	request := operations.CandidatesMetaPatchRetrieveRequest{
 		XAccountToken: xAccountToken,
 		ID:            id,
@@ -355,13 +371,17 @@ func (s *candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken st
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // RetrievePostMetadata - Returns metadata for `Candidate` POSTs.
-func (s *candidates) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.CandidatesMetaPostRetrieveResponse, error) {
+func (s *Candidates) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.CandidatesMetaPostRetrieveResponse, error) {
 	request := operations.CandidatesMetaPostRetrieveRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -415,13 +435,17 @@ func (s *candidates) RetrievePostMetadata(ctx context.Context, xAccountToken str
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Update - Updates a `Candidate` object with the given `id`.
-func (s *candidates) Update(ctx context.Context, request operations.PartialUpdateRequest) (*operations.PartialUpdateResponse, error) {
+func (s *Candidates) Update(ctx context.Context, request operations.PartialUpdateRequest) (*operations.PartialUpdateResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/candidates/{id}", request, nil)
 	if err != nil {
@@ -488,6 +512,10 @@ func (s *candidates) Update(ctx context.Context, request operations.PartialUpdat
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

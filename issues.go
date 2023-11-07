@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type issues struct {
+type Issues struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newIssues(sdkConfig sdkConfiguration) *issues {
-	return &issues{
+func newIssues(sdkConfig sdkConfiguration) *Issues {
+	return &Issues{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Gets issues.
-func (s *issues) List(ctx context.Context, request operations.IssuesListRequest) (*operations.IssuesListResponse, error) {
+func (s *Issues) List(ctx context.Context, request operations.IssuesListRequest) (*operations.IssuesListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/issues"
 
@@ -78,13 +78,17 @@ func (s *issues) List(ctx context.Context, request operations.IssuesListRequest)
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Get a specific issue.
-func (s *issues) Retrieve(ctx context.Context, id string) (*operations.IssuesRetrieveResponse, error) {
+func (s *Issues) Retrieve(ctx context.Context, id string) (*operations.IssuesRetrieveResponse, error) {
 	request := operations.IssuesRetrieveRequest{
 		ID: id,
 	}
@@ -139,6 +143,10 @@ func (s *issues) Retrieve(ctx context.Context, id string) (*operations.IssuesRet
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

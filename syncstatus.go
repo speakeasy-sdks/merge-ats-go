@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type syncStatus struct {
+type SyncStatus struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSyncStatus(sdkConfig sdkConfiguration) *syncStatus {
-	return &syncStatus{
+func newSyncStatus(sdkConfig sdkConfiguration) *SyncStatus {
+	return &SyncStatus{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`
-func (s *syncStatus) List(ctx context.Context, xAccountToken string, cursor *string, pageSize *int64) (*operations.SyncStatusListResponse, error) {
+func (s *SyncStatus) List(ctx context.Context, xAccountToken string, cursor *string, pageSize *int64) (*operations.SyncStatusListResponse, error) {
 	request := operations.SyncStatusListRequest{
 		XAccountToken: xAccountToken,
 		Cursor:        cursor,
@@ -86,6 +86,10 @@ func (s *syncStatus) List(ctx context.Context, xAccountToken string, cursor *str
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

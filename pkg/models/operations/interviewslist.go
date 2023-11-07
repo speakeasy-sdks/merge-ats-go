@@ -11,32 +11,32 @@ import (
 	"time"
 )
 
-// InterviewsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type InterviewsListExpand string
+// InterviewsListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type InterviewsListQueryParamExpand string
 
 const (
-	InterviewsListExpandApplication                                       InterviewsListExpand = "application"
-	InterviewsListExpandApplicationJobInterviewStage                      InterviewsListExpand = "application,job_interview_stage"
-	InterviewsListExpandInterviewers                                      InterviewsListExpand = "interviewers"
-	InterviewsListExpandInterviewersApplication                           InterviewsListExpand = "interviewers,application"
-	InterviewsListExpandInterviewersApplicationJobInterviewStage          InterviewsListExpand = "interviewers,application,job_interview_stage"
-	InterviewsListExpandInterviewersJobInterviewStage                     InterviewsListExpand = "interviewers,job_interview_stage"
-	InterviewsListExpandInterviewersOrganizer                             InterviewsListExpand = "interviewers,organizer"
-	InterviewsListExpandInterviewersOrganizerApplication                  InterviewsListExpand = "interviewers,organizer,application"
-	InterviewsListExpandInterviewersOrganizerApplicationJobInterviewStage InterviewsListExpand = "interviewers,organizer,application,job_interview_stage"
-	InterviewsListExpandInterviewersOrganizerJobInterviewStage            InterviewsListExpand = "interviewers,organizer,job_interview_stage"
-	InterviewsListExpandJobInterviewStage                                 InterviewsListExpand = "job_interview_stage"
-	InterviewsListExpandOrganizer                                         InterviewsListExpand = "organizer"
-	InterviewsListExpandOrganizerApplication                              InterviewsListExpand = "organizer,application"
-	InterviewsListExpandOrganizerApplicationJobInterviewStage             InterviewsListExpand = "organizer,application,job_interview_stage"
-	InterviewsListExpandOrganizerJobInterviewStage                        InterviewsListExpand = "organizer,job_interview_stage"
+	InterviewsListQueryParamExpandApplication                                       InterviewsListQueryParamExpand = "application"
+	InterviewsListQueryParamExpandApplicationJobInterviewStage                      InterviewsListQueryParamExpand = "application,job_interview_stage"
+	InterviewsListQueryParamExpandInterviewers                                      InterviewsListQueryParamExpand = "interviewers"
+	InterviewsListQueryParamExpandInterviewersApplication                           InterviewsListQueryParamExpand = "interviewers,application"
+	InterviewsListQueryParamExpandInterviewersApplicationJobInterviewStage          InterviewsListQueryParamExpand = "interviewers,application,job_interview_stage"
+	InterviewsListQueryParamExpandInterviewersJobInterviewStage                     InterviewsListQueryParamExpand = "interviewers,job_interview_stage"
+	InterviewsListQueryParamExpandInterviewersOrganizer                             InterviewsListQueryParamExpand = "interviewers,organizer"
+	InterviewsListQueryParamExpandInterviewersOrganizerApplication                  InterviewsListQueryParamExpand = "interviewers,organizer,application"
+	InterviewsListQueryParamExpandInterviewersOrganizerApplicationJobInterviewStage InterviewsListQueryParamExpand = "interviewers,organizer,application,job_interview_stage"
+	InterviewsListQueryParamExpandInterviewersOrganizerJobInterviewStage            InterviewsListQueryParamExpand = "interviewers,organizer,job_interview_stage"
+	InterviewsListQueryParamExpandJobInterviewStage                                 InterviewsListQueryParamExpand = "job_interview_stage"
+	InterviewsListQueryParamExpandOrganizer                                         InterviewsListQueryParamExpand = "organizer"
+	InterviewsListQueryParamExpandOrganizerApplication                              InterviewsListQueryParamExpand = "organizer,application"
+	InterviewsListQueryParamExpandOrganizerApplicationJobInterviewStage             InterviewsListQueryParamExpand = "organizer,application,job_interview_stage"
+	InterviewsListQueryParamExpandOrganizerJobInterviewStage                        InterviewsListQueryParamExpand = "organizer,job_interview_stage"
 )
 
-func (e InterviewsListExpand) ToPointer() *InterviewsListExpand {
+func (e InterviewsListQueryParamExpand) ToPointer() *InterviewsListQueryParamExpand {
 	return &e
 }
 
-func (e *InterviewsListExpand) UnmarshalJSON(data []byte) error {
+func (e *InterviewsListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -71,60 +71,60 @@ func (e *InterviewsListExpand) UnmarshalJSON(data []byte) error {
 	case "organizer,application,job_interview_stage":
 		fallthrough
 	case "organizer,job_interview_stage":
-		*e = InterviewsListExpand(v)
+		*e = InterviewsListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InterviewsListExpand: %v", v)
+		return fmt.Errorf("invalid value for InterviewsListQueryParamExpand: %v", v)
 	}
 }
 
-// InterviewsListRemoteFields - Deprecated. Use show_enum_origins.
-type InterviewsListRemoteFields string
+// InterviewsListQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type InterviewsListQueryParamRemoteFields string
 
 const (
-	InterviewsListRemoteFieldsStatus InterviewsListRemoteFields = "status"
+	InterviewsListQueryParamRemoteFieldsStatus InterviewsListQueryParamRemoteFields = "status"
 )
 
-func (e InterviewsListRemoteFields) ToPointer() *InterviewsListRemoteFields {
+func (e InterviewsListQueryParamRemoteFields) ToPointer() *InterviewsListQueryParamRemoteFields {
 	return &e
 }
 
-func (e *InterviewsListRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *InterviewsListQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = InterviewsListRemoteFields(v)
+		*e = InterviewsListQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InterviewsListRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for InterviewsListQueryParamRemoteFields: %v", v)
 	}
 }
 
-// InterviewsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type InterviewsListShowEnumOrigins string
+// InterviewsListQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type InterviewsListQueryParamShowEnumOrigins string
 
 const (
-	InterviewsListShowEnumOriginsStatus InterviewsListShowEnumOrigins = "status"
+	InterviewsListQueryParamShowEnumOriginsStatus InterviewsListQueryParamShowEnumOrigins = "status"
 )
 
-func (e InterviewsListShowEnumOrigins) ToPointer() *InterviewsListShowEnumOrigins {
+func (e InterviewsListQueryParamShowEnumOrigins) ToPointer() *InterviewsListQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *InterviewsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *InterviewsListQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = InterviewsListShowEnumOrigins(v)
+		*e = InterviewsListQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InterviewsListShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for InterviewsListQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -140,7 +140,7 @@ type InterviewsListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *InterviewsListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *InterviewsListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -156,11 +156,11 @@ type InterviewsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *InterviewsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *InterviewsListQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *InterviewsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *InterviewsListQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (i InterviewsListRequest) MarshalJSON() ([]byte, error) {
@@ -209,7 +209,7 @@ func (o *InterviewsListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *InterviewsListRequest) GetExpand() *InterviewsListExpand {
+func (o *InterviewsListRequest) GetExpand() *InterviewsListQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -265,7 +265,7 @@ func (o *InterviewsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *InterviewsListRequest) GetRemoteFields() *InterviewsListRemoteFields {
+func (o *InterviewsListRequest) GetRemoteFields() *InterviewsListQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
@@ -279,7 +279,7 @@ func (o *InterviewsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *InterviewsListRequest) GetShowEnumOrigins() *InterviewsListShowEnumOrigins {
+func (o *InterviewsListRequest) GetShowEnumOrigins() *InterviewsListQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

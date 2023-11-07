@@ -1,5 +1,5 @@
 # AccountToken
-(*AccountToken*)
+(*.AccountToken*)
 
 ### Available Operations
 

@@ -9,32 +9,32 @@ import (
 	"net/http"
 )
 
-// InterviewsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type InterviewsRetrieveExpand string
+// InterviewsRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type InterviewsRetrieveQueryParamExpand string
 
 const (
-	InterviewsRetrieveExpandApplication                                       InterviewsRetrieveExpand = "application"
-	InterviewsRetrieveExpandApplicationJobInterviewStage                      InterviewsRetrieveExpand = "application,job_interview_stage"
-	InterviewsRetrieveExpandInterviewers                                      InterviewsRetrieveExpand = "interviewers"
-	InterviewsRetrieveExpandInterviewersApplication                           InterviewsRetrieveExpand = "interviewers,application"
-	InterviewsRetrieveExpandInterviewersApplicationJobInterviewStage          InterviewsRetrieveExpand = "interviewers,application,job_interview_stage"
-	InterviewsRetrieveExpandInterviewersJobInterviewStage                     InterviewsRetrieveExpand = "interviewers,job_interview_stage"
-	InterviewsRetrieveExpandInterviewersOrganizer                             InterviewsRetrieveExpand = "interviewers,organizer"
-	InterviewsRetrieveExpandInterviewersOrganizerApplication                  InterviewsRetrieveExpand = "interviewers,organizer,application"
-	InterviewsRetrieveExpandInterviewersOrganizerApplicationJobInterviewStage InterviewsRetrieveExpand = "interviewers,organizer,application,job_interview_stage"
-	InterviewsRetrieveExpandInterviewersOrganizerJobInterviewStage            InterviewsRetrieveExpand = "interviewers,organizer,job_interview_stage"
-	InterviewsRetrieveExpandJobInterviewStage                                 InterviewsRetrieveExpand = "job_interview_stage"
-	InterviewsRetrieveExpandOrganizer                                         InterviewsRetrieveExpand = "organizer"
-	InterviewsRetrieveExpandOrganizerApplication                              InterviewsRetrieveExpand = "organizer,application"
-	InterviewsRetrieveExpandOrganizerApplicationJobInterviewStage             InterviewsRetrieveExpand = "organizer,application,job_interview_stage"
-	InterviewsRetrieveExpandOrganizerJobInterviewStage                        InterviewsRetrieveExpand = "organizer,job_interview_stage"
+	InterviewsRetrieveQueryParamExpandApplication                                       InterviewsRetrieveQueryParamExpand = "application"
+	InterviewsRetrieveQueryParamExpandApplicationJobInterviewStage                      InterviewsRetrieveQueryParamExpand = "application,job_interview_stage"
+	InterviewsRetrieveQueryParamExpandInterviewers                                      InterviewsRetrieveQueryParamExpand = "interviewers"
+	InterviewsRetrieveQueryParamExpandInterviewersApplication                           InterviewsRetrieveQueryParamExpand = "interviewers,application"
+	InterviewsRetrieveQueryParamExpandInterviewersApplicationJobInterviewStage          InterviewsRetrieveQueryParamExpand = "interviewers,application,job_interview_stage"
+	InterviewsRetrieveQueryParamExpandInterviewersJobInterviewStage                     InterviewsRetrieveQueryParamExpand = "interviewers,job_interview_stage"
+	InterviewsRetrieveQueryParamExpandInterviewersOrganizer                             InterviewsRetrieveQueryParamExpand = "interviewers,organizer"
+	InterviewsRetrieveQueryParamExpandInterviewersOrganizerApplication                  InterviewsRetrieveQueryParamExpand = "interviewers,organizer,application"
+	InterviewsRetrieveQueryParamExpandInterviewersOrganizerApplicationJobInterviewStage InterviewsRetrieveQueryParamExpand = "interviewers,organizer,application,job_interview_stage"
+	InterviewsRetrieveQueryParamExpandInterviewersOrganizerJobInterviewStage            InterviewsRetrieveQueryParamExpand = "interviewers,organizer,job_interview_stage"
+	InterviewsRetrieveQueryParamExpandJobInterviewStage                                 InterviewsRetrieveQueryParamExpand = "job_interview_stage"
+	InterviewsRetrieveQueryParamExpandOrganizer                                         InterviewsRetrieveQueryParamExpand = "organizer"
+	InterviewsRetrieveQueryParamExpandOrganizerApplication                              InterviewsRetrieveQueryParamExpand = "organizer,application"
+	InterviewsRetrieveQueryParamExpandOrganizerApplicationJobInterviewStage             InterviewsRetrieveQueryParamExpand = "organizer,application,job_interview_stage"
+	InterviewsRetrieveQueryParamExpandOrganizerJobInterviewStage                        InterviewsRetrieveQueryParamExpand = "organizer,job_interview_stage"
 )
 
-func (e InterviewsRetrieveExpand) ToPointer() *InterviewsRetrieveExpand {
+func (e InterviewsRetrieveQueryParamExpand) ToPointer() *InterviewsRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *InterviewsRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *InterviewsRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -69,60 +69,60 @@ func (e *InterviewsRetrieveExpand) UnmarshalJSON(data []byte) error {
 	case "organizer,application,job_interview_stage":
 		fallthrough
 	case "organizer,job_interview_stage":
-		*e = InterviewsRetrieveExpand(v)
+		*e = InterviewsRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InterviewsRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for InterviewsRetrieveQueryParamExpand: %v", v)
 	}
 }
 
-// InterviewsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type InterviewsRetrieveRemoteFields string
+// InterviewsRetrieveQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type InterviewsRetrieveQueryParamRemoteFields string
 
 const (
-	InterviewsRetrieveRemoteFieldsStatus InterviewsRetrieveRemoteFields = "status"
+	InterviewsRetrieveQueryParamRemoteFieldsStatus InterviewsRetrieveQueryParamRemoteFields = "status"
 )
 
-func (e InterviewsRetrieveRemoteFields) ToPointer() *InterviewsRetrieveRemoteFields {
+func (e InterviewsRetrieveQueryParamRemoteFields) ToPointer() *InterviewsRetrieveQueryParamRemoteFields {
 	return &e
 }
 
-func (e *InterviewsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *InterviewsRetrieveQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = InterviewsRetrieveRemoteFields(v)
+		*e = InterviewsRetrieveQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InterviewsRetrieveRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for InterviewsRetrieveQueryParamRemoteFields: %v", v)
 	}
 }
 
-// InterviewsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type InterviewsRetrieveShowEnumOrigins string
+// InterviewsRetrieveQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type InterviewsRetrieveQueryParamShowEnumOrigins string
 
 const (
-	InterviewsRetrieveShowEnumOriginsStatus InterviewsRetrieveShowEnumOrigins = "status"
+	InterviewsRetrieveQueryParamShowEnumOriginsStatus InterviewsRetrieveQueryParamShowEnumOrigins = "status"
 )
 
-func (e InterviewsRetrieveShowEnumOrigins) ToPointer() *InterviewsRetrieveShowEnumOrigins {
+func (e InterviewsRetrieveQueryParamShowEnumOrigins) ToPointer() *InterviewsRetrieveQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *InterviewsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *InterviewsRetrieveQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = InterviewsRetrieveShowEnumOrigins(v)
+		*e = InterviewsRetrieveQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InterviewsRetrieveShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for InterviewsRetrieveQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -130,14 +130,14 @@ type InterviewsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *InterviewsRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string                    `pathParam:"style=simple,explode=false,name=id"`
+	Expand *InterviewsRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
+	ID     string                              `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *InterviewsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *InterviewsRetrieveQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *InterviewsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *InterviewsRetrieveQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o *InterviewsRetrieveRequest) GetXAccountToken() string {
@@ -147,7 +147,7 @@ func (o *InterviewsRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *InterviewsRetrieveRequest) GetExpand() *InterviewsRetrieveExpand {
+func (o *InterviewsRetrieveRequest) GetExpand() *InterviewsRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -168,14 +168,14 @@ func (o *InterviewsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *InterviewsRetrieveRequest) GetRemoteFields() *InterviewsRetrieveRemoteFields {
+func (o *InterviewsRetrieveRequest) GetRemoteFields() *InterviewsRetrieveQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
 	return o.RemoteFields
 }
 
-func (o *InterviewsRetrieveRequest) GetShowEnumOrigins() *InterviewsRetrieveShowEnumOrigins {
+func (o *InterviewsRetrieveRequest) GetShowEnumOrigins() *InterviewsRetrieveQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

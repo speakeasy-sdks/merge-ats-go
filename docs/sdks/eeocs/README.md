@@ -1,5 +1,5 @@
 # Eeocs
-(*Eeocs*)
+(*.Eeocs*)
 
 ### Available Operations
 

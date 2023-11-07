@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type activities struct {
+type Activities struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newActivities(sdkConfig sdkConfiguration) *activities {
-	return &activities{
+func newActivities(sdkConfig sdkConfiguration) *Activities {
+	return &Activities{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Creates an `Activity` object with the given values.
-func (s *activities) Create(ctx context.Context, activityEndpointRequest shared.ActivityEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.ActivitiesCreateResponse, error) {
+func (s *Activities) Create(ctx context.Context, activityEndpointRequest shared.ActivityEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.ActivitiesCreateResponse, error) {
 	request := operations.ActivitiesCreateRequest{
 		ActivityEndpointRequest: activityEndpointRequest,
 		XAccountToken:           xAccountToken,
@@ -97,13 +97,17 @@ func (s *activities) Create(ctx context.Context, activityEndpointRequest shared.
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // List - Returns a list of `Activity` objects.
-func (s *activities) List(ctx context.Context, request operations.ActivitiesListRequest) (*operations.ActivitiesListResponse, error) {
+func (s *Activities) List(ctx context.Context, request operations.ActivitiesListRequest) (*operations.ActivitiesListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/activities"
 
@@ -157,13 +161,17 @@ func (s *activities) List(ctx context.Context, request operations.ActivitiesList
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns an `Activity` object with the given `id`.
-func (s *activities) Retrieve(ctx context.Context, request operations.ActivitiesRetrieveRequest) (*operations.ActivitiesRetrieveResponse, error) {
+func (s *Activities) Retrieve(ctx context.Context, request operations.ActivitiesRetrieveRequest) (*operations.ActivitiesRetrieveResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/activities/{id}", request, nil)
 	if err != nil {
@@ -220,13 +228,17 @@ func (s *activities) Retrieve(ctx context.Context, request operations.Activities
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // RetrievePostMetadata - Returns metadata for `Activity` POSTs.
-func (s *activities) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.ActivitiesMetaPostRetrieveResponse, error) {
+func (s *Activities) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.ActivitiesMetaPostRetrieveResponse, error) {
 	request := operations.ActivitiesMetaPostRetrieveRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -280,6 +292,10 @@ func (s *activities) RetrievePostMetadata(ctx context.Context, xAccountToken str
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

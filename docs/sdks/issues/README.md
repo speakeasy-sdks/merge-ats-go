@@ -1,5 +1,5 @@
 # Issues
-(*Issues*)
+(*.Issues*)
 
 ### Available Operations
 

@@ -9,53 +9,53 @@ import (
 	"net/http"
 )
 
-// UsersRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type UsersRetrieveRemoteFields string
+// UsersRetrieveQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type UsersRetrieveQueryParamRemoteFields string
 
 const (
-	UsersRetrieveRemoteFieldsAccessRole UsersRetrieveRemoteFields = "access_role"
+	UsersRetrieveQueryParamRemoteFieldsAccessRole UsersRetrieveQueryParamRemoteFields = "access_role"
 )
 
-func (e UsersRetrieveRemoteFields) ToPointer() *UsersRetrieveRemoteFields {
+func (e UsersRetrieveQueryParamRemoteFields) ToPointer() *UsersRetrieveQueryParamRemoteFields {
 	return &e
 }
 
-func (e *UsersRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *UsersRetrieveQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "access_role":
-		*e = UsersRetrieveRemoteFields(v)
+		*e = UsersRetrieveQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UsersRetrieveRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for UsersRetrieveQueryParamRemoteFields: %v", v)
 	}
 }
 
-// UsersRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type UsersRetrieveShowEnumOrigins string
+// UsersRetrieveQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type UsersRetrieveQueryParamShowEnumOrigins string
 
 const (
-	UsersRetrieveShowEnumOriginsAccessRole UsersRetrieveShowEnumOrigins = "access_role"
+	UsersRetrieveQueryParamShowEnumOriginsAccessRole UsersRetrieveQueryParamShowEnumOrigins = "access_role"
 )
 
-func (e UsersRetrieveShowEnumOrigins) ToPointer() *UsersRetrieveShowEnumOrigins {
+func (e UsersRetrieveQueryParamShowEnumOrigins) ToPointer() *UsersRetrieveQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *UsersRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *UsersRetrieveQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "access_role":
-		*e = UsersRetrieveShowEnumOrigins(v)
+		*e = UsersRetrieveQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UsersRetrieveShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for UsersRetrieveQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -66,9 +66,9 @@ type UsersRetrieveRequest struct {
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *UsersRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *UsersRetrieveQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *UsersRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *UsersRetrieveQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o *UsersRetrieveRequest) GetXAccountToken() string {
@@ -92,14 +92,14 @@ func (o *UsersRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *UsersRetrieveRequest) GetRemoteFields() *UsersRetrieveRemoteFields {
+func (o *UsersRetrieveRequest) GetRemoteFields() *UsersRetrieveQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
 	return o.RemoteFields
 }
 
-func (o *UsersRetrieveRequest) GetShowEnumOrigins() *UsersRetrieveShowEnumOrigins {
+func (o *UsersRetrieveRequest) GetShowEnumOrigins() *UsersRetrieveQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

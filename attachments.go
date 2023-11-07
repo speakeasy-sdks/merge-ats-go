@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type attachments struct {
+type Attachments struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAttachments(sdkConfig sdkConfiguration) *attachments {
-	return &attachments{
+func newAttachments(sdkConfig sdkConfiguration) *Attachments {
+	return &Attachments{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Creates an `Attachment` object with the given values.
-func (s *attachments) Create(ctx context.Context, attachmentEndpointRequest shared.AttachmentEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.AttachmentsCreateResponse, error) {
+func (s *Attachments) Create(ctx context.Context, attachmentEndpointRequest shared.AttachmentEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.AttachmentsCreateResponse, error) {
 	request := operations.AttachmentsCreateRequest{
 		AttachmentEndpointRequest: attachmentEndpointRequest,
 		XAccountToken:             xAccountToken,
@@ -97,13 +97,17 @@ func (s *attachments) Create(ctx context.Context, attachmentEndpointRequest shar
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // List - Returns a list of `Attachment` objects.
-func (s *attachments) List(ctx context.Context, request operations.AttachmentsListRequest) (*operations.AttachmentsListResponse, error) {
+func (s *Attachments) List(ctx context.Context, request operations.AttachmentsListRequest) (*operations.AttachmentsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/attachments"
 
@@ -157,13 +161,17 @@ func (s *attachments) List(ctx context.Context, request operations.AttachmentsLi
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns an `Attachment` object with the given `id`.
-func (s *attachments) Retrieve(ctx context.Context, request operations.AttachmentsRetrieveRequest) (*operations.AttachmentsRetrieveResponse, error) {
+func (s *Attachments) Retrieve(ctx context.Context, request operations.AttachmentsRetrieveRequest) (*operations.AttachmentsRetrieveResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/attachments/{id}", request, nil)
 	if err != nil {
@@ -220,13 +228,17 @@ func (s *attachments) Retrieve(ctx context.Context, request operations.Attachmen
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // RetrievePostMetadata - Returns metadata for `Attachment` POSTs.
-func (s *attachments) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.AttachmentsMetaPostRetrieveResponse, error) {
+func (s *Attachments) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.AttachmentsMetaPostRetrieveResponse, error) {
 	request := operations.AttachmentsMetaPostRetrieveRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -280,6 +292,10 @@ func (s *attachments) RetrievePostMetadata(ctx context.Context, xAccountToken st
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -14,18 +14,18 @@ import (
 	"net/http"
 )
 
-type accountToken struct {
+type AccountToken struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountToken(sdkConfig sdkConfiguration) *accountToken {
-	return &accountToken{
+func newAccountToken(sdkConfig sdkConfiguration) *AccountToken {
+	return &AccountToken{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Retrieve - Returns the account token for the end user with the provided public token.
-func (s *accountToken) Retrieve(ctx context.Context, publicToken string) (*operations.AccountTokenRetrieveResponse, error) {
+func (s *AccountToken) Retrieve(ctx context.Context, publicToken string) (*operations.AccountTokenRetrieveResponse, error) {
 	request := operations.AccountTokenRetrieveRequest{
 		PublicToken: publicToken,
 	}
@@ -80,6 +80,10 @@ func (s *accountToken) Retrieve(ctx context.Context, publicToken string) (*opera
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

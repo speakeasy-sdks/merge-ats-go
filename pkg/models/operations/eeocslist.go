@@ -11,57 +11,57 @@ import (
 	"time"
 )
 
-// EeocsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type EeocsListExpand string
+// EeocsListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type EeocsListQueryParamExpand string
 
 const (
-	EeocsListExpandCandidate EeocsListExpand = "candidate"
+	EeocsListQueryParamExpandCandidate EeocsListQueryParamExpand = "candidate"
 )
 
-func (e EeocsListExpand) ToPointer() *EeocsListExpand {
+func (e EeocsListQueryParamExpand) ToPointer() *EeocsListQueryParamExpand {
 	return &e
 }
 
-func (e *EeocsListExpand) UnmarshalJSON(data []byte) error {
+func (e *EeocsListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "candidate":
-		*e = EeocsListExpand(v)
+		*e = EeocsListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EeocsListExpand: %v", v)
+		return fmt.Errorf("invalid value for EeocsListQueryParamExpand: %v", v)
 	}
 }
 
-// EeocsListRemoteFields - Deprecated. Use show_enum_origins.
-type EeocsListRemoteFields string
+// EeocsListQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type EeocsListQueryParamRemoteFields string
 
 const (
-	EeocsListRemoteFieldsDisabilityStatus                        EeocsListRemoteFields = "disability_status"
-	EeocsListRemoteFieldsDisabilityStatusGender                  EeocsListRemoteFields = "disability_status,gender"
-	EeocsListRemoteFieldsDisabilityStatusGenderRace              EeocsListRemoteFields = "disability_status,gender,race"
-	EeocsListRemoteFieldsDisabilityStatusGenderRaceVeteranStatus EeocsListRemoteFields = "disability_status,gender,race,veteran_status"
-	EeocsListRemoteFieldsDisabilityStatusGenderVeteranStatus     EeocsListRemoteFields = "disability_status,gender,veteran_status"
-	EeocsListRemoteFieldsDisabilityStatusRace                    EeocsListRemoteFields = "disability_status,race"
-	EeocsListRemoteFieldsDisabilityStatusRaceVeteranStatus       EeocsListRemoteFields = "disability_status,race,veteran_status"
-	EeocsListRemoteFieldsDisabilityStatusVeteranStatus           EeocsListRemoteFields = "disability_status,veteran_status"
-	EeocsListRemoteFieldsGender                                  EeocsListRemoteFields = "gender"
-	EeocsListRemoteFieldsGenderRace                              EeocsListRemoteFields = "gender,race"
-	EeocsListRemoteFieldsGenderRaceVeteranStatus                 EeocsListRemoteFields = "gender,race,veteran_status"
-	EeocsListRemoteFieldsGenderVeteranStatus                     EeocsListRemoteFields = "gender,veteran_status"
-	EeocsListRemoteFieldsRace                                    EeocsListRemoteFields = "race"
-	EeocsListRemoteFieldsRaceVeteranStatus                       EeocsListRemoteFields = "race,veteran_status"
-	EeocsListRemoteFieldsVeteranStatus                           EeocsListRemoteFields = "veteran_status"
+	EeocsListQueryParamRemoteFieldsDisabilityStatus                        EeocsListQueryParamRemoteFields = "disability_status"
+	EeocsListQueryParamRemoteFieldsDisabilityStatusGender                  EeocsListQueryParamRemoteFields = "disability_status,gender"
+	EeocsListQueryParamRemoteFieldsDisabilityStatusGenderRace              EeocsListQueryParamRemoteFields = "disability_status,gender,race"
+	EeocsListQueryParamRemoteFieldsDisabilityStatusGenderRaceVeteranStatus EeocsListQueryParamRemoteFields = "disability_status,gender,race,veteran_status"
+	EeocsListQueryParamRemoteFieldsDisabilityStatusGenderVeteranStatus     EeocsListQueryParamRemoteFields = "disability_status,gender,veteran_status"
+	EeocsListQueryParamRemoteFieldsDisabilityStatusRace                    EeocsListQueryParamRemoteFields = "disability_status,race"
+	EeocsListQueryParamRemoteFieldsDisabilityStatusRaceVeteranStatus       EeocsListQueryParamRemoteFields = "disability_status,race,veteran_status"
+	EeocsListQueryParamRemoteFieldsDisabilityStatusVeteranStatus           EeocsListQueryParamRemoteFields = "disability_status,veteran_status"
+	EeocsListQueryParamRemoteFieldsGender                                  EeocsListQueryParamRemoteFields = "gender"
+	EeocsListQueryParamRemoteFieldsGenderRace                              EeocsListQueryParamRemoteFields = "gender,race"
+	EeocsListQueryParamRemoteFieldsGenderRaceVeteranStatus                 EeocsListQueryParamRemoteFields = "gender,race,veteran_status"
+	EeocsListQueryParamRemoteFieldsGenderVeteranStatus                     EeocsListQueryParamRemoteFields = "gender,veteran_status"
+	EeocsListQueryParamRemoteFieldsRace                                    EeocsListQueryParamRemoteFields = "race"
+	EeocsListQueryParamRemoteFieldsRaceVeteranStatus                       EeocsListQueryParamRemoteFields = "race,veteran_status"
+	EeocsListQueryParamRemoteFieldsVeteranStatus                           EeocsListQueryParamRemoteFields = "veteran_status"
 )
 
-func (e EeocsListRemoteFields) ToPointer() *EeocsListRemoteFields {
+func (e EeocsListQueryParamRemoteFields) ToPointer() *EeocsListQueryParamRemoteFields {
 	return &e
 }
 
-func (e *EeocsListRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *EeocsListQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -96,39 +96,39 @@ func (e *EeocsListRemoteFields) UnmarshalJSON(data []byte) error {
 	case "race,veteran_status":
 		fallthrough
 	case "veteran_status":
-		*e = EeocsListRemoteFields(v)
+		*e = EeocsListQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EeocsListRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for EeocsListQueryParamRemoteFields: %v", v)
 	}
 }
 
-// EeocsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type EeocsListShowEnumOrigins string
+// EeocsListQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type EeocsListQueryParamShowEnumOrigins string
 
 const (
-	EeocsListShowEnumOriginsDisabilityStatus                        EeocsListShowEnumOrigins = "disability_status"
-	EeocsListShowEnumOriginsDisabilityStatusGender                  EeocsListShowEnumOrigins = "disability_status,gender"
-	EeocsListShowEnumOriginsDisabilityStatusGenderRace              EeocsListShowEnumOrigins = "disability_status,gender,race"
-	EeocsListShowEnumOriginsDisabilityStatusGenderRaceVeteranStatus EeocsListShowEnumOrigins = "disability_status,gender,race,veteran_status"
-	EeocsListShowEnumOriginsDisabilityStatusGenderVeteranStatus     EeocsListShowEnumOrigins = "disability_status,gender,veteran_status"
-	EeocsListShowEnumOriginsDisabilityStatusRace                    EeocsListShowEnumOrigins = "disability_status,race"
-	EeocsListShowEnumOriginsDisabilityStatusRaceVeteranStatus       EeocsListShowEnumOrigins = "disability_status,race,veteran_status"
-	EeocsListShowEnumOriginsDisabilityStatusVeteranStatus           EeocsListShowEnumOrigins = "disability_status,veteran_status"
-	EeocsListShowEnumOriginsGender                                  EeocsListShowEnumOrigins = "gender"
-	EeocsListShowEnumOriginsGenderRace                              EeocsListShowEnumOrigins = "gender,race"
-	EeocsListShowEnumOriginsGenderRaceVeteranStatus                 EeocsListShowEnumOrigins = "gender,race,veteran_status"
-	EeocsListShowEnumOriginsGenderVeteranStatus                     EeocsListShowEnumOrigins = "gender,veteran_status"
-	EeocsListShowEnumOriginsRace                                    EeocsListShowEnumOrigins = "race"
-	EeocsListShowEnumOriginsRaceVeteranStatus                       EeocsListShowEnumOrigins = "race,veteran_status"
-	EeocsListShowEnumOriginsVeteranStatus                           EeocsListShowEnumOrigins = "veteran_status"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatus                        EeocsListQueryParamShowEnumOrigins = "disability_status"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatusGender                  EeocsListQueryParamShowEnumOrigins = "disability_status,gender"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatusGenderRace              EeocsListQueryParamShowEnumOrigins = "disability_status,gender,race"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatusGenderRaceVeteranStatus EeocsListQueryParamShowEnumOrigins = "disability_status,gender,race,veteran_status"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatusGenderVeteranStatus     EeocsListQueryParamShowEnumOrigins = "disability_status,gender,veteran_status"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatusRace                    EeocsListQueryParamShowEnumOrigins = "disability_status,race"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatusRaceVeteranStatus       EeocsListQueryParamShowEnumOrigins = "disability_status,race,veteran_status"
+	EeocsListQueryParamShowEnumOriginsDisabilityStatusVeteranStatus           EeocsListQueryParamShowEnumOrigins = "disability_status,veteran_status"
+	EeocsListQueryParamShowEnumOriginsGender                                  EeocsListQueryParamShowEnumOrigins = "gender"
+	EeocsListQueryParamShowEnumOriginsGenderRace                              EeocsListQueryParamShowEnumOrigins = "gender,race"
+	EeocsListQueryParamShowEnumOriginsGenderRaceVeteranStatus                 EeocsListQueryParamShowEnumOrigins = "gender,race,veteran_status"
+	EeocsListQueryParamShowEnumOriginsGenderVeteranStatus                     EeocsListQueryParamShowEnumOrigins = "gender,veteran_status"
+	EeocsListQueryParamShowEnumOriginsRace                                    EeocsListQueryParamShowEnumOrigins = "race"
+	EeocsListQueryParamShowEnumOriginsRaceVeteranStatus                       EeocsListQueryParamShowEnumOrigins = "race,veteran_status"
+	EeocsListQueryParamShowEnumOriginsVeteranStatus                           EeocsListQueryParamShowEnumOrigins = "veteran_status"
 )
 
-func (e EeocsListShowEnumOrigins) ToPointer() *EeocsListShowEnumOrigins {
+func (e EeocsListQueryParamShowEnumOrigins) ToPointer() *EeocsListQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *EeocsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *EeocsListQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -163,10 +163,10 @@ func (e *EeocsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	case "race,veteran_status":
 		fallthrough
 	case "veteran_status":
-		*e = EeocsListShowEnumOrigins(v)
+		*e = EeocsListQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EeocsListShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for EeocsListQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -182,7 +182,7 @@ type EeocsListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *EeocsListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *EeocsListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -194,11 +194,11 @@ type EeocsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *EeocsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *EeocsListQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *EeocsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *EeocsListQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (e EeocsListRequest) MarshalJSON() ([]byte, error) {
@@ -247,7 +247,7 @@ func (o *EeocsListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *EeocsListRequest) GetExpand() *EeocsListExpand {
+func (o *EeocsListRequest) GetExpand() *EeocsListQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -289,7 +289,7 @@ func (o *EeocsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *EeocsListRequest) GetRemoteFields() *EeocsListRemoteFields {
+func (o *EeocsListRequest) GetRemoteFields() *EeocsListQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
@@ -303,7 +303,7 @@ func (o *EeocsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *EeocsListRequest) GetShowEnumOrigins() *EeocsListShowEnumOrigins {
+func (o *EeocsListRequest) GetShowEnumOrigins() *EeocsListQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

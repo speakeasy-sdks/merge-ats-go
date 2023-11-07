@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type jobInterviewStages struct {
+type JobInterviewStages struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newJobInterviewStages(sdkConfig sdkConfiguration) *jobInterviewStages {
-	return &jobInterviewStages{
+func newJobInterviewStages(sdkConfig sdkConfiguration) *JobInterviewStages {
+	return &JobInterviewStages{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Returns a list of `JobInterviewStage` objects.
-func (s *jobInterviewStages) List(ctx context.Context, request operations.JobInterviewStagesListRequest) (*operations.JobInterviewStagesListResponse, error) {
+func (s *JobInterviewStages) List(ctx context.Context, request operations.JobInterviewStagesListRequest) (*operations.JobInterviewStagesListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/job-interview-stages"
 
@@ -80,13 +80,17 @@ func (s *jobInterviewStages) List(ctx context.Context, request operations.JobInt
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns a `JobInterviewStage` object with the given `id`.
-func (s *jobInterviewStages) Retrieve(ctx context.Context, xAccountToken string, id string, expand *operations.JobInterviewStagesRetrieveExpand, includeRemoteData *bool) (*operations.JobInterviewStagesRetrieveResponse, error) {
+func (s *JobInterviewStages) Retrieve(ctx context.Context, xAccountToken string, id string, expand *operations.JobInterviewStagesRetrieveQueryParamExpand, includeRemoteData *bool) (*operations.JobInterviewStagesRetrieveResponse, error) {
 	request := operations.JobInterviewStagesRetrieveRequest{
 		XAccountToken:     xAccountToken,
 		ID:                id,
@@ -150,6 +154,10 @@ func (s *jobInterviewStages) Retrieve(ctx context.Context, xAccountToken string,
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type linkToken struct {
+type LinkToken struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLinkToken(sdkConfig sdkConfiguration) *linkToken {
-	return &linkToken{
+func newLinkToken(sdkConfig sdkConfiguration) *LinkToken {
+	return &LinkToken{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Creates a link token to be used when linking a new end user.
-func (s *linkToken) Create(ctx context.Context, request shared.EndUserDetailsRequest) (*operations.LinkTokenCreateResponse, error) {
+func (s *LinkToken) Create(ctx context.Context, request shared.EndUserDetailsRequest) (*operations.LinkTokenCreateResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/link-token"
 
@@ -84,6 +84,10 @@ func (s *linkToken) Create(ctx context.Context, request shared.EndUserDetailsReq
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

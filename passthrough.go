@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type passthrough struct {
+type Passthrough struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPassthrough(sdkConfig sdkConfiguration) *passthrough {
-	return &passthrough{
+func newPassthrough(sdkConfig sdkConfiguration) *Passthrough {
+	return &Passthrough{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create - Pull data from an endpoint not currently supported by Merge.
-func (s *passthrough) Create(ctx context.Context, dataPassthroughRequest shared.DataPassthroughRequest, xAccountToken string) (*operations.PassthroughCreateResponse, error) {
+func (s *Passthrough) Create(ctx context.Context, dataPassthroughRequest shared.DataPassthroughRequest, xAccountToken string) (*operations.PassthroughCreateResponse, error) {
 	request := operations.PassthroughCreateRequest{
 		DataPassthroughRequest: dataPassthroughRequest,
 		XAccountToken:          xAccountToken,
@@ -91,6 +91,10 @@ func (s *passthrough) Create(ctx context.Context, dataPassthroughRequest shared.
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

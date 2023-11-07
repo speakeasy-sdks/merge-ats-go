@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type availableActions struct {
+type AvailableActions struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAvailableActions(sdkConfig sdkConfiguration) *availableActions {
-	return &availableActions{
+func newAvailableActions(sdkConfig sdkConfiguration) *AvailableActions {
+	return &AvailableActions{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Retrieve - Returns a list of models and actions available for an account.
-func (s *availableActions) Retrieve(ctx context.Context, xAccountToken string) (*operations.AvailableActionsRetrieveResponse, error) {
+func (s *AvailableActions) Retrieve(ctx context.Context, xAccountToken string) (*operations.AvailableActionsRetrieveResponse, error) {
 	request := operations.AvailableActionsRetrieveRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -80,6 +80,10 @@ func (s *availableActions) Retrieve(ctx context.Context, xAccountToken string) (
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

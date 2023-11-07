@@ -1,5 +1,5 @@
 # RegenerateKey
-(*RegenerateKey*)
+(*.RegenerateKey*)
 
 ### Available Operations
 

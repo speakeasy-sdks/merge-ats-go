@@ -1,5 +1,5 @@
 # Offers
-(*Offers*)
+(*.Offers*)
 
 ### Available Operations
 

@@ -7,30 +7,30 @@ import (
 	"fmt"
 )
 
-// DataPassthroughRequestMethod - * `GET` - GET
+// Method - * `GET` - GET
 // * `OPTIONS` - OPTIONS
 // * `HEAD` - HEAD
 // * `POST` - POST
 // * `PUT` - PUT
 // * `PATCH` - PATCH
 // * `DELETE` - DELETE
-type DataPassthroughRequestMethod string
+type Method string
 
 const (
-	DataPassthroughRequestMethodGet     DataPassthroughRequestMethod = "GET"
-	DataPassthroughRequestMethodOptions DataPassthroughRequestMethod = "OPTIONS"
-	DataPassthroughRequestMethodHead    DataPassthroughRequestMethod = "HEAD"
-	DataPassthroughRequestMethodPost    DataPassthroughRequestMethod = "POST"
-	DataPassthroughRequestMethodPut     DataPassthroughRequestMethod = "PUT"
-	DataPassthroughRequestMethodPatch   DataPassthroughRequestMethod = "PATCH"
-	DataPassthroughRequestMethodDelete  DataPassthroughRequestMethod = "DELETE"
+	MethodGet     Method = "GET"
+	MethodOptions Method = "OPTIONS"
+	MethodHead    Method = "HEAD"
+	MethodPost    Method = "POST"
+	MethodPut     Method = "PUT"
+	MethodPatch   Method = "PATCH"
+	MethodDelete  Method = "DELETE"
 )
 
-func (e DataPassthroughRequestMethod) ToPointer() *DataPassthroughRequestMethod {
+func (e Method) ToPointer() *Method {
 	return &e
 }
 
-func (e *DataPassthroughRequestMethod) UnmarshalJSON(data []byte) error {
+func (e *Method) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -49,29 +49,29 @@ func (e *DataPassthroughRequestMethod) UnmarshalJSON(data []byte) error {
 	case "PATCH":
 		fallthrough
 	case "DELETE":
-		*e = DataPassthroughRequestMethod(v)
+		*e = Method(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataPassthroughRequestMethod: %v", v)
+		return fmt.Errorf("invalid value for Method: %v", v)
 	}
 }
 
-// DataPassthroughRequestRequestFormat - * `JSON` - JSON
+// RequestFormat - * `JSON` - JSON
 // * `XML` - XML
 // * `MULTIPART` - MULTIPART
-type DataPassthroughRequestRequestFormat string
+type RequestFormat string
 
 const (
-	DataPassthroughRequestRequestFormatJSON      DataPassthroughRequestRequestFormat = "JSON"
-	DataPassthroughRequestRequestFormatXML       DataPassthroughRequestRequestFormat = "XML"
-	DataPassthroughRequestRequestFormatMultipart DataPassthroughRequestRequestFormat = "MULTIPART"
+	RequestFormatJSON      RequestFormat = "JSON"
+	RequestFormatXML       RequestFormat = "XML"
+	RequestFormatMultipart RequestFormat = "MULTIPART"
 )
 
-func (e DataPassthroughRequestRequestFormat) ToPointer() *DataPassthroughRequestRequestFormat {
+func (e RequestFormat) ToPointer() *RequestFormat {
 	return &e
 }
 
-func (e *DataPassthroughRequestRequestFormat) UnmarshalJSON(data []byte) error {
+func (e *RequestFormat) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -82,10 +82,10 @@ func (e *DataPassthroughRequestRequestFormat) UnmarshalJSON(data []byte) error {
 	case "XML":
 		fallthrough
 	case "MULTIPART":
-		*e = DataPassthroughRequestRequestFormat(v)
+		*e = RequestFormat(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataPassthroughRequestRequestFormat: %v", v)
+		return fmt.Errorf("invalid value for RequestFormat: %v", v)
 	}
 }
 
@@ -99,14 +99,14 @@ type DataPassthroughRequest struct {
 	BaseURLOverride *string `json:"base_url_override,omitempty"`
 	Data            *string `json:"data,omitempty"`
 	// The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.
-	Headers map[string]interface{}       `json:"headers,omitempty"`
-	Method  DataPassthroughRequestMethod `json:"method"`
+	Headers map[string]interface{} `json:"headers,omitempty"`
+	Method  Method                 `json:"method"`
 	// Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`.
 	MultipartFormData []MultipartFormFieldRequest `json:"multipart_form_data,omitempty"`
 	// Optional. If true, the response will always be an object of the form `{"type": T, "value": ...}` where `T` will be one of `string, boolean, number, null, array, object`.
-	NormalizeResponse *bool                                `json:"normalize_response,omitempty"`
-	Path              string                               `json:"path"`
-	RequestFormat     *DataPassthroughRequestRequestFormat `json:"request_format,omitempty"`
+	NormalizeResponse *bool          `json:"normalize_response,omitempty"`
+	Path              string         `json:"path"`
+	RequestFormat     *RequestFormat `json:"request_format,omitempty"`
 }
 
 func (o *DataPassthroughRequest) GetBaseURLOverride() *string {
@@ -130,9 +130,9 @@ func (o *DataPassthroughRequest) GetHeaders() map[string]interface{} {
 	return o.Headers
 }
 
-func (o *DataPassthroughRequest) GetMethod() DataPassthroughRequestMethod {
+func (o *DataPassthroughRequest) GetMethod() Method {
 	if o == nil {
-		return DataPassthroughRequestMethod("")
+		return Method("")
 	}
 	return o.Method
 }
@@ -158,7 +158,7 @@ func (o *DataPassthroughRequest) GetPath() string {
 	return o.Path
 }
 
-func (o *DataPassthroughRequest) GetRequestFormat() *DataPassthroughRequestRequestFormat {
+func (o *DataPassthroughRequest) GetRequestFormat() *RequestFormat {
 	if o == nil {
 		return nil
 	}

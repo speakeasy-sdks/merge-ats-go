@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type rejectReasons struct {
+type RejectReasons struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newRejectReasons(sdkConfig sdkConfiguration) *rejectReasons {
-	return &rejectReasons{
+func newRejectReasons(sdkConfig sdkConfiguration) *RejectReasons {
+	return &RejectReasons{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Returns a list of `RejectReason` objects.
-func (s *rejectReasons) List(ctx context.Context, request operations.RejectReasonsListRequest) (*operations.RejectReasonsListResponse, error) {
+func (s *RejectReasons) List(ctx context.Context, request operations.RejectReasonsListRequest) (*operations.RejectReasonsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/reject-reasons"
 
@@ -80,13 +80,17 @@ func (s *rejectReasons) List(ctx context.Context, request operations.RejectReaso
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns a `RejectReason` object with the given `id`.
-func (s *rejectReasons) Retrieve(ctx context.Context, xAccountToken string, id string, includeRemoteData *bool) (*operations.RejectReasonsRetrieveResponse, error) {
+func (s *RejectReasons) Retrieve(ctx context.Context, xAccountToken string, id string, includeRemoteData *bool) (*operations.RejectReasonsRetrieveResponse, error) {
 	request := operations.RejectReasonsRetrieveRequest{
 		XAccountToken:     xAccountToken,
 		ID:                id,
@@ -149,6 +153,10 @@ func (s *rejectReasons) Retrieve(ctx context.Context, xAccountToken string, id s
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -1,5 +1,5 @@
 # SyncStatus
-(*SyncStatus*)
+(*.SyncStatus*)
 
 ### Available Operations
 

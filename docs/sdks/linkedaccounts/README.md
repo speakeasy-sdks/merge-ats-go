@@ -1,5 +1,5 @@
 # LinkedAccounts
-(*LinkedAccounts*)
+(*.LinkedAccounts*)
 
 ### Available Operations
 

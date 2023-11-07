@@ -11,24 +11,24 @@ import (
 	"time"
 )
 
-// ScorecardsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ScorecardsListExpand string
+// ScorecardsListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type ScorecardsListQueryParamExpand string
 
 const (
-	ScorecardsListExpandApplication                     ScorecardsListExpand = "application"
-	ScorecardsListExpandApplicationInterview            ScorecardsListExpand = "application,interview"
-	ScorecardsListExpandApplicationInterviewInterviewer ScorecardsListExpand = "application,interview,interviewer"
-	ScorecardsListExpandApplicationInterviewer          ScorecardsListExpand = "application,interviewer"
-	ScorecardsListExpandInterview                       ScorecardsListExpand = "interview"
-	ScorecardsListExpandInterviewInterviewer            ScorecardsListExpand = "interview,interviewer"
-	ScorecardsListExpandInterviewer                     ScorecardsListExpand = "interviewer"
+	ScorecardsListQueryParamExpandApplication                     ScorecardsListQueryParamExpand = "application"
+	ScorecardsListQueryParamExpandApplicationInterview            ScorecardsListQueryParamExpand = "application,interview"
+	ScorecardsListQueryParamExpandApplicationInterviewInterviewer ScorecardsListQueryParamExpand = "application,interview,interviewer"
+	ScorecardsListQueryParamExpandApplicationInterviewer          ScorecardsListQueryParamExpand = "application,interviewer"
+	ScorecardsListQueryParamExpandInterview                       ScorecardsListQueryParamExpand = "interview"
+	ScorecardsListQueryParamExpandInterviewInterviewer            ScorecardsListQueryParamExpand = "interview,interviewer"
+	ScorecardsListQueryParamExpandInterviewer                     ScorecardsListQueryParamExpand = "interviewer"
 )
 
-func (e ScorecardsListExpand) ToPointer() *ScorecardsListExpand {
+func (e ScorecardsListQueryParamExpand) ToPointer() *ScorecardsListQueryParamExpand {
 	return &e
 }
 
-func (e *ScorecardsListExpand) UnmarshalJSON(data []byte) error {
+func (e *ScorecardsListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -47,60 +47,60 @@ func (e *ScorecardsListExpand) UnmarshalJSON(data []byte) error {
 	case "interview,interviewer":
 		fallthrough
 	case "interviewer":
-		*e = ScorecardsListExpand(v)
+		*e = ScorecardsListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ScorecardsListExpand: %v", v)
+		return fmt.Errorf("invalid value for ScorecardsListQueryParamExpand: %v", v)
 	}
 }
 
-// ScorecardsListRemoteFields - Deprecated. Use show_enum_origins.
-type ScorecardsListRemoteFields string
+// ScorecardsListQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type ScorecardsListQueryParamRemoteFields string
 
 const (
-	ScorecardsListRemoteFieldsOverallRecommendation ScorecardsListRemoteFields = "overall_recommendation"
+	ScorecardsListQueryParamRemoteFieldsOverallRecommendation ScorecardsListQueryParamRemoteFields = "overall_recommendation"
 )
 
-func (e ScorecardsListRemoteFields) ToPointer() *ScorecardsListRemoteFields {
+func (e ScorecardsListQueryParamRemoteFields) ToPointer() *ScorecardsListQueryParamRemoteFields {
 	return &e
 }
 
-func (e *ScorecardsListRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *ScorecardsListQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "overall_recommendation":
-		*e = ScorecardsListRemoteFields(v)
+		*e = ScorecardsListQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ScorecardsListRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for ScorecardsListQueryParamRemoteFields: %v", v)
 	}
 }
 
-// ScorecardsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type ScorecardsListShowEnumOrigins string
+// ScorecardsListQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type ScorecardsListQueryParamShowEnumOrigins string
 
 const (
-	ScorecardsListShowEnumOriginsOverallRecommendation ScorecardsListShowEnumOrigins = "overall_recommendation"
+	ScorecardsListQueryParamShowEnumOriginsOverallRecommendation ScorecardsListQueryParamShowEnumOrigins = "overall_recommendation"
 )
 
-func (e ScorecardsListShowEnumOrigins) ToPointer() *ScorecardsListShowEnumOrigins {
+func (e ScorecardsListQueryParamShowEnumOrigins) ToPointer() *ScorecardsListQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *ScorecardsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *ScorecardsListQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "overall_recommendation":
-		*e = ScorecardsListShowEnumOrigins(v)
+		*e = ScorecardsListQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ScorecardsListShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for ScorecardsListQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -116,7 +116,7 @@ type ScorecardsListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ScorecardsListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *ScorecardsListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -132,11 +132,11 @@ type ScorecardsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *ScorecardsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *ScorecardsListQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *ScorecardsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *ScorecardsListQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (s ScorecardsListRequest) MarshalJSON() ([]byte, error) {
@@ -185,7 +185,7 @@ func (o *ScorecardsListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *ScorecardsListRequest) GetExpand() *ScorecardsListExpand {
+func (o *ScorecardsListRequest) GetExpand() *ScorecardsListQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -241,7 +241,7 @@ func (o *ScorecardsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *ScorecardsListRequest) GetRemoteFields() *ScorecardsListRemoteFields {
+func (o *ScorecardsListRequest) GetRemoteFields() *ScorecardsListQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
@@ -255,7 +255,7 @@ func (o *ScorecardsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *ScorecardsListRequest) GetShowEnumOrigins() *ScorecardsListShowEnumOrigins {
+func (o *ScorecardsListRequest) GetShowEnumOrigins() *ScorecardsListQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

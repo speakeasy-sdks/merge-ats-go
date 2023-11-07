@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type eeocs struct {
+type Eeocs struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEeocs(sdkConfig sdkConfiguration) *eeocs {
-	return &eeocs{
+func newEeocs(sdkConfig sdkConfiguration) *Eeocs {
+	return &Eeocs{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List - Returns a list of `EEOC` objects.
-func (s *eeocs) List(ctx context.Context, request operations.EeocsListRequest) (*operations.EeocsListResponse, error) {
+func (s *Eeocs) List(ctx context.Context, request operations.EeocsListRequest) (*operations.EeocsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/eeocs"
 
@@ -80,13 +80,17 @@ func (s *eeocs) List(ctx context.Context, request operations.EeocsListRequest) (
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // Retrieve - Returns an `EEOC` object with the given `id`.
-func (s *eeocs) Retrieve(ctx context.Context, request operations.EeocsRetrieveRequest) (*operations.EeocsRetrieveResponse, error) {
+func (s *Eeocs) Retrieve(ctx context.Context, request operations.EeocsRetrieveRequest) (*operations.EeocsRetrieveResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/eeocs/{id}", request, nil)
 	if err != nil {
@@ -143,6 +147,10 @@ func (s *eeocs) Retrieve(ctx context.Context, request operations.EeocsRetrieveRe
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

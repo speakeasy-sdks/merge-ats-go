@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type linkedAccounts struct {
+type LinkedAccounts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLinkedAccounts(sdkConfig sdkConfiguration) *linkedAccounts {
-	return &linkedAccounts{
+func newLinkedAccounts(sdkConfig sdkConfiguration) *LinkedAccounts {
+	return &LinkedAccounts{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // List linked accounts for your organization.
-func (s *linkedAccounts) List(ctx context.Context, request operations.LinkedAccountsListRequest) (*operations.LinkedAccountsListResponse, error) {
+func (s *LinkedAccounts) List(ctx context.Context, request operations.LinkedAccountsListRequest) (*operations.LinkedAccountsListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/linked-accounts"
 
@@ -78,6 +78,10 @@ func (s *linkedAccounts) List(ctx context.Context, request operations.LinkedAcco
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

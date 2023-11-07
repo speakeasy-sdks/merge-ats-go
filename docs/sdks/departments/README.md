@@ -1,5 +1,5 @@
 # Departments
-(*Departments*)
+(*.Departments*)
 
 ### Available Operations
 

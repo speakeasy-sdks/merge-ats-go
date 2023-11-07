@@ -9,26 +9,26 @@ import (
 	"time"
 )
 
-// ScorecardOverallRecommendation - * `DEFINITELY_NO` - DEFINITELY_NO
+// OverallRecommendation - * `DEFINITELY_NO` - DEFINITELY_NO
 // * `NO` - NO
 // * `YES` - YES
 // * `STRONG_YES` - STRONG_YES
 // * `NO_DECISION` - NO_DECISION
-type ScorecardOverallRecommendation string
+type OverallRecommendation string
 
 const (
-	ScorecardOverallRecommendationDefinitelyNo ScorecardOverallRecommendation = "DEFINITELY_NO"
-	ScorecardOverallRecommendationNo           ScorecardOverallRecommendation = "NO"
-	ScorecardOverallRecommendationYes          ScorecardOverallRecommendation = "YES"
-	ScorecardOverallRecommendationStrongYes    ScorecardOverallRecommendation = "STRONG_YES"
-	ScorecardOverallRecommendationNoDecision   ScorecardOverallRecommendation = "NO_DECISION"
+	OverallRecommendationDefinitelyNo OverallRecommendation = "DEFINITELY_NO"
+	OverallRecommendationNo           OverallRecommendation = "NO"
+	OverallRecommendationYes          OverallRecommendation = "YES"
+	OverallRecommendationStrongYes    OverallRecommendation = "STRONG_YES"
+	OverallRecommendationNoDecision   OverallRecommendation = "NO_DECISION"
 )
 
-func (e ScorecardOverallRecommendation) ToPointer() *ScorecardOverallRecommendation {
+func (e OverallRecommendation) ToPointer() *OverallRecommendation {
 	return &e
 }
 
-func (e *ScorecardOverallRecommendation) UnmarshalJSON(data []byte) error {
+func (e *OverallRecommendation) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,10 +43,10 @@ func (e *ScorecardOverallRecommendation) UnmarshalJSON(data []byte) error {
 	case "STRONG_YES":
 		fallthrough
 	case "NO_DECISION":
-		*e = ScorecardOverallRecommendation(v)
+		*e = OverallRecommendation(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ScorecardOverallRecommendation: %v", v)
+		return fmt.Errorf("invalid value for OverallRecommendation: %v", v)
 	}
 }
 
@@ -73,7 +73,7 @@ type Scorecard struct {
 	// * `YES` - YES
 	// * `STRONG_YES` - STRONG_YES
 	// * `NO_DECISION` - NO_DECISION
-	OverallRecommendation *ScorecardOverallRecommendation `json:"overall_recommendation,omitempty"`
+	OverallRecommendation *OverallRecommendation `json:"overall_recommendation,omitempty"`
 	// When the third party's scorecard was created.
 	RemoteCreatedAt *time.Time   `json:"remote_created_at,omitempty"`
 	RemoteData      []RemoteData `json:"remote_data,omitempty"`
@@ -138,7 +138,7 @@ func (o *Scorecard) GetModifiedAt() *time.Time {
 	return o.ModifiedAt
 }
 
-func (o *Scorecard) GetOverallRecommendation() *ScorecardOverallRecommendation {
+func (o *Scorecard) GetOverallRecommendation() *OverallRecommendation {
 	if o == nil {
 		return nil
 	}

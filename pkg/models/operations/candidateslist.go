@@ -11,20 +11,20 @@ import (
 	"time"
 )
 
-// CandidatesListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type CandidatesListExpand string
+// CandidatesListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type CandidatesListQueryParamExpand string
 
 const (
-	CandidatesListExpandApplications            CandidatesListExpand = "applications"
-	CandidatesListExpandApplicationsAttachments CandidatesListExpand = "applications,attachments"
-	CandidatesListExpandAttachments             CandidatesListExpand = "attachments"
+	CandidatesListQueryParamExpandApplications            CandidatesListQueryParamExpand = "applications"
+	CandidatesListQueryParamExpandApplicationsAttachments CandidatesListQueryParamExpand = "applications,attachments"
+	CandidatesListQueryParamExpandAttachments             CandidatesListQueryParamExpand = "attachments"
 )
 
-func (e CandidatesListExpand) ToPointer() *CandidatesListExpand {
+func (e CandidatesListQueryParamExpand) ToPointer() *CandidatesListQueryParamExpand {
 	return &e
 }
 
-func (e *CandidatesListExpand) UnmarshalJSON(data []byte) error {
+func (e *CandidatesListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,10 +35,10 @@ func (e *CandidatesListExpand) UnmarshalJSON(data []byte) error {
 	case "applications,attachments":
 		fallthrough
 	case "attachments":
-		*e = CandidatesListExpand(v)
+		*e = CandidatesListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CandidatesListExpand: %v", v)
+		return fmt.Errorf("invalid value for CandidatesListQueryParamExpand: %v", v)
 	}
 }
 
@@ -54,7 +54,7 @@ type CandidatesListRequest struct {
 	// If provided, will only return candidates with these email addresses; multiple addresses can be separated by commas.
 	EmailAddresses *string `queryParam:"style=form,explode=true,name=email_addresses"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *CandidatesListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *CandidatesListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// If provided, will only return candidates with this first name.
 	FirstName *string `queryParam:"style=form,explode=true,name=first_name"`
 	// Whether to include data that was marked as deleted by third party webhooks.
@@ -121,7 +121,7 @@ func (o *CandidatesListRequest) GetEmailAddresses() *string {
 	return o.EmailAddresses
 }
 
-func (o *CandidatesListRequest) GetExpand() *CandidatesListExpand {
+func (o *CandidatesListRequest) GetExpand() *CandidatesListQueryParamExpand {
 	if o == nil {
 		return nil
 	}

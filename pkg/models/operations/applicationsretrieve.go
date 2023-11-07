@@ -9,48 +9,48 @@ import (
 	"net/http"
 )
 
-// ApplicationsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ApplicationsRetrieveExpand string
+// ApplicationsRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type ApplicationsRetrieveQueryParamExpand string
 
 const (
-	ApplicationsRetrieveExpandCandidate                                      ApplicationsRetrieveExpand = "candidate"
-	ApplicationsRetrieveExpandCandidateCreditedTo                            ApplicationsRetrieveExpand = "candidate,credited_to"
-	ApplicationsRetrieveExpandCandidateCreditedToCurrentStage                ApplicationsRetrieveExpand = "candidate,credited_to,current_stage"
-	ApplicationsRetrieveExpandCandidateCreditedToCurrentStageRejectReason    ApplicationsRetrieveExpand = "candidate,credited_to,current_stage,reject_reason"
-	ApplicationsRetrieveExpandCandidateCreditedToRejectReason                ApplicationsRetrieveExpand = "candidate,credited_to,reject_reason"
-	ApplicationsRetrieveExpandCandidateCurrentStage                          ApplicationsRetrieveExpand = "candidate,current_stage"
-	ApplicationsRetrieveExpandCandidateCurrentStageRejectReason              ApplicationsRetrieveExpand = "candidate,current_stage,reject_reason"
-	ApplicationsRetrieveExpandCandidateJob                                   ApplicationsRetrieveExpand = "candidate,job"
-	ApplicationsRetrieveExpandCandidateJobCreditedTo                         ApplicationsRetrieveExpand = "candidate,job,credited_to"
-	ApplicationsRetrieveExpandCandidateJobCreditedToCurrentStage             ApplicationsRetrieveExpand = "candidate,job,credited_to,current_stage"
-	ApplicationsRetrieveExpandCandidateJobCreditedToCurrentStageRejectReason ApplicationsRetrieveExpand = "candidate,job,credited_to,current_stage,reject_reason"
-	ApplicationsRetrieveExpandCandidateJobCreditedToRejectReason             ApplicationsRetrieveExpand = "candidate,job,credited_to,reject_reason"
-	ApplicationsRetrieveExpandCandidateJobCurrentStage                       ApplicationsRetrieveExpand = "candidate,job,current_stage"
-	ApplicationsRetrieveExpandCandidateJobCurrentStageRejectReason           ApplicationsRetrieveExpand = "candidate,job,current_stage,reject_reason"
-	ApplicationsRetrieveExpandCandidateJobRejectReason                       ApplicationsRetrieveExpand = "candidate,job,reject_reason"
-	ApplicationsRetrieveExpandCandidateRejectReason                          ApplicationsRetrieveExpand = "candidate,reject_reason"
-	ApplicationsRetrieveExpandCreditedTo                                     ApplicationsRetrieveExpand = "credited_to"
-	ApplicationsRetrieveExpandCreditedToCurrentStage                         ApplicationsRetrieveExpand = "credited_to,current_stage"
-	ApplicationsRetrieveExpandCreditedToCurrentStageRejectReason             ApplicationsRetrieveExpand = "credited_to,current_stage,reject_reason"
-	ApplicationsRetrieveExpandCreditedToRejectReason                         ApplicationsRetrieveExpand = "credited_to,reject_reason"
-	ApplicationsRetrieveExpandCurrentStage                                   ApplicationsRetrieveExpand = "current_stage"
-	ApplicationsRetrieveExpandCurrentStageRejectReason                       ApplicationsRetrieveExpand = "current_stage,reject_reason"
-	ApplicationsRetrieveExpandJob                                            ApplicationsRetrieveExpand = "job"
-	ApplicationsRetrieveExpandJobCreditedTo                                  ApplicationsRetrieveExpand = "job,credited_to"
-	ApplicationsRetrieveExpandJobCreditedToCurrentStage                      ApplicationsRetrieveExpand = "job,credited_to,current_stage"
-	ApplicationsRetrieveExpandJobCreditedToCurrentStageRejectReason          ApplicationsRetrieveExpand = "job,credited_to,current_stage,reject_reason"
-	ApplicationsRetrieveExpandJobCreditedToRejectReason                      ApplicationsRetrieveExpand = "job,credited_to,reject_reason"
-	ApplicationsRetrieveExpandJobCurrentStage                                ApplicationsRetrieveExpand = "job,current_stage"
-	ApplicationsRetrieveExpandJobCurrentStageRejectReason                    ApplicationsRetrieveExpand = "job,current_stage,reject_reason"
-	ApplicationsRetrieveExpandJobRejectReason                                ApplicationsRetrieveExpand = "job,reject_reason"
-	ApplicationsRetrieveExpandRejectReason                                   ApplicationsRetrieveExpand = "reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidate                                      ApplicationsRetrieveQueryParamExpand = "candidate"
+	ApplicationsRetrieveQueryParamExpandCandidateCreditedTo                            ApplicationsRetrieveQueryParamExpand = "candidate,credited_to"
+	ApplicationsRetrieveQueryParamExpandCandidateCreditedToCurrentStage                ApplicationsRetrieveQueryParamExpand = "candidate,credited_to,current_stage"
+	ApplicationsRetrieveQueryParamExpandCandidateCreditedToCurrentStageRejectReason    ApplicationsRetrieveQueryParamExpand = "candidate,credited_to,current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidateCreditedToRejectReason                ApplicationsRetrieveQueryParamExpand = "candidate,credited_to,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidateCurrentStage                          ApplicationsRetrieveQueryParamExpand = "candidate,current_stage"
+	ApplicationsRetrieveQueryParamExpandCandidateCurrentStageRejectReason              ApplicationsRetrieveQueryParamExpand = "candidate,current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidateJob                                   ApplicationsRetrieveQueryParamExpand = "candidate,job"
+	ApplicationsRetrieveQueryParamExpandCandidateJobCreditedTo                         ApplicationsRetrieveQueryParamExpand = "candidate,job,credited_to"
+	ApplicationsRetrieveQueryParamExpandCandidateJobCreditedToCurrentStage             ApplicationsRetrieveQueryParamExpand = "candidate,job,credited_to,current_stage"
+	ApplicationsRetrieveQueryParamExpandCandidateJobCreditedToCurrentStageRejectReason ApplicationsRetrieveQueryParamExpand = "candidate,job,credited_to,current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidateJobCreditedToRejectReason             ApplicationsRetrieveQueryParamExpand = "candidate,job,credited_to,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidateJobCurrentStage                       ApplicationsRetrieveQueryParamExpand = "candidate,job,current_stage"
+	ApplicationsRetrieveQueryParamExpandCandidateJobCurrentStageRejectReason           ApplicationsRetrieveQueryParamExpand = "candidate,job,current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidateJobRejectReason                       ApplicationsRetrieveQueryParamExpand = "candidate,job,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCandidateRejectReason                          ApplicationsRetrieveQueryParamExpand = "candidate,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCreditedTo                                     ApplicationsRetrieveQueryParamExpand = "credited_to"
+	ApplicationsRetrieveQueryParamExpandCreditedToCurrentStage                         ApplicationsRetrieveQueryParamExpand = "credited_to,current_stage"
+	ApplicationsRetrieveQueryParamExpandCreditedToCurrentStageRejectReason             ApplicationsRetrieveQueryParamExpand = "credited_to,current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCreditedToRejectReason                         ApplicationsRetrieveQueryParamExpand = "credited_to,reject_reason"
+	ApplicationsRetrieveQueryParamExpandCurrentStage                                   ApplicationsRetrieveQueryParamExpand = "current_stage"
+	ApplicationsRetrieveQueryParamExpandCurrentStageRejectReason                       ApplicationsRetrieveQueryParamExpand = "current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandJob                                            ApplicationsRetrieveQueryParamExpand = "job"
+	ApplicationsRetrieveQueryParamExpandJobCreditedTo                                  ApplicationsRetrieveQueryParamExpand = "job,credited_to"
+	ApplicationsRetrieveQueryParamExpandJobCreditedToCurrentStage                      ApplicationsRetrieveQueryParamExpand = "job,credited_to,current_stage"
+	ApplicationsRetrieveQueryParamExpandJobCreditedToCurrentStageRejectReason          ApplicationsRetrieveQueryParamExpand = "job,credited_to,current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandJobCreditedToRejectReason                      ApplicationsRetrieveQueryParamExpand = "job,credited_to,reject_reason"
+	ApplicationsRetrieveQueryParamExpandJobCurrentStage                                ApplicationsRetrieveQueryParamExpand = "job,current_stage"
+	ApplicationsRetrieveQueryParamExpandJobCurrentStageRejectReason                    ApplicationsRetrieveQueryParamExpand = "job,current_stage,reject_reason"
+	ApplicationsRetrieveQueryParamExpandJobRejectReason                                ApplicationsRetrieveQueryParamExpand = "job,reject_reason"
+	ApplicationsRetrieveQueryParamExpandRejectReason                                   ApplicationsRetrieveQueryParamExpand = "reject_reason"
 )
 
-func (e ApplicationsRetrieveExpand) ToPointer() *ApplicationsRetrieveExpand {
+func (e ApplicationsRetrieveQueryParamExpand) ToPointer() *ApplicationsRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *ApplicationsRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *ApplicationsRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -117,10 +117,10 @@ func (e *ApplicationsRetrieveExpand) UnmarshalJSON(data []byte) error {
 	case "job,reject_reason":
 		fallthrough
 	case "reject_reason":
-		*e = ApplicationsRetrieveExpand(v)
+		*e = ApplicationsRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ApplicationsRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for ApplicationsRetrieveQueryParamExpand: %v", v)
 	}
 }
 
@@ -129,7 +129,7 @@ type ApplicationsRetrieveRequest struct {
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	ID            string `pathParam:"style=simple,explode=false,name=id"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ApplicationsRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *ApplicationsRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 }
@@ -148,7 +148,7 @@ func (o *ApplicationsRetrieveRequest) GetID() string {
 	return o.ID
 }
 
-func (o *ApplicationsRetrieveRequest) GetExpand() *ApplicationsRetrieveExpand {
+func (o *ApplicationsRetrieveRequest) GetExpand() *ApplicationsRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}

@@ -1,5 +1,5 @@
 # AccountDetails
-(*AccountDetails*)
+(*.AccountDetails*)
 
 ### Available Operations
 

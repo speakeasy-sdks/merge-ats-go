@@ -11,28 +11,28 @@ import (
 	"time"
 )
 
-// JobInterviewStagesListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type JobInterviewStagesListExpand string
+// JobInterviewStagesListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type JobInterviewStagesListQueryParamExpand string
 
 const (
-	JobInterviewStagesListExpandJob JobInterviewStagesListExpand = "job"
+	JobInterviewStagesListQueryParamExpandJob JobInterviewStagesListQueryParamExpand = "job"
 )
 
-func (e JobInterviewStagesListExpand) ToPointer() *JobInterviewStagesListExpand {
+func (e JobInterviewStagesListQueryParamExpand) ToPointer() *JobInterviewStagesListQueryParamExpand {
 	return &e
 }
 
-func (e *JobInterviewStagesListExpand) UnmarshalJSON(data []byte) error {
+func (e *JobInterviewStagesListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "job":
-		*e = JobInterviewStagesListExpand(v)
+		*e = JobInterviewStagesListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobInterviewStagesListExpand: %v", v)
+		return fmt.Errorf("invalid value for JobInterviewStagesListQueryParamExpand: %v", v)
 	}
 }
 
@@ -46,7 +46,7 @@ type JobInterviewStagesListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *JobInterviewStagesListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *JobInterviewStagesListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -102,7 +102,7 @@ func (o *JobInterviewStagesListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *JobInterviewStagesListRequest) GetExpand() *JobInterviewStagesListExpand {
+func (o *JobInterviewStagesListRequest) GetExpand() *JobInterviewStagesListQueryParamExpand {
 	if o == nil {
 		return nil
 	}

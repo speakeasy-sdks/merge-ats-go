@@ -1,5 +1,5 @@
 # Attachments
-(*Attachments*)
+(*.Attachments*)
 
 ### Available Operations
 

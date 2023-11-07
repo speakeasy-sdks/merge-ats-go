@@ -9,24 +9,24 @@ import (
 	"net/http"
 )
 
-// ScorecardsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ScorecardsRetrieveExpand string
+// ScorecardsRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type ScorecardsRetrieveQueryParamExpand string
 
 const (
-	ScorecardsRetrieveExpandApplication                     ScorecardsRetrieveExpand = "application"
-	ScorecardsRetrieveExpandApplicationInterview            ScorecardsRetrieveExpand = "application,interview"
-	ScorecardsRetrieveExpandApplicationInterviewInterviewer ScorecardsRetrieveExpand = "application,interview,interviewer"
-	ScorecardsRetrieveExpandApplicationInterviewer          ScorecardsRetrieveExpand = "application,interviewer"
-	ScorecardsRetrieveExpandInterview                       ScorecardsRetrieveExpand = "interview"
-	ScorecardsRetrieveExpandInterviewInterviewer            ScorecardsRetrieveExpand = "interview,interviewer"
-	ScorecardsRetrieveExpandInterviewer                     ScorecardsRetrieveExpand = "interviewer"
+	ScorecardsRetrieveQueryParamExpandApplication                     ScorecardsRetrieveQueryParamExpand = "application"
+	ScorecardsRetrieveQueryParamExpandApplicationInterview            ScorecardsRetrieveQueryParamExpand = "application,interview"
+	ScorecardsRetrieveQueryParamExpandApplicationInterviewInterviewer ScorecardsRetrieveQueryParamExpand = "application,interview,interviewer"
+	ScorecardsRetrieveQueryParamExpandApplicationInterviewer          ScorecardsRetrieveQueryParamExpand = "application,interviewer"
+	ScorecardsRetrieveQueryParamExpandInterview                       ScorecardsRetrieveQueryParamExpand = "interview"
+	ScorecardsRetrieveQueryParamExpandInterviewInterviewer            ScorecardsRetrieveQueryParamExpand = "interview,interviewer"
+	ScorecardsRetrieveQueryParamExpandInterviewer                     ScorecardsRetrieveQueryParamExpand = "interviewer"
 )
 
-func (e ScorecardsRetrieveExpand) ToPointer() *ScorecardsRetrieveExpand {
+func (e ScorecardsRetrieveQueryParamExpand) ToPointer() *ScorecardsRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *ScorecardsRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *ScorecardsRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -45,60 +45,60 @@ func (e *ScorecardsRetrieveExpand) UnmarshalJSON(data []byte) error {
 	case "interview,interviewer":
 		fallthrough
 	case "interviewer":
-		*e = ScorecardsRetrieveExpand(v)
+		*e = ScorecardsRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ScorecardsRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for ScorecardsRetrieveQueryParamExpand: %v", v)
 	}
 }
 
-// ScorecardsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type ScorecardsRetrieveRemoteFields string
+// ScorecardsRetrieveQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type ScorecardsRetrieveQueryParamRemoteFields string
 
 const (
-	ScorecardsRetrieveRemoteFieldsOverallRecommendation ScorecardsRetrieveRemoteFields = "overall_recommendation"
+	ScorecardsRetrieveQueryParamRemoteFieldsOverallRecommendation ScorecardsRetrieveQueryParamRemoteFields = "overall_recommendation"
 )
 
-func (e ScorecardsRetrieveRemoteFields) ToPointer() *ScorecardsRetrieveRemoteFields {
+func (e ScorecardsRetrieveQueryParamRemoteFields) ToPointer() *ScorecardsRetrieveQueryParamRemoteFields {
 	return &e
 }
 
-func (e *ScorecardsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *ScorecardsRetrieveQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "overall_recommendation":
-		*e = ScorecardsRetrieveRemoteFields(v)
+		*e = ScorecardsRetrieveQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ScorecardsRetrieveRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for ScorecardsRetrieveQueryParamRemoteFields: %v", v)
 	}
 }
 
-// ScorecardsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type ScorecardsRetrieveShowEnumOrigins string
+// ScorecardsRetrieveQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type ScorecardsRetrieveQueryParamShowEnumOrigins string
 
 const (
-	ScorecardsRetrieveShowEnumOriginsOverallRecommendation ScorecardsRetrieveShowEnumOrigins = "overall_recommendation"
+	ScorecardsRetrieveQueryParamShowEnumOriginsOverallRecommendation ScorecardsRetrieveQueryParamShowEnumOrigins = "overall_recommendation"
 )
 
-func (e ScorecardsRetrieveShowEnumOrigins) ToPointer() *ScorecardsRetrieveShowEnumOrigins {
+func (e ScorecardsRetrieveQueryParamShowEnumOrigins) ToPointer() *ScorecardsRetrieveQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *ScorecardsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *ScorecardsRetrieveQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "overall_recommendation":
-		*e = ScorecardsRetrieveShowEnumOrigins(v)
+		*e = ScorecardsRetrieveQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ScorecardsRetrieveShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for ScorecardsRetrieveQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -106,14 +106,14 @@ type ScorecardsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ScorecardsRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string                    `pathParam:"style=simple,explode=false,name=id"`
+	Expand *ScorecardsRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
+	ID     string                              `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *ScorecardsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *ScorecardsRetrieveQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *ScorecardsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *ScorecardsRetrieveQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o *ScorecardsRetrieveRequest) GetXAccountToken() string {
@@ -123,7 +123,7 @@ func (o *ScorecardsRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *ScorecardsRetrieveRequest) GetExpand() *ScorecardsRetrieveExpand {
+func (o *ScorecardsRetrieveRequest) GetExpand() *ScorecardsRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -144,14 +144,14 @@ func (o *ScorecardsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *ScorecardsRetrieveRequest) GetRemoteFields() *ScorecardsRetrieveRemoteFields {
+func (o *ScorecardsRetrieveRequest) GetRemoteFields() *ScorecardsRetrieveQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
 	return o.RemoteFields
 }
 
-func (o *ScorecardsRetrieveRequest) GetShowEnumOrigins() *ScorecardsRetrieveShowEnumOrigins {
+func (o *ScorecardsRetrieveRequest) GetShowEnumOrigins() *ScorecardsRetrieveQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

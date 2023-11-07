@@ -9,24 +9,24 @@ import (
 	"time"
 )
 
-// AttachmentAttachmentType - * `RESUME` - RESUME
+// AttachmentType - * `RESUME` - RESUME
 // * `COVER_LETTER` - COVER_LETTER
 // * `OFFER_LETTER` - OFFER_LETTER
 // * `OTHER` - OTHER
-type AttachmentAttachmentType string
+type AttachmentType string
 
 const (
-	AttachmentAttachmentTypeResume      AttachmentAttachmentType = "RESUME"
-	AttachmentAttachmentTypeCoverLetter AttachmentAttachmentType = "COVER_LETTER"
-	AttachmentAttachmentTypeOfferLetter AttachmentAttachmentType = "OFFER_LETTER"
-	AttachmentAttachmentTypeOther       AttachmentAttachmentType = "OTHER"
+	AttachmentTypeResume      AttachmentType = "RESUME"
+	AttachmentTypeCoverLetter AttachmentType = "COVER_LETTER"
+	AttachmentTypeOfferLetter AttachmentType = "OFFER_LETTER"
+	AttachmentTypeOther       AttachmentType = "OTHER"
 )
 
-func (e AttachmentAttachmentType) ToPointer() *AttachmentAttachmentType {
+func (e AttachmentType) ToPointer() *AttachmentType {
 	return &e
 }
 
-func (e *AttachmentAttachmentType) UnmarshalJSON(data []byte) error {
+func (e *AttachmentType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -39,10 +39,10 @@ func (e *AttachmentAttachmentType) UnmarshalJSON(data []byte) error {
 	case "OFFER_LETTER":
 		fallthrough
 	case "OTHER":
-		*e = AttachmentAttachmentType(v)
+		*e = AttachmentType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AttachmentAttachmentType: %v", v)
+		return fmt.Errorf("invalid value for AttachmentType: %v", v)
 	}
 }
 
@@ -58,9 +58,9 @@ type Attachment struct {
 	// * `COVER_LETTER` - COVER_LETTER
 	// * `OFFER_LETTER` - OFFER_LETTER
 	// * `OTHER` - OTHER
-	AttachmentType *AttachmentAttachmentType `json:"attachment_type,omitempty"`
-	Candidate      *string                   `json:"candidate,omitempty"`
-	FieldMappings  map[string]interface{}    `json:"field_mappings,omitempty"`
+	AttachmentType *AttachmentType        `json:"attachment_type,omitempty"`
+	Candidate      *string                `json:"candidate,omitempty"`
+	FieldMappings  map[string]interface{} `json:"field_mappings,omitempty"`
 	// The attachment's name.
 	FileName *string `json:"file_name,omitempty"`
 	// The attachment's url.
@@ -85,7 +85,7 @@ func (a *Attachment) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Attachment) GetAttachmentType() *AttachmentAttachmentType {
+func (o *Attachment) GetAttachmentType() *AttachmentType {
 	if o == nil {
 		return nil
 	}

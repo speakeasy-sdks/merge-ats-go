@@ -11,45 +11,45 @@ import (
 	"time"
 )
 
-// ActivitiesListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type ActivitiesListExpand string
+// Expand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type Expand string
 
 const (
-	ActivitiesListExpandUser ActivitiesListExpand = "user"
+	ExpandUser Expand = "user"
 )
 
-func (e ActivitiesListExpand) ToPointer() *ActivitiesListExpand {
+func (e Expand) ToPointer() *Expand {
 	return &e
 }
 
-func (e *ActivitiesListExpand) UnmarshalJSON(data []byte) error {
+func (e *Expand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "user":
-		*e = ActivitiesListExpand(v)
+		*e = Expand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivitiesListExpand: %v", v)
+		return fmt.Errorf("invalid value for Expand: %v", v)
 	}
 }
 
-// ActivitiesListRemoteFields - Deprecated. Use show_enum_origins.
-type ActivitiesListRemoteFields string
+// RemoteFields - Deprecated. Use show_enum_origins.
+type RemoteFields string
 
 const (
-	ActivitiesListRemoteFieldsActivityType           ActivitiesListRemoteFields = "activity_type"
-	ActivitiesListRemoteFieldsActivityTypeVisibility ActivitiesListRemoteFields = "activity_type,visibility"
-	ActivitiesListRemoteFieldsVisibility             ActivitiesListRemoteFields = "visibility"
+	RemoteFieldsActivityType           RemoteFields = "activity_type"
+	RemoteFieldsActivityTypeVisibility RemoteFields = "activity_type,visibility"
+	RemoteFieldsVisibility             RemoteFields = "visibility"
 )
 
-func (e ActivitiesListRemoteFields) ToPointer() *ActivitiesListRemoteFields {
+func (e RemoteFields) ToPointer() *RemoteFields {
 	return &e
 }
 
-func (e *ActivitiesListRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *RemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -60,27 +60,27 @@ func (e *ActivitiesListRemoteFields) UnmarshalJSON(data []byte) error {
 	case "activity_type,visibility":
 		fallthrough
 	case "visibility":
-		*e = ActivitiesListRemoteFields(v)
+		*e = RemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivitiesListRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for RemoteFields: %v", v)
 	}
 }
 
-// ActivitiesListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type ActivitiesListShowEnumOrigins string
+// ShowEnumOrigins - Which fields should be returned in non-normalized form.
+type ShowEnumOrigins string
 
 const (
-	ActivitiesListShowEnumOriginsActivityType           ActivitiesListShowEnumOrigins = "activity_type"
-	ActivitiesListShowEnumOriginsActivityTypeVisibility ActivitiesListShowEnumOrigins = "activity_type,visibility"
-	ActivitiesListShowEnumOriginsVisibility             ActivitiesListShowEnumOrigins = "visibility"
+	ShowEnumOriginsActivityType           ShowEnumOrigins = "activity_type"
+	ShowEnumOriginsActivityTypeVisibility ShowEnumOrigins = "activity_type,visibility"
+	ShowEnumOriginsVisibility             ShowEnumOrigins = "visibility"
 )
 
-func (e ActivitiesListShowEnumOrigins) ToPointer() *ActivitiesListShowEnumOrigins {
+func (e ShowEnumOrigins) ToPointer() *ShowEnumOrigins {
 	return &e
 }
 
-func (e *ActivitiesListShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *ShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -91,10 +91,10 @@ func (e *ActivitiesListShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	case "activity_type,visibility":
 		fallthrough
 	case "visibility":
-		*e = ActivitiesListShowEnumOrigins(v)
+		*e = ShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ActivitiesListShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for ShowEnumOrigins: %v", v)
 	}
 }
 
@@ -108,7 +108,7 @@ type ActivitiesListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *ActivitiesListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *Expand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -120,11 +120,11 @@ type ActivitiesListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *ActivitiesListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *RemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *ActivitiesListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *ShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 	// If provided, will only return activities done by this user.
 	UserID *string `queryParam:"style=form,explode=true,name=user_id"`
 }
@@ -168,7 +168,7 @@ func (o *ActivitiesListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *ActivitiesListRequest) GetExpand() *ActivitiesListExpand {
+func (o *ActivitiesListRequest) GetExpand() *Expand {
 	if o == nil {
 		return nil
 	}
@@ -210,7 +210,7 @@ func (o *ActivitiesListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *ActivitiesListRequest) GetRemoteFields() *ActivitiesListRemoteFields {
+func (o *ActivitiesListRequest) GetRemoteFields() *RemoteFields {
 	if o == nil {
 		return nil
 	}
@@ -224,7 +224,7 @@ func (o *ActivitiesListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *ActivitiesListRequest) GetShowEnumOrigins() *ActivitiesListShowEnumOrigins {
+func (o *ActivitiesListRequest) GetShowEnumOrigins() *ShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

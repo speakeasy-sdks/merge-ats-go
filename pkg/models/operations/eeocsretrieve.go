@@ -9,57 +9,57 @@ import (
 	"net/http"
 )
 
-// EeocsRetrieveExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type EeocsRetrieveExpand string
+// EeocsRetrieveQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type EeocsRetrieveQueryParamExpand string
 
 const (
-	EeocsRetrieveExpandCandidate EeocsRetrieveExpand = "candidate"
+	EeocsRetrieveQueryParamExpandCandidate EeocsRetrieveQueryParamExpand = "candidate"
 )
 
-func (e EeocsRetrieveExpand) ToPointer() *EeocsRetrieveExpand {
+func (e EeocsRetrieveQueryParamExpand) ToPointer() *EeocsRetrieveQueryParamExpand {
 	return &e
 }
 
-func (e *EeocsRetrieveExpand) UnmarshalJSON(data []byte) error {
+func (e *EeocsRetrieveQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "candidate":
-		*e = EeocsRetrieveExpand(v)
+		*e = EeocsRetrieveQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EeocsRetrieveExpand: %v", v)
+		return fmt.Errorf("invalid value for EeocsRetrieveQueryParamExpand: %v", v)
 	}
 }
 
-// EeocsRetrieveRemoteFields - Deprecated. Use show_enum_origins.
-type EeocsRetrieveRemoteFields string
+// EeocsRetrieveQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type EeocsRetrieveQueryParamRemoteFields string
 
 const (
-	EeocsRetrieveRemoteFieldsDisabilityStatus                        EeocsRetrieveRemoteFields = "disability_status"
-	EeocsRetrieveRemoteFieldsDisabilityStatusGender                  EeocsRetrieveRemoteFields = "disability_status,gender"
-	EeocsRetrieveRemoteFieldsDisabilityStatusGenderRace              EeocsRetrieveRemoteFields = "disability_status,gender,race"
-	EeocsRetrieveRemoteFieldsDisabilityStatusGenderRaceVeteranStatus EeocsRetrieveRemoteFields = "disability_status,gender,race,veteran_status"
-	EeocsRetrieveRemoteFieldsDisabilityStatusGenderVeteranStatus     EeocsRetrieveRemoteFields = "disability_status,gender,veteran_status"
-	EeocsRetrieveRemoteFieldsDisabilityStatusRace                    EeocsRetrieveRemoteFields = "disability_status,race"
-	EeocsRetrieveRemoteFieldsDisabilityStatusRaceVeteranStatus       EeocsRetrieveRemoteFields = "disability_status,race,veteran_status"
-	EeocsRetrieveRemoteFieldsDisabilityStatusVeteranStatus           EeocsRetrieveRemoteFields = "disability_status,veteran_status"
-	EeocsRetrieveRemoteFieldsGender                                  EeocsRetrieveRemoteFields = "gender"
-	EeocsRetrieveRemoteFieldsGenderRace                              EeocsRetrieveRemoteFields = "gender,race"
-	EeocsRetrieveRemoteFieldsGenderRaceVeteranStatus                 EeocsRetrieveRemoteFields = "gender,race,veteran_status"
-	EeocsRetrieveRemoteFieldsGenderVeteranStatus                     EeocsRetrieveRemoteFields = "gender,veteran_status"
-	EeocsRetrieveRemoteFieldsRace                                    EeocsRetrieveRemoteFields = "race"
-	EeocsRetrieveRemoteFieldsRaceVeteranStatus                       EeocsRetrieveRemoteFields = "race,veteran_status"
-	EeocsRetrieveRemoteFieldsVeteranStatus                           EeocsRetrieveRemoteFields = "veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatus                        EeocsRetrieveQueryParamRemoteFields = "disability_status"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatusGender                  EeocsRetrieveQueryParamRemoteFields = "disability_status,gender"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatusGenderRace              EeocsRetrieveQueryParamRemoteFields = "disability_status,gender,race"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatusGenderRaceVeteranStatus EeocsRetrieveQueryParamRemoteFields = "disability_status,gender,race,veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatusGenderVeteranStatus     EeocsRetrieveQueryParamRemoteFields = "disability_status,gender,veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatusRace                    EeocsRetrieveQueryParamRemoteFields = "disability_status,race"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatusRaceVeteranStatus       EeocsRetrieveQueryParamRemoteFields = "disability_status,race,veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsDisabilityStatusVeteranStatus           EeocsRetrieveQueryParamRemoteFields = "disability_status,veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsGender                                  EeocsRetrieveQueryParamRemoteFields = "gender"
+	EeocsRetrieveQueryParamRemoteFieldsGenderRace                              EeocsRetrieveQueryParamRemoteFields = "gender,race"
+	EeocsRetrieveQueryParamRemoteFieldsGenderRaceVeteranStatus                 EeocsRetrieveQueryParamRemoteFields = "gender,race,veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsGenderVeteranStatus                     EeocsRetrieveQueryParamRemoteFields = "gender,veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsRace                                    EeocsRetrieveQueryParamRemoteFields = "race"
+	EeocsRetrieveQueryParamRemoteFieldsRaceVeteranStatus                       EeocsRetrieveQueryParamRemoteFields = "race,veteran_status"
+	EeocsRetrieveQueryParamRemoteFieldsVeteranStatus                           EeocsRetrieveQueryParamRemoteFields = "veteran_status"
 )
 
-func (e EeocsRetrieveRemoteFields) ToPointer() *EeocsRetrieveRemoteFields {
+func (e EeocsRetrieveQueryParamRemoteFields) ToPointer() *EeocsRetrieveQueryParamRemoteFields {
 	return &e
 }
 
-func (e *EeocsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *EeocsRetrieveQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -94,39 +94,39 @@ func (e *EeocsRetrieveRemoteFields) UnmarshalJSON(data []byte) error {
 	case "race,veteran_status":
 		fallthrough
 	case "veteran_status":
-		*e = EeocsRetrieveRemoteFields(v)
+		*e = EeocsRetrieveQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EeocsRetrieveRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for EeocsRetrieveQueryParamRemoteFields: %v", v)
 	}
 }
 
-// EeocsRetrieveShowEnumOrigins - Which fields should be returned in non-normalized form.
-type EeocsRetrieveShowEnumOrigins string
+// EeocsRetrieveQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type EeocsRetrieveQueryParamShowEnumOrigins string
 
 const (
-	EeocsRetrieveShowEnumOriginsDisabilityStatus                        EeocsRetrieveShowEnumOrigins = "disability_status"
-	EeocsRetrieveShowEnumOriginsDisabilityStatusGender                  EeocsRetrieveShowEnumOrigins = "disability_status,gender"
-	EeocsRetrieveShowEnumOriginsDisabilityStatusGenderRace              EeocsRetrieveShowEnumOrigins = "disability_status,gender,race"
-	EeocsRetrieveShowEnumOriginsDisabilityStatusGenderRaceVeteranStatus EeocsRetrieveShowEnumOrigins = "disability_status,gender,race,veteran_status"
-	EeocsRetrieveShowEnumOriginsDisabilityStatusGenderVeteranStatus     EeocsRetrieveShowEnumOrigins = "disability_status,gender,veteran_status"
-	EeocsRetrieveShowEnumOriginsDisabilityStatusRace                    EeocsRetrieveShowEnumOrigins = "disability_status,race"
-	EeocsRetrieveShowEnumOriginsDisabilityStatusRaceVeteranStatus       EeocsRetrieveShowEnumOrigins = "disability_status,race,veteran_status"
-	EeocsRetrieveShowEnumOriginsDisabilityStatusVeteranStatus           EeocsRetrieveShowEnumOrigins = "disability_status,veteran_status"
-	EeocsRetrieveShowEnumOriginsGender                                  EeocsRetrieveShowEnumOrigins = "gender"
-	EeocsRetrieveShowEnumOriginsGenderRace                              EeocsRetrieveShowEnumOrigins = "gender,race"
-	EeocsRetrieveShowEnumOriginsGenderRaceVeteranStatus                 EeocsRetrieveShowEnumOrigins = "gender,race,veteran_status"
-	EeocsRetrieveShowEnumOriginsGenderVeteranStatus                     EeocsRetrieveShowEnumOrigins = "gender,veteran_status"
-	EeocsRetrieveShowEnumOriginsRace                                    EeocsRetrieveShowEnumOrigins = "race"
-	EeocsRetrieveShowEnumOriginsRaceVeteranStatus                       EeocsRetrieveShowEnumOrigins = "race,veteran_status"
-	EeocsRetrieveShowEnumOriginsVeteranStatus                           EeocsRetrieveShowEnumOrigins = "veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatus                        EeocsRetrieveQueryParamShowEnumOrigins = "disability_status"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatusGender                  EeocsRetrieveQueryParamShowEnumOrigins = "disability_status,gender"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatusGenderRace              EeocsRetrieveQueryParamShowEnumOrigins = "disability_status,gender,race"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatusGenderRaceVeteranStatus EeocsRetrieveQueryParamShowEnumOrigins = "disability_status,gender,race,veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatusGenderVeteranStatus     EeocsRetrieveQueryParamShowEnumOrigins = "disability_status,gender,veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatusRace                    EeocsRetrieveQueryParamShowEnumOrigins = "disability_status,race"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatusRaceVeteranStatus       EeocsRetrieveQueryParamShowEnumOrigins = "disability_status,race,veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsDisabilityStatusVeteranStatus           EeocsRetrieveQueryParamShowEnumOrigins = "disability_status,veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsGender                                  EeocsRetrieveQueryParamShowEnumOrigins = "gender"
+	EeocsRetrieveQueryParamShowEnumOriginsGenderRace                              EeocsRetrieveQueryParamShowEnumOrigins = "gender,race"
+	EeocsRetrieveQueryParamShowEnumOriginsGenderRaceVeteranStatus                 EeocsRetrieveQueryParamShowEnumOrigins = "gender,race,veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsGenderVeteranStatus                     EeocsRetrieveQueryParamShowEnumOrigins = "gender,veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsRace                                    EeocsRetrieveQueryParamShowEnumOrigins = "race"
+	EeocsRetrieveQueryParamShowEnumOriginsRaceVeteranStatus                       EeocsRetrieveQueryParamShowEnumOrigins = "race,veteran_status"
+	EeocsRetrieveQueryParamShowEnumOriginsVeteranStatus                           EeocsRetrieveQueryParamShowEnumOrigins = "veteran_status"
 )
 
-func (e EeocsRetrieveShowEnumOrigins) ToPointer() *EeocsRetrieveShowEnumOrigins {
+func (e EeocsRetrieveQueryParamShowEnumOrigins) ToPointer() *EeocsRetrieveQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *EeocsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *EeocsRetrieveQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -161,10 +161,10 @@ func (e *EeocsRetrieveShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	case "race,veteran_status":
 		fallthrough
 	case "veteran_status":
-		*e = EeocsRetrieveShowEnumOrigins(v)
+		*e = EeocsRetrieveQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EeocsRetrieveShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for EeocsRetrieveQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
@@ -172,14 +172,14 @@ type EeocsRetrieveRequest struct {
 	// Token identifying the end user.
 	XAccountToken string `header:"style=simple,explode=false,name=X-Account-Token"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *EeocsRetrieveExpand `queryParam:"style=form,explode=true,name=expand"`
-	ID     string               `pathParam:"style=simple,explode=false,name=id"`
+	Expand *EeocsRetrieveQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
+	ID     string                         `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
 	IncludeRemoteData *bool `queryParam:"style=form,explode=true,name=include_remote_data"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *EeocsRetrieveRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *EeocsRetrieveQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *EeocsRetrieveShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *EeocsRetrieveQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 }
 
 func (o *EeocsRetrieveRequest) GetXAccountToken() string {
@@ -189,7 +189,7 @@ func (o *EeocsRetrieveRequest) GetXAccountToken() string {
 	return o.XAccountToken
 }
 
-func (o *EeocsRetrieveRequest) GetExpand() *EeocsRetrieveExpand {
+func (o *EeocsRetrieveRequest) GetExpand() *EeocsRetrieveQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -210,14 +210,14 @@ func (o *EeocsRetrieveRequest) GetIncludeRemoteData() *bool {
 	return o.IncludeRemoteData
 }
 
-func (o *EeocsRetrieveRequest) GetRemoteFields() *EeocsRetrieveRemoteFields {
+func (o *EeocsRetrieveRequest) GetRemoteFields() *EeocsRetrieveQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
 	return o.RemoteFields
 }
 
-func (o *EeocsRetrieveRequest) GetShowEnumOrigins() *EeocsRetrieveShowEnumOrigins {
+func (o *EeocsRetrieveRequest) GetShowEnumOrigins() *EeocsRetrieveQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}

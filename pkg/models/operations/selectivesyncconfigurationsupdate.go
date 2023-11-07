@@ -29,12 +29,12 @@ func (o *SelectiveSyncConfigurationsUpdateRequest) GetXAccountToken() string {
 
 type SelectiveSyncConfigurationsUpdateResponse struct {
 	// HTTP response content type for this operation
-	ContentType                              string
-	LinkedAccountSelectiveSyncConfigurations []shared.LinkedAccountSelectiveSyncConfiguration
+	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	Classes     []shared.LinkedAccountSelectiveSyncConfiguration
 }
 
 func (o *SelectiveSyncConfigurationsUpdateResponse) GetContentType() string {
@@ -42,13 +42,6 @@ func (o *SelectiveSyncConfigurationsUpdateResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *SelectiveSyncConfigurationsUpdateResponse) GetLinkedAccountSelectiveSyncConfigurations() []shared.LinkedAccountSelectiveSyncConfiguration {
-	if o == nil {
-		return nil
-	}
-	return o.LinkedAccountSelectiveSyncConfigurations
 }
 
 func (o *SelectiveSyncConfigurationsUpdateResponse) GetStatusCode() int {
@@ -63,4 +56,11 @@ func (o *SelectiveSyncConfigurationsUpdateResponse) GetRawResponse() *http.Respo
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *SelectiveSyncConfigurationsUpdateResponse) GetClasses() []shared.LinkedAccountSelectiveSyncConfiguration {
+	if o == nil {
+		return nil
+	}
+	return o.Classes
 }

@@ -15,18 +15,18 @@ import (
 	"strings"
 )
 
-type accountDetails struct {
+type AccountDetails struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountDetails(sdkConfig sdkConfiguration) *accountDetails {
-	return &accountDetails{
+func newAccountDetails(sdkConfig sdkConfiguration) *AccountDetails {
+	return &AccountDetails{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Retrieve - Get details for a linked account.
-func (s *accountDetails) Retrieve(ctx context.Context, xAccountToken string) (*operations.AccountDetailsRetrieveResponse, error) {
+func (s *AccountDetails) Retrieve(ctx context.Context, xAccountToken string) (*operations.AccountDetailsRetrieveResponse, error) {
 	request := operations.AccountDetailsRetrieveRequest{
 		XAccountToken: xAccountToken,
 	}
@@ -80,6 +80,10 @@ func (s *accountDetails) Retrieve(ctx context.Context, xAccountToken string) (*o
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

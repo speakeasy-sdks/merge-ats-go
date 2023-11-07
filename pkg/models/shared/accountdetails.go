@@ -7,30 +7,30 @@ import (
 	"fmt"
 )
 
-// AccountDetailsCategory - * `hris` - hris
+// Category - * `hris` - hris
 // * `ats` - ats
 // * `accounting` - accounting
 // * `ticketing` - ticketing
 // * `crm` - crm
 // * `mktg` - mktg
 // * `filestorage` - filestorage
-type AccountDetailsCategory string
+type Category string
 
 const (
-	AccountDetailsCategoryHris        AccountDetailsCategory = "hris"
-	AccountDetailsCategoryAts         AccountDetailsCategory = "ats"
-	AccountDetailsCategoryAccounting  AccountDetailsCategory = "accounting"
-	AccountDetailsCategoryTicketing   AccountDetailsCategory = "ticketing"
-	AccountDetailsCategoryCrm         AccountDetailsCategory = "crm"
-	AccountDetailsCategoryMktg        AccountDetailsCategory = "mktg"
-	AccountDetailsCategoryFilestorage AccountDetailsCategory = "filestorage"
+	CategoryHris        Category = "hris"
+	CategoryAts         Category = "ats"
+	CategoryAccounting  Category = "accounting"
+	CategoryTicketing   Category = "ticketing"
+	CategoryCrm         Category = "crm"
+	CategoryMktg        Category = "mktg"
+	CategoryFilestorage Category = "filestorage"
 )
 
-func (e AccountDetailsCategory) ToPointer() *AccountDetailsCategory {
+func (e Category) ToPointer() *Category {
 	return &e
 }
 
-func (e *AccountDetailsCategory) UnmarshalJSON(data []byte) error {
+func (e *Category) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -49,28 +49,28 @@ func (e *AccountDetailsCategory) UnmarshalJSON(data []byte) error {
 	case "mktg":
 		fallthrough
 	case "filestorage":
-		*e = AccountDetailsCategory(v)
+		*e = Category(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountDetailsCategory: %v", v)
+		return fmt.Errorf("invalid value for Category: %v", v)
 	}
 }
 
 type AccountDetails struct {
-	Category                *AccountDetailsCategory `json:"category,omitempty"`
-	EndUserEmailAddress     *string                 `json:"end_user_email_address,omitempty"`
-	EndUserOrganizationName *string                 `json:"end_user_organization_name,omitempty"`
-	EndUserOriginID         *string                 `json:"end_user_origin_id,omitempty"`
-	ID                      *string                 `json:"id,omitempty"`
-	Integration             *string                 `json:"integration,omitempty"`
-	IntegrationSlug         *string                 `json:"integration_slug,omitempty"`
+	Category                *Category `json:"category,omitempty"`
+	EndUserEmailAddress     *string   `json:"end_user_email_address,omitempty"`
+	EndUserOrganizationName *string   `json:"end_user_organization_name,omitempty"`
+	EndUserOriginID         *string   `json:"end_user_origin_id,omitempty"`
+	ID                      *string   `json:"id,omitempty"`
+	Integration             *string   `json:"integration,omitempty"`
+	IntegrationSlug         *string   `json:"integration_slug,omitempty"`
 	// Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
 	IsDuplicate        *bool   `json:"is_duplicate,omitempty"`
 	Status             *string `json:"status,omitempty"`
 	WebhookListenerURL *string `json:"webhook_listener_url,omitempty"`
 }
 
-func (o *AccountDetails) GetCategory() *AccountDetailsCategory {
+func (o *AccountDetails) GetCategory() *Category {
 	if o == nil {
 		return nil
 	}

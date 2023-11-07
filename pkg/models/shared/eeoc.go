@@ -9,22 +9,22 @@ import (
 	"time"
 )
 
-// EEOCDisabilityStatus - * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+// DisabilityStatus - * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
 // * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY
 // * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
-type EEOCDisabilityStatus string
+type DisabilityStatus string
 
 const (
-	EEOCDisabilityStatusYesIHaveADisabilityOrPreviouslyHadADisability EEOCDisabilityStatus = "YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY"
-	EEOCDisabilityStatusNoIDontHaveADisability                        EEOCDisabilityStatus = "NO_I_DONT_HAVE_A_DISABILITY"
-	EEOCDisabilityStatusIDontWishToAnswer                             EEOCDisabilityStatus = "I_DONT_WISH_TO_ANSWER"
+	DisabilityStatusYesIHaveADisabilityOrPreviouslyHadADisability DisabilityStatus = "YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY"
+	DisabilityStatusNoIDontHaveADisability                        DisabilityStatus = "NO_I_DONT_HAVE_A_DISABILITY"
+	DisabilityStatusIDontWishToAnswer                             DisabilityStatus = "I_DONT_WISH_TO_ANSWER"
 )
 
-func (e EEOCDisabilityStatus) ToPointer() *EEOCDisabilityStatus {
+func (e DisabilityStatus) ToPointer() *DisabilityStatus {
 	return &e
 }
 
-func (e *EEOCDisabilityStatus) UnmarshalJSON(data []byte) error {
+func (e *DisabilityStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,33 +35,33 @@ func (e *EEOCDisabilityStatus) UnmarshalJSON(data []byte) error {
 	case "NO_I_DONT_HAVE_A_DISABILITY":
 		fallthrough
 	case "I_DONT_WISH_TO_ANSWER":
-		*e = EEOCDisabilityStatus(v)
+		*e = DisabilityStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EEOCDisabilityStatus: %v", v)
+		return fmt.Errorf("invalid value for DisabilityStatus: %v", v)
 	}
 }
 
-// EEOCGender - * `MALE` - MALE
+// Gender - * `MALE` - MALE
 // * `FEMALE` - FEMALE
 // * `NON-BINARY` - NON-BINARY
 // * `OTHER` - OTHER
 // * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
-type EEOCGender string
+type Gender string
 
 const (
-	EEOCGenderMale                  EEOCGender = "MALE"
-	EEOCGenderFemale                EEOCGender = "FEMALE"
-	EEOCGenderNonBinary             EEOCGender = "NON-BINARY"
-	EEOCGenderOther                 EEOCGender = "OTHER"
-	EEOCGenderDeclineToSelfIdentify EEOCGender = "DECLINE_TO_SELF_IDENTIFY"
+	GenderMale                  Gender = "MALE"
+	GenderFemale                Gender = "FEMALE"
+	GenderNonBinary             Gender = "NON-BINARY"
+	GenderOther                 Gender = "OTHER"
+	GenderDeclineToSelfIdentify Gender = "DECLINE_TO_SELF_IDENTIFY"
 )
 
-func (e EEOCGender) ToPointer() *EEOCGender {
+func (e Gender) ToPointer() *Gender {
 	return &e
 }
 
-func (e *EEOCGender) UnmarshalJSON(data []byte) error {
+func (e *Gender) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -76,14 +76,14 @@ func (e *EEOCGender) UnmarshalJSON(data []byte) error {
 	case "OTHER":
 		fallthrough
 	case "DECLINE_TO_SELF_IDENTIFY":
-		*e = EEOCGender(v)
+		*e = Gender(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EEOCGender: %v", v)
+		return fmt.Errorf("invalid value for Gender: %v", v)
 	}
 }
 
-// EEOCRace - * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+// Race - * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
 // * `ASIAN` - ASIAN
 // * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN
 // * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO
@@ -91,24 +91,24 @@ func (e *EEOCGender) UnmarshalJSON(data []byte) error {
 // * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
 // * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES
 // * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
-type EEOCRace string
+type Race string
 
 const (
-	EEOCRaceAmericanIndianOrAlaskanNative        EEOCRace = "AMERICAN_INDIAN_OR_ALASKAN_NATIVE"
-	EEOCRaceAsian                                EEOCRace = "ASIAN"
-	EEOCRaceBlackOrAfricanAmerican               EEOCRace = "BLACK_OR_AFRICAN_AMERICAN"
-	EEOCRaceHispanicOrLatino                     EEOCRace = "HISPANIC_OR_LATINO"
-	EEOCRaceWhite                                EEOCRace = "WHITE"
-	EEOCRaceNativeHawaiianOrOtherPacificIslander EEOCRace = "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER"
-	EEOCRaceTwoOrMoreRaces                       EEOCRace = "TWO_OR_MORE_RACES"
-	EEOCRaceDeclineToSelfIdentify                EEOCRace = "DECLINE_TO_SELF_IDENTIFY"
+	RaceAmericanIndianOrAlaskanNative        Race = "AMERICAN_INDIAN_OR_ALASKAN_NATIVE"
+	RaceAsian                                Race = "ASIAN"
+	RaceBlackOrAfricanAmerican               Race = "BLACK_OR_AFRICAN_AMERICAN"
+	RaceHispanicOrLatino                     Race = "HISPANIC_OR_LATINO"
+	RaceWhite                                Race = "WHITE"
+	RaceNativeHawaiianOrOtherPacificIslander Race = "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER"
+	RaceTwoOrMoreRaces                       Race = "TWO_OR_MORE_RACES"
+	RaceDeclineToSelfIdentify                Race = "DECLINE_TO_SELF_IDENTIFY"
 )
 
-func (e EEOCRace) ToPointer() *EEOCRace {
+func (e Race) ToPointer() *Race {
 	return &e
 }
 
-func (e *EEOCRace) UnmarshalJSON(data []byte) error {
+func (e *Race) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -129,29 +129,29 @@ func (e *EEOCRace) UnmarshalJSON(data []byte) error {
 	case "TWO_OR_MORE_RACES":
 		fallthrough
 	case "DECLINE_TO_SELF_IDENTIFY":
-		*e = EEOCRace(v)
+		*e = Race(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EEOCRace: %v", v)
+		return fmt.Errorf("invalid value for Race: %v", v)
 	}
 }
 
-// EEOCVeteranStatus - * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
+// VeteranStatus - * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
 // * `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN` - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
 // * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
-type EEOCVeteranStatus string
+type VeteranStatus string
 
 const (
-	EEOCVeteranStatusIAmNotAProtectedVeteran                                     EEOCVeteranStatus = "I_AM_NOT_A_PROTECTED_VETERAN"
-	EEOCVeteranStatusIIdentifyAsOneOrMoreOfTheClassificationsOfAProtectedVeteran EEOCVeteranStatus = "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN"
-	EEOCVeteranStatusIDontWishToAnswer                                           EEOCVeteranStatus = "I_DONT_WISH_TO_ANSWER"
+	VeteranStatusIAmNotAProtectedVeteran                                     VeteranStatus = "I_AM_NOT_A_PROTECTED_VETERAN"
+	VeteranStatusIIdentifyAsOneOrMoreOfTheClassificationsOfAProtectedVeteran VeteranStatus = "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN"
+	VeteranStatusIDontWishToAnswer                                           VeteranStatus = "I_DONT_WISH_TO_ANSWER"
 )
 
-func (e EEOCVeteranStatus) ToPointer() *EEOCVeteranStatus {
+func (e VeteranStatus) ToPointer() *VeteranStatus {
 	return &e
 }
 
-func (e *EEOCVeteranStatus) UnmarshalJSON(data []byte) error {
+func (e *VeteranStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -162,10 +162,10 @@ func (e *EEOCVeteranStatus) UnmarshalJSON(data []byte) error {
 	case "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN":
 		fallthrough
 	case "I_DONT_WISH_TO_ANSWER":
-		*e = EEOCVeteranStatus(v)
+		*e = VeteranStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EEOCVeteranStatus: %v", v)
+		return fmt.Errorf("invalid value for VeteranStatus: %v", v)
 	}
 }
 
@@ -182,7 +182,7 @@ type Eeoc struct {
 	// * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
 	// * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY
 	// * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
-	DisabilityStatus *EEOCDisabilityStatus  `json:"disability_status,omitempty"`
+	DisabilityStatus *DisabilityStatus      `json:"disability_status,omitempty"`
 	FieldMappings    map[string]interface{} `json:"field_mappings,omitempty"`
 	// The candidate's gender.
 	//
@@ -191,8 +191,8 @@ type Eeoc struct {
 	// * `NON-BINARY` - NON-BINARY
 	// * `OTHER` - OTHER
 	// * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
-	Gender *EEOCGender `json:"gender,omitempty"`
-	ID     *string     `json:"id,omitempty"`
+	Gender *Gender `json:"gender,omitempty"`
+	ID     *string `json:"id,omitempty"`
 	// This is the datetime that this object was last updated by Merge
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// The candidate's race.
@@ -205,7 +205,7 @@ type Eeoc struct {
 	// * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
 	// * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES
 	// * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
-	Race       *EEOCRace    `json:"race,omitempty"`
+	Race       *Race        `json:"race,omitempty"`
 	RemoteData []RemoteData `json:"remote_data,omitempty"`
 	// The third-party API ID of the matching object.
 	RemoteID *string `json:"remote_id,omitempty"`
@@ -218,7 +218,7 @@ type Eeoc struct {
 	// * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
 	// * `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN` - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
 	// * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
-	VeteranStatus *EEOCVeteranStatus `json:"veteran_status,omitempty"`
+	VeteranStatus *VeteranStatus `json:"veteran_status,omitempty"`
 }
 
 func (e Eeoc) MarshalJSON() ([]byte, error) {
@@ -239,7 +239,7 @@ func (o *Eeoc) GetCandidate() *string {
 	return o.Candidate
 }
 
-func (o *Eeoc) GetDisabilityStatus() *EEOCDisabilityStatus {
+func (o *Eeoc) GetDisabilityStatus() *DisabilityStatus {
 	if o == nil {
 		return nil
 	}
@@ -253,7 +253,7 @@ func (o *Eeoc) GetFieldMappings() map[string]interface{} {
 	return o.FieldMappings
 }
 
-func (o *Eeoc) GetGender() *EEOCGender {
+func (o *Eeoc) GetGender() *Gender {
 	if o == nil {
 		return nil
 	}
@@ -274,7 +274,7 @@ func (o *Eeoc) GetModifiedAt() *time.Time {
 	return o.ModifiedAt
 }
 
-func (o *Eeoc) GetRace() *EEOCRace {
+func (o *Eeoc) GetRace() *Race {
 	if o == nil {
 		return nil
 	}
@@ -309,7 +309,7 @@ func (o *Eeoc) GetSubmittedAt() *time.Time {
 	return o.SubmittedAt
 }
 
-func (o *Eeoc) GetVeteranStatus() *EEOCVeteranStatus {
+func (o *Eeoc) GetVeteranStatus() *VeteranStatus {
 	if o == nil {
 		return nil
 	}

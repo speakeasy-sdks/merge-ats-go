@@ -8,22 +8,22 @@ import (
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/utils"
 )
 
-// MultipartFormFieldRequestEncoding - * `RAW` - RAW
+// Encoding - * `RAW` - RAW
 // * `BASE64` - BASE64
 // * `GZIP_BASE64` - GZIP_BASE64
-type MultipartFormFieldRequestEncoding string
+type Encoding string
 
 const (
-	MultipartFormFieldRequestEncodingRaw        MultipartFormFieldRequestEncoding = "RAW"
-	MultipartFormFieldRequestEncodingBase64     MultipartFormFieldRequestEncoding = "BASE64"
-	MultipartFormFieldRequestEncodingGzipBase64 MultipartFormFieldRequestEncoding = "GZIP_BASE64"
+	EncodingRaw        Encoding = "RAW"
+	EncodingBase64     Encoding = "BASE64"
+	EncodingGzipBase64 Encoding = "GZIP_BASE64"
 )
 
-func (e MultipartFormFieldRequestEncoding) ToPointer() *MultipartFormFieldRequestEncoding {
+func (e Encoding) ToPointer() *Encoding {
 	return &e
 }
 
-func (e *MultipartFormFieldRequestEncoding) UnmarshalJSON(data []byte) error {
+func (e *Encoding) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -34,10 +34,10 @@ func (e *MultipartFormFieldRequestEncoding) UnmarshalJSON(data []byte) error {
 	case "BASE64":
 		fallthrough
 	case "GZIP_BASE64":
-		*e = MultipartFormFieldRequestEncoding(v)
+		*e = Encoding(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MultipartFormFieldRequestEncoding: %v", v)
+		return fmt.Errorf("invalid value for Encoding: %v", v)
 	}
 }
 
@@ -57,7 +57,7 @@ type MultipartFormFieldRequest struct {
 	// * `RAW` - RAW
 	// * `BASE64` - BASE64
 	// * `GZIP_BASE64` - GZIP_BASE64
-	Encoding *MultipartFormFieldRequestEncoding `default:"RAW" json:"encoding"`
+	Encoding *Encoding `default:"RAW" json:"encoding"`
 	// The file name of the form field, if the field is for a file.
 	FileName *string `json:"file_name,omitempty"`
 	// The name of the form field
@@ -89,7 +89,7 @@ func (o *MultipartFormFieldRequest) GetData() string {
 	return o.Data
 }
 
-func (o *MultipartFormFieldRequest) GetEncoding() *MultipartFormFieldRequestEncoding {
+func (o *MultipartFormFieldRequest) GetEncoding() *Encoding {
 	if o == nil {
 		return nil
 	}

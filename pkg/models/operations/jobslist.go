@@ -11,32 +11,32 @@ import (
 	"time"
 )
 
-// JobsListExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-type JobsListExpand string
+// JobsListQueryParamExpand - Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+type JobsListQueryParamExpand string
 
 const (
-	JobsListExpandDepartments                                JobsListExpand = "departments"
-	JobsListExpandDepartmentsHiringManagers                  JobsListExpand = "departments,hiring_managers"
-	JobsListExpandDepartmentsHiringManagersRecruiters        JobsListExpand = "departments,hiring_managers,recruiters"
-	JobsListExpandDepartmentsOffices                         JobsListExpand = "departments,offices"
-	JobsListExpandDepartmentsOfficesHiringManagers           JobsListExpand = "departments,offices,hiring_managers"
-	JobsListExpandDepartmentsOfficesHiringManagersRecruiters JobsListExpand = "departments,offices,hiring_managers,recruiters"
-	JobsListExpandDepartmentsOfficesRecruiters               JobsListExpand = "departments,offices,recruiters"
-	JobsListExpandDepartmentsRecruiters                      JobsListExpand = "departments,recruiters"
-	JobsListExpandHiringManagers                             JobsListExpand = "hiring_managers"
-	JobsListExpandHiringManagersRecruiters                   JobsListExpand = "hiring_managers,recruiters"
-	JobsListExpandOffices                                    JobsListExpand = "offices"
-	JobsListExpandOfficesHiringManagers                      JobsListExpand = "offices,hiring_managers"
-	JobsListExpandOfficesHiringManagersRecruiters            JobsListExpand = "offices,hiring_managers,recruiters"
-	JobsListExpandOfficesRecruiters                          JobsListExpand = "offices,recruiters"
-	JobsListExpandRecruiters                                 JobsListExpand = "recruiters"
+	JobsListQueryParamExpandDepartments                                JobsListQueryParamExpand = "departments"
+	JobsListQueryParamExpandDepartmentsHiringManagers                  JobsListQueryParamExpand = "departments,hiring_managers"
+	JobsListQueryParamExpandDepartmentsHiringManagersRecruiters        JobsListQueryParamExpand = "departments,hiring_managers,recruiters"
+	JobsListQueryParamExpandDepartmentsOffices                         JobsListQueryParamExpand = "departments,offices"
+	JobsListQueryParamExpandDepartmentsOfficesHiringManagers           JobsListQueryParamExpand = "departments,offices,hiring_managers"
+	JobsListQueryParamExpandDepartmentsOfficesHiringManagersRecruiters JobsListQueryParamExpand = "departments,offices,hiring_managers,recruiters"
+	JobsListQueryParamExpandDepartmentsOfficesRecruiters               JobsListQueryParamExpand = "departments,offices,recruiters"
+	JobsListQueryParamExpandDepartmentsRecruiters                      JobsListQueryParamExpand = "departments,recruiters"
+	JobsListQueryParamExpandHiringManagers                             JobsListQueryParamExpand = "hiring_managers"
+	JobsListQueryParamExpandHiringManagersRecruiters                   JobsListQueryParamExpand = "hiring_managers,recruiters"
+	JobsListQueryParamExpandOffices                                    JobsListQueryParamExpand = "offices"
+	JobsListQueryParamExpandOfficesHiringManagers                      JobsListQueryParamExpand = "offices,hiring_managers"
+	JobsListQueryParamExpandOfficesHiringManagersRecruiters            JobsListQueryParamExpand = "offices,hiring_managers,recruiters"
+	JobsListQueryParamExpandOfficesRecruiters                          JobsListQueryParamExpand = "offices,recruiters"
+	JobsListQueryParamExpandRecruiters                                 JobsListQueryParamExpand = "recruiters"
 )
 
-func (e JobsListExpand) ToPointer() *JobsListExpand {
+func (e JobsListQueryParamExpand) ToPointer() *JobsListQueryParamExpand {
 	return &e
 }
 
-func (e *JobsListExpand) UnmarshalJSON(data []byte) error {
+func (e *JobsListQueryParamExpand) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -71,85 +71,85 @@ func (e *JobsListExpand) UnmarshalJSON(data []byte) error {
 	case "offices,recruiters":
 		fallthrough
 	case "recruiters":
-		*e = JobsListExpand(v)
+		*e = JobsListQueryParamExpand(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobsListExpand: %v", v)
+		return fmt.Errorf("invalid value for JobsListQueryParamExpand: %v", v)
 	}
 }
 
-// JobsListRemoteFields - Deprecated. Use show_enum_origins.
-type JobsListRemoteFields string
+// JobsListQueryParamRemoteFields - Deprecated. Use show_enum_origins.
+type JobsListQueryParamRemoteFields string
 
 const (
-	JobsListRemoteFieldsStatus JobsListRemoteFields = "status"
+	JobsListQueryParamRemoteFieldsStatus JobsListQueryParamRemoteFields = "status"
 )
 
-func (e JobsListRemoteFields) ToPointer() *JobsListRemoteFields {
+func (e JobsListQueryParamRemoteFields) ToPointer() *JobsListQueryParamRemoteFields {
 	return &e
 }
 
-func (e *JobsListRemoteFields) UnmarshalJSON(data []byte) error {
+func (e *JobsListQueryParamRemoteFields) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = JobsListRemoteFields(v)
+		*e = JobsListQueryParamRemoteFields(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobsListRemoteFields: %v", v)
+		return fmt.Errorf("invalid value for JobsListQueryParamRemoteFields: %v", v)
 	}
 }
 
-// JobsListShowEnumOrigins - Which fields should be returned in non-normalized form.
-type JobsListShowEnumOrigins string
+// JobsListQueryParamShowEnumOrigins - Which fields should be returned in non-normalized form.
+type JobsListQueryParamShowEnumOrigins string
 
 const (
-	JobsListShowEnumOriginsStatus JobsListShowEnumOrigins = "status"
+	JobsListQueryParamShowEnumOriginsStatus JobsListQueryParamShowEnumOrigins = "status"
 )
 
-func (e JobsListShowEnumOrigins) ToPointer() *JobsListShowEnumOrigins {
+func (e JobsListQueryParamShowEnumOrigins) ToPointer() *JobsListQueryParamShowEnumOrigins {
 	return &e
 }
 
-func (e *JobsListShowEnumOrigins) UnmarshalJSON(data []byte) error {
+func (e *JobsListQueryParamShowEnumOrigins) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "status":
-		*e = JobsListShowEnumOrigins(v)
+		*e = JobsListQueryParamShowEnumOrigins(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobsListShowEnumOrigins: %v", v)
+		return fmt.Errorf("invalid value for JobsListQueryParamShowEnumOrigins: %v", v)
 	}
 }
 
-// JobsListStatus - If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')
+// QueryParamStatus - If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')
 //
 // * `OPEN` - OPEN
 // * `CLOSED` - CLOSED
 // * `DRAFT` - DRAFT
 // * `ARCHIVED` - ARCHIVED
 // * `PENDING` - PENDING
-type JobsListStatus string
+type QueryParamStatus string
 
 const (
-	JobsListStatusArchived JobsListStatus = "ARCHIVED"
-	JobsListStatusClosed   JobsListStatus = "CLOSED"
-	JobsListStatusDraft    JobsListStatus = "DRAFT"
-	JobsListStatusOpen     JobsListStatus = "OPEN"
-	JobsListStatusPending  JobsListStatus = "PENDING"
+	QueryParamStatusArchived QueryParamStatus = "ARCHIVED"
+	QueryParamStatusClosed   QueryParamStatus = "CLOSED"
+	QueryParamStatusDraft    QueryParamStatus = "DRAFT"
+	QueryParamStatusOpen     QueryParamStatus = "OPEN"
+	QueryParamStatusPending  QueryParamStatus = "PENDING"
 )
 
-func (e JobsListStatus) ToPointer() *JobsListStatus {
+func (e QueryParamStatus) ToPointer() *QueryParamStatus {
 	return &e
 }
 
-func (e *JobsListStatus) UnmarshalJSON(data []byte) error {
+func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -164,10 +164,10 @@ func (e *JobsListStatus) UnmarshalJSON(data []byte) error {
 	case "OPEN":
 		fallthrough
 	case "PENDING":
-		*e = JobsListStatus(v)
+		*e = QueryParamStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for JobsListStatus: %v", v)
+		return fmt.Errorf("invalid value for QueryParamStatus: %v", v)
 	}
 }
 
@@ -183,7 +183,7 @@ type JobsListRequest struct {
 	// The pagination cursor value.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-	Expand *JobsListExpand `queryParam:"style=form,explode=true,name=expand"`
+	Expand *JobsListQueryParamExpand `queryParam:"style=form,explode=true,name=expand"`
 	// Whether to include data that was marked as deleted by third party webhooks.
 	IncludeDeletedData *bool `queryParam:"style=form,explode=true,name=include_deleted_data"`
 	// Whether to include the original data Merge fetched from the third-party to produce these models.
@@ -197,11 +197,11 @@ type JobsListRequest struct {
 	// Number of results to return per page.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page_size"`
 	// Deprecated. Use show_enum_origins.
-	RemoteFields *JobsListRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
+	RemoteFields *JobsListQueryParamRemoteFields `queryParam:"style=form,explode=true,name=remote_fields"`
 	// The API provider's ID for the given object.
 	RemoteID *string `queryParam:"style=form,explode=true,name=remote_id"`
 	// Which fields should be returned in non-normalized form.
-	ShowEnumOrigins *JobsListShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
+	ShowEnumOrigins *JobsListQueryParamShowEnumOrigins `queryParam:"style=form,explode=true,name=show_enum_origins"`
 	// If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')
 	//
 	// * `OPEN` - OPEN
@@ -209,7 +209,7 @@ type JobsListRequest struct {
 	// * `DRAFT` - DRAFT
 	// * `ARCHIVED` - ARCHIVED
 	// * `PENDING` - PENDING
-	Status *JobsListStatus `queryParam:"style=form,explode=true,name=status"`
+	Status *QueryParamStatus `queryParam:"style=form,explode=true,name=status"`
 }
 
 func (j JobsListRequest) MarshalJSON() ([]byte, error) {
@@ -258,7 +258,7 @@ func (o *JobsListRequest) GetCursor() *string {
 	return o.Cursor
 }
 
-func (o *JobsListRequest) GetExpand() *JobsListExpand {
+func (o *JobsListRequest) GetExpand() *JobsListQueryParamExpand {
 	if o == nil {
 		return nil
 	}
@@ -307,7 +307,7 @@ func (o *JobsListRequest) GetPageSize() *int64 {
 	return o.PageSize
 }
 
-func (o *JobsListRequest) GetRemoteFields() *JobsListRemoteFields {
+func (o *JobsListRequest) GetRemoteFields() *JobsListQueryParamRemoteFields {
 	if o == nil {
 		return nil
 	}
@@ -321,14 +321,14 @@ func (o *JobsListRequest) GetRemoteID() *string {
 	return o.RemoteID
 }
 
-func (o *JobsListRequest) GetShowEnumOrigins() *JobsListShowEnumOrigins {
+func (o *JobsListRequest) GetShowEnumOrigins() *JobsListQueryParamShowEnumOrigins {
 	if o == nil {
 		return nil
 	}
 	return o.ShowEnumOrigins
 }
 
-func (o *JobsListRequest) GetStatus() *JobsListStatus {
+func (o *JobsListRequest) GetStatus() *QueryParamStatus {
 	if o == nil {
 		return nil
 	}
