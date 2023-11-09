@@ -1,5 +1,5 @@
 # Offices
-(*.Offices*)
+(*Offices*)
 
 ### Available Operations
 
@@ -44,16 +44,18 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.OfficesListRequest](../../models/operations/officeslistrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.OfficesListRequest](../../pkg/models/operations/officeslistrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 
 ### Response
 
-**[*operations.OfficesListResponse](../../models/operations/officeslistresponse.md), error**
-
+**[*operations.OfficesListResponse](../../pkg/models/operations/officeslistresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## Retrieve
 
@@ -107,5 +109,7 @@ func main() {
 
 ### Response
 
-**[*operations.OfficesRetrieveResponse](../../models/operations/officesretrieveresponse.md), error**
-
+**[*operations.OfficesRetrieveResponse](../../pkg/models/operations/officesretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

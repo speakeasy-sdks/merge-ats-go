@@ -1,5 +1,5 @@
 # AccountDetails
-(*.AccountDetails*)
+(*AccountDetails*)
 
 ### Available Operations
 
@@ -51,5 +51,7 @@ func main() {
 
 ### Response
 
-**[*operations.AccountDetailsRetrieveResponse](../../models/operations/accountdetailsretrieveresponse.md), error**
-
+**[*operations.AccountDetailsRetrieveResponse](../../pkg/models/operations/accountdetailsretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

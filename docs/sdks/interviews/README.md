@@ -1,5 +1,5 @@
 # Interviews
-(*.Interviews*)
+(*Interviews*)
 
 ### Available Operations
 
@@ -74,19 +74,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `scheduledInterviewEndpointRequest`                                                                  | [shared.ScheduledInterviewEndpointRequest](../../models/shared/scheduledinterviewendpointrequest.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
-| `xAccountToken`                                                                                      | *string*                                                                                             | :heavy_check_mark:                                                                                   | Token identifying the end user.                                                                      |
-| `isDebugMode`                                                                                        | **bool*                                                                                              | :heavy_minus_sign:                                                                                   | Whether to include debug fields (such as log file links) in the response.                            |
-| `runAsync`                                                                                           | **bool*                                                                                              | :heavy_minus_sign:                                                                                   | Whether or not third-party updates should be run asynchronously.                                     |
+| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                                       | :heavy_check_mark:                                                                                          | The context to use for the request.                                                                         |
+| `scheduledInterviewEndpointRequest`                                                                         | [shared.ScheduledInterviewEndpointRequest](../../../pkg/models/shared/scheduledinterviewendpointrequest.md) | :heavy_check_mark:                                                                                          | N/A                                                                                                         |
+| `xAccountToken`                                                                                             | *string*                                                                                                    | :heavy_check_mark:                                                                                          | Token identifying the end user.                                                                             |
+| `isDebugMode`                                                                                               | **bool*                                                                                                     | :heavy_minus_sign:                                                                                          | Whether to include debug fields (such as log file links) in the response.                                   |
+| `runAsync`                                                                                                  | **bool*                                                                                                     | :heavy_minus_sign:                                                                                          | Whether or not third-party updates should be run asynchronously.                                            |
 
 
 ### Response
 
-**[*operations.InterviewsCreateResponse](../../models/operations/interviewscreateresponse.md), error**
-
+**[*operations.InterviewsCreateResponse](../../pkg/models/operations/interviewscreateresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## List
 
@@ -126,16 +128,18 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.InterviewsListRequest](../../models/operations/interviewslistrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.InterviewsListRequest](../../pkg/models/operations/interviewslistrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 
 ### Response
 
-**[*operations.InterviewsListResponse](../../models/operations/interviewslistresponse.md), error**
-
+**[*operations.InterviewsListResponse](../../pkg/models/operations/interviewslistresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## Retrieve
 
@@ -176,16 +180,18 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.InterviewsRetrieveRequest](../../models/operations/interviewsretrieverequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.InterviewsRetrieveRequest](../../pkg/models/operations/interviewsretrieverequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
 
 ### Response
 
-**[*operations.InterviewsRetrieveResponse](../../models/operations/interviewsretrieveresponse.md), error**
-
+**[*operations.InterviewsRetrieveResponse](../../pkg/models/operations/interviewsretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## RetrievePostMetadata
 
@@ -233,5 +239,7 @@ func main() {
 
 ### Response
 
-**[*operations.InterviewsMetaPostRetrieveResponse](../../models/operations/interviewsmetapostretrieveresponse.md), error**
-
+**[*operations.InterviewsMetaPostRetrieveResponse](../../pkg/models/operations/interviewsmetapostretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

@@ -1,0 +1,16 @@
+# PhoneNumber
+
+# The PhoneNumber Object
+### Description
+The `PhoneNumber` object is used to represent a candidate's phone number.
+### Usage Example
+Fetch from the `GET Candidate` endpoint and view their phone numbers.
+
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        | Example                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ModifiedAt`                                                                                                       | [*time.Time](https://pkg.go.dev/time#Time)                                                                         | :heavy_minus_sign:                                                                                                 | This is the datetime that this object was last updated by Merge                                                    | 2021-10-16T00:00:00Z                                                                                               |
+| `PhoneNumberType`                                                                                                  | [*shared.PhoneNumberType](../../../pkg/models/shared/phonenumbertype.md)                                           | :heavy_minus_sign:                                                                                                 | The type of phone number.<br/><br/>* `HOME` - HOME<br/>* `WORK` - WORK<br/>* `MOBILE` - MOBILE<br/>* `SKYPE` - SKYPE<br/>* `OTHER` - OTHER | HOME                                                                                                               |
+| `Value`                                                                                                            | **string*                                                                                                          | :heavy_minus_sign:                                                                                                 | The phone number.                                                                                                  | +3198675309                                                                                                        |

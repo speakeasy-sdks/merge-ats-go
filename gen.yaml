@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 4630b0f9202139f9bda8040d8ed4b8e3
   docVersion: "1.0"
-  speakeasyVersion: 1.114.1
-  generationVersion: 2.181.1
+  speakeasyVersion: 1.116.0
+  generationVersion: 2.185.0
 generation:
   comments: {}
   sdkClassName: ATS
@@ -11,13 +11,13 @@ generation:
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 3.1.0
+    core: 3.1.2
     flattening: 2.81.1
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
     nameOverrides: 2.81.1
 go:
-  version: 0.8.0
+  version: 0.8.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:
@@ -28,8 +28,10 @@ go:
       operations: pkg/models/operations
       shared: pkg/models/shared
       webhooks: pkg/models/webhooks
+  inputModelSuffix: input
   installationURL: https://github.com/speakeasy-sdks/merge-ats-go
   maxMethodParams: 4
+  outputModelSuffix: output
   packageName: github.com/speakeasy-sdks/merge-ats-go
   published: true
   repoSubDirectory: .

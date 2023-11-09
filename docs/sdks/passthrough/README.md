@@ -1,5 +1,5 @@
 # Passthrough
-(*.Passthrough*)
+(*Passthrough*)
 
 ### Available Operations
 
@@ -62,14 +62,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `dataPassthroughRequest`                                                       | [shared.DataPassthroughRequest](../../models/shared/datapassthroughrequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |
-| `xAccountToken`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Token identifying the end user.                                                |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |
+| `dataPassthroughRequest`                                                              | [shared.DataPassthroughRequest](../../../pkg/models/shared/datapassthroughrequest.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `xAccountToken`                                                                       | *string*                                                                              | :heavy_check_mark:                                                                    | Token identifying the end user.                                                       |
 
 
 ### Response
 
-**[*operations.PassthroughCreateResponse](../../models/operations/passthroughcreateresponse.md), error**
-
+**[*operations.PassthroughCreateResponse](../../pkg/models/operations/passthroughcreateresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

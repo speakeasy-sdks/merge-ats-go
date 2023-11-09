@@ -1,5 +1,5 @@
 # AccountToken
-(*.AccountToken*)
+(*AccountToken*)
 
 ### Available Operations
 
@@ -51,5 +51,7 @@ func main() {
 
 ### Response
 
-**[*operations.AccountTokenRetrieveResponse](../../models/operations/accounttokenretrieveresponse.md), error**
-
+**[*operations.AccountTokenRetrieveResponse](../../pkg/models/operations/accounttokenretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

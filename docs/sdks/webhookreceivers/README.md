@@ -1,5 +1,5 @@
 # WebhookReceivers
-(*.WebhookReceivers*)
+(*WebhookReceivers*)
 
 ### Available Operations
 
@@ -49,17 +49,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `webhookReceiverRequest`                                                       | [shared.WebhookReceiverRequest](../../models/shared/webhookreceiverrequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |
-| `xAccountToken`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Token identifying the end user.                                                |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |
+| `webhookReceiverRequest`                                                              | [shared.WebhookReceiverRequest](../../../pkg/models/shared/webhookreceiverrequest.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `xAccountToken`                                                                       | *string*                                                                              | :heavy_check_mark:                                                                    | Token identifying the end user.                                                       |
 
 
 ### Response
 
-**[*operations.WebhookReceiversCreateResponse](../../models/operations/webhookreceiverscreateresponse.md), error**
-
+**[*operations.WebhookReceiversCreateResponse](../../pkg/models/operations/webhookreceiverscreateresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## List
 
@@ -107,5 +109,7 @@ func main() {
 
 ### Response
 
-**[*operations.WebhookReceiversListResponse](../../models/operations/webhookreceiverslistresponse.md), error**
-
+**[*operations.WebhookReceiversListResponse](../../pkg/models/operations/webhookreceiverslistresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

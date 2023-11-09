@@ -1,5 +1,5 @@
 # SyncStatus
-(*.SyncStatus*)
+(*SyncStatus*)
 
 ### Available Operations
 
@@ -57,5 +57,7 @@ func main() {
 
 ### Response
 
-**[*operations.SyncStatusListResponse](../../models/operations/syncstatuslistresponse.md), error**
-
+**[*operations.SyncStatusListResponse](../../pkg/models/operations/syncstatuslistresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

@@ -1,5 +1,5 @@
 # SelectiveSync
-(*.SelectiveSync*)
+(*SelectiveSync*)
 
 ### Available Operations
 
@@ -53,8 +53,10 @@ func main() {
 
 ### Response
 
-**[*operations.SelectiveSyncConfigurationsListResponse](../../models/operations/selectivesyncconfigurationslistresponse.md), error**
-
+**[*operations.SelectiveSyncConfigurationsListResponse](../../pkg/models/operations/selectivesyncconfigurationslistresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## RetrievePostMetadata
 
@@ -111,8 +113,10 @@ func main() {
 
 ### Response
 
-**[*operations.SelectiveSyncMetaListResponse](../../models/operations/selectivesyncmetalistresponse.md), error**
-
+**[*operations.SelectiveSyncMetaListResponse](../../pkg/models/operations/selectivesyncmetalistresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## Update
 
@@ -166,14 +170,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                  | :heavy_check_mark:                                                                                                                     | The context to use for the request.                                                                                                    |
-| `linkedAccountSelectiveSyncConfigurationListRequest`                                                                                   | [shared.LinkedAccountSelectiveSyncConfigurationListRequest](../../models/shared/linkedaccountselectivesyncconfigurationlistrequest.md) | :heavy_check_mark:                                                                                                                     | N/A                                                                                                                                    |
-| `xAccountToken`                                                                                                                        | *string*                                                                                                                               | :heavy_check_mark:                                                                                                                     | Token identifying the end user.                                                                                                        |
+| Parameter                                                                                                                                     | Type                                                                                                                                          | Required                                                                                                                                      | Description                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                                                                         | :heavy_check_mark:                                                                                                                            | The context to use for the request.                                                                                                           |
+| `linkedAccountSelectiveSyncConfigurationListRequest`                                                                                          | [shared.LinkedAccountSelectiveSyncConfigurationListRequest](../../../pkg/models/shared/linkedaccountselectivesyncconfigurationlistrequest.md) | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |
+| `xAccountToken`                                                                                                                               | *string*                                                                                                                                      | :heavy_check_mark:                                                                                                                            | Token identifying the end user.                                                                                                               |
 
 
 ### Response
 
-**[*operations.SelectiveSyncConfigurationsUpdateResponse](../../models/operations/selectivesyncconfigurationsupdateresponse.md), error**
-
+**[*operations.SelectiveSyncConfigurationsUpdateResponse](../../pkg/models/operations/selectivesyncconfigurationsupdateresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

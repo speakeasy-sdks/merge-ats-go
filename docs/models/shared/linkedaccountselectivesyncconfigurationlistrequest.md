@@ -1,8 +1,0 @@
-# LinkedAccountSelectiveSyncConfigurationListRequest
-
-
-## Fields
-
-| Field                                                                                                                            | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `SyncConfigurations`                                                                                                             | [][shared.LinkedAccountSelectiveSyncConfigurationRequest](../../models/shared/linkedaccountselectivesyncconfigurationrequest.md) | :heavy_check_mark:                                                                                                               | The selective syncs associated with a linked account.                                                                            |

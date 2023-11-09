@@ -1,5 +1,5 @@
 # DeleteAccount
-(*.DeleteAccount*)
+(*DeleteAccount*)
 
 ### Available Operations
 
@@ -51,5 +51,7 @@ func main() {
 
 ### Response
 
-**[*operations.DeleteAccountDeleteResponse](../../models/operations/deleteaccountdeleteresponse.md), error**
-
+**[*operations.DeleteAccountDeleteResponse](../../pkg/models/operations/deleteaccountdeleteresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

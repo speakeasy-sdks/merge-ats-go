@@ -1,5 +1,5 @@
 # Activities
-(*.Activities*)
+(*Activities*)
 
 ### Available Operations
 
@@ -68,19 +68,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `activityEndpointRequest`                                                        | [shared.ActivityEndpointRequest](../../models/shared/activityendpointrequest.md) | :heavy_check_mark:                                                               | N/A                                                                              |
-| `xAccountToken`                                                                  | *string*                                                                         | :heavy_check_mark:                                                               | Token identifying the end user.                                                  |
-| `isDebugMode`                                                                    | **bool*                                                                          | :heavy_minus_sign:                                                               | Whether to include debug fields (such as log file links) in the response.        |
-| `runAsync`                                                                       | **bool*                                                                          | :heavy_minus_sign:                                                               | Whether or not third-party updates should be run asynchronously.                 |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |
+| `activityEndpointRequest`                                                               | [shared.ActivityEndpointRequest](../../../pkg/models/shared/activityendpointrequest.md) | :heavy_check_mark:                                                                      | N/A                                                                                     |
+| `xAccountToken`                                                                         | *string*                                                                                | :heavy_check_mark:                                                                      | Token identifying the end user.                                                         |
+| `isDebugMode`                                                                           | **bool*                                                                                 | :heavy_minus_sign:                                                                      | Whether to include debug fields (such as log file links) in the response.               |
+| `runAsync`                                                                              | **bool*                                                                                 | :heavy_minus_sign:                                                                      | Whether or not third-party updates should be run asynchronously.                        |
 
 
 ### Response
 
-**[*operations.ActivitiesCreateResponse](../../models/operations/activitiescreateresponse.md), error**
-
+**[*operations.ActivitiesCreateResponse](../../pkg/models/operations/activitiescreateresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## List
 
@@ -120,16 +122,18 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.ActivitiesListRequest](../../models/operations/activitieslistrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.ActivitiesListRequest](../../pkg/models/operations/activitieslistrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 
 ### Response
 
-**[*operations.ActivitiesListResponse](../../models/operations/activitieslistresponse.md), error**
-
+**[*operations.ActivitiesListResponse](../../pkg/models/operations/activitieslistresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## Retrieve
 
@@ -170,16 +174,18 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.ActivitiesRetrieveRequest](../../models/operations/activitiesretrieverequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ActivitiesRetrieveRequest](../../pkg/models/operations/activitiesretrieverequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
 
 ### Response
 
-**[*operations.ActivitiesRetrieveResponse](../../models/operations/activitiesretrieveresponse.md), error**
-
+**[*operations.ActivitiesRetrieveResponse](../../pkg/models/operations/activitiesretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## RetrievePostMetadata
 
@@ -227,5 +233,7 @@ func main() {
 
 ### Response
 
-**[*operations.ActivitiesMetaPostRetrieveResponse](../../models/operations/activitiesmetapostretrieveresponse.md), error**
-
+**[*operations.ActivitiesMetaPostRetrieveResponse](../../pkg/models/operations/activitiesmetapostretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

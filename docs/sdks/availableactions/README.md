@@ -1,5 +1,5 @@
 # AvailableActions
-(*.AvailableActions*)
+(*AvailableActions*)
 
 ### Available Operations
 
@@ -51,5 +51,7 @@ func main() {
 
 ### Response
 
-**[*operations.AvailableActionsRetrieveResponse](../../models/operations/availableactionsretrieveresponse.md), error**
-
+**[*operations.AvailableActionsRetrieveResponse](../../pkg/models/operations/availableactionsretrieveresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

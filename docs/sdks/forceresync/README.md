@@ -1,5 +1,5 @@
 # ForceResync
-(*.ForceResync*)
+(*ForceResync*)
 
 ### Available Operations
 
@@ -51,5 +51,7 @@ func main() {
 
 ### Response
 
-**[*operations.SyncStatusResyncCreateResponse](../../models/operations/syncstatusresynccreateresponse.md), error**
-
+**[*operations.SyncStatusResyncCreateResponse](../../pkg/models/operations/syncstatusresynccreateresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
