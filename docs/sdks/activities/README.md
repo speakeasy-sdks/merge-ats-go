@@ -25,9 +25,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
 
     activityEndpointRequest := shared.ActivityEndpointRequest{
@@ -102,9 +100,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.Activities.List(ctx, operations.ActivitiesListRequest{
@@ -153,9 +149,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.Activities.Retrieve(ctx, operations.ActivitiesRetrieveRequest{
@@ -204,9 +198,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
 
     var xAccountToken string = "string"

@@ -42,7 +42,7 @@ func (s *DeleteAccount) DeleteAccountDelete(ctx context.Context, xAccountToken s
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

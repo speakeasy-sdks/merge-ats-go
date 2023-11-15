@@ -24,9 +24,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.Offers.List(ctx, operations.OffersListRequest{
@@ -75,9 +73,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.Offers.Retrieve(ctx, operations.OffersRetrieveRequest{

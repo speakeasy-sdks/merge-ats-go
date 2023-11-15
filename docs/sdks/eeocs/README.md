@@ -24,9 +24,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.Eeocs.List(ctx, operations.EeocsListRequest{
@@ -75,9 +73,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.Eeocs.Retrieve(ctx, operations.EeocsRetrieveRequest{

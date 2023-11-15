@@ -22,9 +22,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
 
     var xAccountToken string = "string"

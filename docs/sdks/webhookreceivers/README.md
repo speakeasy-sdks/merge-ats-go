@@ -23,9 +23,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
 
     webhookReceiverRequest := shared.WebhookReceiverRequest{
@@ -80,9 +78,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
 
     var xAccountToken string = "string"

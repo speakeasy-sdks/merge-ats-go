@@ -23,9 +23,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.LinkedAccounts.List(ctx, operations.LinkedAccountsListRequest{})

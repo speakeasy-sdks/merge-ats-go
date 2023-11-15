@@ -43,7 +43,7 @@ func (s *RejectReasons) List(ctx context.Context, request operations.RejectReaso
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -116,7 +116,7 @@ func (s *RejectReasons) Retrieve(ctx context.Context, xAccountToken string, id s
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

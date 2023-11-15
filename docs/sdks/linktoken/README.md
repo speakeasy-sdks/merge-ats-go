@@ -22,9 +22,7 @@ import(
 )
 
 func main() {
-    s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
-    )
+    s := mergeatsgo.New()
 
     ctx := context.Background()
     res, err := s.LinkToken.Create(ctx, shared.EndUserDetailsRequest{

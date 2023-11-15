@@ -109,3 +109,13 @@ Based on:
 - [go v0.8.1] .
 ### Releases
 - [Go v0.8.1] https://github.com/speakeasy-sdks/merge-ats-go/releases/tag/v0.8.1 - .
+
+## 2023-11-15 00:41:22
+### Changes
+Based on:
+- OpenAPI Doc 1.0 
+- Speakeasy CLI 1.120.1 (2.189.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.8.2] .
+### Releases
+- [Go v0.8.2] https://github.com/speakeasy-sdks/merge-ats-go/releases/tag/v0.8.2 - .

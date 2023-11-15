@@ -54,7 +54,7 @@ func (s *WebhookReceivers) Create(ctx context.Context, webhookReceiverRequest sh
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -118,7 +118,7 @@ func (s *WebhookReceivers) List(ctx context.Context, xAccountToken string) (*ope
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

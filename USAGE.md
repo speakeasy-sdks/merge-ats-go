@@ -1,6 +1,4 @@
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
@@ -12,9 +10,7 @@ import (
 )
 
 func main() {
-	s := mergeatsgo.New(
-		mergeatsgo.WithSecurity(""),
-	)
+	s := mergeatsgo.New()
 
 	var xAccountToken string = "string"
 

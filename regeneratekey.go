@@ -47,7 +47,7 @@ func (s *RegenerateKey) Create(ctx context.Context, request shared.RemoteKeyForR
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

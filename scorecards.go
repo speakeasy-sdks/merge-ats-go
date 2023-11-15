@@ -43,7 +43,7 @@ func (s *Scorecards) List(ctx context.Context, request operations.ScorecardsList
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -110,7 +110,7 @@ func (s *Scorecards) Retrieve(ctx context.Context, request operations.Scorecards
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
