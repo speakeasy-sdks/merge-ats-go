@@ -19,15 +19,17 @@ Creates an `Application` object with the given values.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     applicationEndpointRequest := shared.ApplicationEndpointRequest{
@@ -97,15 +99,17 @@ Returns a list of `Application` objects.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Applications.List(ctx, operations.ApplicationsListRequest{
@@ -146,15 +150,17 @@ Returns an `Application` object with the given `id`.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     var xAccountToken string = "string"
@@ -205,14 +211,16 @@ Returns metadata for `Application` POSTs.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     var xAccountToken string = "string"
@@ -257,15 +265,17 @@ Updates the `current_stage` field of an `Application` object
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Applications.UpdateChangeState(ctx, operations.ApplicationsChangeStageCreateRequest{

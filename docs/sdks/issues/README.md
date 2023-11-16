@@ -16,15 +16,17 @@ Gets issues.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Issues.List(ctx, operations.IssuesListRequest{})
@@ -63,14 +65,16 @@ Get a specific issue.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"

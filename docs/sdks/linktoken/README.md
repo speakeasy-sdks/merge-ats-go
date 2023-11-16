@@ -15,14 +15,16 @@ Creates a link token to be used when linking a new end user.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.LinkToken.Create(ctx, shared.EndUserDetailsRequest{

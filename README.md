@@ -31,7 +31,9 @@ import (
 )
 
 func main() {
-	s := mergeatsgo.New()
+	s := mergeatsgo.New(
+		mergeatsgo.WithSecurity(""),
+	)
 
 	var xAccountToken string = "string"
 
@@ -249,13 +251,17 @@ package main
 
 import (
 	"context"
+	"errors"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"log"
 )
 
 func main() {
-	s := mergeatsgo.New()
+	s := mergeatsgo.New(
+		mergeatsgo.WithSecurity(""),
+	)
 
 	var xAccountToken string = "string"
 
@@ -303,6 +309,7 @@ import (
 func main() {
 	s := mergeatsgo.New(
 		mergeatsgo.WithServerIndex(1),
+		mergeatsgo.WithSecurity(""),
 	)
 
 	var xAccountToken string = "string"
@@ -337,6 +344,7 @@ import (
 func main() {
 	s := mergeatsgo.New(
 		mergeatsgo.WithServerURL("https://api.merge.dev/api/ats/v1"),
+		mergeatsgo.WithSecurity(""),
 	)
 
 	var xAccountToken string = "string"
@@ -406,7 +414,6 @@ package main
 import (
 	"context"
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 	"log"
 )
 

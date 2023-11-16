@@ -16,15 +16,17 @@ Returns a list of `RemoteUser` objects.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Users.List(ctx, operations.UsersListRequest{
@@ -65,15 +67,17 @@ Returns a `RemoteUser` object with the given `id`.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Users.Retrieve(ctx, operations.UsersRetrieveRequest{

@@ -16,15 +16,17 @@ Returns a list of `Job` objects.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Jobs.List(ctx, operations.JobsListRequest{
@@ -65,15 +67,17 @@ Returns a `Job` object with the given `id`.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Jobs.Retrieve(ctx, operations.JobsRetrieveRequest{

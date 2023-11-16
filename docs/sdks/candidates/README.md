@@ -21,15 +21,17 @@ Creates a `Candidate` object with the given values.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     candidateEndpointRequest := shared.CandidateEndpointRequest{
@@ -150,14 +152,17 @@ Ignores a specific row based on the `model_id` in the url. These records will ha
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	"net/http"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     ignoreCommonModelRequest := shared.IgnoreCommonModelRequest{
@@ -208,15 +213,17 @@ Returns a list of `Candidate` objects.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Candidates.List(ctx, operations.CandidatesListRequest{
@@ -257,15 +264,17 @@ Returns a `Candidate` object with the given `id`.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     var xAccountToken string = "string"
@@ -316,14 +325,16 @@ Returns metadata for `Candidate` PATCHs.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     var xAccountToken string = "string"
@@ -368,14 +379,16 @@ Returns metadata for `Candidate` POSTs.
 package main
 
 import(
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"context"
 	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
 
     var xAccountToken string = "string"
@@ -417,16 +430,18 @@ Updates a `Candidate` object with the given `id`.
 package main
 
 import(
-	"context"
-	"log"
-	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
+	"context"
 	"github.com/speakeasy-sdks/merge-ats-go/pkg/types"
+	"github.com/speakeasy-sdks/merge-ats-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := mergeatsgo.New()
+    s := mergeatsgo.New(
+        mergeatsgo.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.Candidates.Update(ctx, operations.PartialUpdateRequest{

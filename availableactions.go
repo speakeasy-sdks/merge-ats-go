@@ -43,7 +43,7 @@ func (s *AvailableActions) Retrieve(ctx context.Context, xAccountToken string) (
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.DefaultClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

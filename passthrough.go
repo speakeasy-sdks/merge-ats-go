@@ -54,7 +54,7 @@ func (s *Passthrough) Create(ctx context.Context, dataPassthroughRequest shared.
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.DefaultClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
