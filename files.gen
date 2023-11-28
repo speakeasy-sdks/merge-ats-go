@@ -211,7 +211,6 @@ pkg/utils/utils.go
 /pkg/models/shared/webhookreceiver.go
 /pkg/models/shared/webhookreceiverrequest.go
 /pkg/models/shared/security.go
-USAGE.md
 docs/pkg/models/operations/accountdetailsretrieverequest.md
 docs/pkg/models/operations/accountdetailsretrieveresponse.md
 docs/pkg/models/operations/accounttokenretrieverequest.md
@@ -553,4 +552,5 @@ docs/sdks/forceresync/README.md
 docs/sdks/tags/README.md
 docs/sdks/users/README.md
 docs/sdks/webhookreceivers/README.md
+USAGE.md
 .gitattributes
