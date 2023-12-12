@@ -33,7 +33,7 @@ import (
 
 func main() {
 	s := mergeatsgo.New(
-		mergeatsgo.WithSecurity(""),
+		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
 	var xAccountToken string = "string"
@@ -248,7 +248,7 @@ import (
 
 func main() {
 	s := mergeatsgo.New(
-		mergeatsgo.WithSecurity(""),
+		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
 	var xAccountToken string = "string"
@@ -297,7 +297,7 @@ import (
 func main() {
 	s := mergeatsgo.New(
 		mergeatsgo.WithServerIndex(1),
-		mergeatsgo.WithSecurity(""),
+		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
 	var xAccountToken string = "string"
@@ -332,7 +332,7 @@ import (
 func main() {
 	s := mergeatsgo.New(
 		mergeatsgo.WithServerURL("https://api.merge.dev/api/ats/v1"),
-		mergeatsgo.WithSecurity(""),
+		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
 	var xAccountToken string = "string"
@@ -407,7 +407,7 @@ import (
 
 func main() {
 	s := mergeatsgo.New(
-		mergeatsgo.WithSecurity(""),
+		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
 	var xAccountToken string = "string"

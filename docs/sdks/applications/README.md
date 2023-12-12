@@ -28,7 +28,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
 
@@ -73,13 +73,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                         | :heavy_check_mark:                                                                            | The context to use for the request.                                                           |
-| `applicationEndpointRequest`                                                                  | [shared.ApplicationEndpointRequest](../../../pkg/models/shared/applicationendpointrequest.md) | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `xAccountToken`                                                                               | *string*                                                                                      | :heavy_check_mark:                                                                            | Token identifying the end user.                                                               |
-| `isDebugMode`                                                                                 | **bool*                                                                                       | :heavy_minus_sign:                                                                            | Whether to include debug fields (such as log file links) in the response.                     |
-| `runAsync`                                                                                    | **bool*                                                                                       | :heavy_minus_sign:                                                                            | Whether or not third-party updates should be run asynchronously.                              |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `applicationEndpointRequest`                                                               | [shared.ApplicationEndpointRequest](../../pkg/models/shared/applicationendpointrequest.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `xAccountToken`                                                                            | *string*                                                                                   | :heavy_check_mark:                                                                         | Token identifying the end user.                                                            |
+| `isDebugMode`                                                                              | **bool*                                                                                    | :heavy_minus_sign:                                                                         | Whether to include debug fields (such as log file links) in the response.                  |
+| `runAsync`                                                                                 | **bool*                                                                                    | :heavy_minus_sign:                                                                         | Whether or not third-party updates should be run asynchronously.                           |
 
 
 ### Response
@@ -108,7 +108,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
     ctx := context.Background()
@@ -159,7 +159,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
 
@@ -185,13 +185,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
-| `xAccountToken`                                                                                                            | *string*                                                                                                                   | :heavy_check_mark:                                                                                                         | Token identifying the end user.                                                                                            |
-| `id`                                                                                                                       | *string*                                                                                                                   | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
-| `expand`                                                                                                                   | [*operations.ApplicationsRetrieveQueryParamExpand](../../../pkg/models/operations/applicationsretrievequeryparamexpand.md) | :heavy_minus_sign:                                                                                                         | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.     |
-| `includeRemoteData`                                                                                                        | **bool*                                                                                                                    | :heavy_minus_sign:                                                                                                         | Whether to include the original data Merge fetched from the third-party to produce these models.                           |
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                                                   | :heavy_check_mark:                                                                                                      | The context to use for the request.                                                                                     |
+| `xAccountToken`                                                                                                         | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | Token identifying the end user.                                                                                         |
+| `id`                                                                                                                    | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
+| `expand`                                                                                                                | [*operations.ApplicationsRetrieveQueryParamExpand](../../pkg/models/operations/applicationsretrievequeryparamexpand.md) | :heavy_minus_sign:                                                                                                      | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.  |
+| `includeRemoteData`                                                                                                     | **bool*                                                                                                                 | :heavy_minus_sign:                                                                                                      | Whether to include the original data Merge fetched from the third-party to produce these models.                        |
 
 
 ### Response
@@ -219,7 +219,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
 
@@ -274,7 +274,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
     ctx := context.Background()

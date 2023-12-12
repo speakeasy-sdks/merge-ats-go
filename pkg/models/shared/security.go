@@ -3,12 +3,12 @@
 package shared
 
 type Security struct {
-	TokenAuth string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
+	TokenAuth *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
-func (o *Security) GetTokenAuth() string {
+func (o *Security) GetTokenAuth() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.TokenAuth
 }

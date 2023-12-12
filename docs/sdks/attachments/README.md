@@ -26,7 +26,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
 
@@ -66,13 +66,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |
-| `attachmentEndpointRequest`                                                                 | [shared.AttachmentEndpointRequest](../../../pkg/models/shared/attachmentendpointrequest.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |
-| `xAccountToken`                                                                             | *string*                                                                                    | :heavy_check_mark:                                                                          | Token identifying the end user.                                                             |
-| `isDebugMode`                                                                               | **bool*                                                                                     | :heavy_minus_sign:                                                                          | Whether to include debug fields (such as log file links) in the response.                   |
-| `runAsync`                                                                                  | **bool*                                                                                     | :heavy_minus_sign:                                                                          | Whether or not third-party updates should be run asynchronously.                            |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `attachmentEndpointRequest`                                                              | [shared.AttachmentEndpointRequest](../../pkg/models/shared/attachmentendpointrequest.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `xAccountToken`                                                                          | *string*                                                                                 | :heavy_check_mark:                                                                       | Token identifying the end user.                                                          |
+| `isDebugMode`                                                                            | **bool*                                                                                  | :heavy_minus_sign:                                                                       | Whether to include debug fields (such as log file links) in the response.                |
+| `runAsync`                                                                               | **bool*                                                                                  | :heavy_minus_sign:                                                                       | Whether or not third-party updates should be run asynchronously.                         |
 
 
 ### Response
@@ -101,7 +101,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
     ctx := context.Background()
@@ -152,7 +152,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
     ctx := context.Background()
@@ -203,7 +203,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
 

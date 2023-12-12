@@ -24,7 +24,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
 
@@ -49,11 +49,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |
-| `webhookReceiverRequest`                                                              | [shared.WebhookReceiverRequest](../../../pkg/models/shared/webhookreceiverrequest.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |
-| `xAccountToken`                                                                       | *string*                                                                              | :heavy_check_mark:                                                                    | Token identifying the end user.                                                       |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `webhookReceiverRequest`                                                           | [shared.WebhookReceiverRequest](../../pkg/models/shared/webhookreceiverrequest.md) | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `xAccountToken`                                                                    | *string*                                                                           | :heavy_check_mark:                                                                 | Token identifying the end user.                                                    |
 
 
 ### Response
@@ -81,7 +81,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
 

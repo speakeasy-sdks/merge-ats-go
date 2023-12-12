@@ -25,7 +25,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
     ctx := context.Background()
@@ -76,7 +76,7 @@ import(
 
 func main() {
     s := mergeatsgo.New(
-        mergeatsgo.WithSecurity(""),
+        mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
     ctx := context.Background()
