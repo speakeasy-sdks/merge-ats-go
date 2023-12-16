@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// AccessRole - * `SUPER_ADMIN` - SUPER_ADMIN
+// AccessRole - The user's role.
+//
+// * `SUPER_ADMIN` - SUPER_ADMIN
 // * `ADMIN` - ADMIN
 // * `TEAM_MEMBER` - TEAM_MEMBER
 // * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER

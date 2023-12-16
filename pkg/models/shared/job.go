@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// JobStatus - * `OPEN` - OPEN
+// JobStatus - The job's status.
+//
+// * `OPEN` - OPEN
 // * `CLOSED` - CLOSED
 // * `DRAFT` - DRAFT
 // * `ARCHIVED` - ARCHIVED

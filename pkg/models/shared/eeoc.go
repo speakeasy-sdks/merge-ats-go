@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// DisabilityStatus - * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+// DisabilityStatus - The candidate's disability status.
+//
+// * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
 // * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY
 // * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
 type DisabilityStatus string
@@ -42,7 +44,9 @@ func (e *DisabilityStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Gender - * `MALE` - MALE
+// Gender - The candidate's gender.
+//
+// * `MALE` - MALE
 // * `FEMALE` - FEMALE
 // * `NON-BINARY` - NON-BINARY
 // * `OTHER` - OTHER
@@ -83,7 +87,9 @@ func (e *Gender) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Race - * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+// Race - The candidate's race.
+//
+// * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
 // * `ASIAN` - ASIAN
 // * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN
 // * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO
@@ -136,7 +142,9 @@ func (e *Race) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// VeteranStatus - * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
+// VeteranStatus - The candidate's veteran status.
+//
+// * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
 // * `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN` - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
 // * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
 type VeteranStatus string

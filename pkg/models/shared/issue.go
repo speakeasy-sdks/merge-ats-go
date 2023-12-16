@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// IssueStatus - * `ONGOING` - ONGOING
+// IssueStatus - Status of the issue. Options: ('ONGOING', 'RESOLVED')
+//
+// * `ONGOING` - ONGOING
 // * `RESOLVED` - RESOLVED
 type IssueStatus string
 

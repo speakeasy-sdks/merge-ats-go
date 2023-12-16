@@ -1,5 +1,7 @@
 # ActivityRequestVisibility
 
+The activity's visibility.
+
 * `ADMIN_ONLY` - ADMIN_ONLY
 * `PUBLIC` - PUBLIC
 * `PRIVATE` - PRIVATE

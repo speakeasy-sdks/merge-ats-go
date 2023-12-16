@@ -1,5 +1,7 @@
 # IssueStatus
 
+Status of the issue. Options: ('ONGOING', 'RESOLVED')
+
 * `ONGOING` - ONGOING
 * `RESOLVED` - RESOLVED
 

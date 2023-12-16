@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// EmailAddressType - * `PERSONAL` - PERSONAL
+// EmailAddressType - The type of email address.
+//
+// * `PERSONAL` - PERSONAL
 // * `WORK` - WORK
 // * `OTHER` - OTHER
 type EmailAddressType string

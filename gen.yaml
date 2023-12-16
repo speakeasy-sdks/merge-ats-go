@@ -2,24 +2,26 @@ configVersion: 1.0.0
 management:
   docChecksum: 4630b0f9202139f9bda8040d8ed4b8e3
   docVersion: "1.0"
-  speakeasyVersion: 1.126.0
-  generationVersion: 2.213.3
+  speakeasyVersion: 1.126.4
+  generationVersion: 2.214.10
 generation:
   comments: {}
   sdkClassName: ATS
   repoURL: https://github.com/speakeasy-sdks/merge-ats-go.git
   usageSnippets:
     optionalPropertyRendering: withExample
+  fixes:
+    nameResolutionDec2023: false
 features:
   go:
     constsAndDefaults: 0.1.2
-    core: 3.2.0
+    core: 3.2.2
     flattening: 2.81.1
     globalSecurity: 2.82.3
     globalServerURLs: 2.82.1
     nameOverrides: 2.81.1
 go:
-  version: 0.9.0
+  version: 0.9.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:

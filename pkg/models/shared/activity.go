@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// ActivityType - * `NOTE` - NOTE
+// ActivityType - The activity's type.
+//
+// * `NOTE` - NOTE
 // * `EMAIL` - EMAIL
 // * `OTHER` - OTHER
 type ActivityType string
@@ -42,7 +44,9 @@ func (e *ActivityType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Visibility - * `ADMIN_ONLY` - ADMIN_ONLY
+// Visibility - The activity's visibility.
+//
+// * `ADMIN_ONLY` - ADMIN_ONLY
 // * `PUBLIC` - PUBLIC
 // * `PRIVATE` - PRIVATE
 type Visibility string

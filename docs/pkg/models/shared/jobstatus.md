@@ -1,5 +1,7 @@
 # JobStatus
 
+The job's status.
+
 * `OPEN` - OPEN
 * `CLOSED` - CLOSED
 * `DRAFT` - DRAFT

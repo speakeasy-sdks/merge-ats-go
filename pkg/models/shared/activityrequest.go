@@ -7,7 +7,9 @@ import (
 	"fmt"
 )
 
-// ActivityRequestActivityType - * `NOTE` - NOTE
+// ActivityRequestActivityType - The activity's type.
+//
+// * `NOTE` - NOTE
 // * `EMAIL` - EMAIL
 // * `OTHER` - OTHER
 type ActivityRequestActivityType string
@@ -40,7 +42,9 @@ func (e *ActivityRequestActivityType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ActivityRequestVisibility - * `ADMIN_ONLY` - ADMIN_ONLY
+// ActivityRequestVisibility - The activity's visibility.
+//
+// * `ADMIN_ONLY` - ADMIN_ONLY
 // * `PUBLIC` - PUBLIC
 // * `PRIVATE` - PRIVATE
 type ActivityRequestVisibility string

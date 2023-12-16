@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// OfferStatus - * `DRAFT` - DRAFT
+// OfferStatus - The offer's status.
+//
+// * `DRAFT` - DRAFT
 // * `APPROVAL-SENT` - APPROVAL-SENT
 // * `APPROVED` - APPROVED
 // * `SENT` - SENT

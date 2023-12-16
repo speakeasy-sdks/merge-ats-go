@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// ScheduledInterviewRequestStatus - * `SCHEDULED` - SCHEDULED
+// ScheduledInterviewRequestStatus - The interview's status.
+//
+// * `SCHEDULED` - SCHEDULED
 // * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
 // * `COMPLETE` - COMPLETE
 type ScheduledInterviewRequestStatus string

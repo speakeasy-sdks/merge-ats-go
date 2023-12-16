@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// PhoneNumberType - * `HOME` - HOME
+// PhoneNumberType - The type of phone number.
+//
+// * `HOME` - HOME
 // * `WORK` - WORK
 // * `MOBILE` - MOBILE
 // * `SKYPE` - SKYPE

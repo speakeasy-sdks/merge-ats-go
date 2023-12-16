@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// AttachmentType - * `RESUME` - RESUME
+// AttachmentType - The attachment's type.
+//
+// * `RESUME` - RESUME
 // * `COVER_LETTER` - COVER_LETTER
 // * `OFFER_LETTER` - OFFER_LETTER
 // * `OTHER` - OTHER

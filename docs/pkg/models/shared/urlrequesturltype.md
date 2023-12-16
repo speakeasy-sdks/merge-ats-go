@@ -1,5 +1,7 @@
 # URLRequestURLType
 
+The type of site.
+
 * `PERSONAL` - PERSONAL
 * `COMPANY` - COMPANY
 * `PORTFOLIO` - PORTFOLIO

@@ -1,5 +1,7 @@
 # PhoneNumberRequestPhoneNumberType
 
+The type of phone number.
+
 * `HOME` - HOME
 * `WORK` - WORK
 * `MOBILE` - MOBILE

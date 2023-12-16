@@ -7,7 +7,9 @@ import (
 	"fmt"
 )
 
-// URLRequestURLType - * `PERSONAL` - PERSONAL
+// URLRequestURLType - The type of site.
+//
+// * `PERSONAL` - PERSONAL
 // * `COMPANY` - COMPANY
 // * `PORTFOLIO` - PORTFOLIO
 // * `BLOG` - BLOG

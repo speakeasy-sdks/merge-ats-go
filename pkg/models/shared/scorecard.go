@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// OverallRecommendation - * `DEFINITELY_NO` - DEFINITELY_NO
+// OverallRecommendation - The inteviewer's recommendation.
+//
+// * `DEFINITELY_NO` - DEFINITELY_NO
 // * `NO` - NO
 // * `YES` - YES
 // * `STRONG_YES` - STRONG_YES

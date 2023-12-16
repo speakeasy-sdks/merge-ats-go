@@ -7,7 +7,9 @@ import (
 	"fmt"
 )
 
-// EmailAddressRequestEmailAddressType - * `PERSONAL` - PERSONAL
+// EmailAddressRequestEmailAddressType - The type of email address.
+//
+// * `PERSONAL` - PERSONAL
 // * `WORK` - WORK
 // * `OTHER` - OTHER
 type EmailAddressRequestEmailAddressType string

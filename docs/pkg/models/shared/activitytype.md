@@ -1,5 +1,7 @@
 # ActivityType
 
+The activity's type.
+
 * `NOTE` - NOTE
 * `EMAIL` - EMAIL
 * `OTHER` - OTHER

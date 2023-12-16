@@ -9,7 +9,9 @@ import (
 	"time"
 )
 
-// URLType - * `PERSONAL` - PERSONAL
+// URLType - The type of site.
+//
+// * `PERSONAL` - PERSONAL
 // * `COMPANY` - COMPANY
 // * `PORTFOLIO` - PORTFOLIO
 // * `BLOG` - BLOG

@@ -1,5 +1,7 @@
 # AttachmentRequestAttachmentType
 
+The attachment's type.
+
 * `RESUME` - RESUME
 * `COVER_LETTER` - COVER_LETTER
 * `OFFER_LETTER` - OFFER_LETTER
