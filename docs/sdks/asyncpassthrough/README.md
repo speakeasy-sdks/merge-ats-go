@@ -75,7 +75,7 @@ func main() {
 **[*operations.AsyncPassthroughCreateResponse](../../pkg/models/operations/asyncpassthroughcreateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -129,4 +129,4 @@ func main() {
 **[*operations.AsyncPassthroughRetrieveResponse](../../pkg/models/operations/asyncpassthroughretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

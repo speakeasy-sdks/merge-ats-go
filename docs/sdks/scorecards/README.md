@@ -55,7 +55,7 @@ func main() {
 **[*operations.ScorecardsListResponse](../../pkg/models/operations/scorecardslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -107,4 +107,4 @@ func main() {
 **[*operations.ScorecardsRetrieveResponse](../../pkg/models/operations/scorecardsretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

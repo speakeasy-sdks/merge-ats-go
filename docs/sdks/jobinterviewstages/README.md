@@ -55,7 +55,7 @@ func main() {
 **[*operations.JobInterviewStagesListResponse](../../pkg/models/operations/jobinterviewstageslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -116,4 +116,4 @@ func main() {
 **[*operations.JobInterviewStagesRetrieveResponse](../../pkg/models/operations/jobinterviewstagesretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -55,7 +55,7 @@ func main() {
 **[*operations.RejectReasonsListResponse](../../pkg/models/operations/rejectreasonslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -112,4 +112,4 @@ func main() {
 **[*operations.RejectReasonsRetrieveResponse](../../pkg/models/operations/rejectreasonsretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

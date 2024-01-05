@@ -87,7 +87,7 @@ func main() {
 **[*operations.ApplicationsCreateResponse](../../pkg/models/operations/applicationscreateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## List
 
@@ -138,7 +138,7 @@ func main() {
 **[*operations.ApplicationsListResponse](../../pkg/models/operations/applicationslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -199,7 +199,7 @@ func main() {
 **[*operations.ApplicationsRetrieveResponse](../../pkg/models/operations/applicationsretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## RetrievePostMetadata
 
@@ -253,7 +253,7 @@ func main() {
 **[*operations.ApplicationsMetaPostRetrieveResponse](../../pkg/models/operations/applicationsmetapostretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## UpdateChangeState
 
@@ -306,4 +306,4 @@ func main() {
 **[*operations.ApplicationsChangeStageCreateResponse](../../pkg/models/operations/applicationschangestagecreateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

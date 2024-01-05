@@ -165,8 +165,8 @@ func New(opts ...SDKOption) *Ats {
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
 			SDKVersion:        "0.9.1",
-			GenVersion:        "2.214.10",
-			UserAgent:         "speakeasy-sdk/go 0.9.1 2.214.10 1.0 github.com/speakeasy-sdks/merge-ats-go",
+			GenVersion:        "2.225.2",
+			UserAgent:         "speakeasy-sdk/go 0.9.1 2.225.2 1.0 github.com/speakeasy-sdks/merge-ats-go",
 		},
 	}
 	for _, opt := range opts {

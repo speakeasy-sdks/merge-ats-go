@@ -53,7 +53,7 @@ func main() {
 **[*operations.IssuesListResponse](../../pkg/models/operations/issueslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -104,4 +104,4 @@ func main() {
 **[*operations.IssuesRetrieveResponse](../../pkg/models/operations/issuesretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

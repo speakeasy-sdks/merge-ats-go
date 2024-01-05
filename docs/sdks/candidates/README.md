@@ -140,7 +140,7 @@ func main() {
 **[*operations.CandidatesCreateResponse](../../pkg/models/operations/candidatescreateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## IgnoreCreate
 
@@ -201,7 +201,7 @@ func main() {
 **[*operations.CandidatesIgnoreCreateResponse](../../pkg/models/operations/candidatesignorecreateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## List
 
@@ -252,7 +252,7 @@ func main() {
 **[*operations.CandidatesListResponse](../../pkg/models/operations/candidateslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -313,7 +313,7 @@ func main() {
 **[*operations.CandidatesRetrieveResponse](../../pkg/models/operations/candidatesretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## RetrievePatchMetadata
 
@@ -367,7 +367,7 @@ func main() {
 **[*operations.CandidatesMetaPatchRetrieveResponse](../../pkg/models/operations/candidatesmetapatchretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## RetrievePostMetadata
 
@@ -418,7 +418,7 @@ func main() {
 **[*operations.CandidatesMetaPostRetrieveResponse](../../pkg/models/operations/candidatesmetapostretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Update
 
@@ -542,4 +542,4 @@ func main() {
 **[*operations.PartialUpdateResponse](../../pkg/models/operations/partialupdateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

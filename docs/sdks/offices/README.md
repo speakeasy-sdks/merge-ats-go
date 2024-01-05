@@ -55,7 +55,7 @@ func main() {
 **[*operations.OfficesListResponse](../../pkg/models/operations/officeslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -112,4 +112,4 @@ func main() {
 **[*operations.OfficesRetrieveResponse](../../pkg/models/operations/officesretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

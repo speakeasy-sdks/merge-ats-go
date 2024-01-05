@@ -61,7 +61,7 @@ func main() {
 **[*operations.WebhookReceiversCreateResponse](../../pkg/models/operations/webhookreceiverscreateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## List
 
@@ -112,4 +112,4 @@ func main() {
 **[*operations.WebhookReceiversListResponse](../../pkg/models/operations/webhookreceiverslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

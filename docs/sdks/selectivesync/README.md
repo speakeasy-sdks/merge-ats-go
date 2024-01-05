@@ -56,7 +56,7 @@ func main() {
 **[*operations.SelectiveSyncConfigurationsListResponse](../../pkg/models/operations/selectivesyncconfigurationslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## RetrievePostMetadata
 
@@ -116,7 +116,7 @@ func main() {
 **[*operations.SelectiveSyncMetaListResponse](../../pkg/models/operations/selectivesyncmetalistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Update
 
@@ -182,4 +182,4 @@ func main() {
 **[*operations.SelectiveSyncConfigurationsUpdateResponse](../../pkg/models/operations/selectivesyncconfigurationsupdateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

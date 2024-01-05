@@ -80,7 +80,7 @@ func main() {
 **[*operations.AttachmentsCreateResponse](../../pkg/models/operations/attachmentscreateresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## List
 
@@ -131,7 +131,7 @@ func main() {
 **[*operations.AttachmentsListResponse](../../pkg/models/operations/attachmentslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Retrieve
 
@@ -183,7 +183,7 @@ func main() {
 **[*operations.AttachmentsRetrieveResponse](../../pkg/models/operations/attachmentsretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## RetrievePostMetadata
 
@@ -234,4 +234,4 @@ func main() {
 **[*operations.AttachmentsMetaPostRetrieveResponse](../../pkg/models/operations/attachmentsmetapostretrieveresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
