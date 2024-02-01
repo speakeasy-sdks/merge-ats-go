@@ -4,9 +4,9 @@ management:
   docChecksum: 4630b0f9202139f9bda8040d8ed4b8e3
   docVersion: "1.0"
   speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: 0.9.3
-  configChecksum: c82d4e6d93f4ac5f34727a22912e9122
+  generationVersion: 2.245.1
+  releaseVersion: 0.9.4
+  configChecksum: 671b7e4d7deb1f183c0d1a6e1eb2458e
   repoURL: https://github.com/speakeasy-sdks/merge-ats-go.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/merge-ats-go
@@ -16,7 +16,7 @@ features:
     constsAndDefaults: 0.1.2
     core: 3.3.1
     flattening: 2.81.1
-    globalSecurity: 2.82.4
+    globalSecurity: 2.82.5
     globalServerURLs: 2.82.1
     nameOverrides: 2.81.1
 generatedFiles:
