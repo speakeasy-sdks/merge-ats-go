@@ -50,23 +50,23 @@ func main() {
                 shared.EmailAddressRequest{
                     EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                     IntegrationParams: map[string]interface{}{
-                        "unique_integration_field": "string",
+                        "unique_integration_field": "unique_integration_field_value",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "unique_linked_account_field": "string",
+                        "unique_linked_account_field": "unique_linked_account_field_value",
                     },
-                    Value: mergeatsgo.String("merge_is_hiring@merge.dev"),
+                    Value: mergeatsgo.String("hello@merge.dev"),
                 },
             },
             FirstName: mergeatsgo.String("Gil"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "string",
+                "unique_integration_field": "unique_integration_field_value",
             },
             IsPrivate: mergeatsgo.Bool(true),
-            LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
+            LastInteractionAt: types.MustNewTimeFromString("2021-10-17T00:00:00Z"),
             LastName: mergeatsgo.String("Feig"),
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "string",
+                "unique_linked_account_field": "unique_linked_account_field_value",
             },
             Locations: []string{
                 "San Francisco",
@@ -76,13 +76,13 @@ func main() {
             PhoneNumbers: []shared.PhoneNumberRequest{
                 shared.PhoneNumberRequest{
                     IntegrationParams: map[string]interface{}{
-                        "unique_integration_field": "string",
+                        "unique_integration_field": "unique_integration_field_value",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "unique_linked_account_field": "string",
+                        "unique_linked_account_field": "unique_linked_account_field_value",
                     },
-                    PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
-                    Value: mergeatsgo.String("+3198675309"),
+                    PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeMobile.ToPointer(),
+                    Value: mergeatsgo.String("+1234567890"),
                 },
             },
             RemoteTemplateID: mergeatsgo.String("92830948203"),
@@ -93,12 +93,12 @@ func main() {
             Urls: []shared.URLRequest{
                 shared.URLRequest{
                     IntegrationParams: map[string]interface{}{
-                        "unique_integration_field": "string",
+                        "unique_integration_field": "unique_integration_field_value",
                     },
                     LinkedAccountParams: map[string]interface{}{
-                        "unique_linked_account_field": "string",
+                        "unique_linked_account_field": "unique_linked_account_field_value",
                     },
-                    URLType: shared.URLRequestURLTypePersonal.ToPointer(),
+                    URLType: shared.URLRequestURLTypeBlog.ToPointer(),
                     Value: mergeatsgo.String("http://alturl.com/p749b"),
                 },
             },
@@ -108,9 +108,9 @@ func main() {
 
     var xAccountToken string = "string"
 
-    var isDebugMode *bool = false
+    var isDebugMode *bool = mergeatsgo.Bool(false)
 
-    var runAsync *bool = false
+    var runAsync *bool = mergeatsgo.Bool(false)
 
     ctx := context.Background()
     res, err := s.Candidates.Create(ctx, candidateEndpointRequest, xAccountToken, isDebugMode, runAsync)
@@ -281,9 +281,9 @@ func main() {
 
     var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
-    var expand *operations.CandidatesRetrieveQueryParamExpand = operations.CandidatesRetrieveQueryParamExpandApplications
+    var expand *operations.CandidatesRetrieveQueryParamExpand = operations.CandidatesRetrieveQueryParamExpandApplications.ToPointer()
 
-    var includeRemoteData *bool = false
+    var includeRemoteData *bool = mergeatsgo.Bool(false)
 
     ctx := context.Background()
     res, err := s.Candidates.Retrieve(ctx, xAccountToken, id, expand, includeRemoteData)
@@ -461,23 +461,23 @@ func main() {
                     shared.EmailAddressRequest{
                         EmailAddressType: shared.EmailAddressRequestEmailAddressTypePersonal.ToPointer(),
                         IntegrationParams: map[string]interface{}{
-                            "unique_integration_field": "string",
+                            "unique_integration_field": "unique_integration_field_value",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "unique_linked_account_field": "string",
+                            "unique_linked_account_field": "unique_linked_account_field_value",
                         },
-                        Value: mergeatsgo.String("merge_is_hiring@merge.dev"),
+                        Value: mergeatsgo.String("hello@merge.dev"),
                     },
                 },
                 FirstName: mergeatsgo.String("Gil"),
                 IntegrationParams: map[string]interface{}{
-                    "unique_integration_field": "string",
+                    "unique_integration_field": "unique_integration_field_value",
                 },
                 IsPrivate: mergeatsgo.Bool(true),
-                LastInteractionAt: types.MustTimeFromString("2021-10-17T00:00:00Z"),
+                LastInteractionAt: types.MustNewTimeFromString("2021-10-17T00:00:00Z"),
                 LastName: mergeatsgo.String("Feig"),
                 LinkedAccountParams: map[string]interface{}{
-                    "unique_linked_account_field": "string",
+                    "unique_linked_account_field": "unique_linked_account_field_value",
                 },
                 Locations: []string{
                     "San Francisco",
@@ -487,13 +487,13 @@ func main() {
                 PhoneNumbers: []shared.PhoneNumberRequest{
                     shared.PhoneNumberRequest{
                         IntegrationParams: map[string]interface{}{
-                            "unique_integration_field": "string",
+                            "unique_integration_field": "unique_integration_field_value",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "unique_linked_account_field": "string",
+                            "unique_linked_account_field": "unique_linked_account_field_value",
                         },
-                        PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeHome.ToPointer(),
-                        Value: mergeatsgo.String("+3198675309"),
+                        PhoneNumberType: shared.PhoneNumberRequestPhoneNumberTypeMobile.ToPointer(),
+                        Value: mergeatsgo.String("+1234567890"),
                     },
                 },
                 RemoteTemplateID: mergeatsgo.String("92830948203"),
@@ -504,12 +504,12 @@ func main() {
                 Urls: []shared.URLRequest{
                     shared.URLRequest{
                         IntegrationParams: map[string]interface{}{
-                            "unique_integration_field": "string",
+                            "unique_integration_field": "unique_integration_field_value",
                         },
                         LinkedAccountParams: map[string]interface{}{
-                            "unique_linked_account_field": "string",
+                            "unique_linked_account_field": "unique_linked_account_field_value",
                         },
-                        URLType: shared.URLRequestURLTypePersonal.ToPointer(),
+                        URLType: shared.URLRequestURLTypeBlog.ToPointer(),
                         Value: mergeatsgo.String("http://alturl.com/p749b"),
                     },
                 },

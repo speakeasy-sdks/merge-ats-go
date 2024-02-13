@@ -34,9 +34,9 @@ func main() {
     scheduledInterviewEndpointRequest := shared.ScheduledInterviewEndpointRequest{
         Model: shared.ScheduledInterviewRequest{
             Application: mergeatsgo.String("92e8a369-fffe-430d-b93a-f7e8a16563f1"),
-            EndAt: types.MustTimeFromString("2021-10-15T02:00:00Z"),
+            EndAt: types.MustNewTimeFromString("2021-10-15T02:00:00Z"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "string",
+                "unique_integration_field": "unique_integration_field_value",
             },
             Interviewers: []string{
                 "f9813dd5-e70b-484c-91d8-00acd6065b07",
@@ -44,11 +44,11 @@ func main() {
             },
             JobInterviewStage: mergeatsgo.String("2f7adb59-3fe6-4b5b-aef6-563f72bd13dc"),
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "string",
+                "unique_linked_account_field": "unique_linked_account_field_value",
             },
             Location: mergeatsgo.String("Embarcadero Center 2"),
             Organizer: mergeatsgo.String("52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633"),
-            StartAt: types.MustTimeFromString("2021-10-15T00:00:00Z"),
+            StartAt: types.MustNewTimeFromString("2021-10-15T00:00:00Z"),
             Status: shared.ScheduledInterviewRequestStatusScheduled.ToPointer(),
         },
         RemoteUserID: "string",
@@ -56,9 +56,9 @@ func main() {
 
     var xAccountToken string = "string"
 
-    var isDebugMode *bool = false
+    var isDebugMode *bool = mergeatsgo.Bool(false)
 
-    var runAsync *bool = false
+    var runAsync *bool = mergeatsgo.Bool(false)
 
     ctx := context.Background()
     res, err := s.Interviews.Create(ctx, scheduledInterviewEndpointRequest, xAccountToken, isDebugMode, runAsync)

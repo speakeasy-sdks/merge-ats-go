@@ -82,11 +82,11 @@ func main() {
 
     var xAccountToken string = "string"
 
-    var commonModel *string = "string"
+    var commonModel *string = mergeatsgo.String("string")
 
-    var cursor *string = "string"
+    var cursor *string = mergeatsgo.String("string")
 
-    var pageSize *int64 = 70130
+    var pageSize *int64 = mergeatsgo.Int64(70130)
 
     ctx := context.Background()
     res, err := s.SelectiveSync.RetrievePostMetadata(ctx, xAccountToken, commonModel, cursor, pageSize)

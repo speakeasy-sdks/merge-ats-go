@@ -31,18 +31,6 @@ func main() {
         Categories: []shared.CategoriesEnum{
             shared.CategoriesEnumTicketing,
         },
-        CommonModels: []shared.CommonModelScopesBodyRequest{
-            shared.CommonModelScopesBodyRequest{
-                DisabledFields: []string{
-                    "first_name",
-                },
-                EnabledActions: []shared.EnabledActionsEnum{
-                    shared.EnabledActionsEnumRead,
-                    shared.EnabledActionsEnumWrite,
-                },
-                ModelID: "hris.Employee",
-            },
-        },
         EndUserEmailAddress: "string",
         EndUserOrganizationName: "string",
         EndUserOriginID: "string",

@@ -36,10 +36,10 @@ func main() {
             Body: mergeatsgo.String("Candidate loves integrations!!."),
             Candidate: mergeatsgo.String("03455bc6-6040-430a-848e-aafacbfdf4fg"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "string",
+                "unique_integration_field": "unique_integration_field_value",
             },
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "string",
+                "unique_linked_account_field": "unique_linked_account_field_value",
             },
             Subject: mergeatsgo.String("Gil Feig's interview"),
             User: mergeatsgo.String("9d892439-5fab-4dbb-8bd8-34f7f96c7912"),
@@ -50,9 +50,9 @@ func main() {
 
     var xAccountToken string = "string"
 
-    var isDebugMode *bool = false
+    var isDebugMode *bool = mergeatsgo.Bool(false)
 
-    var runAsync *bool = false
+    var runAsync *bool = mergeatsgo.Bool(false)
 
     ctx := context.Background()
     res, err := s.Activities.Create(ctx, activityEndpointRequest, xAccountToken, isDebugMode, runAsync)

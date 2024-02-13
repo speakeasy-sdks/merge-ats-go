@@ -37,10 +37,10 @@ func main() {
             FileName: mergeatsgo.String("Candidate Resume"),
             FileURL: mergeatsgo.String("http://alturl.com/p749b"),
             IntegrationParams: map[string]interface{}{
-                "unique_integration_field": "string",
+                "unique_integration_field": "unique_integration_field_value",
             },
             LinkedAccountParams: map[string]interface{}{
-                "unique_linked_account_field": "string",
+                "unique_linked_account_field": "unique_linked_account_field_value",
             },
         },
         RemoteUserID: "string",
@@ -48,9 +48,9 @@ func main() {
 
     var xAccountToken string = "string"
 
-    var isDebugMode *bool = false
+    var isDebugMode *bool = mergeatsgo.Bool(false)
 
-    var runAsync *bool = false
+    var runAsync *bool = mergeatsgo.Bool(false)
 
     ctx := context.Background()
     res, err := s.Attachments.Create(ctx, attachmentEndpointRequest, xAccountToken, isDebugMode, runAsync)

@@ -29,9 +29,9 @@ func main() {
 
     var xAccountToken string = "string"
 
-    var cursor *string = "string"
+    var cursor *string = mergeatsgo.String("string")
 
-    var pageSize *int64 = 768578
+    var pageSize *int64 = mergeatsgo.Int64(768578)
 
     ctx := context.Background()
     res, err := s.SyncStatus.List(ctx, xAccountToken, cursor, pageSize)
