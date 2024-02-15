@@ -27,7 +27,7 @@ func main() {
     )
 
 
-    var publicToken string = "string"
+    var publicToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.AccountToken.Retrieve(ctx, publicToken)

@@ -36,7 +36,7 @@ func main() {
 		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	var xAccountToken string = "string"
+	var xAccountToken string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)
@@ -251,7 +251,7 @@ func main() {
 		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	var xAccountToken string = "string"
+	var xAccountToken string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)
@@ -300,7 +300,7 @@ func main() {
 		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	var xAccountToken string = "string"
+	var xAccountToken string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)
@@ -335,7 +335,7 @@ func main() {
 		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	var xAccountToken string = "string"
+	var xAccountToken string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)
@@ -410,7 +410,7 @@ func main() {
 		mergeatsgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	var xAccountToken string = "string"
+	var xAccountToken string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.AccountDetails.Retrieve(ctx, xAccountToken)

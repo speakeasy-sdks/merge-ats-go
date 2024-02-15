@@ -50,10 +50,10 @@ func main() {
             RemoteTemplateID: mergeatsgo.String("92830948203"),
             Source: mergeatsgo.String("Campus recruiting event"),
         },
-        RemoteUserID: "string",
+        RemoteUserID: "<value>",
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var isDebugMode *bool = mergeatsgo.Bool(false)
 
@@ -113,7 +113,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Applications.List(ctx, operations.ApplicationsListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -163,7 +163,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
@@ -223,9 +223,9 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
-    var applicationRemoteTemplateID *string = mergeatsgo.String("string")
+    var applicationRemoteTemplateID *string = mergeatsgo.String("<value>")
 
     ctx := context.Background()
     res, err := s.Applications.RetrievePostMetadata(ctx, xAccountToken, applicationRemoteTemplateID)
@@ -279,7 +279,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Applications.UpdateChangeState(ctx, operations.ApplicationsChangeStageCreateRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
         ID: "c8893fee-92d0-4f72-9f7b-bfee92506581",
     })
     if err != nil {

@@ -30,7 +30,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Users.List(ctx, operations.UsersListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -81,7 +81,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Users.Retrieve(ctx, operations.UsersRetrieveRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
         ID: "5fea5659-1081-4ad2-8d60-4c8e92b241fa",
     })
     if err != nil {

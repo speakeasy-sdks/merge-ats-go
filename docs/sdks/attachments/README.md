@@ -43,10 +43,10 @@ func main() {
                 "unique_linked_account_field": "unique_linked_account_field_value",
             },
         },
-        RemoteUserID: "string",
+        RemoteUserID: "<value>",
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var isDebugMode *bool = mergeatsgo.Bool(false)
 
@@ -106,7 +106,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Attachments.List(ctx, operations.AttachmentsListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -157,7 +157,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Attachments.Retrieve(ctx, operations.AttachmentsRetrieveRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
         ID: "5fea5659-1081-4ad2-8d60-4c8e92b241fa",
     })
     if err != nil {
@@ -207,7 +207,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.Attachments.RetrievePostMetadata(ctx, xAccountToken)

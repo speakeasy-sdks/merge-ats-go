@@ -51,10 +51,10 @@ func main() {
             StartAt: types.MustNewTimeFromString("2021-10-15T00:00:00Z"),
             Status: shared.ScheduledInterviewRequestStatusScheduled.ToPointer(),
         },
-        RemoteUserID: "string",
+        RemoteUserID: "<value>",
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var isDebugMode *bool = mergeatsgo.Bool(false)
 
@@ -114,7 +114,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Interviews.List(ctx, operations.InterviewsListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -165,7 +165,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Interviews.Retrieve(ctx, operations.InterviewsRetrieveRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
         ID: "5fea5659-1081-4ad2-8d60-4c8e92b241fa",
     })
     if err != nil {
@@ -215,7 +215,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.Interviews.RetrievePostMetadata(ctx, xAccountToken)

@@ -31,9 +31,9 @@ func main() {
         Categories: []shared.CategoriesEnum{
             shared.CategoriesEnumTicketing,
         },
-        EndUserEmailAddress: "string",
-        EndUserOrganizationName: "string",
-        EndUserOriginID: "string",
+        EndUserEmailAddress: "<value>",
+        EndUserOrganizationName: "<value>",
+        EndUserOriginID: "<value>",
     })
     if err != nil {
         log.Fatal(err)

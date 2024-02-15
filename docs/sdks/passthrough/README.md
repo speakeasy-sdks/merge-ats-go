@@ -37,7 +37,7 @@ func main() {
         RequestFormat: shared.RequestFormatJSON.ToPointer(),
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.Passthrough.Create(ctx, dataPassthroughRequest, xAccountToken)

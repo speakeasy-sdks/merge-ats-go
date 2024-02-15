@@ -29,7 +29,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tags.List(ctx, operations.TagsListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)

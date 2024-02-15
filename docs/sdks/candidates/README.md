@@ -103,10 +103,10 @@ func main() {
                 },
             },
         },
-        RemoteUserID: "string",
+        RemoteUserID: "<value>",
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var isDebugMode *bool = mergeatsgo.Bool(false)
 
@@ -170,7 +170,7 @@ func main() {
         Reason: shared.ReasonGeneralCustomerRequest,
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var modelID string = "c7c17a75-bf57-4b4d-967c-fdddc7d08842"
 
@@ -227,7 +227,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Candidates.List(ctx, operations.CandidatesListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -277,7 +277,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 
@@ -337,7 +337,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var id string = "1e4cbcd8-c9a8-4659-9682-a54bbda71d58"
 
@@ -391,7 +391,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.Candidates.RetrievePostMetadata(ctx, xAccountToken)
@@ -514,9 +514,9 @@ func main() {
                     },
                 },
             },
-            RemoteUserID: "string",
+            RemoteUserID: "<value>",
         },
-        XAccountToken: "string",
+        XAccountToken: "<value>",
         ID: "d0905bf4-aa77-4f20-8e77-54c352acfe54",
     })
     if err != nil {

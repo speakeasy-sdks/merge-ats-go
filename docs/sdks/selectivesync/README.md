@@ -29,7 +29,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.SelectiveSync.List(ctx, xAccountToken)
@@ -80,11 +80,11 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
-    var commonModel *string = mergeatsgo.String("string")
+    var commonModel *string = mergeatsgo.String("<value>")
 
-    var cursor *string = mergeatsgo.String("string")
+    var cursor *string = mergeatsgo.String("<value>")
 
     var pageSize *int64 = mergeatsgo.Int64(70130)
 
@@ -146,15 +146,15 @@ func main() {
                 LinkedAccountConditions: []shared.LinkedAccountConditionRequest{
                     shared.LinkedAccountConditionRequest{
                         ConditionSchemaID: "d0905bf4-aa77-4f20-8e77-54c352acfe54",
-                        Operator: "string",
-                        Value: "string",
+                        Operator: "<value>",
+                        Value: "<value>",
                     },
                 },
             },
         },
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.SelectiveSync.Update(ctx, linkedAccountSelectiveSyncConfigurationListRequest, xAccountToken)

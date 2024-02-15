@@ -30,7 +30,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Departments.List(ctx, operations.DepartmentsListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -79,7 +79,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var id string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 

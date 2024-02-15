@@ -4,9 +4,9 @@ management:
   docChecksum: 4630b0f9202139f9bda8040d8ed4b8e3
   docVersion: "1.0"
   speakeasyVersion: internal
-  generationVersion: 2.253.0
-  releaseVersion: 0.10.1
-  configChecksum: 1a9da3ee13c15c73734256f472066250
+  generationVersion: 2.258.0
+  releaseVersion: 0.11.0
+  configChecksum: 2f73093765c979bcee536b07d477a6bd
   repoURL: https://github.com/speakeasy-sdks/merge-ats-go.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/merge-ats-go
@@ -14,7 +14,7 @@ management:
 features:
   go:
     constsAndDefaults: 0.1.3
-    core: 3.3.2
+    core: 3.4.0
     flattening: 2.81.1
     globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
@@ -575,3 +575,4 @@ generatedFiles:
   - docs/sdks/webhookreceivers/README.md
   - USAGE.md
   - .gitattributes
+  - internal/hooks/hooks.go

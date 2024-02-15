@@ -27,9 +27,9 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
-    var cursor *string = mergeatsgo.String("string")
+    var cursor *string = mergeatsgo.String("<value>")
 
     var pageSize *int64 = mergeatsgo.Int64(768578)
 

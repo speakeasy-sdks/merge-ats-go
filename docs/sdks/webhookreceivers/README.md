@@ -29,11 +29,11 @@ func main() {
 
 
     webhookReceiverRequest := shared.WebhookReceiverRequest{
-        Event: "string",
+        Event: "<value>",
         IsActive: false,
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.WebhookReceivers.Create(ctx, webhookReceiverRequest, xAccountToken)
@@ -85,7 +85,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.WebhookReceivers.List(ctx, xAccountToken)

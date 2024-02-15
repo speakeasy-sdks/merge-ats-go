@@ -38,7 +38,7 @@ func main() {
         RequestFormat: shared.RequestFormatJSON.ToPointer(),
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.AsyncPassthrough.Create(ctx, dataPassthroughRequest, xAccountToken)
@@ -90,7 +90,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var asyncPassthroughReceiptID string = "5fea5659-1081-4ad2-8d60-4c8e92b241fa"
 

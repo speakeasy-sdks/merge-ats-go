@@ -45,10 +45,10 @@ func main() {
             User: mergeatsgo.String("9d892439-5fab-4dbb-8bd8-34f7f96c7912"),
             Visibility: shared.ActivityRequestVisibilityPrivate.ToPointer(),
         },
-        RemoteUserID: "string",
+        RemoteUserID: "<value>",
     }
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     var isDebugMode *bool = mergeatsgo.Bool(false)
 
@@ -108,7 +108,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Activities.List(ctx, operations.ActivitiesListRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -159,7 +159,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Activities.Retrieve(ctx, operations.ActivitiesRetrieveRequest{
-        XAccountToken: "string",
+        XAccountToken: "<value>",
         ID: "5fea5659-1081-4ad2-8d60-4c8e92b241fa",
     })
     if err != nil {
@@ -209,7 +209,7 @@ func main() {
     )
 
 
-    var xAccountToken string = "string"
+    var xAccountToken string = "<value>"
 
     ctx := context.Background()
     res, err := s.Activities.RetrievePostMetadata(ctx, xAccountToken)
