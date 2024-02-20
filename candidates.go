@@ -62,12 +62,12 @@ func (s *Candidates) Create(ctx context.Context, candidateEndpointRequest shared
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -90,7 +90,6 @@ func (s *Candidates) Create(ctx context.Context, candidateEndpointRequest shared
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CandidatesCreateResponse{
@@ -159,12 +158,12 @@ func (s *Candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest 
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -187,7 +186,6 @@ func (s *Candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest 
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CandidatesIgnoreCreateResponse{
@@ -237,12 +235,12 @@ func (s *Candidates) List(ctx context.Context, request operations.CandidatesList
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -265,7 +263,6 @@ func (s *Candidates) List(ctx context.Context, request operations.CandidatesList
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CandidatesListResponse{
@@ -333,12 +330,12 @@ func (s *Candidates) Retrieve(ctx context.Context, xAccountToken string, id stri
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -361,7 +358,6 @@ func (s *Candidates) Retrieve(ctx context.Context, xAccountToken string, id stri
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CandidatesRetrieveResponse{
@@ -423,12 +419,12 @@ func (s *Candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken st
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -451,7 +447,6 @@ func (s *Candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken st
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CandidatesMetaPatchRetrieveResponse{
@@ -512,12 +507,12 @@ func (s *Candidates) RetrievePostMetadata(ctx context.Context, xAccountToken str
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -540,7 +535,6 @@ func (s *Candidates) RetrievePostMetadata(ctx context.Context, xAccountToken str
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CandidatesMetaPostRetrieveResponse{
@@ -607,12 +601,12 @@ func (s *Candidates) Update(ctx context.Context, request operations.PartialUpdat
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -635,7 +629,6 @@ func (s *Candidates) Update(ctx context.Context, request operations.PartialUpdat
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PartialUpdateResponse{
