@@ -49,12 +49,12 @@ func (s *SelectiveSync) List(ctx context.Context, xAccountToken string) (*operat
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -77,7 +77,6 @@ func (s *SelectiveSync) List(ctx context.Context, xAccountToken string) (*operat
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.SelectiveSyncConfigurationsListResponse{
@@ -145,12 +144,12 @@ func (s *SelectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -173,7 +172,6 @@ func (s *SelectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken 
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.SelectiveSyncMetaListResponse{
@@ -241,12 +239,12 @@ func (s *SelectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncCo
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -269,7 +267,6 @@ func (s *SelectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncCo
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.SelectiveSyncConfigurationsUpdateResponse{

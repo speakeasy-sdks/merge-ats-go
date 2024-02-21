@@ -62,12 +62,12 @@ func (s *Attachments) Create(ctx context.Context, attachmentEndpointRequest shar
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -90,7 +90,6 @@ func (s *Attachments) Create(ctx context.Context, attachmentEndpointRequest shar
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.AttachmentsCreateResponse{
@@ -151,12 +150,12 @@ func (s *Attachments) List(ctx context.Context, request operations.AttachmentsLi
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -179,7 +178,6 @@ func (s *Attachments) List(ctx context.Context, request operations.AttachmentsLi
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.AttachmentsListResponse{
@@ -240,12 +238,12 @@ func (s *Attachments) Retrieve(ctx context.Context, request operations.Attachmen
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -268,7 +266,6 @@ func (s *Attachments) Retrieve(ctx context.Context, request operations.Attachmen
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.AttachmentsRetrieveResponse{
@@ -329,12 +326,12 @@ func (s *Attachments) RetrievePostMetadata(ctx context.Context, xAccountToken st
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -357,7 +354,6 @@ func (s *Attachments) RetrievePostMetadata(ctx context.Context, xAccountToken st
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.AttachmentsMetaPostRetrieveResponse{

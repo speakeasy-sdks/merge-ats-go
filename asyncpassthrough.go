@@ -56,12 +56,12 @@ func (s *AsyncPassthrough) Create(ctx context.Context, dataPassthroughRequest sh
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -84,7 +84,6 @@ func (s *AsyncPassthrough) Create(ctx context.Context, dataPassthroughRequest sh
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.AsyncPassthroughCreateResponse{
@@ -146,12 +145,12 @@ func (s *AsyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, a
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
-
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
+
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -174,7 +173,6 @@ func (s *AsyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, a
 			return nil, err
 		}
 	}
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.AsyncPassthroughRetrieveResponse{
