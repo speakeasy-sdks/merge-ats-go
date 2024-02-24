@@ -28,7 +28,11 @@ func newSelectiveSync(sdkConfig sdkConfiguration) *SelectiveSync {
 
 // List - Get a linked account's selective syncs.
 func (s *SelectiveSync) List(ctx context.Context, xAccountToken string) (*operations.SelectiveSyncConfigurationsListResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "selective_sync_configurations_list"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "selective_sync_configurations_list",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.SelectiveSyncConfigurationsListRequest{
 		XAccountToken: xAccountToken,
@@ -49,12 +53,12 @@ func (s *SelectiveSync) List(ctx context.Context, xAccountToken string) (*operat
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -64,15 +68,15 @@ func (s *SelectiveSync) List(ctx context.Context, xAccountToken string) (*operat
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -116,7 +120,11 @@ func (s *SelectiveSync) List(ctx context.Context, xAccountToken string) (*operat
 
 // RetrievePostMetadata - Get metadata for the conditions available to a linked account.
 func (s *SelectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken string, commonModel *string, cursor *string, pageSize *int64) (*operations.SelectiveSyncMetaListResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "selective_sync_meta_list"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "selective_sync_meta_list",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.SelectiveSyncMetaListRequest{
 		XAccountToken: xAccountToken,
@@ -144,12 +152,12 @@ func (s *SelectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -159,15 +167,15 @@ func (s *SelectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken 
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -211,7 +219,11 @@ func (s *SelectiveSync) RetrievePostMetadata(ctx context.Context, xAccountToken 
 
 // Update - Replace a linked account's selective syncs.
 func (s *SelectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncConfigurationListRequest shared.LinkedAccountSelectiveSyncConfigurationListRequest, xAccountToken string) (*operations.SelectiveSyncConfigurationsUpdateResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "selective_sync_configurations_update"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "selective_sync_configurations_update",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.SelectiveSyncConfigurationsUpdateRequest{
 		LinkedAccountSelectiveSyncConfigurationListRequest: linkedAccountSelectiveSyncConfigurationListRequest,
@@ -239,12 +251,12 @@ func (s *SelectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncCo
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -254,15 +266,15 @@ func (s *SelectiveSync) Update(ctx context.Context, linkedAccountSelectiveSyncCo
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

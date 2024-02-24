@@ -28,7 +28,11 @@ func newAsyncPassthrough(sdkConfig sdkConfiguration) *AsyncPassthrough {
 
 // Create - Asynchronously pull data from an endpoint not currently supported by Merge.
 func (s *AsyncPassthrough) Create(ctx context.Context, dataPassthroughRequest shared.DataPassthroughRequest, xAccountToken string) (*operations.AsyncPassthroughCreateResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "async_passthrough_create"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "async_passthrough_create",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.AsyncPassthroughCreateRequest{
 		DataPassthroughRequest: dataPassthroughRequest,
@@ -56,12 +60,12 @@ func (s *AsyncPassthrough) Create(ctx context.Context, dataPassthroughRequest sh
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -71,15 +75,15 @@ func (s *AsyncPassthrough) Create(ctx context.Context, dataPassthroughRequest sh
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -123,7 +127,11 @@ func (s *AsyncPassthrough) Create(ctx context.Context, dataPassthroughRequest sh
 
 // Retrieve - Retrieves data from earlier async-passthrough POST request
 func (s *AsyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, asyncPassthroughReceiptID string) (*operations.AsyncPassthroughRetrieveResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "async_passthrough_retrieve"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "async_passthrough_retrieve",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.AsyncPassthroughRetrieveRequest{
 		XAccountToken:             xAccountToken,
@@ -145,12 +153,12 @@ func (s *AsyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, a
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -160,15 +168,15 @@ func (s *AsyncPassthrough) Retrieve(ctx context.Context, xAccountToken string, a
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

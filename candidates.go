@@ -28,7 +28,11 @@ func newCandidates(sdkConfig sdkConfiguration) *Candidates {
 
 // Create - Creates a `Candidate` object with the given values.
 func (s *Candidates) Create(ctx context.Context, candidateEndpointRequest shared.CandidateEndpointRequest, xAccountToken string, isDebugMode *bool, runAsync *bool) (*operations.CandidatesCreateResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "candidates_create"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "candidates_create",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.CandidatesCreateRequest{
 		CandidateEndpointRequest: candidateEndpointRequest,
@@ -62,12 +66,12 @@ func (s *Candidates) Create(ctx context.Context, candidateEndpointRequest shared
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -77,15 +81,15 @@ func (s *Candidates) Create(ctx context.Context, candidateEndpointRequest shared
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -129,7 +133,11 @@ func (s *Candidates) Create(ctx context.Context, candidateEndpointRequest shared
 
 // IgnoreCreate - Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
 func (s *Candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest shared.IgnoreCommonModelRequest, xAccountToken string, modelID string) (*operations.CandidatesIgnoreCreateResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "candidates_ignore_create"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "candidates_ignore_create",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.CandidatesIgnoreCreateRequest{
 		IgnoreCommonModelRequest: ignoreCommonModelRequest,
@@ -158,12 +166,12 @@ func (s *Candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest 
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -173,15 +181,15 @@ func (s *Candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest 
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -214,7 +222,11 @@ func (s *Candidates) IgnoreCreate(ctx context.Context, ignoreCommonModelRequest 
 
 // List - Returns a list of `Candidate` objects.
 func (s *Candidates) List(ctx context.Context, request operations.CandidatesListRequest) (*operations.CandidatesListResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "candidates_list"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "candidates_list",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := url.JoinPath(baseURL, "/candidates")
@@ -235,12 +247,12 @@ func (s *Candidates) List(ctx context.Context, request operations.CandidatesList
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -250,15 +262,15 @@ func (s *Candidates) List(ctx context.Context, request operations.CandidatesList
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -302,7 +314,11 @@ func (s *Candidates) List(ctx context.Context, request operations.CandidatesList
 
 // Retrieve - Returns a `Candidate` object with the given `id`.
 func (s *Candidates) Retrieve(ctx context.Context, xAccountToken string, id string, expand *operations.CandidatesRetrieveQueryParamExpand, includeRemoteData *bool) (*operations.CandidatesRetrieveResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "candidates_retrieve"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "candidates_retrieve",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.CandidatesRetrieveRequest{
 		XAccountToken:     xAccountToken,
@@ -330,12 +346,12 @@ func (s *Candidates) Retrieve(ctx context.Context, xAccountToken string, id stri
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -345,15 +361,15 @@ func (s *Candidates) Retrieve(ctx context.Context, xAccountToken string, id stri
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -397,7 +413,11 @@ func (s *Candidates) Retrieve(ctx context.Context, xAccountToken string, id stri
 
 // RetrievePatchMetadata - Returns metadata for `Candidate` PATCHs.
 func (s *Candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken string, id string) (*operations.CandidatesMetaPatchRetrieveResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "candidates_meta_patch_retrieve"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "candidates_meta_patch_retrieve",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.CandidatesMetaPatchRetrieveRequest{
 		XAccountToken: xAccountToken,
@@ -419,12 +439,12 @@ func (s *Candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken st
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -434,15 +454,15 @@ func (s *Candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken st
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -486,7 +506,11 @@ func (s *Candidates) RetrievePatchMetadata(ctx context.Context, xAccountToken st
 
 // RetrievePostMetadata - Returns metadata for `Candidate` POSTs.
 func (s *Candidates) RetrievePostMetadata(ctx context.Context, xAccountToken string) (*operations.CandidatesMetaPostRetrieveResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "candidates_meta_post_retrieve"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "candidates_meta_post_retrieve",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.CandidatesMetaPostRetrieveRequest{
 		XAccountToken: xAccountToken,
@@ -507,12 +531,12 @@ func (s *Candidates) RetrievePostMetadata(ctx context.Context, xAccountToken str
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -522,15 +546,15 @@ func (s *Candidates) RetrievePostMetadata(ctx context.Context, xAccountToken str
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -574,7 +598,11 @@ func (s *Candidates) RetrievePostMetadata(ctx context.Context, xAccountToken str
 
 // Update - Updates a `Candidate` object with the given `id`.
 func (s *Candidates) Update(ctx context.Context, request operations.PartialUpdateRequest) (*operations.PartialUpdateResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "partial_update"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "partial_update",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/candidates/{id}", request, nil)
@@ -601,12 +629,12 @@ func (s *Candidates) Update(ctx context.Context, request operations.PartialUpdat
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -616,15 +644,15 @@ func (s *Candidates) Update(ctx context.Context, request operations.PartialUpdat
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
