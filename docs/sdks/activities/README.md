@@ -59,7 +59,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ActivityResponse != nil {
         // handle response
     }
@@ -113,7 +112,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedActivityList != nil {
         // handle response
     }
@@ -165,7 +163,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Activity != nil {
         // handle response
     }
@@ -216,7 +213,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.MetaResponse != nil {
         // handle response
     }

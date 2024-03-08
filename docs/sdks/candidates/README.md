@@ -117,7 +117,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CandidateResponse != nil {
         // handle response
     }
@@ -156,7 +155,6 @@ import(
 	mergeatsgo "github.com/speakeasy-sdks/merge-ats-go"
 	"context"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -179,8 +177,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -232,7 +229,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedCandidateList != nil {
         // handle response
     }
@@ -290,7 +286,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Candidate != nil {
         // handle response
     }
@@ -346,7 +341,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.MetaResponse != nil {
         // handle response
     }
@@ -398,7 +392,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.MetaResponse != nil {
         // handle response
     }
@@ -522,7 +515,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CandidateResponse != nil {
         // handle response
     }

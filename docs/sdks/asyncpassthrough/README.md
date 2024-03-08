@@ -45,7 +45,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AsyncPassthroughReciept != nil {
         // handle response
     }
@@ -99,7 +98,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.RemoteResponse != nil {
         // handle response
     }

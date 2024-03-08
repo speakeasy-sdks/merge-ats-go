@@ -32,7 +32,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedAccountDetailsAndActionsList != nil {
         // handle response
     }

@@ -57,7 +57,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AttachmentResponse != nil {
         // handle response
     }
@@ -111,7 +110,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedAttachmentList != nil {
         // handle response
     }
@@ -163,7 +161,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachment != nil {
         // handle response
     }
@@ -214,7 +211,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.MetaResponse != nil {
         // handle response
     }

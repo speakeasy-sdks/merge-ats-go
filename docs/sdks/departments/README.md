@@ -35,7 +35,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedDepartmentList != nil {
         // handle response
     }
@@ -90,7 +89,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Department != nil {
         // handle response
     }

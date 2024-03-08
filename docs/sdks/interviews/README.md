@@ -65,7 +65,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ScheduledInterviewResponse != nil {
         // handle response
     }
@@ -119,7 +118,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedScheduledInterviewList != nil {
         // handle response
     }
@@ -171,7 +169,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ScheduledInterview != nil {
         // handle response
     }
@@ -222,7 +219,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.MetaResponse != nil {
         // handle response
     }

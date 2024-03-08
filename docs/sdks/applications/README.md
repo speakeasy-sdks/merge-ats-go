@@ -64,7 +64,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ApplicationResponse != nil {
         // handle response
     }
@@ -118,7 +117,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedApplicationList != nil {
         // handle response
     }
@@ -176,7 +174,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Application != nil {
         // handle response
     }
@@ -232,7 +229,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.MetaResponse != nil {
         // handle response
     }
@@ -285,7 +281,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ApplicationResponse != nil {
         // handle response
     }

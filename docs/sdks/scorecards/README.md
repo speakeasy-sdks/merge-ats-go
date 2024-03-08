@@ -35,7 +35,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PaginatedScorecardList != nil {
         // handle response
     }
@@ -87,7 +86,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Scorecard != nil {
         // handle response
     }
