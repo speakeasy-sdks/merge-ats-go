@@ -174,9 +174,9 @@ func New(opts ...SDKOption) *Ats {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
-			SDKVersion:        "0.12.2",
-			GenVersion:        "2.283.1",
-			UserAgent:         "speakeasy-sdk/go 0.12.2 2.283.1 1.0 github.com/speakeasy-sdks/merge-ats-go",
+			SDKVersion:        "0.12.3",
+			GenVersion:        "2.291.0",
+			UserAgent:         "speakeasy-sdk/go 0.12.3 2.291.0 1.0 github.com/speakeasy-sdks/merge-ats-go",
 			Hooks:             hooks.New(),
 		},
 	}
